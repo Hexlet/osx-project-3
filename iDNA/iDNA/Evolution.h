@@ -8,10 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Evolution : NSObject
+#define kGeneration @"Generation"
+#define kDistance @"Distance"
+#define kPretender @"Pretender"
+
+@class Cell;
+
+@interface Evolution : NSObject {
+    NSInteger dnaLength;
+    NSInteger populationSize;
+    NSInteger mutationRate;
+    Cell     *goalCell;
+    
+    NSMutableArray *population;
+    NSInteger generation;
+//    NSMutableDictionary *generationResult;
+    
+}
+
+
+
 
 +(NSString*)getRandomDNAWithLength:(NSInteger)dnalength;
 +(BOOL)isValidDNAString:(NSString *)s;
+
+-(id)initWithDNA:(NSInteger)dl PopulationSize: (NSInteger)pSize MutationRate:(NSInteger)mr ToGoal: (NSString*)goal;
+
+-(NSDictionary *)stepEvolution;
+
+
+-(void)sortPopulationByHammingDistance;
 
 -(void)startEvolution;
 -(void)pauseEvolution;

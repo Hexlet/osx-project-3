@@ -25,12 +25,16 @@
     
     NSInteger bestMatchPercent;
     NSInteger generation;
+    BOOL continueEvolution;
+    Evolution *evolution;
 
     NSArray *disabledWhenIncorrectDNA;
     NSArray *disabledWhenEvolution;
     
     
 }
+
+
 @property (weak) IBOutlet NSTextField *fieldPopulationSize;
 @property (weak) IBOutlet NSTextField *fieldDNALength;
 @property (weak) IBOutlet NSTextField *fieldMutationRate;
@@ -53,7 +57,11 @@
 @property (weak) IBOutlet NSButton *buttonStart;
 @property (weak) IBOutlet NSButton *buttonPause;
 @property (weak) IBOutlet NSButton *buttonLoad;
+@property (weak) IBOutlet NSButton *buttonStep;
 
 - (IBAction)validateDNA:(id)sender;
+- (IBAction)buttonStartPressed:(id)sender;
+- (IBAction)buttonPausePressed:(id)sender;
+- (IBAction)buttonStepPressed:(id)sender;
 
 @end

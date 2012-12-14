@@ -15,6 +15,8 @@
 		1FABB9371678FFBC003BE478 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABB9361678FFBC003BE478 /* Document.m */; };
 		1FABB93A1678FFBC003BE478 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FABB9381678FFBC003BE478 /* Document.xib */; };
 		1FABB93D1678FFBC003BE478 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FABB93B1678FFBC003BE478 /* MainMenu.xib */; };
+		1FC3C16B167B1A1200FD3AFB /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3C168167B1A1200FD3AFB /* Cell.m */; };
+		1FC3C16C167B1A1200FD3AFB /* Protein.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3C16A167B1A1200FD3AFB /* Protein.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		1FABB9361678FFBC003BE478 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		1FABB9391678FFBC003BE478 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		1FABB93C1678FFBC003BE478 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1FC3C167167B1A1200FD3AFB /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		1FC3C168167B1A1200FD3AFB /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		1FC3C169167B1A1200FD3AFB /* Protein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protein.h; sourceTree = "<group>"; };
+		1FC3C16A167B1A1200FD3AFB /* Protein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Protein.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,10 @@
 		1FABB9291678FFBC003BE478 /* iDNA */ = {
 			isa = PBXGroup;
 			children = (
+				1FC3C167167B1A1200FD3AFB /* Cell.h */,
+				1FC3C168167B1A1200FD3AFB /* Cell.m */,
+				1FC3C169167B1A1200FD3AFB /* Protein.h */,
+				1FC3C16A167B1A1200FD3AFB /* Protein.m */,
 				1F142C031679A922001312A3 /* Evolution.h */,
 				1F142C041679A922001312A3 /* Evolution.m */,
 				1FABB9351678FFBC003BE478 /* Document.h */,
@@ -178,6 +188,8 @@
 				1FABB9301678FFBC003BE478 /* main.m in Sources */,
 				1FABB9371678FFBC003BE478 /* Document.m in Sources */,
 				1F142C051679A922001312A3 /* Evolution.m in Sources */,
+				1FC3C16B167B1A1200FD3AFB /* Cell.m in Sources */,
+				1FC3C16C167B1A1200FD3AFB /* Protein.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

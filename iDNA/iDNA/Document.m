@@ -23,6 +23,8 @@ static void *RMDocumentKVOContext;
         populationSize = 100;
         bestMatchPercent = 0;
         generation = 0;
+        continueEvolution = YES;
+        evolution = nil;
         
         goalDNA = [Evolution getRandomDNAWithLength:dnaLength];
         
@@ -50,6 +52,8 @@ static void *RMDocumentKVOContext;
     [_fieldBestMatch setIntValue:(int)bestMatchPercent];
     [_indicatorBestMatch setIntValue:(int)bestMatchPercent];
     [_fieldGoalDNA setStringValue:goalDNA];
+    [_buttonPause setEnabled:NO]; // кнопка Pause пока что засерена
+    [_buttonStep setEnabled:NO];
 
     disabledWhenIncorrectDNA = [NSArray arrayWithObjects:   _fieldPopulationSize,
                                                             _fieldDNALength,
@@ -57,8 +61,7 @@ static void *RMDocumentKVOContext;
                                                             _sliderPopulationSize,
                                                             _sliderDNALength,
                                                             _sliderMutationRate,
-                                                            _buttonStart,
-                                                            _buttonPause, nil];
+                                                            _buttonStart, nil];
     disabledWhenEvolution = [NSArray arrayWithObjects:   _fieldPopulationSize,
                                 _fieldDNALength,
                                 _fieldMutationRate,
@@ -214,8 +217,6 @@ static void *RMDocumentKVOContext;
         
 }
 
-
-
 // что особенно приятно в хорошем коде, так это то что его можно использовать неоднократно
 // организация undo/redo скопипащена целиком у Рахима и ничего не изменив оно работает
 
@@ -242,6 +243,43 @@ static void *RMDocumentKVOContext;
 }
 
 
+-(IBAction)buttonStartPressed:(id)sender {
+    // для начала засерим все кнопки кроме паузы, а паузу наоборот включим
+    for (id i in disabledWhenEvolution) [i setEnabled:NO];
+    [_buttonPause setEnabled:YES];
+    [_buttonStep setEnabled:YES];
+
+    evolution = [[Evolution alloc] initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
+    [self buttonStepPressed:self];
+    
+/*
+    continueEvolution = YES;
+    while (continueEvolution) {
+        NSLog(@"iteration");
+        sleep(5);
+    }
+    NSLog(@"Pause pressed");
+    continueEvolution = YES;
+
+    // подсветим обратно все кнопки а паузу засерим
+    for (id i in disabledWhenEvolution) [i setEnabled:YES];
+    [_buttonPause setEnabled:NO];
+*/
+}
+
+- (IBAction)buttonPausePressed:(id)sender {
+    continueEvolution = NO;
+}
+
+- (IBAction)buttonStepPressed:(id)sender {
+    NSDictionary *dict = [evolution stepEvolution];  //выполнили шаг эволюции
+    NSInteger distance = [[dict objectForKey:kDistance] integerValue]; // расстояние от цели до первого
+    NSInteger match = (dnaLength - distance)*100/dnaLength;  // в процентах совпадение
+    [_fieldBestMatch setIntegerValue:match];
+    [_indicatorBestMatch setIntegerValue:match];  // отобразили
+    [_fieldIsDNAcorrect setStringValue:[dict objectForKey:kPretender]]; // показади претендента
+    [_fieldGenerationNumber setStringValue:[dict objectForKey:kGeneration]];
+}
 
 
 @end
