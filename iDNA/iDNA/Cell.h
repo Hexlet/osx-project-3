@@ -12,9 +12,9 @@
 #import "Protein.h"
 
 
-// #define CHAIN_LENGTH 100
 
-@interface Cell : NSObject {
+
+@interface Cell : NSObject <NSCoding> {
     NSMutableArray *chain;  // цепочку из Proteine храним тут
     NSInteger dnalength;
     

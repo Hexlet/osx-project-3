@@ -16,6 +16,11 @@
 #define kDNALength      @"dnaLength"
 #define kMutationRate   @"mutationRate"
 #define kGoalDNA        @"goalDNA"
+#define kEvolution      @"evolution"
+
+#define btnStatusStart  1
+#define btnStatusPause  2
+#define btnStatusRelease 3
 
 @interface Document : NSDocument {
     NSInteger populationSize;
@@ -26,6 +31,7 @@
     NSInteger bestMatchPercent;
     NSInteger generation;
     BOOL continueEvolution;
+    NSInteger statusEvolution;
     Evolution *evolution;
 
     NSArray *disabledWhenIncorrectDNA;
@@ -63,5 +69,6 @@
 - (IBAction)buttonStartPressed:(id)sender;
 - (IBAction)buttonPausePressed:(id)sender;
 - (IBAction)buttonStepPressed:(id)sender;
+- (IBAction)buttonPrintpressed:(id)sender;
 
 @end

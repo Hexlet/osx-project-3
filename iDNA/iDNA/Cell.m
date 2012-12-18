@@ -160,10 +160,28 @@
         }
     }
     return self;
-
-    
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:[self printToString] forKey:@"DNAstring"];
+}
+-(id)initWithCoder:(NSCoder *)aDecoder {  // на самом деле по лоховски скопировал код из initFromString :(
+    if ( self = [super init] ){
+        NSString *sourceString = [aDecoder decodeObjectForKey:@"DNAstring"];
+        chain = [[NSMutableArray alloc] init]; // создали пустую цепочку
+        dnalength = [sourceString length];
+        for (int i=0; i < dnalength; i++) { // добавим из строки copyLength элементов
+            switch ([sourceString characterAtIndex:i]) {
+                case 'A': { Protein *p =[[Protein alloc]init]; [p setA]; [chain addObject:p]; break; }
+                case 'T': { Protein *p =[[Protein alloc]init]; [p setT]; [chain addObject:p]; break; }
+                case 'G': { Protein *p =[[Protein alloc]init]; [p setG]; [chain addObject:p]; break; }
+                case 'C': { Protein *p =[[Protein alloc]init]; [p setC]; [chain addObject:p]; break; }
+                default : { Protein *p =[[Protein alloc]init]; [chain addObject:p]; break; } // если не угадал то случайно
+            }
+        }
+    }
+    return self;
+}
 
 @end
 

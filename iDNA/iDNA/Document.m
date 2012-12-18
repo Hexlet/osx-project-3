@@ -24,9 +24,8 @@ static void *RMDocumentKVOContext;
         bestMatchPercent = 0;
         generation = 0;
         continueEvolution = YES;
-        evolution = nil;
-        
         goalDNA = [Evolution getRandomDNAWithLength:dnaLength];
+        evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
         
         disabledWhenIncorrectDNA = nil;
         disabledWhenEvolution = nil;
@@ -52,8 +51,12 @@ static void *RMDocumentKVOContext;
     [_fieldBestMatch setIntValue:(int)bestMatchPercent];
     [_indicatorBestMatch setIntValue:(int)bestMatchPercent];
     [_fieldGoalDNA setStringValue:goalDNA];
-    [_buttonPause setEnabled:NO]; // кнопка Pause пока что засерена
-    [_buttonStep setEnabled:NO];
+    
+    [_buttonStart setStringValue:@"Start"];
+    statusEvolution = btnStatusStart;
+    
+//    [_buttonPause setEnabled:NO]; // кнопка Pause пока что засерена
+//    [_buttonStep setEnabled:NO];
 
     disabledWhenIncorrectDNA = [NSArray arrayWithObjects:   _fieldPopulationSize,
                                                             _fieldDNALength,
@@ -101,6 +104,7 @@ static void *RMDocumentKVOContext;
         [doc setObject:[NSNumber numberWithInteger:dnaLength] forKey:kDNALength];
         [doc setObject:[NSNumber numberWithInteger:mutationRate] forKey:kMutationRate];
         [doc setObject:goalDNA forKey:kGoalDNA];
+        [doc setObject:[NSKeyedArchiver archivedDataWithRootObject:evolution] forKey:kEvolution];
         
         data = [NSPropertyListSerialization dataFromPropertyList:doc format:NSPropertyListXMLFormat_v1_0 errorDescription:&errorString];
         if (!data) {
@@ -131,10 +135,13 @@ static void *RMDocumentKVOContext;
     NSDictionary *documentDictionary = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:NULL errorDescription:&errorString];
     
     if (documentDictionary) {
-        populationSize = (int)[[documentDictionary objectForKey:kPopulationSize] integerValue];
-        dnaLength = (int)[[documentDictionary objectForKey:kDNALength] integerValue];
-        mutationRate = (int)[[documentDictionary objectForKey:kMutationRate] integerValue];
+        populationSize = [[documentDictionary objectForKey:kPopulationSize] integerValue];
+        dnaLength = [[documentDictionary objectForKey:kDNALength] integerValue];
+        mutationRate = [[documentDictionary objectForKey:kMutationRate] integerValue];
         goalDNA = [documentDictionary objectForKey:kGoalDNA];
+
+        evolution = [NSKeyedUnarchiver unarchiveObjectWithData:[documentDictionary objectForKey:kEvolution]];
+//        evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
          
         result = YES;
     } else {
@@ -157,6 +164,7 @@ static void *RMDocumentKVOContext;
 -(void)setPopulationSize:(int)pSize {
     populationSize = pSize;
     [_fieldPopulationSize setIntValue:pSize];
+    evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
 }
 -(NSInteger)populationSize{
     return populationSize;
@@ -166,6 +174,7 @@ static void *RMDocumentKVOContext;
     [_fieldDNALength setIntValue:dl];
     goalDNA = [Evolution getRandomDNAWithLength:dnaLength];
     [_fieldGoalDNA setStringValue:goalDNA];
+    evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
     
 }
 -(NSInteger)dnaLengh{
@@ -249,7 +258,7 @@ static void *RMDocumentKVOContext;
     [_buttonPause setEnabled:YES];
     [_buttonStep setEnabled:YES];
 
-    evolution = [[Evolution alloc] initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
+//    evolution = [[Evolution alloc] initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
     [self buttonStepPressed:self];
     
 /*
@@ -279,6 +288,10 @@ static void *RMDocumentKVOContext;
     [_indicatorBestMatch setIntegerValue:match];  // отобразили
     [_fieldIsDNAcorrect setStringValue:[dict objectForKey:kPretender]]; // показади претендента
     [_fieldGenerationNumber setStringValue:[dict objectForKey:kGeneration]];
+}
+
+- (IBAction)buttonPrintpressed:(id)sender {
+    NSLog(@"%@",[evolution printPopulation]);
 }
 
 

@@ -17,6 +17,7 @@
 		1FABB93D1678FFBC003BE478 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FABB93B1678FFBC003BE478 /* MainMenu.xib */; };
 		1FC3C16B167B1A1200FD3AFB /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3C168167B1A1200FD3AFB /* Cell.m */; };
 		1FC3C16C167B1A1200FD3AFB /* Protein.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC3C16A167B1A1200FD3AFB /* Protein.m */; };
+		1FC3C1E3167F9BBE00FD3AFB /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1FC3C1E2167F9BBE00FD3AFB /* icon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		1FC3C168167B1A1200FD3AFB /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		1FC3C169167B1A1200FD3AFB /* Protein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protein.h; sourceTree = "<group>"; };
 		1FC3C16A167B1A1200FD3AFB /* Protein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Protein.m; sourceTree = "<group>"; };
+		1FC3C1E2167F9BBE00FD3AFB /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		1FABB9141678FFBC003BE478 = {
 			isa = PBXGroup;
 			children = (
+				1FC3C1E2167F9BBE00FD3AFB /* icon.icns */,
 				1FABB9291678FFBC003BE478 /* iDNA */,
 				1FABB9221678FFBC003BE478 /* Frameworks */,
 				1FABB9201678FFBC003BE478 /* Products */,
@@ -175,6 +178,7 @@
 				1FABB9341678FFBC003BE478 /* Credits.rtf in Resources */,
 				1FABB93A1678FFBC003BE478 /* Document.xib in Resources */,
 				1FABB93D1678FFBC003BE478 /* MainMenu.xib in Resources */,
+				1FC3C1E3167F9BBE00FD3AFB /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,11 +13,7 @@
 @implementation Evolution
 
 +(NSString*)getRandomDNAWithLength:(NSInteger)dl{
-    NSMutableString *chain = [NSMutableString stringWithCapacity:dl];
-    while (dl-- > 0){
-        [chain appendString:@"A"];
-    }
-    return chain;
+    return [[[Cell alloc]initWithDNAlength:dl]printToString];
 }
 
 +(BOOL)isValidDNAString:(NSString *)s{
@@ -123,6 +119,36 @@
     return result;
 }
 
+
+
+-(NSString *)printPopulation
+{
+    NSMutableString *result = [NSMutableString string];
+    for (Cell *c in population){
+        [result appendFormat:@"\n%@",[c printToString]];
+    }
+    return result;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    // нам сохранить нужно далеко не все:
+    // сохраняем популяцию, целевую клетку и процент мутаций и номер поколения
+    
+    [aCoder encodeObject:goalCell forKey:kEvoGoalCell];
+    [aCoder encodeInteger:mutationRate forKey:kEvoMutRate];
+    [aCoder encodeInteger:generation forKey:kGeneration];    
+    [aCoder encodeObject:population forKey:kEvoPopulation];
+}
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ( self = [super init] ){
+        goalCell = [aDecoder decodeObjectForKey:kEvoGoalCell];
+        mutationRate = [aDecoder decodeIntegerForKey:kEvoMutRate];
+        population = [[aDecoder decodeObjectForKey:kEvoPopulation]mutableCopy];
+        populationSize = [population count];
+        dnaLength = [[goalCell printToString]length];
+    }
+    return self;
+}
 
 
 -(void)startEvolution{

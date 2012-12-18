@@ -12,9 +12,13 @@
 #define kDistance @"Distance"
 #define kPretender @"Pretender"
 
+#define kEvoMutRate @"EMutRate"
+#define kEvoGoalCell @"EGoalCell"
+#define kEvoPopulation @"EPopulation"
+
 @class Cell;
 
-@interface Evolution : NSObject {
+@interface Evolution : NSObject <NSCoding> {
     NSInteger dnaLength;
     NSInteger populationSize;
     NSInteger mutationRate;
@@ -39,8 +43,13 @@
 
 -(void)sortPopulationByHammingDistance;
 
+-(NSString*)printPopulation;
+
 -(void)startEvolution;
 -(void)pauseEvolution;
 -(void)resumeEvolution;
+
+
+
 
 @end
