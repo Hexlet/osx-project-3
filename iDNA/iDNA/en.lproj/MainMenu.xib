@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C2034</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -1745,10 +1745,14 @@
 											<string key="NSAntiCompressionPriority">{250, 750}</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="677542211">
-												<int key="NSCellFlags">-1805647871</int>
+												<int key="NSCellFlags">-2074083327</int>
 												<int key="NSCellFlags2">272629760</int>
 												<string key="NSContents"/>
-												<reference key="NSSupport" ref="991795855"/>
+												<object class="NSFont" key="NSSupport">
+													<string key="NSName">LucidaGrande</string>
+													<double key="NSSize">14</double>
+													<int key="NSfFlags">16</int>
+												</object>
 												<string key="NSCellIdentifier">_NS:9</string>
 												<reference key="NSControlView" ref="663459175"/>
 												<bool key="NSDrawsBackground">YES</bool>
@@ -1894,7 +1898,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="1012839886"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -2881,6 +2885,109 @@
 						</object>
 					</object>
 					<int key="connectionID">750</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: self.generation</string>
+						<reference key="source" ref="810361558"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="810361558"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">displayPatternValue1: self.generation</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">self.generation</string>
+							<dictionary key="NSOptions">
+								<string key="NSDisplayPattern">Generation: %{value1}@</string>
+								<string key="NSNotApplicablePlaceholder">Generation: -</string>
+								<string key="NSNullPlaceholder">Generation: -</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">773</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: self.minimumHammingDistance</string>
+						<reference key="source" ref="348149090"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="348149090"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">displayPatternValue1: self.minimumHammingDistance</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">self.minimumHammingDistance</string>
+							<dictionary key="NSOptions">
+								<string key="NSDisplayPattern">Best Individual Match: %{value1}@%</string>
+								<string key="NSNotApplicablePlaceholder">-</string>
+								<string key="NSNullPlaceholder">-</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">781</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.percentageComplete</string>
+						<reference key="source" ref="59492276"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="59492276"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">value: self.percentageComplete</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.percentageComplete</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">784</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">animate: self.isBusy</string>
+						<reference key="source" ref="59492276"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="59492276"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">animate: self.isBusy</string>
+							<string key="NSBinding">animate</string>
+							<string key="NSKeyPath">self.isBusy</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">790</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: self.goalDNA.dnaString</string>
+						<reference key="source" ref="663459175"/>
+						<reference key="destination" ref="976324537"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="663459175"/>
+							<reference key="NSDestination" ref="976324537"/>
+							<string key="NSLabel">value: self.goalDNA.dnaString</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">self.goalDNA.dnaString</string>
+							<dictionary key="NSOptions">
+								<boolean value="NO" key="NSAllowsEditingMultipleValuesSelection"/>
+								<string key="NSNullPlaceholder">Null</string>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">768</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5009,18 +5116,8 @@
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">655</int>
-						<reference key="object" ref="916839743"/>
-						<reference key="parent" ref="439893737"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">656</int>
 						<reference key="object" ref="692289381"/>
-						<reference key="parent" ref="439893737"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">657</int>
-						<reference key="object" ref="968942500"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -5298,6 +5395,16 @@
 						<int key="objectID">721</int>
 						<reference key="object" ref="16236443"/>
 						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">655</int>
+						<reference key="object" ref="916839743"/>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">657</int>
+						<reference key="object" ref="968942500"/>
+						<reference key="parent" ref="439893737"/>
 					</object>
 				</array>
 			</object>
@@ -5635,7 +5742,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">758</int>
+			<int key="maxID">793</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5670,18 +5777,14 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_evolutionProgressIndicator">NSProgressIndicator</string>
 						<string key="dnaLengthTextField">NSTextField</string>
 						<string key="evolutionProgressIndicator">NSProgressIndicator</string>
+						<string key="goalDNATextField">NSTextField</string>
 						<string key="mutationRateTextField">NSTextField</string>
 						<string key="populationSizeTextField">NSTextField</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_evolutionProgressIndicator">
-							<string key="name">_evolutionProgressIndicator</string>
-							<string key="candidateClassName">NSProgressIndicator</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="dnaLengthTextField">
 							<string key="name">dnaLengthTextField</string>
 							<string key="candidateClassName">NSTextField</string>
@@ -5689,6 +5792,10 @@
 						<object class="IBToOneOutletInfo" key="evolutionProgressIndicator">
 							<string key="name">evolutionProgressIndicator</string>
 							<string key="candidateClassName">NSProgressIndicator</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="goalDNATextField">
+							<string key="name">goalDNATextField</string>
+							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mutationRateTextField">
 							<string key="name">mutationRateTextField</string>

@@ -15,12 +15,18 @@
     self = [super init];
     if (self) {
         [self addObserver:self forKeyPath:@"dnaLength" options:0 context:nil];
+        [self addObserver:self forKeyPath:@"minimumHammingDistance" options:0 context:nil];
 
         self.populationSize = 20;
         self.dnaLength = 30;
         self.mutationRate = 13;
 
         self.population = [NSMutableArray array];
+        self.generation = 0;
+        self.minimumHammingDistance = nil;
+
+        // Generate new Goal DNA
+        self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
     }
 
     return self;
@@ -29,6 +35,7 @@
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"dnaLength"];
+    [self removeObserver:self forKeyPath:@"minimumHammingDistance"];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -36,12 +43,89 @@
     self.isBusy = NO;
     
     // Generate new Goal DNA
-    self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
+//    self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
 }
 
-- (void)performEvolution
+- (void)goalIsReached
 {
+    self.isGoalReached = YES;
+    self.isBusy = NO;
+}
+
+- (void)updateStatus
+{
+    self.isGoalReached = YES;
+    self.isBusy = NO;
+}
+
+- (void)performEvolutionStep
+{
+    self.generation++;
     
+    // 1. Отсортировать популяцию по близости (hamming distance) к Goal DNA
+
+    [self.population sortUsingComparator:^(YKDNA *dna1, YKDNA *dna2) {
+        // Этот блок сравнивает hamming distance двух элементов массива и результат используется для сортировки
+        NSUInteger hammingDistance1 = [dna1 hammingDistanceToDNA:self.goalDNA];
+        NSUInteger hammingDistance2 = [dna2 hammingDistanceToDNA:self.goalDNA];
+
+        if (hammingDistance1 < hammingDistance2)
+            return (NSComparisonResult)NSOrderedAscending;
+
+        if (hammingDistance1 > hammingDistance2)
+            return (NSComparisonResult)NSOrderedDescending;
+
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+
+    // 2. Остановить эволюцию если есть ДНК, полностью совпадающее с Goal DNA (hamming distance == 0)
+
+    if (self.population.count > 0) {
+        NSUInteger minHammingDistance = [[self.population objectAtIndex:0] hammingDistanceToDNA:self.goalDNA];
+        self.minimumHammingDistance = [NSNumber numberWithUnsignedInteger:minHammingDistance];
+
+        if (minHammingDistance == 0) {
+        // Как минимум первая ДНК (с минимальным hamming distance) совпала с Goal DNA. Ура, товарищи! Красиво съезжаем.
+            [self isGoalReached];
+            [self performSelectorOnMainThread:@selector(goalIsReached) withObject:nil waitUntilDone:YES];
+            return;
+        }
+    }
+
+    // 3. Скрестить кандидатов из топ 50% и заменить результатом оставшиеся 50%.
+
+    for (NSUInteger i=0; i<self.population.count/2; i++) {
+        // 3.1. Берем две случайные ДНК
+
+        int r1 = arc4random_uniform(self.population.count/2);
+        int r2 = arc4random_uniform(self.population.count/2);
+        YKDNA *dna1 = [self.population objectAtIndex:r1];
+        YKDNA *dna2 = [self.population objectAtIndex:r2];
+
+        // Скрещиваем
+        YKDNA *breededDNA = [dna1 dnaByBreedingWithDNA:dna2];
+        
+        // И записываем по очереди с конца
+        [self.population replaceObjectAtIndex:self.population.count-i-1 withObject:breededDNA];
+    }
+    
+    // 4. Мутировать популяцию, используя значение процента мутирования из третьего text field'а.
+
+    for (YKDNA *dna in self.population) {
+        [dna mutateWithPercentage:self.mutationRate];
+    }
+}
+
+- (void)runEvolution
+{
+    while (!self.isGoalReached && self.isBusy && self.generation<20) {
+        self.generation++;
+//        [self performSelectorInBackground:@selector(performEvolutionStep) withObject:nil];
+        [self performEvolutionStep];
+//        [self pauseButtonPressed:nil];
+    }
+
+    self.isBusy = NO;
 }
 
 #pragma mark -
@@ -52,6 +136,12 @@
     if ((object == self) && keyPath) {
         if ([keyPath isEqualToString:@"dnaLength"]) {
             self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
+        } else if ([keyPath isEqualToString:@"minimumHammingDistance"]) {
+            NSNumber *newValue = [change objectForKey:NSKeyValueChangeNewKey];
+            if (newValue && self.dnaLength > 0)
+                self.percentageComplete = 100-[newValue unsignedIntegerValue]/self.dnaLength;
+            else
+                self.percentageComplete = 0;
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
@@ -75,13 +165,16 @@
         [newPopulation addObject:newDNA];
     }
     self.population = newPopulation;
+    
+    self.isGoalReached = NO;
+    self.generation = 0;
+    [self runEvolution];
 }
 
 - (IBAction)pauseButtonPressed:(id)sender
 {
     self.window.title = @"iDNA";
     self.isBusy = NO;
-
 }
 
 - (IBAction)loadGoalDnaButtonPressed:(id)sender

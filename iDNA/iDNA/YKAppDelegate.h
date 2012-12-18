@@ -13,6 +13,7 @@
     IBOutlet NSTextField *populationSizeTextField;
     IBOutlet NSTextField *dnaLengthTextField;
     IBOutlet NSTextField *mutationRateTextField;
+    IBOutlet NSTextField *goalDNATextField;
 
     IBOutlet NSProgressIndicator *evolutionProgressIndicator;
 }
@@ -25,8 +26,13 @@
 
 @property (retain) YKDNA *goalDNA;
 @property (retain) NSMutableArray *population;
+@property NSUInteger generation;
+@property NSUInteger percentageComplete;
+@property NSNumber *minimumHammingDistance;
 
 @property BOOL isBusy;
+@property BOOL isGoalReached;
+@property BOOL performingEvolutionStep;
 
 - (IBAction)startEvolutionButtonPressed:(id)sender;
 - (IBAction)pauseButtonPressed:(id)sender;

@@ -12,12 +12,13 @@
     NSArray *dnaLetters;
 }
 
-@property (assign) NSString *dnaString;
+@property (retain) NSString *dnaString;
+@property (assign) YKDNA *goalDNAForComparison;
 
 - (YKDNA *)initWithLength:(NSUInteger)length;
 
-- (NSUInteger)hammingDistance;
+- (NSInteger)hammingDistanceToDNA:(YKDNA *)aDNA;
 - (void)mutateWithPercentage:(NSUInteger)percentage;
-- (NSComparisonResult)compareHammingDistanceToHammingDistanceOfDNA:(YKDNA *)aDNA;
+- (YKDNA *)dnaByBreedingWithDNA:(YKDNA *)aDNA;
 
 @end
