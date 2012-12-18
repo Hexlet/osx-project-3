@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface YKDNA : NSObject {
-    NSArray *dnaLetters;
+//    NSArray *dnaLetters;
 }
 
 @property (retain) NSString *dnaString;
-@property (assign) YKDNA *goalDNAForComparison;
 
 - (YKDNA *)initWithLength:(NSUInteger)length;
 

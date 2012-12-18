@@ -9,17 +9,27 @@
 #import "YKDNA.h"
 #include <stdlib.h>
 
+static NSArray* dnaLetters = nil;
+
 @implementation YKDNA
+
++ (NSArray *)dnaLetters
+{
+    if (!dnaLetters) {
+        dnaLetters = @[@"A", @"C", @"G", @"T"];
+    }
+    
+    return dnaLetters;
+}
 
 - (YKDNA *)initWithLength:(NSUInteger)length
 {
     if (self = [super init]) {
-        dnaLetters = [NSArray arrayWithObjects:@"A", @"C", @"G", @"T", nil];
-        self.goalDNAForComparison = nil;
+//        dnaLetters = [NSArray arrayWithObjects:@"A", @"C", @"G", @"T", nil];
 
         NSMutableString *newDNA = [NSMutableString string];
         for (NSUInteger i=0; i<length; i++) {
-            [newDNA appendString:[dnaLetters objectAtIndex:arc4random_uniform((unsigned int)[dnaLetters count])]];
+            [newDNA appendString:[[YKDNA dnaLetters] objectAtIndex:arc4random_uniform((unsigned int)[dnaLetters count])]];
         }
 
         self.dnaString = [NSString stringWithString:newDNA];
@@ -80,7 +90,7 @@
     for (NSInteger i=0; i<mutatingIndexes.count; i++) {
         NSUInteger index = [mutatingIndexes[i] unsignedIntegerValue];
         NSString *place = [self.dnaString substringWithRange:NSMakeRange(index, 1)];
-        NSMutableArray *genesToSelect = [NSMutableArray arrayWithArray:dnaLetters];
+        NSMutableArray *genesToSelect = [NSMutableArray arrayWithArray:[YKDNA dnaLetters]];
         [genesToSelect removeObject:place];
         NSString *newValue = genesToSelect[arc4random_uniform(genesToSelect.count)];
         [newDNAString replaceCharactersInRange:NSMakeRange(index, 1) withString:newValue];

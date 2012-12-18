@@ -40,10 +40,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    self.isFirstRun = YES;
     self.isBusy = NO;
-    
-    // Generate new Goal DNA
-//    self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
 }
 
 - (void)goalIsReached
@@ -58,7 +56,7 @@
     self.isBusy = NO;
 }
 
-- (void)performEvolutionStep
+- (void)performEvolutionIteration
 {
     self.generation++;
     
@@ -86,7 +84,7 @@
 
         if (minHammingDistance == 0) {
         // Как минимум первая ДНК (с минимальным hamming distance) совпала с Goal DNA. Ура, товарищи! Красиво съезжаем.
-            [self isGoalReached];
+//            [self isGoalReached];
             [self performSelectorOnMainThread:@selector(goalIsReached) withObject:nil waitUntilDone:YES];
             return;
         }
@@ -94,19 +92,18 @@
 
     // 3. Скрестить кандидатов из топ 50% и заменить результатом оставшиеся 50%.
 
-    for (NSUInteger i=0; i<self.population.count/2; i++) {
-        // 3.1. Берем две случайные ДНК
+    // 3.1. Берем две случайные ДНК
+    int r1 = arc4random_uniform(self.population.count/2);
+    int r2 = arc4random_uniform(self.population.count/2);
+    YKDNA *dna1 = [self.population objectAtIndex:r1];
+    YKDNA *dna2 = [self.population objectAtIndex:r2];
+    
+    // 3.2. Скрещиваем
+    YKDNA *breededDNA = [dna1 dnaByBreedingWithDNA:dna2];
 
-        int r1 = arc4random_uniform(self.population.count/2);
-        int r2 = arc4random_uniform(self.population.count/2);
-        YKDNA *dna1 = [self.population objectAtIndex:r1];
-        YKDNA *dna2 = [self.population objectAtIndex:r2];
-
-        // Скрещиваем
-        YKDNA *breededDNA = [dna1 dnaByBreedingWithDNA:dna2];
-        
-        // И записываем по очереди с конца
-        [self.population replaceObjectAtIndex:self.population.count-i-1 withObject:breededDNA];
+    // И заменяем результатом оставшиеся 50%
+    for (NSUInteger i=self.population.count/2; i<self.population.count; i++) {
+        [self.population replaceObjectAtIndex:i withObject:breededDNA];
     }
     
     // 4. Мутировать популяцию, используя значение процента мутирования из третьего text field'а.
@@ -118,10 +115,10 @@
 
 - (void)runEvolution
 {
-    while (!self.isGoalReached && self.isBusy && self.generation<20) {
+    while (!self.isGoalReached && self.isBusy && self.generation<50) {
         self.generation++;
-//        [self performSelectorInBackground:@selector(performEvolutionStep) withObject:nil];
-        [self performEvolutionStep];
+//        [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
+        [self performEvolutionIteration];
 //        [self pauseButtonPressed:nil];
     }
 
@@ -137,10 +134,11 @@
         if ([keyPath isEqualToString:@"dnaLength"]) {
             self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
         } else if ([keyPath isEqualToString:@"minimumHammingDistance"]) {
-            NSNumber *newValue = [change objectForKey:NSKeyValueChangeNewKey];
-            if (newValue && self.dnaLength > 0)
-                self.percentageComplete = 100-[newValue unsignedIntegerValue]/self.dnaLength;
-            else
+            NSNumber *newValue = self.minimumHammingDistance;
+            if (newValue && self.dnaLength > 0) {
+                NSLog (@"Setting percentageComplete to %lu", 100-100*[newValue unsignedIntegerValue]/self.dnaLength);
+                self.percentageComplete = 100-100*[newValue unsignedIntegerValue]/self.dnaLength;
+            } else
                 self.percentageComplete = 0;
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -155,19 +153,26 @@
 
 - (IBAction)startEvolutionButtonPressed:(id)sender
 {
+    if (self.isFirstRun) {
+        // Генерируем несколько ДНК количеством self.populationSize
+        NSMutableArray *newPopulation = [NSMutableArray arrayWithCapacity:self.populationSize];
+        for (NSUInteger i=0; i<self.populationSize; i++) {
+            YKDNA *newDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
+            [newPopulation addObject:newDNA];
+        }
+        self.population = newPopulation;
+        
+        self.isGoalReached = NO;
+        self.generation = 0;
+
+        self.isFirstRun = NO;
+    }
+    
+    // Инициализируем эволюцию
     self.window.title = @"iDNA in progress…";
     self.isBusy = YES;
 
-    // Generate self.populationSize DNAs
-    NSMutableArray *newPopulation = [NSMutableArray arrayWithCapacity:self.populationSize];
-    for (NSUInteger i=0; i<self.populationSize; i++) {
-        YKDNA *newDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
-        [newPopulation addObject:newDNA];
-    }
-    self.population = newPopulation;
-    
-    self.isGoalReached = NO;
-    self.generation = 0;
+    // Запускаем эволюцию
     [self runEvolution];
 }
 

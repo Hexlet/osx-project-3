@@ -30,6 +30,7 @@
 @property NSUInteger percentageComplete;
 @property NSNumber *minimumHammingDistance;
 
+@property BOOL isFirstRun;
 @property BOOL isBusy;
 @property BOOL isGoalReached;
 @property BOOL performingEvolutionStep;
