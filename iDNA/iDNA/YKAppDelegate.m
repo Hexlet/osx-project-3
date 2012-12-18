@@ -10,6 +10,8 @@
 
 @implementation YKAppDelegate
 
+#define EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME @"YKEvolutionIterationDidFinishNotification"
+
 - (YKAppDelegate *)init
 {
     self = [super init];
@@ -36,12 +38,16 @@
 {
     [self removeObserver:self forKeyPath:@"dnaLength"];
     [self removeObserver:self forKeyPath:@"minimumHammingDistance"];
-}
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
+ }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.isFirstRun = YES;
     self.isBusy = NO;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evolutionIterationDidFinish:) name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
 }
 
 - (void)goalIsReached
@@ -111,32 +117,34 @@
     for (YKDNA *dna in self.population) {
         [dna mutateWithPercentage:self.mutationRate];
     }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:self];
 }
 
 - (void)runEvolution
 {
-    while (!self.isGoalReached && self.isBusy && self.generation<50) {
+//    if (!self.isGoalReached && self.isBusy && self.generation<1000) {
+    if (!self.isGoalReached && self.isBusy) {
         self.generation++;
-//        [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
-        [self performEvolutionIteration];
-//        [self pauseButtonPressed:nil];
+        self.isBusy = YES;
+        [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
     }
-
-    self.isBusy = NO;
 }
 
 #pragma mark -
-#pragma mark Delegate Methods
+#pragma mark Listening Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ((object == self) && keyPath) {
-        if ([keyPath isEqualToString:@"dnaLength"]) {
+        if ([keyPath isEqualToString:@"populationSize"]) {
+            self.isFirstRun = YES;
+        } else if ([keyPath isEqualToString:@"dnaLength"]) {
             self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
+            self.isFirstRun = YES;
         } else if ([keyPath isEqualToString:@"minimumHammingDistance"]) {
             NSNumber *newValue = self.minimumHammingDistance;
             if (newValue && self.dnaLength > 0) {
-                NSLog (@"Setting percentageComplete to %lu", 100-100*[newValue unsignedIntegerValue]/self.dnaLength);
                 self.percentageComplete = 100-100*[newValue unsignedIntegerValue]/self.dnaLength;
             } else
                 self.percentageComplete = 0;
@@ -145,6 +153,13 @@
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)evolutionIterationDidFinish:(NSNotification *)aNotification
+{
+    if (aNotification && [[aNotification name] isEqualToString:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME]) {
+        [self runEvolution];
     }
 }
 
