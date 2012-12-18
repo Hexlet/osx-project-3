@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA10F32E1680D7E3006403A0 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA10F32C1680D7E3006403A0 /* Cell.m */; };
 		FADF46F8167F8A2000338B8C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADF46F7167F8A2000338B8C /* Cocoa.framework */; };
 		FADF4702167F8A2000338B8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FADF4700167F8A2000338B8C /* InfoPlist.strings */; };
 		FADF4704167F8A2000338B8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF4703167F8A2000338B8C /* main.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA10F32C1680D7E3006403A0 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		FA10F32D1680D7E3006403A0 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		FADF46F3167F8A2000338B8C /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADF46F7167F8A2000338B8C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FADF46FA167F8A2000338B8C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,8 @@
 				FADF4709167F8A2000338B8C /* AppDelegate.h */,
 				FADF470A167F8A2000338B8C /* AppDelegate.m */,
 				FADF470C167F8A2100338B8C /* MainMenu.xib */,
+				FA10F32C1680D7E3006403A0 /* Cell.m */,
+				FA10F32D1680D7E3006403A0 /* Cell.h */,
 				FADF46FE167F8A2000338B8C /* Supporting Files */,
 			);
 			path = iDNA;
@@ -168,6 +173,7 @@
 			files = (
 				FADF4704167F8A2000338B8C /* main.m in Sources */,
 				FADF470B167F8A2000338B8C /* AppDelegate.m in Sources */,
+				FA10F32E1680D7E3006403A0 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +303,7 @@
 				FADF4713167F8A2100338B8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

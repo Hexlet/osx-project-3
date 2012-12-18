@@ -8,8 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@class Cell;
+
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    NSInteger populationSize;
+    NSInteger DNALength;
+    NSInteger mutationRate;
+}
+
+@property Cell* DNA;
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSTextField *populationSizeTextField;
+@property (weak) IBOutlet NSTextField *DNALengthTextField;
+@property (weak) IBOutlet NSTextField *mutationRateTextField;
+
 
 @end
