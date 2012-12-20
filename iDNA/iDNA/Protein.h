@@ -11,6 +11,7 @@
 @interface Protein : NSObject {
     char type;
 }
+-(id)initFromOther:(Protein*)p;
 - (void)setA;  // установить тип аминокислоты в A
 - (void)setT;  // установить тип аминокислоты в T
 - (void)setG;  // установить тип аминокислоты в G

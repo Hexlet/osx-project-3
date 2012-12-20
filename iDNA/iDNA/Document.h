@@ -18,28 +18,29 @@
 #define kGoalDNA        @"goalDNA"
 #define kEvolution      @"evolution"
 
-#define btnStatusStart  1
-#define btnStatusPause  2
-#define btnStatusRelease 3
+
+#define btnStatusStart  @"Start Evolution"
+#define btnStatusPause  @"Pause Evolution"
+#define btnStatusResume @"Resume Evolution"
+
 
 @interface Document : NSDocument {
     NSInteger populationSize;
     NSInteger dnaLength;
     NSInteger mutationRate;
     NSString *goalDNA;
-    
     NSInteger bestMatchPercent;
-    NSInteger generation;
+
     BOOL continueEvolution;
-    NSInteger statusEvolution;
     Evolution *evolution;
 
     NSArray *disabledWhenIncorrectDNA;
     NSArray *disabledWhenEvolution;
     
-    
+    NSEvent *myEvent;
 }
 
+@property NSInteger docID;
 
 @property (weak) IBOutlet NSTextField *fieldPopulationSize;
 @property (weak) IBOutlet NSTextField *fieldDNALength;
@@ -55,20 +56,22 @@
 @property (weak) IBOutlet NSLevelIndicator *indicatorBestMatch;
 
 @property (weak) IBOutlet NSTextField *fieldIsDNAcorrect;
-
 @property (weak) IBOutlet NSTextField *fieldGoalDNA;
 
-@property (weak) IBOutlet NSButton *buttonLoadGoalDNA;
+
 
 @property (weak) IBOutlet NSButton *buttonStart;
-@property (weak) IBOutlet NSButton *buttonPause;
-@property (weak) IBOutlet NSButton *buttonLoad;
-@property (weak) IBOutlet NSButton *buttonStep;
+@property (weak) IBOutlet NSButton *buttonNew;
+@property (weak) IBOutlet NSButton *buttonPrint;
+
 
 - (IBAction)validateDNA:(id)sender;
+
 - (IBAction)buttonStartPressed:(id)sender;
-- (IBAction)buttonPausePressed:(id)sender;
-- (IBAction)buttonStepPressed:(id)sender;
 - (IBAction)buttonPrintpressed:(id)sender;
+- (IBAction)buttonNewPressed:(id)sender;
+
+
+-(void)doing;
 
 @end

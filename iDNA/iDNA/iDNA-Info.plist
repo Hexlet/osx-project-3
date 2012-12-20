@@ -12,13 +12,9 @@
 				<string>dna</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string></string>
+			<string>icon</string>
 			<key>CFBundleTypeName</key>
 			<string>ru.daugava.idna.document</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>????</string>
-			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
@@ -50,6 +46,26 @@
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>MyApp</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>ru.daugava.idna.document</string>
+			<key>UTTypeIconFile</key>
+			<string>icon</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>dna</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

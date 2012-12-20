@@ -93,9 +93,10 @@
     
     // теперь родим вместо убитых
     for (NSInteger i=badGuys.location; i<populationSize; i++){
-        Cell *father = [population objectAtIndex:(arc4random()%badGuys.location)];
-        Cell *mother = [population objectAtIndex:(arc4random()%badGuys.location)]; // да-да не вижу проблемы когда папа и мама одинаковые
+        Cell *father = [population objectAtIndex:((int)arc4random()%badGuys.location)];
+        Cell *mother = [population objectAtIndex:((int)arc4random()%badGuys.location)]; // да-да не вижу проблемы когда папа и мама одинаковые
         Cell *child = [[Cell alloc] initFromSex:father With:mother];
+        NSLog(@"%@+%@=%@",[father printToString],[mother printToString],[child printToString]);
         [population addObject:child];
     }
     
@@ -116,6 +117,7 @@
     [result setObject:stringedDistance forKey:kDistance];
     
     [result setObject:[first printToString] forKey:kPretender];
+    NSLog(@"%@",[self printPopulation]);
     return result;
 }
 
@@ -123,9 +125,9 @@
 
 -(NSString *)printPopulation
 {
-    NSMutableString *result = [NSMutableString string];
+    NSMutableString *result = [NSMutableString stringWithFormat:@"Generation:%ld\nGoal:%@\n",generation,[goalCell printToString]];
     for (Cell *c in population){
-        [result appendFormat:@"\n%@",[c printToString]];
+        [result appendFormat:@"%03d:%@\n",[goalCell hammingDistance:c],[c printToString]];
     }
     return result;
 }
@@ -144,12 +146,16 @@
         goalCell = [aDecoder decodeObjectForKey:kEvoGoalCell];
         mutationRate = [aDecoder decodeIntegerForKey:kEvoMutRate];
         population = [[aDecoder decodeObjectForKey:kEvoPopulation]mutableCopy];
+        generation = [aDecoder decodeIntegerForKey:kGeneration];
         populationSize = [population count];
         dnaLength = [[goalCell printToString]length];
     }
     return self;
 }
 
+-(NSInteger)generation{
+    return generation;
+}
 
 -(void)startEvolution{
     

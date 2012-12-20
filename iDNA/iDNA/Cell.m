@@ -41,7 +41,7 @@
         dnalength = sourceCell->dnalength;
 
         chain = [[NSMutableArray alloc] init]; // создали пустую цепочку
-        for (int i=0; i < dnalength; i++) { // добавим CHAIN_LENGTH элементов
+        for (int i=0; i < dnalength; i++) {
             switch ([[sourceCell->chain objectAtIndex:i] get]) {
                 case 'A': { Protein *p =[[Protein alloc]init]; [p setA]; [chain addObject:p]; break; }
                 case 'T': { Protein *p =[[Protein alloc]init]; [p setT]; [chain addObject:p]; break; }
@@ -144,19 +144,39 @@
     
 }
 
-- (id) initFromSex: (Cell*)father With:(Cell*)mother{  // пока реализован тупо дуюлированием отца
-    self = [super init];
-    if (self){
+- (id) initFromSex: (Cell*)father With:(Cell*)mother{  
+    if (father->dnalength != mother->dnalength) return nil; // не ежа с ужом
+    if (self = [super init]){
+        chain = [[NSMutableArray alloc] init];
         dnalength = father->dnalength;
-        
-        chain = [[NSMutableArray alloc] init]; // создали пустую цепочку
-        for (int i=0; i < dnalength; i++) { // добавим CHAIN_LENGTH элементов
-            switch ([[father->chain objectAtIndex:i] get]) {
-                case 'A': { Protein *p =[[Protein alloc]init]; [p setA]; [chain addObject:p]; break; }
-                case 'T': { Protein *p =[[Protein alloc]init]; [p setT]; [chain addObject:p]; break; }
-                case 'G': { Protein *p =[[Protein alloc]init]; [p setG]; [chain addObject:p]; break; }
-                case 'C': { Protein *p =[[Protein alloc]init]; [p setC]; [chain addObject:p]; break; }
-            }
+        NSUInteger sexType = (unsigned int)arc4random()%3; // три типа секса бывает у клеток
+        switch(sexType){
+            case 0: {
+                // 50% первого ДНК + 50% второго ДНК
+                NSInteger middle = dnalength/2;
+                for (NSInteger i=0; i<middle; i++)
+                    [chain insertObject:[[Protein alloc]initFromOther:[father->chain objectAtIndex:i]] atIndex:i];
+                for (NSInteger i=middle; i<dnalength;i++)[chain insertObject:[[Protein alloc]initFromOther:[mother->chain objectAtIndex:i]] atIndex:i];
+            } break;
+            case 1: {
+                // 1% первого ДНК + 1% второго ДНК + 1% первого ДНК + ... и т.д.
+                // я слукавлю. поскольку у нас цепочка больше 100 не бывает, буду чередовать не процентами а аминокислотами
+                for (NSInteger i=0; i<dnalength;i++){
+                    NSInteger domino = 0;
+                    switch (domino) {
+                        case 0: [chain insertObject:[[Protein alloc]initFromOther:[father->chain objectAtIndex:i]] atIndex:i]; break;
+                        case 1: [chain insertObject:[[Protein alloc]initFromOther:[mother->chain objectAtIndex:i]] atIndex:i]; break;
+                    }
+                    domino = 1-domino; // чередуем так
+                }
+            } break;
+            case 2: {
+                // 20% первого ДНК + 60% второго ДНК + 20% первого ДНК
+                NSInteger middle = dnalength/5; // это типа 20% в int я так вычислил
+                for (NSInteger i=0; i<middle; i++) [chain insertObject:[[Protein alloc]initFromOther:[father->chain objectAtIndex:i]] atIndex:i];
+                for (NSInteger i=middle; i<dnalength-middle; i++) [chain insertObject:[[Protein alloc]initFromOther:[mother->chain objectAtIndex:i]] atIndex:i];
+                for (NSInteger i=dnalength-middle; i<dnalength; i++) [chain insertObject:[[Protein alloc]initFromOther:[father->chain objectAtIndex:i]] atIndex:i];
+            } break;
         }
     }
     return self;
@@ -182,6 +202,8 @@
     }
     return self;
 }
-
+-(NSString*)debugDescription{
+    return [self printToString];
+}
 @end
 

@@ -21,14 +21,28 @@ static void *RMDocumentKVOContext;
         dnaLength = 10;
         mutationRate = 12;
         populationSize = 100;
+        
         bestMatchPercent = 0;
-        generation = 0;
-        continueEvolution = YES;
+        
+        continueEvolution = NO;
+        
         goalDNA = [Evolution getRandomDNAWithLength:dnaLength];
         evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
         
         disabledWhenIncorrectDNA = nil;
         disabledWhenEvolution = nil;
+        
+        _docID = (NSInteger)(arc4random()%30000); // это уникальный ид документа на время выполнения. он не сохранияется
+        myEvent = [NSEvent otherEventWithType: NSApplicationDefined
+                                     location: NSMakePoint(0,0)
+                                modifierFlags: 0
+                                    timestamp: 0.0
+                                 windowNumber: 0
+                                      context: nil
+                                      subtype: 0
+                                        data1: _docID // это что бы отличать один экземпляр документа от другого
+                                        data2: 0];
+        
     }
     return self;
 }
@@ -45,15 +59,22 @@ static void *RMDocumentKVOContext;
     [super windowControllerDidLoadNib:aController];
     
     // а здесь значения не даем (они уже пришли либо из init либо из файла) только сообщаем на первый раз экранным формам
-    [_fieldDNALength setIntValue:(int)dnaLength];
-    [_fieldMutationRate setIntValue:(int)mutationRate];
-    [_fieldPopulationSize setIntValue:(int)populationSize];
-    [_fieldBestMatch setIntValue:(int)bestMatchPercent];
-    [_indicatorBestMatch setIntValue:(int)bestMatchPercent];
+    [_fieldDNALength setIntegerValue:dnaLength];
+    [_fieldMutationRate setIntegerValue:mutationRate];
+    [_fieldPopulationSize setIntegerValue:populationSize];
+    
+    [_fieldBestMatch setIntegerValue:bestMatchPercent];
+    [_indicatorBestMatch setIntegerValue:bestMatchPercent];
     [_fieldGoalDNA setStringValue:goalDNA];
     
-    [_buttonStart setStringValue:@"Start"];
-    statusEvolution = btnStatusStart;
+    [_fieldGenerationNumber setIntegerValue:[evolution generation]];
+    
+    if([evolution generation]>0) {
+        [_buttonStart setStringValue:@"Resume Evolution"];
+    } else {
+        [_buttonStart setStringValue:@"Start Evolution"];
+    }
+        
     
 //    [_buttonPause setEnabled:NO]; // кнопка Pause пока что засерена
 //    [_buttonStep setEnabled:NO];
@@ -64,15 +85,18 @@ static void *RMDocumentKVOContext;
                                                             _sliderPopulationSize,
                                                             _sliderDNALength,
                                                             _sliderMutationRate,
-                                                            _buttonStart, nil];
+                                                            _buttonPrint,
+                                                            _buttonStart,
+                                                            _buttonNew,nil];
     disabledWhenEvolution = [NSArray arrayWithObjects:   _fieldPopulationSize,
                                 _fieldDNALength,
                                 _fieldMutationRate,
                                 _sliderPopulationSize,
                                 _sliderDNALength,
                                 _sliderMutationRate,
-                                _buttonStart,
-                                _buttonLoad, nil];
+                                _fieldGoalDNA,
+                                _buttonPrint,
+                                _buttonNew, nil];
     [_fieldIsDNAcorrect setStringValue:@""];
     
     // последим за нашими переменными
@@ -140,9 +164,7 @@ static void *RMDocumentKVOContext;
         mutationRate = [[documentDictionary objectForKey:kMutationRate] integerValue];
         goalDNA = [documentDictionary objectForKey:kGoalDNA];
 
-        evolution = [NSKeyedUnarchiver unarchiveObjectWithData:[documentDictionary objectForKey:kEvolution]];
-//        evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
-         
+        evolution = [NSKeyedUnarchiver unarchiveObjectWithData:[documentDictionary objectForKey:kEvolution]];        
         result = YES;
     } else {
         if (!outError) {
@@ -188,7 +210,7 @@ static void *RMDocumentKVOContext;
     return mutationRate;
 }
 
-
+/*
 // этот метод устанавливает изображение расстояния наилучшей клетки от идеала
 -(void)setBestMatchPercent:(int)pc {
     if ( pc < 0 ) pc = 0;
@@ -200,7 +222,7 @@ static void *RMDocumentKVOContext;
 -(NSInteger)bestMatchPercent {
     return bestMatchPercent;
 }
-
+*/
 // когда пользоатель вводит ручками строчку ДНК нужно проверить что бы он не написал не тех символов
 // и если что не так, не выпустим его из этого поля пока не одумается
 - (IBAction)validateDNA:(id)sender {
@@ -223,9 +245,16 @@ static void *RMDocumentKVOContext;
     for (id i in disabledWhenIncorrectDNA){
         [i setEnabled:state];
     }
-        
+    
+    //если изменения приемлемы, пересоздадим объект эволюции
+    if (state){
+        evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
+        [_fieldGenerationNumber setIntegerValue:0];
+        [_buttonStart setStringValue:@"Start Evolution"];
+        [_fieldBestMatch setIntegerValue:0];
+        [_indicatorBestMatch setIntegerValue:0];
+    }
 }
-
 // что особенно приятно в хорошем коде, так это то что его можно использовать неоднократно
 // организация undo/redo скопипащена целиком у Рахима и ничего не изменив оно работает
 
@@ -253,46 +282,76 @@ static void *RMDocumentKVOContext;
 
 
 -(IBAction)buttonStartPressed:(id)sender {
-    // для начала засерим все кнопки кроме паузы, а паузу наоборот включим
-    for (id i in disabledWhenEvolution) [i setEnabled:NO];
-    [_buttonPause setEnabled:YES];
-    [_buttonStep setEnabled:YES];
-
-//    evolution = [[Evolution alloc] initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
-    [self buttonStepPressed:self];
+    // эта кнопка может принимать три значения: Start/Resume Evolution и Pause Evolution
+    // причем первые два отличаются лишь названием на самой кнопке, а по сути лишь запускают процес
+    // а вот последняя останавливает итерации меняя значение continueEvolution на NO
     
-/*
-    continueEvolution = YES;
-    while (continueEvolution) {
-        NSLog(@"iteration");
-        sleep(5);
+    if (continueEvolution) {
+        // мы в процессe итеративной эволюции и пользователь нажал кнопку что бы все прекратить
+        continueEvolution = NO;
+        
+        // сменим название кнопки
+        if (evolution.generation == 0){
+            [_buttonStart setTitle:btnStatusStart];
+        } else {
+            [_buttonStart setTitle:btnStatusResume];
+        }
+        
+        // подсветим обратно все кнопки
+        for (id i in disabledWhenEvolution) [i setEnabled:YES];
+        
+    } else {
+        // пользователь желает начать/продолжить эволюцию
+        continueEvolution = YES;
+        [_buttonStart setTitle:btnStatusPause];
+        
+        // все элементы засерим кроме нашей кропки
+        for (id i in disabledWhenEvolution) [i setEnabled:NO];
+        
+        // и собственно перавый раз запустим итеративный процесс
+        [self doing];
     }
-    NSLog(@"Pause pressed");
-    continueEvolution = YES;
-
-    // подсветим обратно все кнопки а паузу засерим
-    for (id i in disabledWhenEvolution) [i setEnabled:YES];
-    [_buttonPause setEnabled:NO];
-*/
 }
 
-- (IBAction)buttonPausePressed:(id)sender {
-    continueEvolution = NO;
-}
-
-- (IBAction)buttonStepPressed:(id)sender {
-    NSDictionary *dict = [evolution stepEvolution];  //выполнили шаг эволюции
-    NSInteger distance = [[dict objectForKey:kDistance] integerValue]; // расстояние от цели до первого
-    NSInteger match = (dnaLength - distance)*100/dnaLength;  // в процентах совпадение
-    [_fieldBestMatch setIntegerValue:match];
-    [_indicatorBestMatch setIntegerValue:match];  // отобразили
-    [_fieldIsDNAcorrect setStringValue:[dict objectForKey:kPretender]]; // показади претендента
-    [_fieldGenerationNumber setStringValue:[dict objectForKey:kGeneration]];
-}
 
 - (IBAction)buttonPrintpressed:(id)sender {
     NSLog(@"%@",[evolution printPopulation]);
 }
 
+- (IBAction)buttonNewPressed:(id)sender {
+    evolution = [[Evolution alloc]initWithDNA:dnaLength PopulationSize:populationSize MutationRate:mutationRate ToGoal:goalDNA];
+    [_fieldGenerationNumber setIntegerValue:0];
+    [_buttonStart setStringValue:@"Start Evolution"];
+    [_fieldBestMatch setIntegerValue:0];
+    [_indicatorBestMatch setIntegerValue:0];
+}
+
+// кострукция проста: выполняем один шаг эволюции, потом смотрим не решил ли пользователь
+// прекратить это безобразие (нажатием кнопки) и если не нажимал, отправляем эвент
+// который вызовет все тот же метот doing
+
+-(void)doing{
+    
+    NSDictionary *dict = [evolution stepEvolution];  //выполнили шаг эволюции
+    NSInteger distance = [[dict objectForKey:kDistance] integerValue]; // расстояние от цели до первого
+    NSInteger match = (dnaLength - distance)*100/dnaLength;  // в процентах совпадение
+    [_fieldBestMatch setIntegerValue:match];
+    [_indicatorBestMatch setIntegerValue:match];  // отобразили
+    [_fieldIsDNAcorrect setStringValue:[dict objectForKey:kPretender]]; // показали претендента
+    [_fieldGenerationNumber setStringValue:[dict objectForKey:kGeneration]];
+
+    // а вдруг у нас уже все получилось?
+    if (distance==0){
+        continueEvolution = NO;
+        [_buttonStart setTitle:btnStatusStart];
+        // подсветим обратно все кнопки
+        for (id i in disabledWhenEvolution) [i setEnabled:YES];
+    }
+    
+    if (continueEvolution) {
+        [NSApp postEvent: myEvent atStart: NO]; // причем помещаем наш эвент в конец очереди что бы другие все обработались
+    }
+
+}
 
 @end

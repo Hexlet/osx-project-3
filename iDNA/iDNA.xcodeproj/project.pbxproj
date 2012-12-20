@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F142C051679A922001312A3 /* Evolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F142C041679A922001312A3 /* Evolution.m */; };
+		1F5959151681ACE900DE3699 /* MyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5959141681ACE900DE3699 /* MyApp.m */; };
 		1FABB9241678FFBC003BE478 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FABB9231678FFBC003BE478 /* Cocoa.framework */; };
 		1FABB92E1678FFBC003BE478 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FABB92C1678FFBC003BE478 /* InfoPlist.strings */; };
 		1FABB9301678FFBC003BE478 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABB92F1678FFBC003BE478 /* main.m */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		1F142C031679A922001312A3 /* Evolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evolution.h; sourceTree = "<group>"; };
 		1F142C041679A922001312A3 /* Evolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evolution.m; sourceTree = "<group>"; };
+		1F5959131681ACE900DE3699 /* MyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApp.h; sourceTree = "<group>"; };
+		1F5959141681ACE900DE3699 /* MyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApp.m; sourceTree = "<group>"; };
 		1FABB91F1678FFBC003BE478 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FABB9231678FFBC003BE478 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1FABB9261678FFBC003BE478 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -41,7 +44,7 @@
 		1FC3C168167B1A1200FD3AFB /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		1FC3C169167B1A1200FD3AFB /* Protein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protein.h; sourceTree = "<group>"; };
 		1FC3C16A167B1A1200FD3AFB /* Protein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Protein.m; sourceTree = "<group>"; };
-		1FC3C1E2167F9BBE00FD3AFB /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		1FC3C1E2167F9BBE00FD3AFB /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +62,6 @@
 		1FABB9141678FFBC003BE478 = {
 			isa = PBXGroup;
 			children = (
-				1FC3C1E2167F9BBE00FD3AFB /* icon.icns */,
 				1FABB9291678FFBC003BE478 /* iDNA */,
 				1FABB9221678FFBC003BE478 /* Frameworks */,
 				1FABB9201678FFBC003BE478 /* Products */,
@@ -106,6 +108,8 @@
 				1FABB9361678FFBC003BE478 /* Document.m */,
 				1FABB9381678FFBC003BE478 /* Document.xib */,
 				1FABB93B1678FFBC003BE478 /* MainMenu.xib */,
+				1F5959131681ACE900DE3699 /* MyApp.h */,
+				1F5959141681ACE900DE3699 /* MyApp.m */,
 				1FABB92A1678FFBC003BE478 /* Supporting Files */,
 			);
 			path = iDNA;
@@ -119,6 +123,7 @@
 				1FABB92F1678FFBC003BE478 /* main.m */,
 				1FABB9311678FFBC003BE478 /* iDNA-Prefix.pch */,
 				1FABB9321678FFBC003BE478 /* Credits.rtf */,
+				1FC3C1E2167F9BBE00FD3AFB /* icon.icns */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				1F142C051679A922001312A3 /* Evolution.m in Sources */,
 				1FC3C16B167B1A1200FD3AFB /* Cell.m in Sources */,
 				1FC3C16C167B1A1200FD3AFB /* Protein.m in Sources */,
+				1F5959151681ACE900DE3699 /* MyApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,13 @@
     return self;
 }
 
+-(id)initFromOther:(Protein*)p{
+    if (self = [super init]){
+        type = [p get];
+    }
+    return self;
+}
+
 - (void) setA {
     self->type='A';
 }

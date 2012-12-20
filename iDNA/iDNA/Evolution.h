@@ -26,12 +26,8 @@
     
     NSMutableArray *population;
     NSInteger generation;
-//    NSMutableDictionary *generationResult;
     
 }
-
-
-
 
 +(NSString*)getRandomDNAWithLength:(NSInteger)dnalength;
 +(BOOL)isValidDNAString:(NSString *)s;
@@ -44,11 +40,14 @@
 -(void)sortPopulationByHammingDistance;
 
 -(NSString*)printPopulation;
+-(NSInteger)generation;
 
+
+/*
 -(void)startEvolution;
 -(void)pauseEvolution;
 -(void)resumeEvolution;
-
+*/
 
 
 
