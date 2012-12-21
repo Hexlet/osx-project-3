@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+
 @interface Document : NSDocument{
     NSInteger populationSize;
     NSInteger dnaLength;
     NSInteger mutationRate;
     NSInteger bestMatch;
+
 }
 
 

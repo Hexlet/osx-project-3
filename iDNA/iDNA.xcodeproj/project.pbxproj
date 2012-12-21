@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C252357A1684D7D100B1FC6F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25235791684D7D100B1FC6F /* Cocoa.framework */; };
-		C25235841684D7D100B1FC6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C25235821684D7D100B1FC6F /* InfoPlist.strings */; };
-		C25235861684D7D100B1FC6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C25235851684D7D100B1FC6F /* main.m */; };
-		C252358A1684D7D100B1FC6F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C25235881684D7D100B1FC6F /* Credits.rtf */; };
 		C252358D1684D7D100B1FC6F /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = C252358C1684D7D100B1FC6F /* Document.m */; };
 		C25235901684D7D100B1FC6F /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252358E1684D7D100B1FC6F /* Document.xib */; };
 		C25235931684D7D100B1FC6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25235911684D7D100B1FC6F /* MainMenu.xib */; };
+		C25235A61684EED300B1FC6F /* DNA.m in Sources */ = {isa = PBXBuildFile; fileRef = C25235A51684EED300B1FC6F /* DNA.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +20,12 @@
 		C252357C1684D7D100B1FC6F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		C252357D1684D7D100B1FC6F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C252357E1684D7D100B1FC6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C25235811684D7D100B1FC6F /* iDNA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
-		C25235831684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C25235851684D7D100B1FC6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C25235871684D7D100B1FC6F /* iDNA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
-		C25235891684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		C252358B1684D7D100B1FC6F /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		C252358C1684D7D100B1FC6F /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		C252358F1684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		C25235921684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C25235A41684EED300B1FC6F /* DNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNA.h; sourceTree = "<group>"; };
+		C25235A51684EED300B1FC6F /* DNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNA.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,21 +83,10 @@
 				C252358C1684D7D100B1FC6F /* Document.m */,
 				C252358E1684D7D100B1FC6F /* Document.xib */,
 				C25235911684D7D100B1FC6F /* MainMenu.xib */,
-				C25235801684D7D100B1FC6F /* Supporting Files */,
+				C25235A41684EED300B1FC6F /* DNA.h */,
+				C25235A51684EED300B1FC6F /* DNA.m */,
 			);
 			path = iDNA;
-			sourceTree = "<group>";
-		};
-		C25235801684D7D100B1FC6F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C25235811684D7D100B1FC6F /* iDNA-Info.plist */,
-				C25235821684D7D100B1FC6F /* InfoPlist.strings */,
-				C25235851684D7D100B1FC6F /* main.m */,
-				C25235871684D7D100B1FC6F /* iDNA-Prefix.pch */,
-				C25235881684D7D100B1FC6F /* Credits.rtf */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,8 +140,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C25235841684D7D100B1FC6F /* InfoPlist.strings in Resources */,
-				C252358A1684D7D100B1FC6F /* Credits.rtf in Resources */,
 				C25235901684D7D100B1FC6F /* Document.xib in Resources */,
 				C25235931684D7D100B1FC6F /* MainMenu.xib in Resources */,
 			);
@@ -170,30 +152,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C25235861684D7D100B1FC6F /* main.m in Sources */,
 				C252358D1684D7D100B1FC6F /* Document.m in Sources */,
+				C25235A61684EED300B1FC6F /* DNA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C25235821684D7D100B1FC6F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C25235831684D7D100B1FC6F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C25235881684D7D100B1FC6F /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C25235891684D7D100B1FC6F /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 		C252358E1684D7D100B1FC6F /* Document.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
