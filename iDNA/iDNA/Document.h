@@ -13,6 +13,8 @@
     NSInteger dnaLength;
     NSInteger mutationRate;
     NSInteger bestMatch;
+    
+    NSString *goalDNA;
 }
 
 

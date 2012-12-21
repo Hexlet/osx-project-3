@@ -14,6 +14,7 @@
 		C252358D1684D7D100B1FC6F /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = C252358C1684D7D100B1FC6F /* Document.m */; };
 		C25235901684D7D100B1FC6F /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252358E1684D7D100B1FC6F /* Document.xib */; };
 		C25235931684D7D100B1FC6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25235911684D7D100B1FC6F /* MainMenu.xib */; };
+		C2EE26AF1684FF8200D7D5E2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE26AE1684FF8200D7D5E2 /* Cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		C252358C1684D7D100B1FC6F /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		C252358F1684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		C25235921684D7D100B1FC6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C2EE26AD1684FF8200D7D5E2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		C2EE26AE1684FF8200D7D5E2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 		C252357F1684D7D100B1FC6F /* iDNA */ = {
 			isa = PBXGroup;
 			children = (
+				C2EE26AD1684FF8200D7D5E2 /* Cell.h */,
+				C2EE26AE1684FF8200D7D5E2 /* Cell.m */,
 				C252358B1684D7D100B1FC6F /* Document.h */,
 				C252358C1684D7D100B1FC6F /* Document.m */,
 				C252358E1684D7D100B1FC6F /* Document.xib */,
@@ -172,6 +177,7 @@
 			files = (
 				C25235861684D7D100B1FC6F /* main.m in Sources */,
 				C252358D1684D7D100B1FC6F /* Document.m in Sources */,
+				C2EE26AF1684FF8200D7D5E2 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +315,7 @@
 				C25235981684D7D100B1FC6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

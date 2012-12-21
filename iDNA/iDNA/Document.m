@@ -7,6 +7,7 @@
 //
 
 #import "Document.h"
+#import "Cell.h"
 
 @implementation Document
 
@@ -19,6 +20,8 @@
         [self setValue:[NSNumber numberWithInt:42] forKey:@"dnaLength"];
         [self setValue:[NSNumber numberWithInt:26] forKey:@"mutationRate"];
         [self setValue:[NSNumber numberWithInt:0] forKey:@"bestMatch"];
+        
+        [self setValue:[Cell getRandomDNA:dnaLength] forKey:@"goalDNA"];
     }
     return self;
 }
@@ -27,9 +30,16 @@
 
 -(void)setBestMatch:(NSInteger)x{
     [_bestMatchLabel setStringValue:[NSString stringWithFormat:@"Best individual match - %ld%%",x]];
-    bestMatch=x;    
+    bestMatch=x;
+    
 }
 
+-(void)setDnaLength:(NSInteger)x{
+    dnaLength=x;
+    [self setValue:[Cell getRandomDNA:dnaLength] forKey:@"goalDNA"];
+    [_goalDNATF setStringValue:goalDNA];
+    
+}
 
 - (NSString *)windowNibName
 {
@@ -42,6 +52,8 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    
+    [_goalDNATF setStringValue:goalDNA];
 }
 
 + (BOOL)autosavesInPlace
