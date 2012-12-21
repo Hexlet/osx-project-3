@@ -95,14 +95,14 @@
 			children = (
 				B51CFC16165AD6170041B204 /* AppDelegate.h */,
 				B51CFC17165AD6170041B204 /* AppDelegate.m */,
+				B51CFC19165AD6170041B204 /* MainMenu.xib */,
+				B5E02DEB1680C45B005C6D2F /* updateSecond.h */,
+				B5E02DEC1680C45B005C6D2F /* updateSecond.m */,
 				B561847516824B65007D61F9 /* AppController.h */,
 				B561847616824B65007D61F9 /* AppController.m */,
 				B561847216824AA5007D61F9 /* Preferences.h */,
 				B561847316824AA5007D61F9 /* Preferences.m */,
 				B561847816824CF2007D61F9 /* Preferences.xib */,
-				B5E02DEB1680C45B005C6D2F /* updateSecond.h */,
-				B5E02DEC1680C45B005C6D2F /* updateSecond.m */,
-				B51CFC19165AD6170041B204 /* MainMenu.xib */,
 				B51CFC0B165AD6170041B204 /* Supporting Files */,
 			);
 			path = timer;

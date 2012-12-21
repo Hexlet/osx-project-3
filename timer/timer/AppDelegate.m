@@ -15,6 +15,7 @@
 
 -(id)init{
     if (self = [super init]) {
+        //цу от настроек
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self selector:@selector(updateRest:) name:Sm0_kerRestTimeNotification object:nil];
         [nc addObserver:self selector:@selector(updateWork:) name:Sm0_kerWorkTimeNotification object:nil];
@@ -23,25 +24,6 @@
         [nc addObserver:self selector:@selector(changeworkColor:) name:Sm0_kerWorkColorNotification object:nil];
     }
     return self;
-}
--(void)changeworkColor:(NSNotification *)n{
-    NSColor *workColor = [[n userInfo]objectForKey:@"workTimeColor"];
-    [self drawPie:[self restColor]:workColor];
-}
--(void)changerestColor:(NSNotification *)n{
-    NSColor *restColor = [[n userInfo]objectForKey:@"restTimeColor"];
-    [self drawPie:restColor:[self workColor]];
-}
--(void)updateRest:(NSNotification *)n{
-    [restLable setStringValue:@"0:00"];
-}
--(void)updateWork:(NSNotification *)n{
-    [workLable setStringValue:@"0:00"];
-}
--(void)updateAllLables:(NSNotification *)n{
-    [restLable setStringValue:@"0:00"];
-    [workLable setStringValue:@"0:00"];
-    [summ setStringValue:@"0:00"];
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -81,6 +63,7 @@
     [self drawPie:[self restColor]:[self workColor]];
 }
 
+//метод рисует круговую диаграмму
 -(void)drawPie:(NSColor *)rest:(NSColor *)work{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CGFloat works,summs,rests;
@@ -92,7 +75,7 @@
     int degree = (int)percent;
     persentW = (works/summs)*100;
     persentR = (rests/summs)*100;
-    
+    //проценты слева и справа от диаграммы
     [workPersent setStringValue:[NSString stringWithFormat:@"%1.2f%%",persentW]];
     [restPersent setStringValue:[NSString stringWithFormat:@"%1.2f%%",persentR]];
     
@@ -124,7 +107,25 @@
     
     [greenPath fill];
 }
-
+-(void)changeworkColor:(NSNotification *)n{
+    NSColor *workColor = [[n userInfo]objectForKey:@"workTimeColor"];
+    [self drawPie:[self restColor]:workColor];
+}
+-(void)changerestColor:(NSNotification *)n{
+    NSColor *restColor = [[n userInfo]objectForKey:@"restTimeColor"];
+    [self drawPie:restColor:[self workColor]];
+}
+-(void)updateRest:(NSNotification *)n{
+    [restLable setStringValue:@"0:00"];
+}
+-(void)updateWork:(NSNotification *)n{
+    [workLable setStringValue:@"0:00"];
+}
+-(void)updateAllLables:(NSNotification *)n{
+    [restLable setStringValue:@"0:00"];
+    [workLable setStringValue:@"0:00"];
+    [summ setStringValue:@"0:00"];
+}
 -(NSColor *)restColor {
     NSData *restData = [[NSUserDefaults standardUserDefaults]objectForKey:Sm0_kerRestColor];
     return [NSKeyedUnarchiver unarchiveObjectWithData:restData];

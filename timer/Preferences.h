@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+//константы для цу и пользовательских настроек
 extern NSString *const Sm0_kerRestColor;
 extern NSString *const Sm0_kerWorkColor;
 extern NSString *const Sm0_kerRestTimeNotification;
