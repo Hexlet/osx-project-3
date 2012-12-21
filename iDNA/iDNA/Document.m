@@ -8,7 +8,6 @@
 
 #import "Document.h"
 
-
 @implementation Document
 
 - (id)init
@@ -20,7 +19,6 @@
         [self setValue:[NSNumber numberWithInt:42] forKey:@"dnaLength"];
         [self setValue:[NSNumber numberWithInt:26] forKey:@"mutationRate"];
         [self setValue:[NSNumber numberWithInt:0] forKey:@"bestMatch"];
-        
     }
     return self;
 }
