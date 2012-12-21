@@ -22,6 +22,14 @@
         [nc addObserver:self selector:@selector(updateAllLables:) name:Sm0_kerAllTimeNotification object:nil];
         [nc addObserver:self selector:@selector(changerestColor:) name:Sm0_kerRestColorNotification object:nil];
         [nc addObserver:self selector:@selector(changeworkColor:) name:Sm0_kerWorkColorNotification object:nil];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults objectForKey:Sm0_kerWorkColor] == nil || [defaults objectForKey:Sm0_kerRestColor] == 0) {
+            NSData *workColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor blueColor]];
+            [defaults setObject:workColorData forKey:Sm0_kerWorkColor];
+            NSData *restColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor greenColor]];
+            [defaults setObject:restColorData forKey:Sm0_kerRestColor];
+            [defaults synchronize];
+        }
     }
     return self;
 }
