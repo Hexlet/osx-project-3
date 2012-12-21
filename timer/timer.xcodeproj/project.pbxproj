@@ -16,6 +16,7 @@
 		B561847416824AA5007D61F9 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = B561847316824AA5007D61F9 /* Preferences.m */; };
 		B561847716824B65007D61F9 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = B561847616824B65007D61F9 /* AppController.m */; };
 		B561847916824CF2007D61F9 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B561847816824CF2007D61F9 /* Preferences.xib */; };
+		B583DF6D1684C1A40048D701 /* Timer-1024.icns in Resources */ = {isa = PBXBuildFile; fileRef = B583DF6C1684C1A40048D701 /* Timer-1024.icns */; };
 		B5E02DED1680C45B005C6D2F /* updateSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E02DEC1680C45B005C6D2F /* updateSecond.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		B561847516824B65007D61F9 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ../AppController.h; sourceTree = "<group>"; };
 		B561847616824B65007D61F9 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = ../AppController.m; sourceTree = "<group>"; };
 		B561847816824CF2007D61F9 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Preferences.xib; path = ../Preferences.xib; sourceTree = "<group>"; };
+		B583DF6C1684C1A40048D701 /* Timer-1024.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Timer-1024.icns"; sourceTree = "<group>"; };
 		B5E02DEB1680C45B005C6D2F /* updateSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateSecond.h; sourceTree = "<group>"; };
 		B5E02DEC1680C45B005C6D2F /* updateSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateSecond.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +59,7 @@
 		B51CFBF5165AD6170041B204 = {
 			isa = PBXGroup;
 			children = (
+				B583DF6C1684C1A40048D701 /* Timer-1024.icns */,
 				B51CFC0A165AD6170041B204 /* timer */,
 				B51CFC03165AD6170041B204 /* Frameworks */,
 				B51CFC01165AD6170041B204 /* Products */,
@@ -175,6 +178,7 @@
 				B51CFC15165AD6170041B204 /* Credits.rtf in Resources */,
 				B51CFC1B165AD6170041B204 /* MainMenu.xib in Resources */,
 				B561847916824CF2007D61F9 /* Preferences.xib in Resources */,
+				B583DF6D1684C1A40048D701 /* Timer-1024.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

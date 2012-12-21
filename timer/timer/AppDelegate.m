@@ -24,9 +24,9 @@
         [nc addObserver:self selector:@selector(changeworkColor:) name:Sm0_kerWorkColorNotification object:nil];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults objectForKey:Sm0_kerWorkColor] == nil || [defaults objectForKey:Sm0_kerRestColor] == 0) {
-            NSData *workColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor blueColor]];
+            NSData *workColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:115.0/255 green:14.0/255 blue:14.0/255 alpha:1.0]];
             [defaults setObject:workColorData forKey:Sm0_kerWorkColor];
-            NSData *restColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor greenColor]];
+            NSData *restColorData = [NSKeyedArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:27.0/255 green:117.0/255 blue:15.0/255 alpha:1.0]];
             [defaults setObject:restColorData forKey:Sm0_kerRestColor];
             [defaults synchronize];
         }
