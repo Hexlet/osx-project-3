@@ -14,6 +14,7 @@
     NSInteger populationSize;
     NSInteger DNALength;
     NSInteger mutationRate;
+    BOOL paused;
 }
 
 @property Cell* DNA;
@@ -22,6 +23,16 @@
 @property (weak) IBOutlet NSTextField *populationSizeTextField;
 @property (weak) IBOutlet NSTextField *DNALengthTextField;
 @property (weak) IBOutlet NSTextField *mutationRateTextField;
+@property (weak) IBOutlet NSTextField *goalDNATextField;
+@property (weak) IBOutlet NSTextField *generationLabel;
+@property (weak) IBOutlet NSTextField *bestMatchLabel;
+@property (weak) IBOutlet NSButton *startEvolutionButton;
+@property (weak) IBOutlet NSButton *pauseButton;
+@property (weak) IBOutlet NSSlider *populationSizeSlider;
+@property (weak) IBOutlet NSSlider *DNALengthSlider;
+@property (weak) IBOutlet NSSlider *mutationRateSlider;
 
+- (IBAction)startEvolution:(id)sender;
+- (IBAction)pauseClick:(id)sender;
 
 @end

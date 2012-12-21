@@ -8,24 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const DNAChangeNotification;
+
 @interface Cell : NSObject {
     NSArray *DNAElements; // A, T, G и C
 }
 
 @property NSMutableArray *DNA;
+@property Cell *rootCell;
+@property int hammingDistanceToRootCell;
 
 
 -(id) init;
--(void) initForSize: (NSInteger) size;
+-(id) initWithSize: (NSInteger) size;
+-(id) initWithSize: (NSInteger) size andRootCell:(Cell*)cell;
+-(void) populateForSize: (NSInteger) size;
 -(int) hammingDistance: (Cell*) cell;
+-(NSString*) asString;
+-(NSComparisonResult)compareWithCell:(Cell*) cell;
+-(id)combineWith:(Cell*) cell withWay:(int)n;
 
-// нужно для тестирования
 +(id) copyCell: (Cell*) cell;
 
 @end
 
 @interface Cell (mutator)
 
--(void) mutate: (int)X;
+-(void) mutate: (NSInteger)X;
 
 @end
