@@ -17,6 +17,8 @@
 @property(strong, nonatomic) Word *word;
 @property(assign, nonatomic) int wordIndex;
 
+@property (nonatomic)UIDeviceOrientation currentOrientation;
+
 - (IBAction)saveHandler:(id)sender;
 
 - (IBAction)dismissKeyboard:(id)sender;

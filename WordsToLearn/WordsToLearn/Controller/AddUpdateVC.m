@@ -18,8 +18,12 @@
 
 
 @implementation AddUpdateVC
+{
+}
 
 @synthesize word, wordIndex, txtTranslation, txtWord;
+
+@synthesize currentOrientation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +64,11 @@
     {
         word = [[Word alloc] init];
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
 - (void)didReceiveMemoryWarning
