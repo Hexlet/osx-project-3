@@ -26,10 +26,10 @@
     [super tearDown];
 }
 
-- (void)createSimpleDNA
+- (void)testCreateSimpleDNA
 {
     DNA *dna = [DNA dnaWithLength:10];
-    STAssertEquals([[dna description] length], 10UL, @"What the f**k?!");
+    STAssertEquals([[dna description] length], 10UL, @"Created DNA has wrong chain length!");
 }
 
 @end

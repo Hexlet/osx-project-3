@@ -13,17 +13,12 @@
     char *chain;
 }
 
-+ (DNA *)dnaWithLength:(NSUInteger)length
-{
-    DNA *dna = [DNA alloc];
-    return [dna initWithLength:length];
-}
-
 - (id)initWithLength:(NSUInteger)length
 {
     if (self = [super init]) {
-        chain = calloc(length, sizeof(char));
-        for (uint i = 0; i < length; ++i)
+        _length = length;
+        chain = calloc(_length, sizeof(char));
+        for (uint i = 0; i < _length; ++i)
             chain[i] = 'A';
     }
     return self;
@@ -32,6 +27,12 @@
 - (NSString *)description
 {
     return [[NSString alloc] initWithUTF8String:chain];
+}
+
++ (DNA *)dnaWithLength:(NSUInteger)length
+{
+    DNA *dna = [DNA alloc];
+    return [dna initWithLength:length];
 }
 
 @end

@@ -10,8 +10,10 @@
 
 @interface DNA : NSObject
 
-+ (DNA *)dnaWithLength:(NSUInteger)length;
+@property (readonly) NSUInteger length;
 
 - (id)initWithLength:(NSUInteger)length;
+
++ (DNA *)dnaWithLength:(NSUInteger)length;
 
 @end
