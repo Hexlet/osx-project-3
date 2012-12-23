@@ -29,7 +29,7 @@
 
 - (void)testCreateSimpleDNA
 {
-    DNA *dna = [[DNA alloc] initWithLength:10UL];
+    DNA *dna = [[DNA alloc] initWithLength:10];
     STAssertEquals([[dna description] length], 10UL, nil);
 }
 

@@ -37,18 +37,19 @@
     return [[NSString alloc] initWithUTF8String:_elements];
 }
 
-#pragma mark -
+# pragma mark Random
 
 + (DNAElement *)getRandomDNAChainArrayWithLength:(NSUInteger)length
-{
-    NSUInteger chainElementCount = strlen(CHAIN_ELEMENTS);
-    
+{    
     char *chainArray = calloc(length, sizeof(DNAElement));
     for (NSUInteger i = 0; i < length; ++i)
-        chainArray[i] = CHAIN_ELEMENTS[arc4random() % chainElementCount];
+        chainArray[i] = [self getRandomElement];
     return chainArray;
 }
 
-static DNAElement CHAIN_ELEMENTS[] = "ACGT";
++ (DNAElement)getRandomElement
+{
+    return DNA_CHAIN_ELEMENTS[arc4random() % DNA_CHAIN_ELEMENT_COUNT];
+}
 
 @end

@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DNAChain : NSObject
-
 typedef char DNAElement;
+
+static DNAElement DNA_CHAIN_ELEMENTS[] = "ACGT";
+static NSUInteger DNA_CHAIN_ELEMENT_COUNT = 4;
+
+
+@interface DNAChain : NSObject
 
 @property (readonly) DNAElement *elements;
 @property (readonly) NSUInteger length;
