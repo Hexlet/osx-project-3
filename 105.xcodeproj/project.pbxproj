@@ -15,8 +15,6 @@
 		79F057F2167BDB5600D8C306 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F057F0167BDB5600D8C306 /* MainMenu.xib */; };
 		79F057FA167BDB5700D8C306 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F057F9167BDB5700D8C306 /* SenTestingKit.framework */; };
 		79F057FB167BDB5700D8C306 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F057DB167BDB5600D8C306 /* Cocoa.framework */; };
-		79F05803167BDB5700D8C306 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79F05801167BDB5700D8C306 /* InfoPlist.strings */; };
-		79F05806167BDB5700D8C306 /* _05Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F05805167BDB5700D8C306 /* _05Tests.m */; };
 		79F05815167BE11D00D8C306 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F05814167BE11D00D8C306 /* Cell.m */; };
 /* End PBXBuildFile section */
 
@@ -46,10 +44,6 @@
 		79F057F1167BDB5600D8C306 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		79F057F8167BDB5700D8C306 /* 105Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 105Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F057F9167BDB5700D8C306 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		79F05800167BDB5700D8C306 /* 105Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "105Tests-Info.plist"; sourceTree = "<group>"; };
-		79F05802167BDB5700D8C306 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		79F05804167BDB5700D8C306 /* _05Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _05Tests.h; sourceTree = "<group>"; };
-		79F05805167BDB5700D8C306 /* _05Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _05Tests.m; sourceTree = "<group>"; };
 		79F05813167BE11D00D8C306 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		79F05814167BE11D00D8C306 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				79F057E1167BDB5600D8C306 /* 105 */,
-				79F057FE167BDB5700D8C306 /* 105Tests */,
 				79F057DA167BDB5600D8C306 /* Frameworks */,
 				79F057D8167BDB5600D8C306 /* Products */,
 			);
@@ -135,25 +128,6 @@
 				79F057E7167BDB5600D8C306 /* main.m */,
 				79F057E9167BDB5600D8C306 /* 105-Prefix.pch */,
 				79F057EA167BDB5600D8C306 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		79F057FE167BDB5700D8C306 /* 105Tests */ = {
-			isa = PBXGroup;
-			children = (
-				79F05804167BDB5700D8C306 /* _05Tests.h */,
-				79F05805167BDB5700D8C306 /* _05Tests.m */,
-				79F057FF167BDB5700D8C306 /* Supporting Files */,
-			);
-			path = 105Tests;
-			sourceTree = "<group>";
-		};
-		79F057FF167BDB5700D8C306 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				79F05800167BDB5700D8C306 /* 105Tests-Info.plist */,
-				79F05801167BDB5700D8C306 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -239,7 +213,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79F05803167BDB5700D8C306 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79F05806167BDB5700D8C306 /* _05Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,14 +285,6 @@
 				79F057F1167BDB5600D8C306 /* en */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		79F05801167BDB5700D8C306 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				79F05802167BDB5700D8C306 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
