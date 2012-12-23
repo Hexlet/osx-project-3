@@ -18,6 +18,16 @@
 
 Cell *myCell1;
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self setValue:[NSNumber numberWithInt:100] forKey:@"popSize"];
+        [self setValue:[NSNumber numberWithInt:20] forKey:@"dnaLengthBindings"];
+        [self setValue:[NSNumber numberWithInt:25] forKey:@"mutRate"];
+    }
+    return self;
+}
+
 - (IBAction)sliDnaLength:(id)sender {
     [Cell setDnaLength:[sender intValue]];
     myCell1 = [[Cell alloc] init];

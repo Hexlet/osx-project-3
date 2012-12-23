@@ -10,7 +10,7 @@
 
 @implementation Cell
 
-int dnaLength;
+int dnaLength = 20;
 const int ELS = 4;
 const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
 
