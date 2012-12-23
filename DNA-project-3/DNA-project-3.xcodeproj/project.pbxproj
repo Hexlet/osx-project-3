@@ -13,7 +13,7 @@
 		A52619DB1685A568001951F2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A52619D91685A568001951F2 /* Credits.rtf */; };
 		A52619DE1685A568001951F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A52619DD1685A568001951F2 /* AppDelegate.m */; };
 		A52619E11685A568001951F2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52619DF1685A568001951F2 /* MainMenu.xib */; };
-		A52619E91685B78C001951F2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = A52619E81685B78C001951F2 /* Cell.m */; };
+		A5F06F4A168729BD005B9EA4 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F06F49168729BD005B9EA4 /* Cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		A52619DD1685A568001951F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A52619E01685A568001951F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A52619E71685B78C001951F2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
-		A52619E81685B78C001951F2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		A5F06F49168729BD005B9EA4 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +87,8 @@
 			children = (
 				A52619DC1685A568001951F2 /* AppDelegate.h */,
 				A52619DD1685A568001951F2 /* AppDelegate.m */,
+				A5F06F49168729BD005B9EA4 /* Cell.m */,
 				A52619E71685B78C001951F2 /* Cell.h */,
-				A52619E81685B78C001951F2 /* Cell.m */,
 				A52619DF1685A568001951F2 /* MainMenu.xib */,
 				A52619D11685A568001951F2 /* Supporting Files */,
 			);
@@ -172,7 +172,7 @@
 			files = (
 				A52619D71685A568001951F2 /* main.m in Sources */,
 				A52619DE1685A568001951F2 /* AppDelegate.m in Sources */,
-				A52619E91685B78C001951F2 /* Cell.m in Sources */,
+				A5F06F4A168729BD005B9EA4 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
