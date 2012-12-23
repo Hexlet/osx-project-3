@@ -6,6 +6,17 @@
 //  Copyright (c) 2012 Yuri Kirghisov. All rights reserved.
 //
 
+// Особенности реализации (надеюсь, сбережет несколько минут времени проверяющего).
+//
+// 1. Реализация интерфейса должна быть прозрачной, без изысков:
+// 1.1. Включение и выключение элементов интерфейса производится привязкой их свойства isEnabled к свойству данного объекта isBusy.
+//
+// 2. Просчет поколений в цикле (в основном потоке) заблокировал бы пользовательский интерфейс. Выполнение всего цикла в отдельном потоке также нецелесообразно ввиду большого количества изменений (массив population изменяется очень сильно), т.е. передавать его в параметрах накладно и долго. Поэтому решение следующее:
+//  2.1. Нажатие кнопки Start Evolution выполняет метод runEvolution.
+//  2.2 Метод runEvolution проверяет условия окончания просчета. Если цель не достигнута и пользователь не остановил просчет, запускаем выполнение метода performEvolutionIteration в отдельном потоке.
+//  2.3. По окончании выполнения метод performEvolutionIteration посылает в основной поток уведомление YKEvolutionIterationDidFinishNotification, после чего завершает свою работу.
+//  2.4. Метод evolutionIterationDidFinish: в основном потоке получает уведомление и выполняет снова метод runEvolution.
+
 #import "YKAppDelegate.h"
 
 @implementation YKAppDelegate
@@ -16,18 +27,21 @@
 {
     self = [super init];
     if (self) {
+        // Регистрируем наблюдение для адекватного реагирования на изменения этих полей в UI
         [self addObserver:self forKeyPath:@"dnaLength" options:0 context:nil];
         [self addObserver:self forKeyPath:@"minimumHammingDistance" options:0 context:nil];
 
+        // Значения по умолчанию. Хранение в пользовательских настройках условиями задания не требуется.
         self.populationSize = 20;
         self.dnaLength = 30;
         self.mutationRate = 13;
 
+        // Инициализация прочих свойств
         self.population = [NSMutableArray array];
         self.generation = 0;
         self.minimumHammingDistance = nil;
 
-        // Generate new Goal DNA
+        // Создаем новую Goal DNA
         self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
     }
 
@@ -82,7 +96,7 @@
         return (NSComparisonResult)NSOrderedSame;
     }];
 
-    // 2. Остановить эволюцию если есть ДНК, полностью совпадающее с Goal DNA (hamming distance == 0)
+    // 2. Остановить эволюцию, если есть ДНК, полностью совпадающее с Goal DNA (hamming distance == 0)
 
     if (self.population.count > 0) {
         NSUInteger minHammingDistance = [[self.population objectAtIndex:0] hammingDistanceToDNA:self.goalDNA];
@@ -118,15 +132,17 @@
         [dna mutateWithPercentage:self.mutationRate];
     }
 
+    // Посылаем уведомление об окончании шага эволюции, чтобы запустить следующий шаг из основного потока
     [[NSNotificationCenter defaultCenter] postNotificationName:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:self];
 }
 
 - (void)runEvolution
 {
-//    if (!self.isGoalReached && self.isBusy && self.generation<1000) {
     if (!self.isGoalReached && self.isBusy) {
         self.generation++;
         self.isBusy = YES;
+
+        // Выполняем performEvolutionIteration в фоновом потоке, чтобы не блокировать элементы пользовательского интерфейса в основном потоке
         [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
     }
 }
@@ -137,17 +153,28 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ((object == self) && keyPath) {
+
         if ([keyPath isEqualToString:@"populationSize"]) {
+
+            // При изменении self.populationSize перезапускаем эволюцию
             self.isFirstRun = YES;
+
         } else if ([keyPath isEqualToString:@"dnaLength"]) {
+
+            // При изменении self.dnaLength создаем новую Goal DNA и перезапускаем эволюцию
             self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
             self.isFirstRun = YES;
+
         } else if ([keyPath isEqualToString:@"minimumHammingDistance"]) {
+
             NSNumber *newValue = self.minimumHammingDistance;
+
+            // При изменении self.minimumHammingDistance изменяем и self.percentageComplete для правильного отображения индикатора выполнения в интерфейсе
             if (newValue && self.dnaLength > 0) {
                 self.percentageComplete = 100-100*[newValue unsignedIntegerValue]/self.dnaLength;
             } else
                 self.percentageComplete = 0;
+
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
@@ -158,6 +185,7 @@
 
 - (void)evolutionIterationDidFinish:(NSNotification *)aNotification
 {
+    // Это уведомление отправляется по окончании каждого шага эволюции
     if (aNotification && [[aNotification name] isEqualToString:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME]) {
         [self runEvolution];
     }
@@ -177,28 +205,28 @@
         }
         self.population = newPopulation;
         
+        // Инициализируем эволюцию
         self.isGoalReached = NO;
         self.generation = 0;
-
         self.isFirstRun = NO;
     }
     
-    // Инициализируем эволюцию
+    // Запускаем эволюцию
     self.window.title = @"iDNA in progress…";
     self.isBusy = YES;
-
-    // Запускаем эволюцию
     [self runEvolution];
 }
 
 - (IBAction)pauseButtonPressed:(id)sender
 {
+    // Приостанавиваем эволюцию
     self.window.title = @"iDNA";
     self.isBusy = NO;
 }
 
 - (IBAction)loadGoalDnaButtonPressed:(id)sender
 {
+    // Задание так и не объясняет необходимость этой кнопки, так что оставляем пустышку.
     NSLog (@"loadGoalDnaButtonPressed:");
 }
 

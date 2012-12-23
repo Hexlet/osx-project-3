@@ -30,10 +30,14 @@
 @property NSUInteger percentageComplete;
 @property NSNumber *minimumHammingDistance;
 
+// YES во время выполнения рассчетов, NO во время простоя. Используется для включения и отключения объектов пользвательского интерфейса с помощью привязывания.
 @property BOOL isFirstRun;
+
+// YES во время выполнения рассчетов, NO во время простоя. Используется для включения и отключения объектов пользвательского интерфейса с помощью привязывания.
 @property BOOL isBusy;
+
+// Индикатор достижения цели, т.е. выхода из цикла просчета.
 @property BOOL isGoalReached;
-@property BOOL performingEvolutionStep;
 
 - (IBAction)startEvolutionButtonPressed:(id)sender;
 - (IBAction)pauseButtonPressed:(id)sender;
