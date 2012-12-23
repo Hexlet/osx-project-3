@@ -23,6 +23,7 @@
 		0AE5084F16870306004EF883 /* DNABaseChainCrossover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE5084C16870306004EF883 /* DNABaseChainCrossover.h */; };
 		0AE5085016870306004EF883 /* DNABaseChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5084D16870306004EF883 /* DNABaseChainCrossover.m */; };
 		0AE5085116870306004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5084E16870306004EF883 /* DNAOneMiddlePointChainCrossover.m */; };
+		0AE5085416870473004EF883 /* DNAChainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5085316870473004EF883 /* DNAChainTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		0AE5084C16870306004EF883 /* DNABaseChainCrossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNABaseChainCrossover.h; sourceTree = "<group>"; };
 		0AE5084D16870306004EF883 /* DNABaseChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNABaseChainCrossover.m; sourceTree = "<group>"; };
 		0AE5084E16870306004EF883 /* DNAOneMiddlePointChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAOneMiddlePointChainCrossover.m; sourceTree = "<group>"; };
+		0AE5085216870473004EF883 /* DNAChainTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAChainTests.h; sourceTree = "<group>"; };
+		0AE5085316870473004EF883 /* DNAChainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAChainTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,14 +132,14 @@
 			isa = PBXGroup;
 			children = (
 				0AE508361686EECC004EF883 /* Crossovers */,
-				0AAA9A6A1686338F00C3566A /* Supporting Files */,
 				0AAA9A6C1686338F00C3566A /* DNA.h */,
 				0AAA9A6D1686338F00C3566A /* DNA.m */,
-				0AAA9A8C168646D600C3566A /* DNAChain.h */,
-				0AAA9A8D168646D600C3566A /* DNAChain.m */,
 				0AE5084616870176004EF883 /* DNAChain+Mutable.h */,
 				0AE5084716870176004EF883 /* DNAChain+Mutable.m */,
+				0AAA9A8C168646D600C3566A /* DNAChain.h */,
+				0AAA9A8D168646D600C3566A /* DNAChain.m */,
 				0AE5084A16870231004EF883 /* DNAMutable.h */,
+				0AAA9A6A1686338F00C3566A /* Supporting Files */,
 			);
 			path = DNAKit;
 			sourceTree = "<group>";
@@ -157,6 +160,8 @@
 				0AAA9A821686338F00C3566A /* DNATests.m */,
 				0AE5083B1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.h */,
 				0AE5083C1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.m */,
+				0AE5085216870473004EF883 /* DNAChainTests.h */,
+				0AE5085316870473004EF883 /* DNAChainTests.m */,
 			);
 			path = DNAKitTests;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 			files = (
 				0AAA9A831686338F00C3566A /* DNATests.m in Sources */,
 				0AE5083D1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.m in Sources */,
+				0AE5085416870473004EF883 /* DNAChainTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

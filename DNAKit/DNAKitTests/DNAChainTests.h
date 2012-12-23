@@ -1,16 +1,14 @@
 //
-//  DNAMutable.h
+//  DNAChainTests.h
 //  DNAKit
 //
 //  Created by Dmitry Davidov on 23.12.12.
 //  Copyright (c) 2012 Dmitry Davidov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <SenTestingKit/SenTestingKit.h>
 
 
-@protocol DNAMutable <NSObject>
-
-- (void)mutate:(NSUInteger)percent;
+@interface DNAChainTests : SenTestCase
 
 @end

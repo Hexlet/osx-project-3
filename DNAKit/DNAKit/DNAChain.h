@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface DNAChain : NSObject
 
 typedef char DNAElement;

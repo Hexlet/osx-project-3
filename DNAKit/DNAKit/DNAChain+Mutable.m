@@ -8,6 +8,12 @@
 
 #import "DNAChain+Mutable.h"
 
+
 @implementation DNAChain (Mutable)
+
+- (void)mutate:(NSUInteger)percent
+{
+    
+}
 
 @end

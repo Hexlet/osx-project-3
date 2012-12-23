@@ -10,6 +10,7 @@
 
 #import "DNA.h"
 
+
 @implementation DNATests
 
 - (void)setUp
@@ -29,7 +30,7 @@
 - (void)testCreateSimpleDNA
 {
     DNA *dna = [[DNA alloc] initWithLength:10UL];
-    STAssertEquals([[dna description] length], 10UL, @"Created DNA has wrong chain length!");
+    STAssertEquals([[dna description] length], 10UL, nil);
 }
 
 @end

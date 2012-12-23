@@ -8,6 +8,7 @@
 
 #import "DNAChain.h"
 
+
 @implementation DNAChain
 
 - (id)initWithElements:(DNAElement *)elements length:(NSUInteger)length

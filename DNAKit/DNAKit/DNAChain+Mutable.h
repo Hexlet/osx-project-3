@@ -8,6 +8,9 @@
 
 #import "DNAChain.h"
 
-@interface DNAChain (Mutable)
+#import "DNAMutable.h"
+
+
+@interface DNAChain (Mutable) <DNAMutable>
 
 @end
