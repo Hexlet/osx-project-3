@@ -9,41 +9,45 @@
 #import "DNAChain.h"
 
 @implementation DNAChain
-{
-    char *chainArray;
-}
 
-- (id)initWithDNAChainArray:(char *)array length:(NSUInteger)length
+- (id)initWithElements:(DNAElement *)elements length:(NSUInteger)length
 {
     if (self = [super init]) {
-        chainArray = array;
+        _elements = elements;
         _length = length;
     }
     return self;
 }
 
+- (id)initWithRandomElementsLength:(NSUInteger)length
+{
+    DNAElement *elements = [DNAChain getRandomDNAChainArrayWithLength:length];
+    self = [self initWithElements:elements length:length];
+    return self;
+}
+
+- (void)dealloc
+{
+    free(_elements);
+}
+
 - (NSString *)description
 {
-    return [[NSString alloc] initWithUTF8String:chainArray];
+    return [[NSString alloc] initWithUTF8String:_elements];
 }
 
-+ (DNAChain *)randomDNAChainWithLength:(NSUInteger)length
-{
-    char *chainArray = [DNAChain getRandomDNAChainArrayWithLength:length];
-    DNAChain *chain = [[DNAChain alloc] initWithDNAChainArray:chainArray length:length];
-    return chain;
-}
+#pragma mark -
 
-+ (char *)getRandomDNAChainArrayWithLength:(NSUInteger)length
++ (DNAElement *)getRandomDNAChainArrayWithLength:(NSUInteger)length
 {
     NSUInteger chainElementCount = strlen(CHAIN_ELEMENTS);
     
-    char *chainArray = calloc(length, sizeof(char));
+    char *chainArray = calloc(length, sizeof(DNAElement));
     for (NSUInteger i = 0; i < length; ++i)
         chainArray[i] = CHAIN_ELEMENTS[arc4random() % chainElementCount];
     return chainArray;
 }
 
-static char CHAIN_ELEMENTS[] = "ACGT";
+static DNAElement CHAIN_ELEMENTS[] = "ACGT";
 
 @end

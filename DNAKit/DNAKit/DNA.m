@@ -18,7 +18,7 @@
 - (id)initWithLength:(NSUInteger)length
 {
     if (self = [super init]) {
-        chain = [DNAChain randomDNAChainWithLength:length];
+        chain = [[DNAChain alloc] initWithRandomElementsLength:length];
     }
     return self;
 }
@@ -31,12 +31,6 @@
 - (NSString *)description
 {
     return [chain description];
-}
-
-+ (DNA *)dnaWithLength:(NSUInteger)length
-{
-    DNA *dna = [DNA alloc];
-    return [dna initWithLength:length];
 }
 
 @end

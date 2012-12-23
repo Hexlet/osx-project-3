@@ -14,6 +14,4 @@
 
 - (id)initWithLength:(NSUInteger)length;
 
-+ (DNA *)dnaWithLength:(NSUInteger)length;
-
 @end

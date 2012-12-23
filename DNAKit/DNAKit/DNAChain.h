@@ -10,8 +10,12 @@
 
 @interface DNAChain : NSObject
 
+typedef char DNAElement;
+
+@property (readonly) DNAElement *elements;
 @property (readonly) NSUInteger length;
 
-+ (DNAChain *)randomDNAChainWithLength:(NSUInteger)length;
+- (id)initWithElements:(DNAElement *)elements length:(NSUInteger)length;
+- (id)initWithRandomElementsLength:(NSUInteger)length;
 
 @end

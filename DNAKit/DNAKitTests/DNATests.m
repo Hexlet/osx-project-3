@@ -28,7 +28,7 @@
 
 - (void)testCreateSimpleDNA
 {
-    DNA *dna = [DNA dnaWithLength:10];
+    DNA *dna = [[DNA alloc] initWithLength:10UL];
     STAssertEquals([[dna description] length], 10UL, @"Created DNA has wrong chain length!");
 }
 
