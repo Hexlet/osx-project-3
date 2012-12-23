@@ -21,9 +21,15 @@ Cell *myCell1;
 - (id)init {
     self = [super init];
     if (self) {
-        [self setValue:[NSNumber numberWithInt:100] forKey:@"popSize"];
-        [self setValue:[NSNumber numberWithInt:20] forKey:@"dnaLengthBindings"];
-        [self setValue:[NSNumber numberWithInt:25] forKey:@"mutRate"];
+        popSize = 100;
+        dnaLengthBindings = 20;
+        mutRate = 25;
+
+        [Cell setDnaLength: dnaLengthBindings];
+        myCell1 = [[Cell alloc] init];
+        [monitor setStringValue:[myCell1 print]];       // Никак не могу понять, почему это строчка не работает...
+                                                        // ...При запуске должен отображаться случайный Goal DNA.
+                                                        // ...Он создается, но не отображается.
     }
     return self;
 }
