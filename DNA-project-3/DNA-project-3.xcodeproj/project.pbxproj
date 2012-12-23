@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A52619CB1685A568001951F2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52619CA1685A568001951F2 /* Cocoa.framework */; };
+		A52619D51685A568001951F2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A52619D31685A568001951F2 /* InfoPlist.strings */; };
+		A52619D71685A568001951F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A52619D61685A568001951F2 /* main.m */; };
+		A52619DB1685A568001951F2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A52619D91685A568001951F2 /* Credits.rtf */; };
+		A52619DE1685A568001951F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A52619DD1685A568001951F2 /* AppDelegate.m */; };
+		A52619E11685A568001951F2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A52619DF1685A568001951F2 /* MainMenu.xib */; };
+		A52619E91685B78C001951F2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = A52619E81685B78C001951F2 /* Cell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A52619C61685A568001951F2 /* DNA-project-3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNA-project-3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52619CA1685A568001951F2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A52619CD1685A568001951F2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A52619CE1685A568001951F2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A52619CF1685A568001951F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A52619D21685A568001951F2 /* DNA-project-3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DNA-project-3-Info.plist"; sourceTree = "<group>"; };
+		A52619D41685A568001951F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A52619D61685A568001951F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A52619D81685A568001951F2 /* DNA-project-3-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNA-project-3-Prefix.pch"; sourceTree = "<group>"; };
+		A52619DA1685A568001951F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A52619DC1685A568001951F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A52619DD1685A568001951F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A52619E01685A568001951F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A52619E71685B78C001951F2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		A52619E81685B78C001951F2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A52619C31685A568001951F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A52619CB1685A568001951F2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A52619BB1685A568001951F2 = {
+			isa = PBXGroup;
+			children = (
+				A52619D01685A568001951F2 /* DNA-project-3 */,
+				A52619C91685A568001951F2 /* Frameworks */,
+				A52619C71685A568001951F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A52619C71685A568001951F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A52619C61685A568001951F2 /* DNA-project-3.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A52619C91685A568001951F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A52619CA1685A568001951F2 /* Cocoa.framework */,
+				A52619CC1685A568001951F2 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A52619CC1685A568001951F2 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A52619CD1685A568001951F2 /* AppKit.framework */,
+				A52619CE1685A568001951F2 /* CoreData.framework */,
+				A52619CF1685A568001951F2 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A52619D01685A568001951F2 /* DNA-project-3 */ = {
+			isa = PBXGroup;
+			children = (
+				A52619DC1685A568001951F2 /* AppDelegate.h */,
+				A52619DD1685A568001951F2 /* AppDelegate.m */,
+				A52619E71685B78C001951F2 /* Cell.h */,
+				A52619E81685B78C001951F2 /* Cell.m */,
+				A52619DF1685A568001951F2 /* MainMenu.xib */,
+				A52619D11685A568001951F2 /* Supporting Files */,
+			);
+			path = "DNA-project-3";
+			sourceTree = "<group>";
+		};
+		A52619D11685A568001951F2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A52619D21685A568001951F2 /* DNA-project-3-Info.plist */,
+				A52619D31685A568001951F2 /* InfoPlist.strings */,
+				A52619D61685A568001951F2 /* main.m */,
+				A52619D81685A568001951F2 /* DNA-project-3-Prefix.pch */,
+				A52619D91685A568001951F2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A52619C51685A568001951F2 /* DNA-project-3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A52619E41685A568001951F2 /* Build configuration list for PBXNativeTarget "DNA-project-3" */;
+			buildPhases = (
+				A52619C21685A568001951F2 /* Sources */,
+				A52619C31685A568001951F2 /* Frameworks */,
+				A52619C41685A568001951F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DNA-project-3";
+			productName = "DNA-project-3";
+			productReference = A52619C61685A568001951F2 /* DNA-project-3.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A52619BD1685A568001951F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = A52619C01685A568001951F2 /* Build configuration list for PBXProject "DNA-project-3" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A52619BB1685A568001951F2;
+			productRefGroup = A52619C71685A568001951F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A52619C51685A568001951F2 /* DNA-project-3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A52619C41685A568001951F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A52619D51685A568001951F2 /* InfoPlist.strings in Resources */,
+				A52619DB1685A568001951F2 /* Credits.rtf in Resources */,
+				A52619E11685A568001951F2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A52619C21685A568001951F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A52619D71685A568001951F2 /* main.m in Sources */,
+				A52619DE1685A568001951F2 /* AppDelegate.m in Sources */,
+				A52619E91685B78C001951F2 /* Cell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A52619D31685A568001951F2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A52619D41685A568001951F2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A52619D91685A568001951F2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A52619DA1685A568001951F2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		A52619DF1685A568001951F2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A52619E01685A568001951F2 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A52619E21685A568001951F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A52619E31685A568001951F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A52619E51685A568001951F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DNA-project-3/DNA-project-3-Prefix.pch";
+				INFOPLIST_FILE = "DNA-project-3/DNA-project-3-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A52619E61685A568001951F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DNA-project-3/DNA-project-3-Prefix.pch";
+				INFOPLIST_FILE = "DNA-project-3/DNA-project-3-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A52619C01685A568001951F2 /* Build configuration list for PBXProject "DNA-project-3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A52619E21685A568001951F2 /* Debug */,
+				A52619E31685A568001951F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A52619E41685A568001951F2 /* Build configuration list for PBXNativeTarget "DNA-project-3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A52619E51685A568001951F2 /* Debug */,
+				A52619E61685A568001951F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A52619BD1685A568001951F2 /* Project object */;
+}
