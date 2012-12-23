@@ -14,6 +14,10 @@
 		0AAA9A7A1686338F00C3566A /* DNAKit.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAA9A601686338F00C3566A /* DNAKit.dylib */; };
 		0AAA9A801686338F00C3566A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0AAA9A7E1686338F00C3566A /* InfoPlist.strings */; };
 		0AAA9A831686338F00C3566A /* DNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A821686338F00C3566A /* DNATests.m */; };
+		0AAA9A8E168646D600C3566A /* DNAChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAA9A8C168646D600C3566A /* DNAChain.h */; };
+		0AAA9A8F168646D600C3566A /* DNAChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A8D168646D600C3566A /* DNAChain.m */; };
+		0AAA9A90168649D900C3566A /* DNA.h in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A6C1686338F00C3566A /* DNA.h */; };
+		0AAA9A91168649D900C3566A /* DNAChain.h in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A8C168646D600C3566A /* DNAChain.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,8 @@
 		0AAA9A7F1686338F00C3566A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0AAA9A811686338F00C3566A /* DNATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNATests.h; sourceTree = "<group>"; };
 		0AAA9A821686338F00C3566A /* DNATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNATests.m; sourceTree = "<group>"; };
+		0AAA9A8C168646D600C3566A /* DNAChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAChain.h; sourceTree = "<group>"; };
+		0AAA9A8D168646D600C3566A /* DNAChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAChain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,8 @@
 			children = (
 				0AAA9A6C1686338F00C3566A /* DNA.h */,
 				0AAA9A6D1686338F00C3566A /* DNA.m */,
+				0AAA9A8C168646D600C3566A /* DNAChain.h */,
+				0AAA9A8D168646D600C3566A /* DNAChain.m */,
 				0AAA9A6A1686338F00C3566A /* Supporting Files */,
 			);
 			path = DNAKit;
@@ -148,6 +156,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AAA9A8E168646D600C3566A /* DNAChain.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +258,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AAA9A90168649D900C3566A /* DNA.h in Sources */,
+				0AAA9A91168649D900C3566A /* DNAChain.h in Sources */,
 				0AAA9A6E1686338F00C3566A /* DNA.m in Sources */,
+				0AAA9A8F168646D600C3566A /* DNAChain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

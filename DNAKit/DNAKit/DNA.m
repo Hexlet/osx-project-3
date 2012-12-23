@@ -8,25 +8,29 @@
 
 #import "DNA.h"
 
+#import "DNAChain.h"
+
 @implementation DNA
 {
-    char *chain;
+    DNAChain *chain;
 }
 
 - (id)initWithLength:(NSUInteger)length
 {
     if (self = [super init]) {
-        _length = length;
-        chain = calloc(_length, sizeof(char));
-        for (uint i = 0; i < _length; ++i)
-            chain[i] = 'A';
+        chain = [DNAChain randomDNAChainWithLength:length];
     }
     return self;
 }
 
+- (NSUInteger)length
+{
+    return [chain length];
+}
+
 - (NSString *)description
 {
-    return [[NSString alloc] initWithUTF8String:chain];
+    return [chain description];
 }
 
 + (DNA *)dnaWithLength:(NSUInteger)length
