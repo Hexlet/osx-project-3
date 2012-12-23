@@ -1,5 +1,5 @@
 //
-//  BaseDNAChainCrossover.h
+//  DNAMutable.h
 //  DNAKit
 //
 //  Created by Dmitry Davidov on 23.12.12.
@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DNAChainCrossovering.h"
-
-
-@interface BaseDNAChainCrossover : NSObject <DNAChainCrossovering>
+@protocol DNAMutable <NSObject>
 
 @end
