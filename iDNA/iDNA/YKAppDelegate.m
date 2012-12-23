@@ -28,6 +28,7 @@
     self = [super init];
     if (self) {
         // Регистрируем наблюдение для адекватного реагирования на изменения этих полей в UI
+        [self addObserver:self forKeyPath:@"populationSize" options:0 context:nil];
         [self addObserver:self forKeyPath:@"dnaLength" options:0 context:nil];
         [self addObserver:self forKeyPath:@"minimumHammingDistance" options:0 context:nil];
 
@@ -39,7 +40,8 @@
         // Инициализация прочих свойств
         self.population = [NSMutableArray array];
         self.generation = 0;
-        self.minimumHammingDistance = nil;
+        self.minimumHammingDistance = self.dnaLength;
+        self.bestIndividualMatch = 0;
 
         // Создаем новую Goal DNA
         self.goalDNA = [[YKDNA alloc] initWithLength:self.dnaLength];
@@ -50,6 +52,7 @@
 
 - (void)dealloc
 {
+    [self removeObserver:self forKeyPath:@"populationSize"];
     [self removeObserver:self forKeyPath:@"dnaLength"];
     [self removeObserver:self forKeyPath:@"minimumHammingDistance"];
 
@@ -100,7 +103,7 @@
 
     if (self.population.count > 0) {
         NSUInteger minHammingDistance = [[self.population objectAtIndex:0] hammingDistanceToDNA:self.goalDNA];
-        self.minimumHammingDistance = [NSNumber numberWithUnsignedInteger:minHammingDistance];
+        self.minimumHammingDistance = minHammingDistance;
 
         if (minHammingDistance == 0) {
         // Как минимум первая ДНК (с минимальным hamming distance) совпала с Goal DNA. Ура, товарищи! Красиво съезжаем.
@@ -139,7 +142,6 @@
 - (void)runEvolution
 {
     if (!self.isGoalReached && self.isBusy) {
-        self.generation++;
         self.isBusy = YES;
 
         // Выполняем performEvolutionIteration в фоновом потоке, чтобы не блокировать элементы пользовательского интерфейса в основном потоке
@@ -167,13 +169,12 @@
 
         } else if ([keyPath isEqualToString:@"minimumHammingDistance"]) {
 
-            NSNumber *newValue = self.minimumHammingDistance;
-
-            // При изменении self.minimumHammingDistance изменяем и self.percentageComplete для правильного отображения индикатора выполнения в интерфейсе
-            if (newValue && self.dnaLength > 0) {
-                self.percentageComplete = 100-100*[newValue unsignedIntegerValue]/self.dnaLength;
-            } else
-                self.percentageComplete = 0;
+            // При изменении self.minimumHammingDistance изменяем и self.bestIndividualMatch для правильного отображения индикатора выполнения в интерфейсе
+            if (self.dnaLength > 0) {
+                NSUInteger newIndividualMatch = 100-100*self.minimumHammingDistance/self.dnaLength;
+                if (newIndividualMatch > self.bestIndividualMatch)
+                    self.bestIndividualMatch = newIndividualMatch;
+            }
 
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -208,6 +209,7 @@
         // Инициализируем эволюцию
         self.isGoalReached = NO;
         self.generation = 0;
+        self.bestIndividualMatch = 0;
         self.isFirstRun = NO;
     }
     

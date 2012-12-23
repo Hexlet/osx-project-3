@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C2034</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -1898,7 +1898,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="1012839886"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -2909,24 +2909,25 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: self.minimumHammingDistance</string>
+						<string key="label">displayPatternValue1: self.bestIndividualMatch</string>
 						<reference key="source" ref="348149090"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="348149090"/>
 							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">displayPatternValue1: self.minimumHammingDistance</string>
+							<string key="NSLabel">displayPatternValue1: self.bestIndividualMatch</string>
 							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">self.minimumHammingDistance</string>
+							<string key="NSKeyPath">self.bestIndividualMatch</string>
 							<dictionary key="NSOptions">
 								<string key="NSDisplayPattern">Best Individual Match: %{value1}@%</string>
 								<string key="NSNotApplicablePlaceholder">-</string>
 								<string key="NSNullPlaceholder">-</string>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
 							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">781</int>
+					<int key="connectionID">800</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2950,15 +2951,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.percentageComplete</string>
+						<string key="label">value: self.bestIndividualMatch</string>
 						<reference key="source" ref="59492276"/>
 						<reference key="destination" ref="976324537"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="59492276"/>
 							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: self.percentageComplete</string>
+							<string key="NSLabel">value: self.bestIndividualMatch</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.percentageComplete</string>
+							<string key="NSKeyPath">self.bestIndividualMatch</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSAllowsEditingMultipleValuesSelection</string>
 								<boolean value="NO" key="NS.object.0"/>
@@ -2966,7 +2967,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">795</int>
+					<int key="connectionID">801</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5742,7 +5743,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">795</int>
+			<int key="maxID">801</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

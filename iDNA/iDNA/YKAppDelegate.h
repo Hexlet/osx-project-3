@@ -27,8 +27,8 @@
 @property (retain) YKDNA *goalDNA;
 @property (retain) NSMutableArray *population;
 @property NSUInteger generation;
-@property NSUInteger percentageComplete;
-@property NSNumber *minimumHammingDistance;
+@property NSUInteger minimumHammingDistance;
+@property NSUInteger bestIndividualMatch;
 
 // YES во время выполнения рассчетов, NO во время простоя. Используется для включения и отключения объектов пользвательского интерфейса с помощью привязывания.
 @property BOOL isFirstRun;
