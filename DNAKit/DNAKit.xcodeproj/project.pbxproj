@@ -18,11 +18,11 @@
 		0AAA9A8F168646D600C3566A /* DNAChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A8D168646D600C3566A /* DNAChain.m */; };
 		0AE508391686F124004EF883 /* DNAOneMiddlePointChainCrossover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE508371686F124004EF883 /* DNAOneMiddlePointChainCrossover.h */; };
 		0AE5083D1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5083C1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.m */; };
-		0AE508401686F552004EF883 /* DNABaseChainCrossover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE5083E1686F552004EF883 /* DNABaseChainCrossover.h */; };
-		0AE508411686F552004EF883 /* DNABaseChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5083F1686F552004EF883 /* DNABaseChainCrossover.m */; };
 		0AE5084816870176004EF883 /* DNAChain+Mutable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE5084616870176004EF883 /* DNAChain+Mutable.h */; };
 		0AE5084916870176004EF883 /* DNAChain+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5084716870176004EF883 /* DNAChain+Mutable.m */; };
-		0AE5084B16870288004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE508381686F124004EF883 /* DNAOneMiddlePointChainCrossover.m */; };
+		0AE5084F16870306004EF883 /* DNABaseChainCrossover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE5084C16870306004EF883 /* DNABaseChainCrossover.h */; };
+		0AE5085016870306004EF883 /* DNABaseChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5084D16870306004EF883 /* DNABaseChainCrossover.m */; };
+		0AE5085116870306004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE5084E16870306004EF883 /* DNAOneMiddlePointChainCrossover.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,14 +54,14 @@
 		0AAA9A8D168646D600C3566A /* DNAChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAChain.m; sourceTree = "<group>"; };
 		0AE508341686E9E2004EF883 /* DNAChainCrossovering.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNAChainCrossovering.h; sourceTree = "<group>"; };
 		0AE508371686F124004EF883 /* DNAOneMiddlePointChainCrossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAOneMiddlePointChainCrossover.h; sourceTree = "<group>"; };
-		0AE508381686F124004EF883 /* DNAOneMiddlePointChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAOneMiddlePointChainCrossover.m; sourceTree = "<group>"; };
 		0AE5083B1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAOneMiddlePointChainCrossoverTests.h; sourceTree = "<group>"; };
 		0AE5083C1686F2A2004EF883 /* DNAOneMiddlePointChainCrossoverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAOneMiddlePointChainCrossoverTests.m; sourceTree = "<group>"; };
-		0AE5083E1686F552004EF883 /* DNABaseChainCrossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNABaseChainCrossover.h; sourceTree = "<group>"; };
-		0AE5083F1686F552004EF883 /* DNABaseChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNABaseChainCrossover.m; sourceTree = "<group>"; };
 		0AE5084616870176004EF883 /* DNAChain+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DNAChain+Mutable.h"; sourceTree = "<group>"; };
 		0AE5084716870176004EF883 /* DNAChain+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DNAChain+Mutable.m"; sourceTree = "<group>"; };
 		0AE5084A16870231004EF883 /* DNAMutable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNAMutable.h; sourceTree = "<group>"; };
+		0AE5084C16870306004EF883 /* DNABaseChainCrossover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNABaseChainCrossover.h; sourceTree = "<group>"; };
+		0AE5084D16870306004EF883 /* DNABaseChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNABaseChainCrossover.m; sourceTree = "<group>"; };
+		0AE5084E16870306004EF883 /* DNAOneMiddlePointChainCrossover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAOneMiddlePointChainCrossover.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,11 +173,11 @@
 		0AE508361686EECC004EF883 /* Crossovers */ = {
 			isa = PBXGroup;
 			children = (
-				0AE5083E1686F552004EF883 /* DNABaseChainCrossover.h */,
-				0AE5083F1686F552004EF883 /* DNABaseChainCrossover.m */,
+				0AE5084C16870306004EF883 /* DNABaseChainCrossover.h */,
+				0AE5084D16870306004EF883 /* DNABaseChainCrossover.m */,
 				0AE508341686E9E2004EF883 /* DNAChainCrossovering.h */,
 				0AE508371686F124004EF883 /* DNAOneMiddlePointChainCrossover.h */,
-				0AE508381686F124004EF883 /* DNAOneMiddlePointChainCrossover.m */,
+				0AE5084E16870306004EF883 /* DNAOneMiddlePointChainCrossover.m */,
 			);
 			name = Crossovers;
 			sourceTree = "<group>";
@@ -191,8 +191,8 @@
 			files = (
 				0AAA9A8E168646D600C3566A /* DNAChain.h in Headers */,
 				0AE508391686F124004EF883 /* DNAOneMiddlePointChainCrossover.h in Headers */,
-				0AE508401686F552004EF883 /* DNABaseChainCrossover.h in Headers */,
 				0AE5084816870176004EF883 /* DNAChain+Mutable.h in Headers */,
+				0AE5084F16870306004EF883 /* DNABaseChainCrossover.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,9 +296,9 @@
 			files = (
 				0AAA9A6E1686338F00C3566A /* DNA.m in Sources */,
 				0AAA9A8F168646D600C3566A /* DNAChain.m in Sources */,
-				0AE5084B16870288004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */,
-				0AE508411686F552004EF883 /* DNABaseChainCrossover.m in Sources */,
 				0AE5084916870176004EF883 /* DNAChain+Mutable.m in Sources */,
+				0AE5085016870306004EF883 /* DNABaseChainCrossover.m in Sources */,
+				0AE5085116870306004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
