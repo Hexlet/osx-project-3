@@ -7,6 +7,7 @@
 // Популяция ДНК
 
 #import <Foundation/Foundation.h>
+#import "HVSCellDna.h"
 
 @interface HVSPopulationOfDna : NSObject
 
@@ -16,7 +17,20 @@
 @property NSInteger populationRate;
 // Массив который хранит объекты типа ДНК (HVSCellDna)
 @property NSMutableArray *populationDNA;
+// Goal DNA
+@property HVSCellDna *goalDNA;
+//Флаг указывающий на совпадение одного из ДНК с Альфа самцом
+@property BOOL flag;
+//Максимальное совпадение в %
+@property NSInteger maxHamming;
+//Количество проходов
+@property NSInteger countEvolution;
 
 -(id) init;
+
+//метод заполнения популяции
+-(void)setPopulation;
+//метод эволюции
+- (void)evolution;
 
 @end

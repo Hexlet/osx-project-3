@@ -13,7 +13,7 @@
 //Изменяем стандартный метод init
 - (id) init {
     if (sizeDNA<1) {
-        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК не может быть меньше 1. Вы убили ее!!!" defaultButton:@"Exit" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК не может быть меньше 1. Вы убили ее!!!" defaultButton:@"Exit" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
         [myAlert runModal];
         exit(0);
     }
@@ -37,7 +37,7 @@
 
 -(id)initWithLengthDna:(int)length {
     if (length<1 || length>100) {
-        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК не может быть меньше 1 и больше 100. Вы убили ее!!!" defaultButton:@"Exit" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК не может быть меньше 1 и больше 100. Вы убили ее!!!" defaultButton:@"Exit" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
         [myAlert runModal];
         exit(0);
     }
@@ -64,7 +64,7 @@
     int count = 0;
     //Проверка размерности
     if (_lengthDna != [otherCell lengthDna]) {
-        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК имеют разную размерность!" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        NSAlert *myAlert = [NSAlert alertWithMessageText:@"ДНК имеют разную размерность!" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
         [myAlert runModal];
         return 0;
     }
@@ -80,7 +80,7 @@
 
 -(void) mutate:(int) i{
     if (i<1 || i>100) {
-        NSAlert *myAlert = [NSAlert alertWithMessageText:@"Указан не верный параметр 'Процента мутации'. Обе ДНК остались без изменений " defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:nil];
+        NSAlert *myAlert = [NSAlert alertWithMessageText:@"Указан не верный параметр 'Процента мутации'. Обе ДНК остались без изменений " defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
         [myAlert runModal];
         return;
     }

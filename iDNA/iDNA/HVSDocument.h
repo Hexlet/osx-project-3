@@ -12,6 +12,8 @@
 @interface HVSDocument : NSDocument {
     //Определяем нашу популяцию
     HVSPopulationOfDna *myPopulation;
+    //Флаг Паузы
+    BOOL flagPause;
 }
 //Свойста для работы с объектами на форме
 //Текстовые поля
@@ -34,4 +36,10 @@
 @property (weak) IBOutlet NSButton *popButtonLoad;
 
 
+//Действия
+- (IBAction)buttonStart:(id)sender;
+- (IBAction)buttonPause:(id)sender;
+- (IBAction)buttonLoad:(id)sender;
+//Фоновый поток
+-(void)startBackgroundEvolution;
 @end
