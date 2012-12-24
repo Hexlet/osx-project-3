@@ -96,7 +96,7 @@
         Cell *father = [population objectAtIndex:((int)arc4random()%badGuys.location)];
         Cell *mother = [population objectAtIndex:((int)arc4random()%badGuys.location)]; // да-да не вижу проблемы когда папа и мама одинаковые
         Cell *child = [[Cell alloc] initFromSex:father With:mother];
-        NSLog(@"%@+%@=%@",[father printToString],[mother printToString],[child printToString]);
+//        NSLog(@"%@+%@=%@",[father printToString],[mother printToString],[child printToString]);
         [population addObject:child];
     }
     
@@ -117,7 +117,7 @@
     [result setObject:stringedDistance forKey:kDistance];
     
     [result setObject:[first printToString] forKey:kPretender];
-    NSLog(@"%@",[self printPopulation]);
+//    NSLog(@"%@",[self printPopulation]);
     return result;
 }
 
@@ -157,15 +157,6 @@
     return generation;
 }
 
--(void)startEvolution{
-    
-}
--(void)pauseEvolution{
-    
-}
--(void)resumeEvolution{
-    
-}
 
          
 

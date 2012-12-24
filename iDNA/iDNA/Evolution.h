@@ -43,12 +43,4 @@
 -(NSInteger)generation;
 
 
-/*
--(void)startEvolution;
--(void)pauseEvolution;
--(void)resumeEvolution;
-*/
-
-
-
 @end
