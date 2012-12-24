@@ -35,7 +35,7 @@ NSString *const DNAChangeNotification = @"DNAChangeNotification";
         }
     }
     
-    // сбрасываем закэшированное значение до goalDNA
+    // сбрасываем закэшированное значение расстояния до goalDNA
     self.hammingDistanceToRootCell = -1;
 }
 
@@ -143,6 +143,10 @@ NSString *const DNAChangeNotification = @"DNAChangeNotification";
         
         int size1 = (int)_DNA.count/2; // середина нашего массива
         int size2 = (int)cell.DNA.count/2; // середина другого массива
+        // если число элементов нечетное, то чуточку подправляем...
+        if (size2 < _DNA.count-size1) {
+            size2 = (int)_DNA.count-size1;
+        }
         
         [newCell.DNA replaceObjectsInRange:NSMakeRange(size1, _DNA.count-size1) withObjectsFromArray:cell.DNA range:NSMakeRange(0, size2)];
         

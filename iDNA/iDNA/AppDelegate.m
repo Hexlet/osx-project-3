@@ -58,14 +58,6 @@
 {
     Population *population = [[Population alloc] initPopulationWithSize:[[self valueForKey:@"populationSize"] intValue] andSizeDNA:[[self valueForKey:@"DNALength"] intValue] andGoalDNA:_DNA];
     
-    /*
-     NSString *s = [_DNA asString];
-     for (Cell *cell in [population getElements]) {
-     s = [s stringByAppendingFormat:@"\r\n%@ - %d", [cell asString], [cell hammingDistance:[population goalDNA]]];
-     }
-     [_goalDNATextField setStringValue:s];
-     */
-    
     int i = 1;
     int evolutionResult = -1;
     int bestMatch = 999;
@@ -78,8 +70,13 @@
         evolutionResult = [population evolution:[[self valueForKey:@"mutationRate"] intValue]];
         if (bestMatch > evolutionResult) {
             bestMatch = evolutionResult;
-            [_bestMatchLabel setStringValue:[NSString stringWithFormat:@"Best individual match - %d%%", 100-bestMatch*l/100]];
+            [_bestMatchLabel setStringValue:[NSString stringWithFormat:@"Best individual match - %d%%", 100-bestMatch*100/l]];
         }
+        
+        // для отладки
+        /*
+        [_goalDNATextField setStringValue:[[_DNA asString] stringByAppendingFormat:@"\r\n%@ - %d (%d)", [[population bestMatch] asString], [[population bestMatch] hammingDistance:_DNA], evolutionResult]];
+        */
         
         if (paused || !bestMatch) {
             [self setStateOfUIElements:TRUE];

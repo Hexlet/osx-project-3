@@ -17,7 +17,7 @@
     BOOL paused;
 }
 
-@property Cell* DNA;
+@property Cell* DNA; // goal DNA
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *populationSizeTextField;

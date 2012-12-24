@@ -15,6 +15,7 @@
 }
 
 @property Cell *goalDNA;
+@property Cell *bestMatch; // для отладки
 
 -(id)initPopulationWithSize:(NSInteger)populationSize andSizeDNA:(NSInteger)sizeDNA andGoalDNA:(Cell*)goalDNA;
 -(int)evolution: (NSInteger)mutation;

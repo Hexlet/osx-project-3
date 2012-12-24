@@ -41,6 +41,8 @@
 
     int result = [[elements objectAtIndex:0] hammingDistance:_goalDNA];
     
+    _bestMatch = [elements objectAtIndex:0];
+    
     // ищем половину списка
     int size = (int)elements.count/2;
     int middle = size; // запомним реальную половину списка

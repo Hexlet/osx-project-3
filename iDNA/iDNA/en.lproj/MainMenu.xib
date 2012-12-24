@@ -1703,7 +1703,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="1060338495">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">138413056</int>
-								<string key="NSContents">Best individual match - 78%</string>
+								<string key="NSContents">Best individual match - ???</string>
 								<reference key="NSSupport" ref="612887441"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="82425804"/>
