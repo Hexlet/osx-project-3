@@ -31,7 +31,7 @@
 
 -(int) calculateHammingDistance:(Cell*) c {
     int counthammingDistance = 0;
-    for ( int i=0; i<100; i++) {
+    for ( int i=0; i<dnaLenght; i++) {
         if ([[_DNA objectAtIndex:i] isEqualToString: [c.DNA objectAtIndex: i]]) {
            counthammingDistance ++;
         }
@@ -69,37 +69,40 @@
     return outString;
 }
 
--(Cell*)crossing:(Cell*) c {
-    Cell* crossingCell;
-    crossingCell = [[Cell alloc] init];
+-(NSMutableArray*)crossing:(Cell*) c {
+    NSMutableArray* NewDNA = [[NSMutableArray alloc] init];
+    //Скомбинировать их содержание чтобы получить новую ДНК. Комбинирование одним из следующих способов (случайный выбор)
     int num_variant = arc4random() % 3;
     if (num_variant == 1) {
+        //50% первого ДНК + 50% второго ДНК
         int halfdnaLenght = dnaLenght/2; //50%
         for(int i=0; i<dnaLenght; i++) {
             if ((i+1)<halfdnaLenght)
-                [crossingCell.DNA addObject:[_DNA objectAtIndex:i]];
+                [NewDNA addObject:[_DNA objectAtIndex:i]];
             else
-                [crossingCell.DNA addObject:[c.DNA objectAtIndex:i]];
+                [NewDNA addObject:[c.DNA objectAtIndex:i]];
         }
      }
      else if (num_variant == 2) {
+         //1% первого ДНК + 1% второго ДНК + 1% первого ДНК + ... и т.д.
          for(int i=0; i<dnaLenght; i++) {
              if ((i%2) == 0)
-                 [crossingCell.DNA addObject:[_DNA objectAtIndex:i]];
+                 [NewDNA addObject:[_DNA objectAtIndex:i]];
              else
-                 [crossingCell.DNA addObject:[c.DNA objectAtIndex:i]];
+                 [NewDNA addObject:[c.DNA objectAtIndex:i]];
          }
      }
      else {
+        //20% первого ДНК + 60% второго ДНК + 20% первого ДНК
         int halfdnaLenght = dnaLenght/5; //20%
         for(int i=0; i<dnaLenght; i++) {
             if ((i+1)<halfdnaLenght || (i+1)>(dnaLenght-halfdnaLenght))
-                [crossingCell.DNA addObject:[_DNA objectAtIndex:i]];
+                [NewDNA addObject:[_DNA objectAtIndex:i]];
             else
-                [crossingCell.DNA addObject:[c.DNA objectAtIndex:i]];
+                [NewDNA addObject:[c.DNA objectAtIndex:i]];
         }
      }
-    return  crossingCell;
+    return  NewDNA;
 }
 
 

@@ -133,7 +133,7 @@
 		A52619BD1685A568001951F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = A52619C01685A568001951F2 /* Build configuration list for PBXProject "DNA-project-3" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -256,6 +256,7 @@
 		A52619E51685A568001951F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DNA-project-3/DNA-project-3-Prefix.pch";
 				INFOPLIST_FILE = "DNA-project-3/DNA-project-3-Info.plist";
@@ -267,6 +268,7 @@
 		A52619E61685A568001951F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DNA-project-3/DNA-project-3-Prefix.pch";
 				INFOPLIST_FILE = "DNA-project-3/DNA-project-3-Info.plist";

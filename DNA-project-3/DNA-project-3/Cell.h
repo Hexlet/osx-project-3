@@ -22,7 +22,7 @@
 -(int)calculateHammingDistance:(Cell*) c;
 -(void)mutate:(NSInteger) percent;
 -(NSString*)stringDNA;
--(Cell*)crossing:(Cell*) c;
+-(NSMutableArray*)crossing:(Cell*) c;
 
 
 @end

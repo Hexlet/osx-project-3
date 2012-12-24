@@ -20,6 +20,11 @@
     NSInteger mutationRate;
     Cell* goalDNA;  
     NSMutableArray* population;
+    BOOL startEvolution;
+    int generation;
+    NSInteger bestHammingDistance;
+    NSUndoManager* undoManager;
+    NSInteger test;
 }
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *goalDNATextField;
@@ -39,5 +44,11 @@
 - (IBAction)startEvolution:(id)sender;
 - (IBAction)pauseEvolution:(id)sender;
 - (IBAction)loadGoalDNA:(id)sender;
+
+@property (weak) IBOutlet NSTextField *bestMatchTextField;
+@property (weak) IBOutlet NSTextField *generationTextField;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+
+-(void)setVisible:(BOOL) v;
 
 @end
