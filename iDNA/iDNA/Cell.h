@@ -12,5 +12,7 @@
 
 +(NSString *) getRandomDNAPart:(id)replasingPart;
 +(NSString *) getRandomDNA:(NSInteger)dnaLength;
-
++(NSInteger) hammingDistanceForDna:(NSString*)firstDNA andDNA:(NSString*)secondDNA;
++(NSString *)makeLoveForDNA:(NSString*)firstDNA andDNA:(NSString *)secondDNA;
++(NSString *)mutateDNA:(NSString *)DNA  withPercent:(NSInteger)percent;
 @end
