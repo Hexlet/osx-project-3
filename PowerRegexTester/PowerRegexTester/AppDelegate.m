@@ -10,12 +10,30 @@
 #import "FileDialog.h"
 #import "NSRegularExpression+Ext.h"
 #import "ResultsTable.h"
+#import "ResultsItem.h"
 
 @interface AppDelegate()
 @property (nonatomic, readonly) ResultsTable *results;
 @end
 
 @implementation AppDelegate
+
+- (void) applicationWillFinishLaunching:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSelectionChanged:) name:kSelectedItemChanged object:nil];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) onSelectionChanged:(NSNotification *)notification {
+    if (! [notification.object isKindOfClass:ResultsItem.class]) {
+        return;
+    }
+    ResultsItem *selectedItem = (ResultsItem *)notification.object;
+    NSRange selectedRange = selectedItem.rangeInSource;
+    self.sourceView.selectedRange = selectedRange;
+}
 
 - (ResultsTable *)results {
     return (ResultsTable *)self.resultsTableView.dataSource;
@@ -78,6 +96,8 @@
     [self.results setSourceString:self.sourceView.string andRangesOfMatches:matches];
     [self.resultsTableView reloadData];
     [self hideErrorText];
+    
+
 }
 
 - (void) showError:(NSError *)error {

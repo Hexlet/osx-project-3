@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kSelectedItemChanged;
+
 @interface ResultsTable : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 - (void) setSourceString:(NSString *)string

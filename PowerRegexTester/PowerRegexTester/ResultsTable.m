@@ -15,6 +15,8 @@
     NSArray *resultsItems;
 }
 
+NSString *const kSelectedItemChanged = @"SelectedItemChanged";
+
 - (void) setSourceString:(NSString *)string
       andRangesOfMatches:(NSArray *)matches
 {
@@ -72,6 +74,14 @@
     return item.groupLevel == 0;
 }
 
-
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSTableView *tableView = notification.object;
+    NSInteger selectedRow = tableView.selectedRow;
+    if (selectedRow < 0 || selectedRow >= resultsItems.count) { return; }
+    ResultsItem *selectedItem = resultsItems[selectedRow];
+    if (selectedItem) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSelectedItemChanged object:selectedItem];
+    }
+}
 
 @end
