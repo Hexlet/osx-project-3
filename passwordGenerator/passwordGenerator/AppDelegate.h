@@ -17,7 +17,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *lengthField;
 @property (weak) IBOutlet NSTextField *passwordField;
-@property (weak) IBOutlet NSButton *upperCaseCheckBox;
 
 - (IBAction)clickOnUpperCase:(id)sender;
 - (IBAction)clickeOnNumberCase:(id)sender;
