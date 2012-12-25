@@ -33,6 +33,7 @@
     if (!DNAParts) {
         DNAParts = [NSMutableArray arrayWithObjects:@"A",@"T",@"G",@"C", nil];
     }
+
     
     if (replasingPart==nil) {
         randomCounter = arc4random_uniform(4);
@@ -80,7 +81,7 @@
         
         
         
-        NSInteger position =3;// arc4random_uniform(3);
+        NSInteger position = arc4random_uniform(3);
        
         
         
@@ -110,6 +111,10 @@
                 [babyDNA appendString:[firstDNA substringToIndex:length/5]];
                 [babyDNA appendString:[secondDNA substringWithRange:NSMakeRange(length/5, length*3/5)]];
                 [babyDNA appendString:[firstDNA substringFromIndex:length*4/5]];
+                if ((length-babyDNA.length)==1) {
+                    //проценты дело тонкое, может случиться так, что одной буквы не хватит, нужно просто добавть одну случайную
+                    [babyDNA appendString:[Cell getRandomDNAPart:nil]];
+                }
                 break;
         }
         

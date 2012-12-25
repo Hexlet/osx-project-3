@@ -15,6 +15,12 @@
 {
     self = [super init];
     if (self) {
+        
+        //Наблюдаем за некоторыми переменными
+        [self addObserver:self forKeyPath:@"dnaLength" options:NSKeyValueObservingOptionOld context:@"dnaLengthChanged"];
+        [self addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionOld context:@"populationSizeChanged"];
+        [self addObserver:self forKeyPath:@"mutationRate" options:NSKeyValueObservingOptionOld context:@"populationSizeChanged"];
+        
         //Инициализируем переменные.
         [self setValue:[NSNumber numberWithLong:130] forKey:@"populationSize"];
         [self setValue:[NSNumber numberWithLong:42] forKey:@"dnaLength"];
@@ -25,10 +31,7 @@
         [self setValue:[Cell getRandomDNA:dnaLength] forKey:@"goalDNA"];
         [self setValue:[NSNumber numberWithBool:YES] forKey:@"firstStart"];
         
-        //Наблюдаем за некоторыми переменными
-        [self addObserver:self forKeyPath:@"dnaLength" options:0 context:@"dnaLengthChanged"];
         [self addObserver:self forKeyPath:@"minHammingDistance" options:0 context:@"minHammingDistanceChanged"];
-        [self addObserver:self forKeyPath:@"populationSize" options:0 context:@"populationSizeChanged"];
 
     }
     return self;
@@ -41,28 +44,55 @@
     
 }
 
+-(void)changeKeyPath:(NSString *)keyPath ofObject:(id)obj toValue:(id)newValue{
+    [obj setValue:newValue forKey:keyPath];
+}
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+   
+
+    id oldValue=[change objectForKey:NSKeyValueChangeOldKey];
+    NSUndoManager *undo = [self undoManager];
     
     if (context==@"dnaLengthChanged") {
-        //При изменениие длины ДНК, перегененрируем goalDNA и весь процесс начинаем заново
-        [self setValue:[Cell getRandomDNA:dnaLength] forKey:@"goalDNA"];
-        [self setValue:[NSNumber numberWithBool:YES] forKey:@"firstStart"];
-        [self setValue:[NSNumber numberWithLong:0] forKey:@"bestMatch"];
-        [self setValue:[NSNumber numberWithLong:dnaLength] forKey:@"minHammingDistance"];
-        [self setValue:[NSNumber numberWithLong:0] forKey:@"generation"];
+
+
+        [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+        [undo setActionName:@"Edit edit DNA length"];
+        
+        
+            //При изменениие длины ДНК, перегененрируем goalDNA и весь процесс начинаем заново
+            [self setValue:[Cell getRandomDNA:dnaLength] forKey:@"goalDNA"];
+            [self setValue:[NSNumber numberWithBool:YES] forKey:@"firstStart"];
+            [self setValue:[NSNumber numberWithLong:0] forKey:@"bestMatch"];
+            [self setValue:[NSNumber numberWithLong:dnaLength] forKey:@"minHammingDistance"];
+            [self setValue:[NSNumber numberWithLong:0] forKey:@"generation"];
     }
         //при изменении размера популяции весь процесс начинается сначала, но goalDNA НЕ перегенерируется
     else if (context==@"populationSizeChanged"){
-        [self setValue:[NSNumber numberWithBool:YES] forKey:@"firstStart"];
-        [self setValue:[NSNumber numberWithLong:0] forKey:@"bestMatch"];
-        [self setValue:[NSNumber numberWithLong:dnaLength] forKey:@"minHammingDistance"];
-        [self setValue:[NSNumber numberWithLong:0] forKey:@"generation"];
+
+            [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+            [undo setActionName:@"Edit population size"];
+            
+            [self setValue:[NSNumber numberWithBool:YES] forKey:@"firstStart"];
+            [self setValue:[NSNumber numberWithLong:0] forKey:@"bestMatch"];
+            [self setValue:[NSNumber numberWithLong:dnaLength] forKey:@"minHammingDistance"];
+            [self setValue:[NSNumber numberWithLong:0] forKey:@"generation"];
+
+    }
+    else if (context==@"mutationRate"){
+        [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+        [undo setActionName:@"Edit mutation rate"];
     }
     else if (context==@"minHammingDistanceChanged"){
-        NSInteger tmpMatch = 100-(100*minHammingDistance/dnaLength);
-        if (bestMatch<tmpMatch) {
-            [self setValue:[NSNumber numberWithLong:tmpMatch] forKey:@"bestMatch"];
+        if(dnaLength!=0){
+                    NSInteger tmpMatch = 100-(100*minHammingDistance/dnaLength);
+                    if (bestMatch<tmpMatch) {
+                    [self setValue:[NSNumber numberWithLong:tmpMatch] forKey:@"bestMatch"];
+            }
         }
+
+
     }
 }
 
@@ -203,7 +233,25 @@
 
 - (IBAction)loadGoalDNA:(id)sender {
     
-    NSLog(@"%@",[Cell mutateDNA:@"ABCABCABCTTTA" withPercent:100]);
+//читаем из файла, не хватило времени довести до ума, надо бы прикрутить проверку на формат текста внутри файла, но это позже
+    NSOpenPanel * zOpenPanel = [NSOpenPanel openPanel];
+    NSArray * zAryOfExtensions = [NSArray arrayWithObject:@"txt"];
+    [zOpenPanel setAllowedFileTypes:zAryOfExtensions];
+    NSInteger zIntResult = [zOpenPanel runModal];
+    if (zIntResult == NSFileHandlingPanelCancelButton) {
+        NSLog(@"readUsingOpenPanel cancelled");
+        return;
+    }
+    NSURL *zUrl = [zOpenPanel URL];
+    
+
+    NSString * zStr = [NSString stringWithContentsOfURL:zUrl
+                                               encoding:NSUTF8StringEncoding
+                                                  error:NULL];
+    if ([zStr length]>0) {
+        [self setValue:[NSNumber numberWithLong:[zStr length]] forKey:@"dnaLength"];
+        [self setValue:zStr forKey:@"goalDNA"];
+    }
 }
 
 

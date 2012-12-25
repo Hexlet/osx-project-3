@@ -49,7 +49,7 @@
 - (IBAction)startEvalution:(id)sender;
 - (IBAction)stopEvolution:(id)sender;
 - (IBAction)loadGoalDNA:(id)sender;
-
+-(void)changeKeyPath:(NSString *)keyPath ofObject:(id)obj toValue:(id)neValue;
 
 
 @end
