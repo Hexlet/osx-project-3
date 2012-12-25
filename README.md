@@ -1,4 +1,4 @@
-osx-project-3
+osx-project-3 / Генератор паролей
 =============
 
-OS X Development Course, Project 3
+Очень торопился, сильно не пинайте ))
