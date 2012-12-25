@@ -17,9 +17,11 @@
                                        reason:@"Percentages value must be in range (0..100]"
                                      userInfo:nil];
     }
+    if ([self length] == 0)
+        return;
     
     NSMutableArray *replacedIndices = [NSMutableArray array];
-    NSUInteger DNACount = [self length];
+    NSUInteger DNACount = [self length] - 1;
     NSUInteger iteratesCount = percentages * DNACount / 100.0;
     
     for (NSUInteger i = 0; i < iteratesCount; i++) {

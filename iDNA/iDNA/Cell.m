@@ -20,6 +20,7 @@ const NSUInteger DefaultLength = 100;
 - (id)initWithLength:(NSUInteger)length
 {
     if (self = [super init]) {
+        DNA = nil;
         _length = length;
     }
     
@@ -38,7 +39,7 @@ const NSUInteger DefaultLength = 100;
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    Cell *copy = [[[self class] allocWithZone:zone] initWithDNA:[DNA copy]];
+    Cell *copy = [[[self class] allocWithZone:zone] initWithDNA:[DNA mutableCopy]];
     
     return copy;
 }
