@@ -11,10 +11,11 @@
 
 #define DEFAULTPOPULATIONSIZE 100;
 #define DEFAULTDNALENGTH 50;
+#define MAXDNALENGTH 300;
 #define DEFAULTMUTATIONRATE 1;
-//NSCoding
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSCoding> {
     NSInteger populationSize;
     NSInteger dnaLength;
     NSInteger mutationRate;

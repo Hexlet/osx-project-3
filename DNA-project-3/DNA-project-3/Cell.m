@@ -118,7 +118,7 @@
         }
      }
      else if (num_variant == 2) {
-         //1% первого ДНК + 1% второго ДНК + 1% первого ДНК + ... и т.д.
+         //1% первого ДНК + 1 второго ДНК + 1 первого ДНК + ... и т.д.
          for(int i=0; i<dnaLenght; i++) {
              if ((i%2) == 0)
                  [NewDNA addObject:[_DNA objectAtIndex:i]];
