@@ -18,7 +18,8 @@
 @property (nonatomic, retain) NSMutableArray* DNA;
 @property (nonatomic) NSInteger hammingDistance;
 
--(void)initWithDNALenght:(NSInteger) d;
+-(void)fillDNALenght:(NSInteger) d;
+-(BOOL)fillDNAString:(NSString*) s;
 -(int)calculateHammingDistance:(Cell*) c;
 -(void)mutate:(NSInteger) percent;
 -(NSString*)stringDNA;

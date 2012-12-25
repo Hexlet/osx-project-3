@@ -12,7 +12,7 @@
 #define DEFAULTPOPULATIONSIZE 100;
 #define DEFAULTDNALENGTH 50;
 #define DEFAULTMUTATIONRATE 1;
-
+//NSCoding
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     NSInteger populationSize;
@@ -24,8 +24,9 @@
     int generation;
     NSInteger bestHammingDistance;
     NSUndoManager* undoManager;
-    NSInteger test;
 }
+//@property (nonatomic,retain) NSUndoManager *undoManager;
+
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *goalDNATextField;
 
@@ -50,5 +51,6 @@
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 
 -(void)setVisible:(BOOL) v;
+
 
 @end

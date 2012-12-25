@@ -18,15 +18,49 @@
     if (self) {
         arrayATGC = [[NSArray alloc] initWithObjects:@"A", @"T", @"G", @"C",nil];
         _DNA = [[NSMutableArray alloc] init];
+        dnaLenght = 0;
     }
     return self;
 }
 
--(void)initWithDNALenght:(NSInteger) d {
-    dnaLenght = d;
-    for (int i=0; i<dnaLenght; i++) {
-        [_DNA addObject:[arrayATGC objectAtIndex: arc4random() % 4]];
+-(void)fillDNALenght:(NSInteger) d {
+    NSInteger i;
+    if (d > dnaLenght) {
+        for (i=dnaLenght; i<d; i++)
+            [_DNA addObject:[arrayATGC objectAtIndex: arc4random() % 4]];
     }
+    else if (d < dnaLenght) {
+        for (i=dnaLenght-1; i>=d; i--) {
+            [_DNA removeObjectAtIndex:i];
+        }
+    }
+    dnaLenght = d;
+    if ([_DNA count] != dnaLenght) {
+        NSLog(@"длина ДНК различна %lu <> %lu",[_DNA count], dnaLenght );
+        
+    }
+}
+
+-(BOOL)fillDNAString:(NSString*) s {
+    NSInteger n = [s length];
+    // перебираем переданную строку и ищем запрещенные символы
+    for (NSInteger i=0; i<n; i++) {
+       unichar charAtIndex = [s characterAtIndex:i];
+       NSString* charString = [NSString stringWithCharacters:&charAtIndex length:1];
+        if (![arrayATGC containsObject:charString]) {
+           NSLog(@"запрещенный символ %@",charString);
+           return NO;
+       }
+    }
+    // строка нормальная заполняем DNA
+   [_DNA removeAllObjects];
+    dnaLenght = n;
+    for (NSInteger i=0; i<n; i++) {
+        unichar charAtIndex = [s characterAtIndex:i];
+        NSString* charString = [NSString stringWithCharacters:&charAtIndex length:1];
+        [_DNA addObject:charString];
+    }
+   return YES;
 }
 
 -(int) calculateHammingDistance:(Cell*) c {
@@ -74,7 +108,7 @@
     //Скомбинировать их содержание чтобы получить новую ДНК. Комбинирование одним из следующих способов (случайный выбор)
     int num_variant = arc4random() % 3;
     if (num_variant == 1) {
-        //50% первого ДНК + 50% второго ДНК
+         //50% первого ДНК + 50% второго ДНК
         int halfdnaLenght = dnaLenght/2; //50%
         for(int i=0; i<dnaLenght; i++) {
             if ((i+1)<halfdnaLenght)
