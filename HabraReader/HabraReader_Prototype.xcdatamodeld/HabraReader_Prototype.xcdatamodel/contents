@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G56" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Author" representedClassName="Author" syncable="YES">
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="author" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Post" inverseName="author" inverseEntity="Post" syncable="YES"/>
+    </entity>
+    <entity name="Comment" representedClassName="Comment" parentEntity="Message" syncable="YES">
+        <attribute name="isRead" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="comments" inverseEntity="Author" syncable="YES"/>
+        <relationship name="replyTo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="comments" inverseEntity="Message" syncable="YES"/>
+    </entity>
+    <entity name="Company" representedClassName="Company" parentEntity="GenericHub" syncable="YES"/>
+    <entity name="GenericHub" representedClassName="GenericHub" isAbstract="YES" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="hubs" inverseEntity="Post" syncable="YES"/>
+    </entity>
+    <entity name="Hub" representedClassName="Hub" parentEntity="GenericHub" syncable="YES"/>
+    <entity name="Message" representedClassName="Message" isAbstract="YES" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publicationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Comment" inverseName="replyTo" inverseEntity="Comment" syncable="YES"/>
+    </entity>
+    <entity name="Post" representedClassName="Post" parentEntity="Message" syncable="YES">
+        <attribute name="countOfComments" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="descriptionOfPost" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inFavorites" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="posts" inverseEntity="Author" syncable="YES"/>
+        <relationship name="hubs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenericHub" inverseName="posts" inverseEntity="GenericHub" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="posts" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES">
+        <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="tags" inverseEntity="Post" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Author" positionX="198" positionY="45" width="128" height="90"/>
+        <element name="Comment" positionX="-0" positionY="-63" width="128" height="90"/>
+        <element name="Company" positionX="162" positionY="162" width="128" height="45"/>
+        <element name="GenericHub" positionX="162" positionY="234" width="128" height="90"/>
+        <element name="Hub" positionX="331" positionY="252" width="128" height="45"/>
+        <element name="Message" positionX="-200" positionY="-63" width="128" height="90"/>
+        <element name="Post" positionX="-198" positionY="72" width="128" height="210"/>
+        <element name="Tag" positionX="72" positionY="366" width="128" height="75"/>
+    </elements>
+</model>
