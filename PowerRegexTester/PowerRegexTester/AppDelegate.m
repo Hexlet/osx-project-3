@@ -17,17 +17,8 @@
 
 @implementation AppDelegate
 
-@synthesize results = _results;
 - (ResultsTable *)results {
-    if (!_results) {
-        _results = [[ResultsTable alloc] init];
-    }
-    return _results;
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.resultsTableView.dataSource = self.results;
-    self.resultsTableView.delegate = self.results;
+    return (ResultsTable *)self.resultsTableView.dataSource;
 }
 
 - (IBAction)clearClick:(NSButton *)sender {
