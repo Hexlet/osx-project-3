@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6373D4FD1689E47B00EE7CDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D4FC1689E47B00EE7CDA /* Cocoa.framework */; };
+		6373D5071689E47B00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5051689E47B00EE7CDA /* InfoPlist.strings */; };
+		6373D5091689E47B00EE7CDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5081689E47B00EE7CDA /* main.m */; };
+		6373D50D1689E47B00EE7CDA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6373D50B1689E47B00EE7CDA /* Credits.rtf */; };
+		6373D5101689E47B00EE7CDA /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D50F1689E47B00EE7CDA /* Document.m */; };
+		6373D5131689E47B00EE7CDA /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5111689E47B00EE7CDA /* Document.xib */; };
+		6373D5161689E47C00EE7CDA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5141689E47C00EE7CDA /* MainMenu.xib */; };
+		6373D51E1689E47C00EE7CDA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D51D1689E47C00EE7CDA /* SenTestingKit.framework */; };
+		6373D51F1689E47C00EE7CDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D4FC1689E47B00EE7CDA /* Cocoa.framework */; };
+		6373D5271689E47C00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5251689E47C00EE7CDA /* InfoPlist.strings */; };
+		6373D52A1689E47C00EE7CDA /* iDNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5291689E47C00EE7CDA /* iDNATests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6373D5201689E47C00EE7CDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6373D4EF1689E47B00EE7CDA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6373D4F71689E47B00EE7CDA;
+			remoteInfo = iDNA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6373D4F81689E47B00EE7CDA /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6373D4FC1689E47B00EE7CDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6373D4FF1689E47B00EE7CDA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		6373D5001689E47B00EE7CDA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6373D5011689E47B00EE7CDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6373D5041689E47B00EE7CDA /* iDNA-Info.plist */ = {isa = PBXFileReference; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
+		6373D5061689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6373D5081689E47B00EE7CDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6373D50A1689E47B00EE7CDA /* iDNA-Prefix.pch */ = {isa = PBXFileReference; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
+		6373D50C1689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		6373D50E1689E47B00EE7CDA /* Document.h */ = {isa = PBXFileReference; path = Document.h; sourceTree = "<group>"; };
+		6373D50F1689E47B00EE7CDA /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		6373D5121689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		6373D5151689E47C00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		6373D51C1689E47C00EE7CDA /* iDNATests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iDNATests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6373D51D1689E47C00EE7CDA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		6373D5241689E47C00EE7CDA /* iDNATests-Info.plist */ = {isa = PBXFileReference; path = "iDNATests-Info.plist"; sourceTree = "<group>"; };
+		6373D5261689E47C00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6373D5281689E47C00EE7CDA /* iDNATests.h */ = {isa = PBXFileReference; path = iDNATests.h; sourceTree = "<group>"; };
+		6373D5291689E47C00EE7CDA /* iDNATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDNATests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6373D4F51689E47B00EE7CDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D4FD1689E47B00EE7CDA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6373D5181689E47C00EE7CDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D51E1689E47C00EE7CDA /* SenTestingKit.framework in Frameworks */,
+				6373D51F1689E47C00EE7CDA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6373D4ED1689E47B00EE7CDA = {
+			isa = PBXGroup;
+			children = (
+				6373D5021689E47B00EE7CDA /* iDNA */,
+				6373D5221689E47C00EE7CDA /* iDNATests */,
+				6373D4FB1689E47B00EE7CDA /* Frameworks */,
+				6373D4F91689E47B00EE7CDA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6373D4F91689E47B00EE7CDA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6373D4F81689E47B00EE7CDA /* iDNA.app */,
+				6373D51C1689E47C00EE7CDA /* iDNATests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6373D4FB1689E47B00EE7CDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6373D4FC1689E47B00EE7CDA /* Cocoa.framework */,
+				6373D51D1689E47C00EE7CDA /* SenTestingKit.framework */,
+				6373D4FE1689E47B00EE7CDA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6373D4FE1689E47B00EE7CDA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6373D4FF1689E47B00EE7CDA /* AppKit.framework */,
+				6373D5001689E47B00EE7CDA /* CoreData.framework */,
+				6373D5011689E47B00EE7CDA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		6373D5021689E47B00EE7CDA /* iDNA */ = {
+			isa = PBXGroup;
+			children = (
+				6373D50E1689E47B00EE7CDA /* Document.h */,
+				6373D50F1689E47B00EE7CDA /* Document.m */,
+				6373D5111689E47B00EE7CDA /* Document.xib */,
+				6373D5141689E47C00EE7CDA /* MainMenu.xib */,
+				6373D5031689E47B00EE7CDA /* Supporting Files */,
+			);
+			path = iDNA;
+			sourceTree = "<group>";
+		};
+		6373D5031689E47B00EE7CDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6373D5041689E47B00EE7CDA /* iDNA-Info.plist */,
+				6373D5051689E47B00EE7CDA /* InfoPlist.strings */,
+				6373D5081689E47B00EE7CDA /* main.m */,
+				6373D50A1689E47B00EE7CDA /* iDNA-Prefix.pch */,
+				6373D50B1689E47B00EE7CDA /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6373D5221689E47C00EE7CDA /* iDNATests */ = {
+			isa = PBXGroup;
+			children = (
+				6373D5281689E47C00EE7CDA /* iDNATests.h */,
+				6373D5291689E47C00EE7CDA /* iDNATests.m */,
+				6373D5231689E47C00EE7CDA /* Supporting Files */,
+			);
+			path = iDNATests;
+			sourceTree = "<group>";
+		};
+		6373D5231689E47C00EE7CDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6373D5241689E47C00EE7CDA /* iDNATests-Info.plist */,
+				6373D5251689E47C00EE7CDA /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6373D4F71689E47B00EE7CDA /* iDNA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6373D52D1689E47C00EE7CDA /* Build configuration list for PBXNativeTarget "iDNA" */;
+			buildPhases = (
+				6373D4F41689E47B00EE7CDA /* Sources */,
+				6373D4F51689E47B00EE7CDA /* Frameworks */,
+				6373D4F61689E47B00EE7CDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iDNA;
+			productName = iDNA;
+			productReference = 6373D4F81689E47B00EE7CDA /* iDNA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6373D51B1689E47C00EE7CDA /* iDNATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6373D5301689E47C00EE7CDA /* Build configuration list for PBXNativeTarget "iDNATests" */;
+			buildPhases = (
+				6373D5171689E47C00EE7CDA /* Sources */,
+				6373D5181689E47C00EE7CDA /* Frameworks */,
+				6373D5191689E47C00EE7CDA /* Resources */,
+				6373D51A1689E47C00EE7CDA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6373D5211689E47C00EE7CDA /* PBXTargetDependency */,
+			);
+			name = iDNATests;
+			productName = iDNATests;
+			productReference = 6373D51C1689E47C00EE7CDA /* iDNATests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6373D4EF1689E47B00EE7CDA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 6373D4F21689E47B00EE7CDA /* Build configuration list for PBXProject "iDNA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6373D4ED1689E47B00EE7CDA;
+			productRefGroup = 6373D4F91689E47B00EE7CDA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6373D4F71689E47B00EE7CDA /* iDNA */,
+				6373D51B1689E47C00EE7CDA /* iDNATests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6373D4F61689E47B00EE7CDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D5071689E47B00EE7CDA /* InfoPlist.strings in Resources */,
+				6373D50D1689E47B00EE7CDA /* Credits.rtf in Resources */,
+				6373D5131689E47B00EE7CDA /* Document.xib in Resources */,
+				6373D5161689E47C00EE7CDA /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6373D5191689E47C00EE7CDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D5271689E47C00EE7CDA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6373D51A1689E47C00EE7CDA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6373D4F41689E47B00EE7CDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D5091689E47B00EE7CDA /* main.m in Sources */,
+				6373D5101689E47B00EE7CDA /* Document.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6373D5171689E47C00EE7CDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6373D52A1689E47C00EE7CDA /* iDNATests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6373D5211689E47C00EE7CDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6373D4F71689E47B00EE7CDA /* iDNA */;
+			targetProxy = 6373D5201689E47C00EE7CDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6373D5051689E47B00EE7CDA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6373D5061689E47B00EE7CDA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6373D50B1689E47B00EE7CDA /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6373D50C1689E47B00EE7CDA /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		6373D5111689E47B00EE7CDA /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6373D5121689E47B00EE7CDA /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		6373D5141689E47C00EE7CDA /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6373D5151689E47C00EE7CDA /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		6373D5251689E47C00EE7CDA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6373D5261689E47C00EE7CDA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6373D52B1689E47C00EE7CDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6373D52C1689E47C00EE7CDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6373D52E1689E47C00EE7CDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6373D52F1689E47C00EE7CDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6373D5311689E47C00EE7CDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iDNA.app/Contents/MacOS/iDNA";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNATests/iDNATests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		6373D5321689E47C00EE7CDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iDNA.app/Contents/MacOS/iDNA";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNATests/iDNATests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6373D4F21689E47B00EE7CDA /* Build configuration list for PBXProject "iDNA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6373D52B1689E47C00EE7CDA /* Debug */,
+				6373D52C1689E47C00EE7CDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6373D52D1689E47C00EE7CDA /* Build configuration list for PBXNativeTarget "iDNA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6373D52E1689E47C00EE7CDA /* Debug */,
+				6373D52F1689E47C00EE7CDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6373D5301689E47C00EE7CDA /* Build configuration list for PBXNativeTarget "iDNATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6373D5311689E47C00EE7CDA /* Debug */,
+				6373D5321689E47C00EE7CDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6373D4EF1689E47B00EE7CDA /* Project object */;
+}
