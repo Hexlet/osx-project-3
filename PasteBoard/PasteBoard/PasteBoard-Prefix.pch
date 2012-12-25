@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'PasteBoard' target in the 'PasteBoard' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
