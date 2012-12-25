@@ -10,7 +10,7 @@
 
 @implementation Cell (mutator)
 
-- (void)mutate:(int)percentages
+- (void)mutate:(NSUInteger)percentages
 {
     if (percentages <= 0 || percentages > 100) {
         @throw [NSException exceptionWithName:NSInvalidArgumentException

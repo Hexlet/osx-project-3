@@ -10,6 +10,6 @@
 
 @interface Cell (mutator)
 
-- (void)mutate:(int)percentages;
+- (void)mutate:(NSUInteger)percentages;
 
 @end

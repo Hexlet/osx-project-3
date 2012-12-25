@@ -9,6 +9,7 @@
 #import "MainWindowController.h"
 #import "Cell.h"
 #import "Cell+mutator.h"
+#import "Population.h"
 
 @interface MainWindowController () {
     NSThread *_evolutionThread;
@@ -16,11 +17,7 @@
 
 - (void)generateDNA;
 - (void)setEvolutionPaused:(BOOL)isPaused;
-- (NSMutableArray *)generatePopulation;
-- (void)startEvolutionOnPopulation:(NSArray *)population;
-- (NSArray *)sortPopulation:(NSArray *)population;
-- (void)makeCrossingInPopulation:(NSMutableArray *)population;
-- (void)mutatePopulation:(NSMutableArray *)population;
+- (void)evolvePopulation:(id)state;
 
 @end
 
@@ -80,86 +77,39 @@
 - (IBAction)startEvolution:(id)sender
 {
     [self setEvolutionPaused:NO];
+    self.generation = 0;
+    self.bestMatch = 0;
     
-    NSMutableArray *population = [self generatePopulation];
     _evolutionThread = [[NSThread alloc] initWithTarget:self
-                                               selector:@selector(startEvolutionOnPopulation:)
-                                                 object:population];
+                                               selector:@selector(evolvePopulation:)
+                                                 object:nil];
     [_evolutionThread start];
 }
 
-- (void)startEvolutionOnPopulation:(NSArray *)population
+- (void)evolvePopulation:(id)state
 {
+    Population *population = [[Population alloc] initWithSize:self.populationSize goalDNA:self.goalDNA];
+    [population generateWithDNALength:self.dnaLength];
+
     while (![_evolutionThread isCancelled]) {
         self.generation++;
         
-        NSMutableArray *sortedPopulation = [[NSMutableArray alloc] initWithArray: [self sortPopulation:population]];
+        [population sort];
         
-        self.bestMatch = [[sortedPopulation objectAtIndex:0] hammingDistance:self.goalDNA];
+        int hammingDistance = [[[population items] objectAtIndex:0] hammingDistance:self.goalDNA];
+        NSUInteger count = [[population items] count];
+        self.bestMatch = (count - hammingDistance) / (float)count * 100;
         
-        for (Cell *dna in sortedPopulation) {
-            if ([dna hammingDistance:self.goalDNA] == 0) {
-                [self setEvolutionPaused:YES];
-                _evolutionThread = nil;
-                
-                return;
-            }
+        if ([population isMatch]) {
+            [self setEvolutionPaused:YES];
+            _evolutionThread = nil;
+            
+            return;
         }
         
-        [self makeCrossingInPopulation:sortedPopulation];
-        [self mutatePopulation:sortedPopulation];
+        [population makeCrossing];
+        [population mutateWithPercentOfMutation:self.mutationRate];
     }
-}
-
-- (NSArray *)sortPopulation:(NSArray *)population
-{
-    NSComparator dnaSortBlock = ^(Cell *cell1, Cell *cell2) {
-        int d1 = [cell1 hammingDistance:self.goalDNA];
-        int d2 = [cell2 hammingDistance:self.goalDNA];
-        
-        if (d1 == d2)
-            return NSOrderedSame;
-        return d1 > d2 ? NSOrderedAscending : NSOrderedDescending;
-    };
-    return [population sortedArrayUsingComparator:dnaSortBlock];
-}
-
-- (void)makeCrossingInPopulation:(NSMutableArray *)population
-{
-    if ([population count] < 2)
-        return;
-    
-    int maxIndex = [population count] / 2 - 1;
-    int index1 = arc4random_uniform(maxIndex);
-    int index2 = arc4random_uniform(maxIndex);
-    Cell *dna1 = [population objectAtIndex:index1];
-    Cell *dna2 = [population objectAtIndex:index2];
-    int crossKind = arc4random_uniform(2);
-    Cell *newDna = [dna1 makeCrossingWithDNA:dna2 usingCrossKind:crossKind];
-    
-    for (NSUInteger i = maxIndex + 1; i < [population count]; i++) {
-        [population replaceObjectAtIndex:i withObject:[newDna copy]];
-    }
-}
-
-- (void)mutatePopulation:(NSMutableArray *)population
-{
-    for (Cell *dna in population) {
-        [dna mutate:self.mutationRate];
-    }
-}
-
-- (NSMutableArray *)generatePopulation
-{
-    NSMutableArray *population = [[NSMutableArray alloc] initWithCapacity:self.populationSize];
-    for (NSInteger i = 0; i < self.populationSize; i++) {
-        Cell *dna = [[Cell alloc] initWithLength:self.dnaLength];
-        [dna createDNA];
-        
-        [population addObject:dna];
-    }
-    
-    return population;
 }
 
 - (IBAction)pauseEvolution:(id)sender

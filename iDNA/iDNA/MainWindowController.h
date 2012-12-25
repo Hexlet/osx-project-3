@@ -17,7 +17,7 @@
 @property int mutationRate;
 @property (readonly) Cell *goalDNA;
 @property (readonly) BOOL isEvolutionPaused;
-@property int generation;
+@property NSUInteger generation;
 @property int bestMatch;
 
 - (IBAction)loadGoalDNA:(id)sender;

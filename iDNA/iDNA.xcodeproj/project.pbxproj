@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F25ADD66168A41FE000CC904 /* Population.m in Sources */ = {isa = PBXBuildFile; fileRef = F25ADD65168A41FE000CC904 /* Population.m */; };
 		F25D28091689036000DB9285 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F25D28081689036000DB9285 /* Cocoa.framework */; };
 		F25D28131689036000DB9285 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F25D28111689036000DB9285 /* InfoPlist.strings */; };
 		F25D28151689036000DB9285 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F25D28141689036000DB9285 /* main.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F25ADD64168A41FD000CC904 /* Population.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Population.h; sourceTree = "<group>"; };
+		F25ADD65168A41FE000CC904 /* Population.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Population.m; sourceTree = "<group>"; };
 		F25D28041689036000DB9285 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25D28081689036000DB9285 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F25D280B1689036000DB9285 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +109,8 @@
 				F25D282C1689097F00DB9285 /* MainWindowController.m */,
 				F25D282E16891C2800DB9285 /* CellValueTransformer.h */,
 				F25D282F16891C2800DB9285 /* CellValueTransformer.m */,
+				F25ADD64168A41FD000CC904 /* Population.h */,
+				F25ADD65168A41FE000CC904 /* Population.m */,
 			);
 			path = iDNA;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				F25D282A1689076A00DB9285 /* Cell+mutator.m in Sources */,
 				F25D282D1689097F00DB9285 /* MainWindowController.m in Sources */,
 				F25D283016891C2800DB9285 /* CellValueTransformer.m in Sources */,
+				F25ADD66168A41FE000CC904 /* Population.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +327,7 @@
 				F25D28241689036000DB9285 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
