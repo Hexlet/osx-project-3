@@ -61,8 +61,9 @@
     [self hideErrorText];
 }
 
-- (IBAction)applyClick:(NSButton *)sender {
+- (IBAction)applyClick:(id)sender {
     NSString *pattern = self.pattern.stringValue;
+    if (pattern == nil || [pattern isEqualToString:@""]) { return; }
     NSError *error;
     NSRegularExpressionOptions options = [self.options regexOptions];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
