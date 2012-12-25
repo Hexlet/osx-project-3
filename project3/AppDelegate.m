@@ -17,41 +17,33 @@
     _populationSize = 20;
     _dnaLength = 100;
     _mutationRate = 30;
-    _isEvolutionOver = false;
+    _isEvolutionOver = true;
     
     self.distanceToTarget = _dnaLength;
+    self.generationCount = 0;
+    self.progress = 0;
     
  
     [self addObserver:self forKeyPath:@"dnaLength" options:0 context:nil];
     [self addObserver:self forKeyPath:@"distanceToTarget" options:0 context:nil];
-    self.generationCount = 0;
-//    [self initPopulation];
+
     return self;
 }
 
--(void) resetEvolution {
-    self.isEvolutionOver = true;
-    self.generationCount = 0;
-     self.distanceToTarget = _dnaLength;
-    
-    
 
-}
 
 -(void) initPopulation {
-    _population = [[Population alloc] init:_dnaLength];
+    _population = [[Population alloc] init: _dnaLength];
     [_population generateTarget];
     [_population create:_populationSize];
+    self.goalDNA = [_population.targetDNA asString];
 }
 
--(void) generateGoalDNA {
-    [self initPopulation];
-    [_goalDNAField setStringValue:[_population.targetDNA asString]];
-}
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self generateGoalDNA];
+    [self initPopulation];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evStepOver:) name:@"EvStepOver" object:nil];
 }
 
@@ -71,19 +63,19 @@
                         context:(void *)context {
 
     if ([keyPath isEqual:@"dnaLength"]) {
-        self.population.dnaSize = _dnaLength;
+        self.population.dnaLength = _dnaLength;
         self.distanceToTarget = _dnaLength;
-        [self generateGoalDNA];
+        [self initPopulation];
+        self.goalDNA = [_population.targetDNA asString];
     }
 
     
-    if ([keyPath isEqual:@"distanceToTarget"]) {
+     else if ([keyPath isEqual:@"distanceToTarget"]) {
         
-        // При изменении self.minimumHammingDistance изменяем и self.bestIndividualMatch для правильного отображения индикатора выполнения в интерфейсе
-        if (self.dnaLength > 0) {
-            NSUInteger progress = 100-100*self.distanceToTarget/self.population.dnaSize;
-            if (progress > self.distanceToTarget)
-                self.distanceToTarget = progress;
+           if (self.dnaLength > 0) {
+            NSUInteger currentProgress = 100-100*self.distanceToTarget/_dnaLength;
+            if (currentProgress > self.progress)
+                self.progress = currentProgress;
         }
 
     }
@@ -94,49 +86,75 @@
 
 
 
--(void) EvStep {
-    
-    
-        
-        [_population Sort];
-        [_population subFromTop50];
-        [_population mutate:_mutationRate];
-  
-        int currentDistanceToTarget = [self.population nearestDistanceToTarget];
-    
-        if (currentDistanceToTarget < self.distanceToTarget) {
-         self.distanceToTarget =[self.population nearestDistanceToTarget];
-        }
-    
-    self.generationCount++;
-  
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"EvStepOver" object:self];
-    
-}
-
-- (IBAction)startEvolution:(id)sender {
-
-//       [_population create:_populationSize];
-//    [_bestMatch setIntegerValue:_population.dnaSize];
-    self.isEvolutionOver = false;
-    [self performSelectorInBackground:@selector(EvStep) withObject:nil];
-    
+-(void) resetEvolution {
+    self.isEvolutionOver = true;
+    self.generationCount = 0;
+    self.progress = 0;
+    self.distanceToTarget = _dnaLength;
+    self.window.title = @"iDNA";
 }
 
 -(void)Evolution {
     if (!self.isEvolutionOver) {
-         [self performSelectorInBackground:@selector(EvStep) withObject:nil];
+        [self performSelectorInBackground:@selector(EvStep) withObject:nil];
     }
 }
+
+-(void) EvStep {
+        
+    [self SortPopulation];
+    [self substituteHalfPopulationWithTop50];
+    [self mutatePopulation];
+  
+    NSUInteger currentDistanceToTarget = [self nearestDistanceToTarget];
+    
+        if (currentDistanceToTarget < self.distanceToTarget) {
+            self.distanceToTarget = currentDistanceToTarget;
+        }
+    
+    self.generationCount++;
+  
+    if(_population.gotTarget) {
+        _isEvolutionOver = true;
+        return;
+    }
+    
+    [[NSNotificationCenter  defaultCenter] postNotificationName:@"EvStepOver" object:self];
+    
+}
+
+- (IBAction)startEvolution:(id)sender {
+    self.isEvolutionOver = false;
+    self.window.title = @"iDNA in progress…";
+    [self performSelectorInBackground:@selector(EvStep) withObject:nil];
+   
+}
+
+
 - (IBAction)pause:(id)sender {
     [self resetEvolution];
 }
 
 - (IBAction)loadDNA:(id)sender {
-   
-    NSLog(@"%i",self.distanceToTarget);
-    self.generationCount++;
 
 }
+
+
+
+- (void)SortPopulation {
+    [_population Sort];
+}
+
+- (void)substituteHalfPopulationWithTop50 {
+    [_population substituteFromTop50];
+}
+
+- (void)mutatePopulation {
+    [_population mutate:_mutationRate];
+}
+
+- (NSUInteger)nearestDistanceToTarget {
+    return [self.population nearestDistanceToTarget];
+}
+
 @end
