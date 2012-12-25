@@ -21,23 +21,27 @@
     return (ResultsTable *)self.resultsTableView.dataSource;
 }
 
-- (IBAction)clearClick:(NSButton *)sender {
+- (IBAction)clearClick:(id)sender {
     self.sourceView.string = @"";
+    [self hideErrorText];
 }
 
-- (IBAction)loadClick:(NSButton *)sender {
-    NSURL *url = [NSURL URLWithString:self.url.stringValue];
+- (IBAction)loadClick:(id)sender {
+    NSString *urlString = self.url.stringValue;
+    if (urlString == nil || [urlString isEqualToString:@""]) { return; }
+    NSURL *url = [NSURL URLWithString:urlString];
     if (url) {
         [self loadStringFromUrl:url];
     }
 }
 
-- (IBAction)fileClick:(NSButton *)sender {
+- (IBAction)fileClick:(id)sender {
     NSURL *fileUrl = [[[FileDialog alloc] init] openFile];
     if (fileUrl) {
         [self loadStringFromUrl:fileUrl];
         self.url.stringValue = fileUrl.absoluteString;
     }
+    [self hideErrorText];
 }
 
 - (void) loadStringFromUrl:(NSURL *)url {
@@ -50,10 +54,11 @@
     [self.loadProgress stopAnimation:self];
     [self.loadProgress setHidden:YES];
     if (error) {
-        [self handleError:error];
+        [self showError:error];
         return;
     }
     self.sourceView.string = urlContents;
+    [self hideErrorText];
 }
 
 - (IBAction)applyClick:(NSButton *)sender {
@@ -64,18 +69,22 @@
                                                                            options:options
                                                                              error:&error];
     if (error) {
-        [self handleError:error];
+        [self showError:error];
         return;
     }
-    
     NSString *sourceString = self.sourceView.string;
     NSArray *matches = [regex allMatchesWithGroups:sourceString];
     [self.results setSourceString:self.sourceView.string andRangesOfMatches:matches];
     [self.resultsTableView reloadData];
+    [self hideErrorText];
 }
 
-- (void) handleError:(NSError *)error {
-    NSLog(@"ERROR: %@", error.description);
+- (void) showError:(NSError *)error {
+    self.statusText.stringValue = error.localizedDescription;
+}
+
+- (void) hideErrorText {
+    self.statusText.stringValue = @"";
 }
 
 @end
