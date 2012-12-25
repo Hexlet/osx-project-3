@@ -1,0 +1,339 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		54A522D0168A284D008B8C7B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A522CF168A284D008B8C7B /* Cocoa.framework */; };
+		54A522DA168A284D008B8C7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 54A522D8168A284D008B8C7B /* InfoPlist.strings */; };
+		54A522DC168A284D008B8C7B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A522DB168A284D008B8C7B /* main.m */; };
+		54A522E0168A284D008B8C7B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 54A522DE168A284D008B8C7B /* Credits.rtf */; };
+		54A522E3168A284D008B8C7B /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A522E2168A284D008B8C7B /* Document.m */; };
+		54A522E6168A284D008B8C7B /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A522E4168A284D008B8C7B /* Document.xib */; };
+		54A522E9168A284E008B8C7B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54A522E7168A284E008B8C7B /* MainMenu.xib */; };
+		54A522EC168A284E008B8C7B /* Document.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 54A522EA168A284E008B8C7B /* Document.xcdatamodeld */; };
+		54A522F2168A2943008B8C7B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A522D3168A284D008B8C7B /* CoreData.framework */; };
+		54A522F4168A294D008B8C7B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A522F3168A294D008B8C7B /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		54A522CB168A284D008B8C7B /* SixMinds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SixMinds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A522CF168A284D008B8C7B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		54A522D2168A284D008B8C7B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		54A522D3168A284D008B8C7B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		54A522D4168A284D008B8C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		54A522D7168A284D008B8C7B /* SixMinds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SixMinds-Info.plist"; sourceTree = "<group>"; };
+		54A522D9168A284D008B8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		54A522DB168A284D008B8C7B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		54A522DD168A284D008B8C7B /* SixMinds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SixMinds-Prefix.pch"; sourceTree = "<group>"; };
+		54A522DF168A284D008B8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		54A522E1168A284D008B8C7B /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		54A522E2168A284D008B8C7B /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		54A522E5168A284D008B8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		54A522E8168A284E008B8C7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		54A522EB168A284E008B8C7B /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
+		54A522F3168A294D008B8C7B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		54A522C8168A284D008B8C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A522F4168A294D008B8C7B /* WebKit.framework in Frameworks */,
+				54A522F2168A2943008B8C7B /* CoreData.framework in Frameworks */,
+				54A522D0168A284D008B8C7B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		54A522C0168A284D008B8C7B = {
+			isa = PBXGroup;
+			children = (
+				54A522F3168A294D008B8C7B /* WebKit.framework */,
+				54A522D5168A284D008B8C7B /* SixMinds */,
+				54A522CE168A284D008B8C7B /* Frameworks */,
+				54A522CC168A284D008B8C7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		54A522CC168A284D008B8C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				54A522CB168A284D008B8C7B /* SixMinds.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		54A522CE168A284D008B8C7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54A522CF168A284D008B8C7B /* Cocoa.framework */,
+				54A522D1168A284D008B8C7B /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		54A522D1168A284D008B8C7B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54A522D2168A284D008B8C7B /* AppKit.framework */,
+				54A522D3168A284D008B8C7B /* CoreData.framework */,
+				54A522D4168A284D008B8C7B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		54A522D5168A284D008B8C7B /* SixMinds */ = {
+			isa = PBXGroup;
+			children = (
+				54A522E1168A284D008B8C7B /* Document.h */,
+				54A522E2168A284D008B8C7B /* Document.m */,
+				54A522E4168A284D008B8C7B /* Document.xib */,
+				54A522E7168A284E008B8C7B /* MainMenu.xib */,
+				54A522EA168A284E008B8C7B /* Document.xcdatamodeld */,
+				54A522D6168A284D008B8C7B /* Supporting Files */,
+			);
+			path = SixMinds;
+			sourceTree = "<group>";
+		};
+		54A522D6168A284D008B8C7B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				54A522D7168A284D008B8C7B /* SixMinds-Info.plist */,
+				54A522D8168A284D008B8C7B /* InfoPlist.strings */,
+				54A522DB168A284D008B8C7B /* main.m */,
+				54A522DD168A284D008B8C7B /* SixMinds-Prefix.pch */,
+				54A522DE168A284D008B8C7B /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		54A522CA168A284D008B8C7B /* SixMinds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54A522EF168A284E008B8C7B /* Build configuration list for PBXNativeTarget "SixMinds" */;
+			buildPhases = (
+				54A522C7168A284D008B8C7B /* Sources */,
+				54A522C8168A284D008B8C7B /* Frameworks */,
+				54A522C9168A284D008B8C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SixMinds;
+			productName = SixMinds;
+			productReference = 54A522CB168A284D008B8C7B /* SixMinds.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		54A522C2168A284D008B8C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Michael Krinitsky";
+			};
+			buildConfigurationList = 54A522C5168A284D008B8C7B /* Build configuration list for PBXProject "SixMinds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 54A522C0168A284D008B8C7B;
+			productRefGroup = 54A522CC168A284D008B8C7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				54A522CA168A284D008B8C7B /* SixMinds */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		54A522C9168A284D008B8C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A522DA168A284D008B8C7B /* InfoPlist.strings in Resources */,
+				54A522E0168A284D008B8C7B /* Credits.rtf in Resources */,
+				54A522E6168A284D008B8C7B /* Document.xib in Resources */,
+				54A522E9168A284E008B8C7B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		54A522C7168A284D008B8C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54A522DC168A284D008B8C7B /* main.m in Sources */,
+				54A522E3168A284D008B8C7B /* Document.m in Sources */,
+				54A522EC168A284E008B8C7B /* Document.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		54A522D8168A284D008B8C7B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A522D9168A284D008B8C7B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		54A522DE168A284D008B8C7B /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A522DF168A284D008B8C7B /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		54A522E4168A284D008B8C7B /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A522E5168A284D008B8C7B /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		54A522E7168A284E008B8C7B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54A522E8168A284E008B8C7B /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		54A522ED168A284E008B8C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		54A522EE168A284E008B8C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		54A522F0168A284E008B8C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SixMinds/SixMinds-Prefix.pch";
+				INFOPLIST_FILE = "SixMinds/SixMinds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		54A522F1168A284E008B8C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SixMinds/SixMinds-Prefix.pch";
+				INFOPLIST_FILE = "SixMinds/SixMinds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		54A522C5168A284D008B8C7B /* Build configuration list for PBXProject "SixMinds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A522ED168A284E008B8C7B /* Debug */,
+				54A522EE168A284E008B8C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54A522EF168A284E008B8C7B /* Build configuration list for PBXNativeTarget "SixMinds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54A522F0168A284E008B8C7B /* Debug */,
+				54A522F1168A284E008B8C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		54A522EA168A284E008B8C7B /* Document.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				54A522EB168A284E008B8C7B /* Document.xcdatamodel */,
+			);
+			currentVersion = 54A522EB168A284E008B8C7B /* Document.xcdatamodel */;
+			path = Document.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 54A522C2168A284D008B8C7B /* Project object */;
+}
