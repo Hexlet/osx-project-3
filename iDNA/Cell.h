@@ -12,11 +12,14 @@
     NSMutableArray *dnaArray;
     NSArray *dnaBitsArray;
     BOOL maskArray[100];
-    int size;
+    NSInteger size;
 }
 
 -(int) hammingDistance:(Cell*)obj;
 -(NSString*) getObj:(int)index;
-
+-(void)mutate:(NSInteger)percents;
+-(void)initialize:(NSInteger)newSize;
+-(NSString*)getGoalDNA;
+-(void) updateGoalDNA:(NSInteger) newSize ;
 
 @end

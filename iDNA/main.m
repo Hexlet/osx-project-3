@@ -2,7 +2,7 @@
 //  main.m
 //  iDNA
 //
-//  Created by Kirill Gorshkov on 24.12.12.
+//  Created by Kirill Gorshkov on 25.12.12.
 //  Copyright (c) 2012 Kirill Gorshkov. All rights reserved.
 //
 

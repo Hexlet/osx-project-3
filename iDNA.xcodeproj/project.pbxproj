@@ -7,105 +7,105 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE0BB44D16888F4600CE91C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BB44C16888F4600CE91C9 /* Cocoa.framework */; };
-		CE0BB45716888F4600CE91C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE0BB45516888F4600CE91C9 /* InfoPlist.strings */; };
-		CE0BB45916888F4600CE91C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BB45816888F4600CE91C9 /* main.m */; };
-		CE0BB45D16888F4600CE91C9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE0BB45B16888F4600CE91C9 /* Credits.rtf */; };
-		CE0BB46016888F4600CE91C9 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BB45F16888F4600CE91C9 /* Document.m */; };
-		CE0BB46316888F4600CE91C9 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0BB46116888F4600CE91C9 /* Document.xib */; };
-		CE0BB46616888F4700CE91C9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0BB46416888F4700CE91C9 /* MainMenu.xib */; };
-		CE4C4C5516888FCE000EAD32 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4C4C5416888FCE000EAD32 /* Cell.m */; };
+		CE4D5FB41689B8410078F45E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4D5FB31689B8410078F45E /* Cocoa.framework */; };
+		CE4D5FBE1689B8410078F45E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE4D5FBC1689B8410078F45E /* InfoPlist.strings */; };
+		CE4D5FC01689B8410078F45E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5FBF1689B8410078F45E /* main.m */; };
+		CE4D5FC41689B8410078F45E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE4D5FC21689B8410078F45E /* Credits.rtf */; };
+		CE4D5FC71689B8410078F45E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5FC61689B8410078F45E /* AppDelegate.m */; };
+		CE4D5FCA1689B8410078F45E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D5FC81689B8410078F45E /* MainMenu.xib */; };
+		CE4D5FCD1689B8410078F45E /* iDNA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE4D5FCB1689B8410078F45E /* iDNA.xcdatamodeld */; };
+		CEAC20A31689C65C00F08446 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC20A21689C65C00F08446 /* Cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE0BB44816888F4600CE91C9 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE0BB44C16888F4600CE91C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		CE0BB44F16888F4600CE91C9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		CE0BB45016888F4600CE91C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		CE0BB45116888F4600CE91C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CE0BB45416888F4600CE91C9 /* iDNA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
-		CE0BB45616888F4600CE91C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CE0BB45816888F4600CE91C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CE0BB45A16888F4600CE91C9 /* iDNA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
-		CE0BB45C16888F4600CE91C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		CE0BB45E16888F4600CE91C9 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		CE0BB45F16888F4600CE91C9 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
-		CE0BB46216888F4600CE91C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
-		CE0BB46516888F4700CE91C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		CE4C4C5316888FCE000EAD32 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
-		CE4C4C5416888FCE000EAD32 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		CE4D5FAF1689B8410078F45E /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE4D5FB31689B8410078F45E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CE4D5FB61689B8410078F45E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CE4D5FB71689B8410078F45E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CE4D5FB81689B8410078F45E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE4D5FBB1689B8410078F45E /* iDNA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
+		CE4D5FBD1689B8410078F45E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE4D5FBF1689B8410078F45E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CE4D5FC11689B8410078F45E /* iDNA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
+		CE4D5FC31689B8410078F45E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CE4D5FC51689B8410078F45E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CE4D5FC61689B8410078F45E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CE4D5FC91689B8410078F45E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CE4D5FCC1689B8410078F45E /* iDNA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iDNA.xcdatamodel; sourceTree = "<group>"; };
+		CEAC20A11689C65C00F08446 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		CEAC20A21689C65C00F08446 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CE0BB44516888F4600CE91C9 /* Frameworks */ = {
+		CE4D5FAC1689B8410078F45E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0BB44D16888F4600CE91C9 /* Cocoa.framework in Frameworks */,
+				CE4D5FB41689B8410078F45E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE0BB43D16888F4600CE91C9 = {
+		CE4D5FA41689B8410078F45E = {
 			isa = PBXGroup;
 			children = (
-				CE0BB45216888F4600CE91C9 /* iDNA */,
-				CE0BB44B16888F4600CE91C9 /* Frameworks */,
-				CE0BB44916888F4600CE91C9 /* Products */,
+				CE4D5FB91689B8410078F45E /* iDNA */,
+				CE4D5FB21689B8410078F45E /* Frameworks */,
+				CE4D5FB01689B8410078F45E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		CE0BB44916888F4600CE91C9 /* Products */ = {
+		CE4D5FB01689B8410078F45E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BB44816888F4600CE91C9 /* iDNA.app */,
+				CE4D5FAF1689B8410078F45E /* iDNA.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE0BB44B16888F4600CE91C9 /* Frameworks */ = {
+		CE4D5FB21689B8410078F45E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BB44C16888F4600CE91C9 /* Cocoa.framework */,
-				CE0BB44E16888F4600CE91C9 /* Other Frameworks */,
+				CE4D5FB31689B8410078F45E /* Cocoa.framework */,
+				CE4D5FB51689B8410078F45E /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE0BB44E16888F4600CE91C9 /* Other Frameworks */ = {
+		CE4D5FB51689B8410078F45E /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BB44F16888F4600CE91C9 /* AppKit.framework */,
-				CE0BB45016888F4600CE91C9 /* CoreData.framework */,
-				CE0BB45116888F4600CE91C9 /* Foundation.framework */,
+				CE4D5FB61689B8410078F45E /* AppKit.framework */,
+				CE4D5FB71689B8410078F45E /* CoreData.framework */,
+				CE4D5FB81689B8410078F45E /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		CE0BB45216888F4600CE91C9 /* iDNA */ = {
+		CE4D5FB91689B8410078F45E /* iDNA */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BB45E16888F4600CE91C9 /* Document.h */,
-				CE4C4C5316888FCE000EAD32 /* Cell.h */,
-				CE4C4C5416888FCE000EAD32 /* Cell.m */,
-				CE0BB45F16888F4600CE91C9 /* Document.m */,
-				CE0BB46116888F4600CE91C9 /* Document.xib */,
-				CE0BB46416888F4700CE91C9 /* MainMenu.xib */,
-				CE0BB45316888F4600CE91C9 /* Supporting Files */,
+				CE4D5FC51689B8410078F45E /* AppDelegate.h */,
+				CEAC20A11689C65C00F08446 /* Cell.h */,
+				CEAC20A21689C65C00F08446 /* Cell.m */,
+				CE4D5FC61689B8410078F45E /* AppDelegate.m */,
+				CE4D5FC81689B8410078F45E /* MainMenu.xib */,
+				CE4D5FCB1689B8410078F45E /* iDNA.xcdatamodeld */,
+				CE4D5FBA1689B8410078F45E /* Supporting Files */,
 			);
 			path = iDNA;
 			sourceTree = "<group>";
 		};
-		CE0BB45316888F4600CE91C9 /* Supporting Files */ = {
+		CE4D5FBA1689B8410078F45E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CE0BB45416888F4600CE91C9 /* iDNA-Info.plist */,
-				CE0BB45516888F4600CE91C9 /* InfoPlist.strings */,
-				CE0BB45816888F4600CE91C9 /* main.m */,
-				CE0BB45A16888F4600CE91C9 /* iDNA-Prefix.pch */,
-				CE0BB45B16888F4600CE91C9 /* Credits.rtf */,
+				CE4D5FBB1689B8410078F45E /* iDNA-Info.plist */,
+				CE4D5FBC1689B8410078F45E /* InfoPlist.strings */,
+				CE4D5FBF1689B8410078F45E /* main.m */,
+				CE4D5FC11689B8410078F45E /* iDNA-Prefix.pch */,
+				CE4D5FC21689B8410078F45E /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -113,13 +113,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE0BB44716888F4600CE91C9 /* iDNA */ = {
+		CE4D5FAE1689B8410078F45E /* iDNA */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE0BB46916888F4700CE91C9 /* Build configuration list for PBXNativeTarget "iDNA" */;
+			buildConfigurationList = CE4D5FD01689B8410078F45E /* Build configuration list for PBXNativeTarget "iDNA" */;
 			buildPhases = (
-				CE0BB44416888F4600CE91C9 /* Sources */,
-				CE0BB44516888F4600CE91C9 /* Frameworks */,
-				CE0BB44616888F4600CE91C9 /* Resources */,
+				CE4D5FAB1689B8410078F45E /* Sources */,
+				CE4D5FAC1689B8410078F45E /* Frameworks */,
+				CE4D5FAD1689B8410078F45E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -127,91 +127,83 @@
 			);
 			name = iDNA;
 			productName = iDNA;
-			productReference = CE0BB44816888F4600CE91C9 /* iDNA.app */;
+			productReference = CE4D5FAF1689B8410078F45E /* iDNA.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CE0BB43F16888F4600CE91C9 /* Project object */ = {
+		CE4D5FA61689B8410078F45E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Kirill Gorshkov";
 			};
-			buildConfigurationList = CE0BB44216888F4600CE91C9 /* Build configuration list for PBXProject "iDNA" */;
+			buildConfigurationList = CE4D5FA91689B8410078F45E /* Build configuration list for PBXProject "iDNA" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = CE0BB43D16888F4600CE91C9;
-			productRefGroup = CE0BB44916888F4600CE91C9 /* Products */;
+			mainGroup = CE4D5FA41689B8410078F45E;
+			productRefGroup = CE4D5FB01689B8410078F45E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE0BB44716888F4600CE91C9 /* iDNA */,
+				CE4D5FAE1689B8410078F45E /* iDNA */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CE0BB44616888F4600CE91C9 /* Resources */ = {
+		CE4D5FAD1689B8410078F45E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0BB45716888F4600CE91C9 /* InfoPlist.strings in Resources */,
-				CE0BB45D16888F4600CE91C9 /* Credits.rtf in Resources */,
-				CE0BB46316888F4600CE91C9 /* Document.xib in Resources */,
-				CE0BB46616888F4700CE91C9 /* MainMenu.xib in Resources */,
+				CE4D5FBE1689B8410078F45E /* InfoPlist.strings in Resources */,
+				CE4D5FC41689B8410078F45E /* Credits.rtf in Resources */,
+				CE4D5FCA1689B8410078F45E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CE0BB44416888F4600CE91C9 /* Sources */ = {
+		CE4D5FAB1689B8410078F45E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0BB45916888F4600CE91C9 /* main.m in Sources */,
-				CE0BB46016888F4600CE91C9 /* Document.m in Sources */,
-				CE4C4C5516888FCE000EAD32 /* Cell.m in Sources */,
+				CE4D5FC01689B8410078F45E /* main.m in Sources */,
+				CE4D5FC71689B8410078F45E /* AppDelegate.m in Sources */,
+				CE4D5FCD1689B8410078F45E /* iDNA.xcdatamodeld in Sources */,
+				CEAC20A31689C65C00F08446 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CE0BB45516888F4600CE91C9 /* InfoPlist.strings */ = {
+		CE4D5FBC1689B8410078F45E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE0BB45616888F4600CE91C9 /* en */,
+				CE4D5FBD1689B8410078F45E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CE0BB45B16888F4600CE91C9 /* Credits.rtf */ = {
+		CE4D5FC21689B8410078F45E /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE0BB45C16888F4600CE91C9 /* en */,
+				CE4D5FC31689B8410078F45E /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		CE0BB46116888F4600CE91C9 /* Document.xib */ = {
+		CE4D5FC81689B8410078F45E /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE0BB46216888F4600CE91C9 /* en */,
-			);
-			name = Document.xib;
-			sourceTree = "<group>";
-		};
-		CE0BB46416888F4700CE91C9 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE0BB46516888F4700CE91C9 /* en */,
+				CE4D5FC91689B8410078F45E /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -219,7 +211,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CE0BB46716888F4700CE91C9 /* Debug */ = {
+		CE4D5FCE1689B8410078F45E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -249,7 +241,7 @@
 			};
 			name = Debug;
 		};
-		CE0BB46816888F4700CE91C9 /* Release */ = {
+		CE4D5FCF1689B8410078F45E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -272,7 +264,7 @@
 			};
 			name = Release;
 		};
-		CE0BB46A16888F4700CE91C9 /* Debug */ = {
+		CE4D5FD11689B8410078F45E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -284,7 +276,7 @@
 			};
 			name = Debug;
 		};
-		CE0BB46B16888F4700CE91C9 /* Release */ = {
+		CE4D5FD21689B8410078F45E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -299,25 +291,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE0BB44216888F4600CE91C9 /* Build configuration list for PBXProject "iDNA" */ = {
+		CE4D5FA91689B8410078F45E /* Build configuration list for PBXProject "iDNA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE0BB46716888F4700CE91C9 /* Debug */,
-				CE0BB46816888F4700CE91C9 /* Release */,
+				CE4D5FCE1689B8410078F45E /* Debug */,
+				CE4D5FCF1689B8410078F45E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE0BB46916888F4700CE91C9 /* Build configuration list for PBXNativeTarget "iDNA" */ = {
+		CE4D5FD01689B8410078F45E /* Build configuration list for PBXNativeTarget "iDNA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CE0BB46A16888F4700CE91C9 /* Debug */,
-				CE0BB46B16888F4700CE91C9 /* Release */,
+				CE4D5FD11689B8410078F45E /* Debug */,
+				CE4D5FD21689B8410078F45E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE4D5FCB1689B8410078F45E /* iDNA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE4D5FCC1689B8410078F45E /* iDNA.xcdatamodel */,
+			);
+			currentVersion = CE4D5FCC1689B8410078F45E /* iDNA.xcdatamodel */;
+			path = iDNA.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = CE0BB43F16888F4600CE91C9 /* Project object */;
+	rootObject = CE4D5FA61689B8410078F45E /* Project object */;
 }
