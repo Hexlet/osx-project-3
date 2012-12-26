@@ -35,7 +35,7 @@
 -(int) hammingDistance:(Cell*)obj {
     int countMismatch = 0;
     for (int i = 0; i < size; i++) {
-        if ([self getObj:i] != [obj getObj:i])
+        if ([[self getObj:i] compare:[obj getObj:i]])
             countMismatch++;
     }
     return countMismatch;
@@ -51,6 +51,7 @@
         for (int i = 0; i < [dnaArray count]; i++) {
             maskArray[i] = NO;
         }
+        srandom((unsigned)time(NULL));
         while (countReplaces < (percents * size / 100)) {
             int percRandInt = (int)(random() % size);
             int randInt = (int)(random() % 4);
@@ -72,6 +73,37 @@
         [result appendString: [dnaArray objectAtIndex: i]];
     }
     return result;
+}
+
+-(void)reproduct:(Cell*)otherDNA {
+    srandom((unsigned)time(NULL));
+    int reproductionType = (int)(random() % 3);
+    for (int i = 0; i < size; i++) {
+        if (reproductionType == 0) {        
+            if (i >= (size * 0.5))
+                [dnaArray replaceObjectAtIndex:i withObject:[otherDNA getObj:i]];
+        }
+        else if (reproductionType == 1) {
+            if ((i % 2) == 1)
+                [dnaArray replaceObjectAtIndex:i withObject:[otherDNA getObj:i]];
+        }
+        else {
+            if ((i >= (size * 0.2)) && (i < (size * 0.8)))
+                [dnaArray replaceObjectAtIndex:i withObject:[otherDNA getObj:i]];
+        }
+    }
+}
+
+-(void)print {
+    NSMutableString *str = [[NSMutableString alloc] init];
+    for (int i = 0; i < size; i++) {
+        [str appendString:[dnaArray objectAtIndex:i]];
+    }
+    NSLog(@"%@", str);
+}
+
+-(NSInteger)length {
+    return size;
 }
 
 @end

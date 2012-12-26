@@ -11,7 +11,7 @@
 @interface Cell : NSObject {
     NSMutableArray *dnaArray;
     NSArray *dnaBitsArray;
-    BOOL maskArray[100];
+    BOOL maskArray[9999];
     NSInteger size;
 }
 
@@ -20,6 +20,9 @@
 -(void)mutate:(NSInteger)percents;
 -(void)initialize:(NSInteger)newSize;
 -(NSString*)getGoalDNA;
--(void) updateGoalDNA:(NSInteger) newSize ;
+-(void) updateGoalDNA:(NSInteger) newSize;
+-(void)reproduct:(Cell*)otherDNA;
+-(void)print;
+-(NSInteger)length;
 
 @end

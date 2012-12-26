@@ -21,7 +21,9 @@
     if (self = [super init]) {
         [self setValue:[NSNumber numberWithInteger:2] forKey:@"populationSize"];
         [self setValue:[NSNumber numberWithInteger:10] forKey:@"dnaLength"];
-        [self setValue:[NSNumber numberWithInteger:50] forKey:@"mutationRate"];
+        [self setValue:[NSNumber numberWithInteger:10] forKey:@"mutationRate"];
+        [self setValue:[NSNumber numberWithInteger:0] forKey:@"generationCount"];
+        [self setValue:[NSNumber numberWithDouble:0.0] forKey:@"hamDistance"];
         
         evolutionIsRunning = NO;
         
@@ -59,28 +61,49 @@
     return mutationRate;
 }
 
--(IBAction)startEvo:(id)sender {
-    [_popSizeSlider setEnabled:NO];
-    [_dnaLengthSlider setEnabled:NO];
-    [_startEvoButton setEnabled:NO];
-    [_pauseEvoButton setEnabled:YES];
-    [_updateButton setEnabled:NO];
-    [_loadButton setEnabled:NO];
-    
-    populationArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < populationSize; i++) {
-        Cell *newDNA = [[Cell alloc] init];
-        [newDNA initialize:dnaLength];
-        [populationArray addObject:newDNA];
-    }
-    evolutionIsRunning = YES;
-    [self performSelectorInBackground:@selector(startEvolution) withObject:nil];
+-(void)setHamDistance:(double)x {
+    hamDistance = x;
+}
 
+-(double)hamDistance {
+    return hamDistance;
+}
+
+-(void)setGenerationCount:(NSInteger)x {
+    generationCount = x;
+}
+
+-(NSInteger)generationCount {
+    return generationCount;
+}
+
+-(IBAction)startEvo:(id)sender {
+    if ([myDNA length] != dnaLength) {
+        NSLog(@"INCORRECT GOAL DNA LENGTH");
+    }
+    else {
+        [_popSizeSlider setEnabled:NO];
+        [_dnaLengthSlider setEnabled:NO];
+        [_startEvoButton setEnabled:NO];
+        [_pauseEvoButton setEnabled:YES];
+        [_updateButton setEnabled:NO];
+        [_loadButton setEnabled:NO];
+    
+        populationArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < populationSize; i++) {
+            Cell *newDNA = [[Cell alloc] init];
+            [newDNA initialize:dnaLength];
+            [populationArray addObject:newDNA];
+        }
+        evolutionIsRunning = YES;
+        [self performSelectorInBackground:@selector(startEvolution) withObject:nil];
+    }
 }
 
 -(void)startEvolution {
     while (YES){
         if (evolutionIsRunning) {
+            int currentHammingDistance = 0;
             NSLog(@"EVO");
             BOOL flag = YES;
             while (flag) {
@@ -96,24 +119,52 @@
                 }
             }
             
-            
-            if ([[populationArray objectAtIndex:0] hammingDistance:myDNA] == 0) {
+            currentHammingDistance = [[populationArray objectAtIndex:0] hammingDistance:myDNA];
+            [[populationArray objectAtIndex:0] print];
+            [self setHamDistance:(1 - ((double)currentHammingDistance / dnaLength))];
+            if (currentHammingDistance == 0) {
                 // STOP EVO!
                 evolutionIsRunning = NO;
             }
             // PERFORM REPRODUCTION
-            for (int i = 0; i < populationSize ; i++) {
-                if ([[populationArray objectAtIndex:i] hammingDistance:myDNA] == 0) {
-                    // STOP EVO!
-                    evolutionIsRunning = NO;
-                    break;
+            int top50Count = populationSize * 0.5;
+            if (top50Count > 1) {
+                for (int i = top50Count; i < populationSize; i++) {
+                    srandom((unsigned)time(NULL));
+                    int reproRand1 = (int)(random() % top50Count);
+                    int reproRand2 = (int)(random() % top50Count);
+                    while (reproRand1 == reproRand2) {
+                        reproRand2 = (int)(random() % top50Count);
+                    }
+                    Cell *reproductionDNA = [populationArray objectAtIndex:reproRand1];
+                    //[reproductionDNA print];
+                    [reproductionDNA reproduct:[populationArray objectAtIndex:reproRand2]];
+                    //[reproductionDNA print];
+                    [populationArray replaceObjectAtIndex:i withObject:reproductionDNA];
                 }
             }
+            // END REPRODUCTION
+            int minHammingDistance = [[populationArray objectAtIndex:0] hammingDistance:myDNA];
+            for (int i = 0; i < populationSize ; i++) {
+                currentHammingDistance = [[populationArray objectAtIndex:i] hammingDistance:myDNA];
+                if (currentHammingDistance < minHammingDistance )
+                    minHammingDistance = currentHammingDistance;
+                if (currentHammingDistance == 0) {
+                    // STOP EVO!
+                    evolutionIsRunning = NO;
+                }
+            }
+            currentHammingDistance = minHammingDistance;
+            [self setHamDistance:(1 - ((double)currentHammingDistance / dnaLength))];
+            NSLog(@"%f", ((double)currentHammingDistance / dnaLength));
             for (int i = 0; i < populationSize; i++) {
                 Cell *mutableDNA = [populationArray objectAtIndex:i];
+                //[mutableDNA print];
                 [mutableDNA mutate:mutationRate];
+                //[mutableDNA print];
                 [populationArray replaceObjectAtIndex:i withObject:mutableDNA];
             }
+            [self setGenerationCount:generationCount + 1];
         }
     }
 }
@@ -124,11 +175,22 @@
 }
 
 - (IBAction)pauseEvo:(id)sender {
-    evolutionIsRunning = !evolutionIsRunning;
-    if (evolutionIsRunning)
-        [_pauseEvoButton setTitle:@"Pause"];
-    else
-        [_pauseEvoButton setTitle:@"Continue"];
+    if ([myDNA length] != dnaLength) {
+        NSLog(@"INCORRECT GOAL DNA LENGTH");
+    }
+    else {
+        evolutionIsRunning = !evolutionIsRunning;
+        if (evolutionIsRunning) {
+            [_updateButton setEnabled:NO];
+            [_loadButton setEnabled:NO];
+            [_pauseEvoButton setTitle:@"Pause"];
+        }
+        else {
+            [_updateButton setEnabled:YES];
+            [_loadButton setEnabled:YES];
+            [_pauseEvoButton setTitle:@"Continue"];
+        }
+    }
 }
 
 - (IBAction)loadGoal:(id)sender {

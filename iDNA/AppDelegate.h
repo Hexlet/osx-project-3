@@ -13,10 +13,12 @@
     NSInteger populationSize;
     NSInteger dnaLength;
     NSInteger mutationRate;
+    NSInteger generationCount;
     NSString *goalDNA;
     Cell *myDNA;
     NSMutableArray *populationArray;
     BOOL evolutionIsRunning;
+    double hamDistance;
 }
 
 @property (assign) IBOutlet NSWindow *window;
