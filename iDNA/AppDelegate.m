@@ -10,7 +10,6 @@
 
 
 
-
 @implementation AppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -79,7 +78,7 @@
 
 -(IBAction)startEvo:(id)sender {
     if ([myDNA length] != dnaLength) {
-        NSLog(@"INCORRECT GOAL DNA LENGTH");
+        NSRunAlertPanel(@"Error", @"Incorrect Goal DNA length", @"OK", nil, nil);
     }
     else {
         [_popSizeSlider setEnabled:NO];
@@ -105,6 +104,7 @@
         if (evolutionIsRunning) {
             int currentHammingDistance = 0;
             NSLog(@"EVO");
+            /// Sort array
             BOOL flag = YES;
             while (flag) {
                 flag = NO;
@@ -126,7 +126,7 @@
                 // STOP EVO!
                 evolutionIsRunning = NO;
             }
-            // PERFORM REPRODUCTION
+            /// PERFORM REPRODUCTION
             int top50Count = populationSize * 0.5;
             if (top50Count > 1) {
                 for (int i = top50Count; i < populationSize; i++) {
@@ -143,7 +143,7 @@
                     [populationArray replaceObjectAtIndex:i withObject:reproductionDNA];
                 }
             }
-            // END REPRODUCTION
+            /// END REPRODUCTION
             int minHammingDistance = [[populationArray objectAtIndex:0] hammingDistance:myDNA];
             for (int i = 0; i < populationSize ; i++) {
                 currentHammingDistance = [[populationArray objectAtIndex:i] hammingDistance:myDNA];
@@ -154,6 +154,7 @@
                     evolutionIsRunning = NO;
                 }
             }
+            /// Start mutation
             currentHammingDistance = minHammingDistance;
             [self setHamDistance:(1 - ((double)currentHammingDistance / dnaLength))];
             NSLog(@"%f", ((double)currentHammingDistance / dnaLength));
@@ -176,7 +177,7 @@
 
 - (IBAction)pauseEvo:(id)sender {
     if ([myDNA length] != dnaLength) {
-        NSLog(@"INCORRECT GOAL DNA LENGTH");
+        NSRunAlertPanel(@"Error", @"Incorrect Goal DNA length", @"OK", nil, nil);
     }
     else {
         evolutionIsRunning = !evolutionIsRunning;

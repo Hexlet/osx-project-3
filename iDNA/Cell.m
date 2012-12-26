@@ -21,6 +21,7 @@
 
 -(void)initialize:(NSInteger)newSize {
     size = newSize;
+    srandom((unsigned)time(NULL));
     for (int i = 0; i < size; i++) {
         int randInt = (int)(random() % 4);
         [dnaArray addObject:[dnaBitsArray objectAtIndex:randInt]];
