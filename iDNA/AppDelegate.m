@@ -19,7 +19,7 @@
 
 -(id)init {
     if (self = [super init]) {
-        [self setValue:[NSNumber numberWithInteger:1] forKey:@"populationSize"];
+        [self setValue:[NSNumber numberWithInteger:2] forKey:@"populationSize"];
         [self setValue:[NSNumber numberWithInteger:10] forKey:@"dnaLength"];
         [self setValue:[NSNumber numberWithInteger:50] forKey:@"mutationRate"];
         
@@ -73,9 +73,15 @@
         [newDNA initialize:dnaLength];
         [populationArray addObject:newDNA];
     }
-    
+    evolutionIsRunning = YES;
+    [self performSelectorInBackground:@selector(startEvolution) withObject:nil];
+
+}
+
+-(void)startEvolution {
     while (YES){
         if (evolutionIsRunning) {
+            NSLog(@"EVO");
             BOOL flag = YES;
             while (flag) {
                 flag = NO;
@@ -89,8 +95,8 @@
                     }
                 }
             }
-  
-        
+            
+            
             if ([[populationArray objectAtIndex:0] hammingDistance:myDNA] == 0) {
                 // STOP EVO!
                 evolutionIsRunning = NO;
@@ -100,6 +106,7 @@
                 if ([[populationArray objectAtIndex:i] hammingDistance:myDNA] == 0) {
                     // STOP EVO!
                     evolutionIsRunning = NO;
+                    break;
                 }
             }
             for (int i = 0; i < populationSize; i++) {
@@ -119,9 +126,9 @@
 - (IBAction)pauseEvo:(id)sender {
     evolutionIsRunning = !evolutionIsRunning;
     if (evolutionIsRunning)
-        [_pauseEvoButton setTitle:@"Continue"];
-    else
         [_pauseEvoButton setTitle:@"Pause"];
+    else
+        [_pauseEvoButton setTitle:@"Continue"];
 }
 
 - (IBAction)loadGoal:(id)sender {

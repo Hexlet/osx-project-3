@@ -51,8 +51,8 @@
         for (int i = 0; i < [dnaArray count]; i++) {
             maskArray[i] = NO;
         }
-        while (countReplaces < percents) {
-            int percRandInt = (int)(random() % 100);
+        while (countReplaces < (percents * size / 100)) {
+            int percRandInt = (int)(random() % size);
             int randInt = (int)(random() % 4);
             NSString *string = [[NSString alloc] initWithFormat: [dnaBitsArray objectAtIndex:randInt]];
             NSString *string2 = [[NSString alloc] initWithFormat: [dnaArray objectAtIndex:percRandInt]];
