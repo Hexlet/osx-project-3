@@ -9,6 +9,8 @@
 #import "Document.h"
 #import "Volume.h"
 
+#include <sys/stat.h>
+
 @implementation Document
 
 - (id)init
@@ -16,7 +18,6 @@
     self = [super init];
     if (self) {
         volumes = [self volumesInfo];
-        
     }
     return self;
 }
@@ -81,6 +82,10 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:bcIndex];
         [_volumesTableView selectRowIndexes:indexSet byExtendingSelection:NO];
     }
+    if (volumes != nil) {
+        [self appendTextToDetails:@"Getting volumes information... Done."];
+        [self appendTextToDetails:@""];
+    }
 }
 
 + (BOOL)autosavesInPlace
@@ -105,6 +110,59 @@
     NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
     @throw exception;
     return YES;
+}
+
+- (IBAction)createBootcampVM:(id)sender {
+    Volume *v = [volumes objectAtIndex:[_volumesTableView selectedRow]];
+    
+//    NSTask *task = [[NSTask alloc] init];
+//    [task setLaunchPath: @"chmod"];
+//    
+//    NSString *hd = [NSString stringWithFormat:@"/dev/%@", v.bsdId];
+//    NSArray *arguments = [NSArray arrayWithObjects: @"777", hd, nil];
+//    [task setArguments: arguments];
+//    
+//    NSPipe *pipe = [NSPipe pipe];
+//    [task setStandardOutput: pipe];
+//    
+//    NSFileHandle *file = [pipe fileHandleForReading];
+//    
+//    [task launch];
+//    
+//    NSData *data = [file readDataToEndOfFile];
+//    
+//    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+//    NSLog (@"chmod returned:\n%@", string);
+    
+    
+//    NSFileManager *fm = [NSFileManager defaultManager];
+//    NSError *error = nil;
+//    NSDictionary *attribs = [fm attributesOfItemAtPath:hd error:&error];
+//    int permissions = [[attribs objectForKey:@"NSFilePosixPermissions"] intValue];
+//    permissions |= (S_IRWXU | S_IRWXG | S_IRWXO);
+//    NSDictionary *newattribs = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:permissions]
+//                                               forKey:NSFilePosixPermissions];
+//    [fm setAttributes:newattribs ofItemAtPath:hd error:&error];
+    
+    NSString *chmod_dev = [NSString stringWithFormat:@"sudo chmod a+rw /dev/%@ ...", v.bsdId];
+    NSMutableString *source = [[NSMutableString alloc] init];
+    [source appendString:@"do shell script \""];
+    [source appendString:chmod_dev];
+    [source appendString:@"\" with administrator privileges"];
+    [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@", chmod_dev]];
+//    [self appendTextToDetails:chmod_dev];
+    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
+    NSDictionary *errorDict;
+    [script executeAndReturnError:&errorDict];
+    [self appendTextToDetails:@"Done."];
+}
+
+
+-(void)appendTextToDetails:(NSString *)aString {
+    NSMutableString *ms = [NSMutableString stringWithString:[_detailsTextView string]];
+    [ms appendString:aString];
+    [ms appendString:@"\n"];
+    [_detailsTextView setString:ms];
 }
 
 @end

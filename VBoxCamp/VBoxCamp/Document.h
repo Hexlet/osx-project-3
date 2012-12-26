@@ -12,6 +12,8 @@
      NSArray *volumes;
 }
 
-@property IBOutlet NSTableView *volumesTableView;
+@property (assign) IBOutlet NSTableView *volumesTableView;
+@property (assign) IBOutlet NSTextView *detailsTextView;
+- (IBAction)createBootcampVM:(id)sender;
 
 @end
