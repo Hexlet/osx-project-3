@@ -7,6 +7,8 @@
 //
 
 #import "HVSDocument.h"
+#import "HVSCellDna.h"
+#import "HVSPopulationOfDna.h"
 
 @implementation HVSDocument
 
@@ -18,6 +20,8 @@
         myPopulation = [[HVSPopulationOfDna alloc]init];
         //Добавляем свойство lengthDNA в наблюдение нашему контроллеру.
         [myPopulation addObserver:self forKeyPath:@"populationLengthDna" options:NSKeyValueObservingOptionOld context:@"changePopulationLengthDNA"];
+        [myPopulation addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionOld context:@"changePopulationSize"];
+        [myPopulation addObserver:self forKeyPath:@"populationRate" options:NSKeyValueObservingOptionOld context:@"changePopulationRate"];
         flagPause=NO;
     }
     return self;
@@ -27,11 +31,26 @@
     //Убираем свойство lengthDNA из наблюдения.
     [myPopulation removeObserver:self forKeyPath:@"populationLengthDna"];
 }
-
-//Метод запускается когда изменяется переменная populationLengthDna объекта myPopulation
+//Доп метод
+-(void) changeKeyPath:(NSString *) keyPath
+             ofObject:(id) obj
+              toValue:(id) value {
+    [obj setValue:value forKeyPath:keyPath];
+}
+//Метод запускается когда изменяется переменная populationLengthDna объекта myPopulation, а также всех  остальных наблюдаемых объектов
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+        NSUndoManager *myManager = [self undoManager];
     //Проверка, какая переменная была изменена.
     if (context==@"changePopulationLengthDNA") {
+        //UNDO
+        id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        if (oldValue == [NSNull null]) {
+            oldValue = nil;
+        }
+        [[myManager prepareWithInvocationTarget:self] changeKeyPath:@"populationLengthDNA" ofObject:myPopulation toValue:oldValue];
+        [myManager setActionName:@"Change Length DNA"];
+        
         //Получаем текущие значение переменной
         int length = (int)[myPopulation populationLengthDna];
         //Генерим нового Альфа самца 
@@ -45,6 +64,22 @@
             [result appendString:[myArrayDNA objectAtIndex:i]];
         }
         [_popTextGoalDna setStringValue:result];
+    }
+    if (context==@"changePopulationSize") {
+        id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        if (oldValue == [NSNull null]) {
+            oldValue = nil;
+        }
+        [[myManager prepareWithInvocationTarget:self] changeKeyPath:@"populationSize" ofObject:myPopulation toValue:oldValue];
+        [myManager setActionName:@"Change Size"];
+  }
+    if (context==@"changePopulationRate") {
+        id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        if (oldValue == [NSNull null]) {
+            oldValue = nil;
+        }
+        [[myManager prepareWithInvocationTarget:self] changeKeyPath:@"populationRate" ofObject:myPopulation toValue:oldValue];
+        [myManager setActionName:@"Change Rate"];
     }
 }
 
@@ -194,22 +229,61 @@
     return YES;
 }
 
+//Сохранение документа
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return nil;
+    NSMutableData *saveData = [[NSMutableData alloc]init];
+    NSKeyedArchiver *myKeyArchiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:saveData];
+    [myKeyArchiver encodeInteger:[myPopulation populationSize] forKey:@"populationSize"];
+    [myKeyArchiver encodeInteger:[myPopulation populationLengthDna] forKey:@"populationLengthDna"];
+    [myKeyArchiver encodeInteger:[myPopulation populationRate] forKey:@"populationRate"];
+    [myKeyArchiver encodeObject:[myPopulation populationDNA] forKey:@"populationDNA"];
+    [myKeyArchiver encodeInt:[[myPopulation goalDNA] lengthDna] forKey:@"lengthDna"];
+    [myKeyArchiver encodeObject:[[myPopulation goalDNA] DNA] forKey:@"DNA"];
+    [myKeyArchiver encodeBool:[myPopulation flag] forKey:@"flag"];
+    [myKeyArchiver encodeInteger:[myPopulation maxHamming] forKey:@"maxHamming"];
+    [myKeyArchiver encodeInteger:[myPopulation countEvolution] forKey:@"countEvolution"];
+
+    [myKeyArchiver finishEncoding];
+    
+    
+//    NSData *saveData = [NSKeyedArchiver archivedDataWithRootObject:[self popButtonLoad]];
+    return saveData;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
+    
+    NSKeyedUnarchiver *myKeyArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    HVSPopulationOfDna *newMyPopulation = nil;
+    @try {
+        newMyPopulation = [[HVSPopulationOfDna alloc] init];
+        [newMyPopulation setPopulationSize:[myKeyArchiver decodeIntegerForKey:@"populationSize"]];
+        [newMyPopulation setPopulationLengthDna:[myKeyArchiver decodeIntegerForKey:@"populationLengthDna"]];
+        [newMyPopulation setPopulationRate:[myKeyArchiver decodeIntegerForKey:@"populationRate"]];
+        [newMyPopulation setPopulationDNA:[myKeyArchiver decodeObjectForKey:@"populationDNA"]];
+        //Подготовка
+        [newMyPopulation setGoalDNA:[[HVSCellDna alloc] initWithLengthDna:(int)[myKeyArchiver decodeIntegerForKey:@"lengthDna"]]];
+//        [myKeyArchiver decodeIntForKey:@"lengthDna"];
+//        [myKeyArchiver decodeObjectForKey:@"DNA"];
+        [[newMyPopulation goalDNA] setDNA:[myKeyArchiver decodeObjectForKey:@"DNA"]];
+                                     
+        [newMyPopulation setFlag:[myKeyArchiver decodeBoolForKey:@"flag"]];
+        [newMyPopulation setMaxHamming:[myKeyArchiver decodeIntegerForKey:@"maxHamming"]];
+        [newMyPopulation setCountEvolution:[myKeyArchiver decodeIntegerForKey:@"countEvolution"]];
+    }
+    @catch (NSException *exception) {
+        if (outError) {
+            NSDictionary *d = [NSDictionary dictionaryWithObject:@"The file is invalid!" forKey:NSLocalizedFailureReasonErrorKey];
+            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:d];
+            return NO;
+        }
+    }
+    myPopulation = newMyPopulation;
+    //Не понятно, потому что в инит стоит addObsrving, но он при почему то не работает при вызове...
+    [myPopulation addObserver:self forKeyPath:@"populationLengthDna" options:NSKeyValueObservingOptionOld context:@"changePopulationLengthDNA"];
+    [myPopulation addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionOld context:@"changePopulationSize"];
+    [myPopulation addObserver:self forKeyPath:@"populationRate" options:NSKeyValueObservingOptionOld context:@"changePopulationRate"];
     return YES;
 }
 
