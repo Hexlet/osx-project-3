@@ -26,8 +26,6 @@
 @synthesize generationTextField;
 @synthesize bestMatchTextField;
 
-//@synthesize undoManager;
-
 static void *RMDocumentKVOContext;
 
 - (NSUndoManager*) windowWillReturnUndoManager: (NSWindow*) window {
@@ -57,10 +55,26 @@ static void *RMDocumentKVOContext;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-
+    //NSLog(@"applicationDidFinishLaunching");
+    [goalDNATextField setStringValue:[goalDNA stringDNA]];
 }
 
--(void)setPopulationSize:(int) x {
+-(void)setPopulationSize:(NSInteger) x {
+//    NSLog(@"setPopulationSize");
+        /*1. создать случайную популяцию ДНК. Размер популяции = значение первого text field'а.
+     Размер каждого ДНК = значение второго text field'а.*/
+    NSInteger i;
+    if (x > populationSize) {
+        for (i=populationSize; i<x; i++) {
+            Cell* myCell = [[Cell alloc] init]; // добавляем нужное количество
+            [myCell fillDNALenght:dnaLength];
+            [population addObject:myCell];
+        }
+    }
+    else if (x < populationSize) {
+        for (i=populationSize-1; i>=x; i--)
+            [population removeObjectAtIndex:i]; // удаляем лишние элементы
+    }
     populationSize = x;
 }
 
@@ -68,17 +82,21 @@ static void *RMDocumentKVOContext;
     return populationSize;
 }
 
--(void)setDnaLength:(int) x {
+-(void)setDnaLength:(NSInteger) x {
     dnaLength = x;
+    // обновляем goalDNA
     [goalDNA fillDNALenght:dnaLength];    
-    [goalDNATextField setStringValue:[goalDNA stringDNA]];   
+    [goalDNATextField setStringValue:[goalDNA stringDNA]];
+    //обновляем DNA в популяции
+    for (int i=0; i<populationSize; i++)
+        [[population objectAtIndex:i] fillDNALenght:dnaLength];
 }
 
 -(NSInteger)dnaLength{
     return dnaLength;
 }
 
--(void)setMutationRate:(int) x {
+-(void)setMutationRate:(NSInteger) x {
     mutationRate = x;    
 }
 
@@ -102,7 +120,6 @@ static void *RMDocumentKVOContext;
     return bestHammingDistance;
 }
 
-
 -(void)setVisible:(BOOL) v {
     [populationSizeTextField setEnabled:!v];
     [dnaLengthTextField setEnabled:!v];
@@ -115,35 +132,24 @@ static void *RMDocumentKVOContext;
     [loadButton setEnabled:!v];
     [startButton setEnabled:!v];
     
-     /*3. сделать активной кнопку Pause. */
+     //3. сделать активной кнопку Pause.
     [pauseButton setEnabled:v];
 }
 
 -(void)processEvolution{
     /*2. сделать неактивными (disabled) три первых text field'а и их ползунки,
      а также кнопки "Start evolution" и "Load goal DNA"*/
-    startEvolution = YES;
-    [self setVisible:startEvolution];
+    [self setVisible:evolution=YES];
     
     [self willChangeValueForKey:@"generation"];
-    generation = 0;
+    generation = 0; // установили счетчик генераций
     [self didChangeValueForKey:@"generation"];
-    /*1. создать случайную популяцию ДНК. Размер популяции = значение первого text field'а.
-     Размер каждого ДНК = значение второго text field'а.*/
 
-    [population removeAllObjects]; //
-    // заполняем новыми популяциями
-    for (int i=0; i<populationSize; i++) {
-        Cell* myCell = [[Cell alloc] init];
-        [myCell fillDNALenght:dnaLength];
-        [population addObject:myCell];
-    }
     /*4. начать эволюцию.*/
-    while (startEvolution == YES) {
+    while (evolution == YES) {
         [self willChangeValueForKey:@"generation"];
         generation++;
         [self didChangeValueForKey:@"generation"];
-       // NSLog(@"генерация = %i",generation);
         //4.1 Отсортировать популяцию по близости (hamming distance) к Goal DNA
         // вычисляем различия hammingDistance чтобы по нему отсортировать
         for (int i=0; i<populationSize; i++) {
@@ -164,9 +170,8 @@ static void *RMDocumentKVOContext;
         // непостредственно сортируем массив, используя ранее созданные десктрипторы
         NSMutableArray* sortedArray = [NSMutableArray arrayWithArray:[population sortedArrayUsingDescriptors:[NSArray arrayWithObject:aSortDescriptor]] ];
         [population removeAllObjects];
-        for (int i=0; i<populationSize; i++) {
-            [population addObject:[sortedArray objectAtIndex:i]];
-        }
+        [population addObjectsFromArray:sortedArray];
+
         //4.2 Остановить эволюцию если есть ДНК полностью совпадающее с Goal DNA (hamming distance = 0)
         // вычисляем различия hammingDistance чтобы по нему отсортировать
         [self willChangeValueForKey:@"bestHammingDistance"];
@@ -174,18 +179,17 @@ static void *RMDocumentKVOContext;
         [self didChangeValueForKey:@"bestHammingDistance"];
         
         if (bestHammingDistance == 100) {
-            startEvolution = NO;
-            [self setVisible:startEvolution];
+            [self setVisible:evolution=NO];
             return;
         }
         //4.3 Скрестить кандидатов из топ 50% и заменить результатом оставшиеся 50%.
         //4.3.1 Взять два случайных ДНК
         for (int i=populationSize/2; i<populationSize; i++) {
-            int num_int1 = arc4random() % dnaLength / 2;  // 1 из топ 50%
-            int num_int2 = arc4random() % dnaLength / 2;  // 2 из топ 50%
+            int num_int1 = arc4random() % (populationSize / 2);  // 1 из топ 50%
+            int num_int2 = arc4random() % (populationSize / 2);  // 2 из топ 50%
             // смотрим чтобы ячейки не совпали
             while (num_int1 == num_int2)
-                num_int2 = arc4random() % dnaLength / 2;  // 2 из топ 50%
+                num_int2 = arc4random() % (populationSize / 2);  // 2 из топ 50%
             //4.3.2 Скомбинировать их содержание чтобы получить новую ДНК.
             NSMutableArray* NewDNA = [[NSMutableArray alloc]init];
             NewDNA = [[population objectAtIndex:num_int1] crossing:[population objectAtIndex:num_int2]];
@@ -194,34 +198,35 @@ static void *RMDocumentKVOContext;
         }
     
         //4.4 Мутировать популяцию (как в проекте 1) используя значение процента мутирования из третьего text field'а.
-        for (int i=0; i<=populationSize-1; ++i)
+        for (int i=0; i<populationSize; i++)
             [[population objectAtIndex:i] mutate:mutationRate];
     
     }
 }
 
-
 - (IBAction)startEvolution:(id)sender {
     if ([[goalDNA DNA] count] != dnaLength) {
+        NSMutableString *message = [NSMutableString string];
+        [message appendFormat:@"The length of the goal DNA %lu and the population DNA %lu are not equal !",[[goalDNA DNA] count], dnaLength];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
-        [alert setMessageText:@"Длина целевой ДНК и ДНК популяции не равны !"];
-        [alert setInformativeText:@"Измените размер ДНК полуляции или загрузите другое целевое ДНК"];
+        [alert setMessageText:message];
+        [alert setInformativeText:@"Change the size of the DNA population or download another target DNA"];
         [alert setAlertStyle:NSWarningAlertStyle];
         [alert runModal];
         return;
     }
-     [self performSelectorInBackground:@selector(processEvolution) withObject:nil];//стартуем новый поток
+    [self performSelectorInBackground:@selector(processEvolution) withObject:nil];//стартуем новый поток
   }
 
 - (IBAction)pauseEvolution:(id)sender {
-    startEvolution = NO;
     //Эволюция идет пока не нажата кнопка Pause ИЛИ пока не достигнута цель эволюции.
-    [self setVisible:startEvolution];
+    [self setVisible:evolution=NO];
 }
 
 - (IBAction)loadGoalDNA:(id)sender {
-    NSURL* filePath;
+    NSMutableString *message = [NSMutableString string];
+    NSURL *filePath;
     NSOpenPanel *fileBrowser = [NSOpenPanel openPanel];
     [fileBrowser setCanChooseFiles:YES];
     [fileBrowser setCanChooseDirectories:YES];
@@ -230,25 +235,27 @@ static void *RMDocumentKVOContext;
         for ( int i = 0; i < [files count]; i++ ) {
             filePath = [files objectAtIndex:i];
             NSString *fileContents = [NSString stringWithContentsOfURL:filePath encoding:NSUTF8StringEncoding error:nil];
-      //      NSLog(@"%@",fileContents);
             NSInteger maxDNAlenght = MAXDNALENGTH;
             if ([fileContents length]>maxDNAlenght) {
+                [message appendFormat:@"The downloadable file exceeds maximum length of DNA = %lu !", maxDNAlenght];
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"OK"];
-                [alert setMessageText:@"В загружаемом файле превышена максимальная длина ДНК !"];
-                [alert setInformativeText:@"Выберите файл с нужной структурой ДНК"];
+                [alert setMessageText:message];
+                [alert setInformativeText:@"Select the file with the correct structure of DNA"];
                 [alert setAlertStyle:NSWarningAlertStyle];
                 [alert runModal];
                 return;
             }
-            if ([goalDNA fillDNAString:fileContents]) {
+            NSString *s =  [goalDNA fillDNAString:fileContents];
+            if (s == @"") {
                 [goalDNATextField setStringValue:fileContents];
             }
             else {
+                [message appendFormat:@"The downloadable file is invalid character = %@ !", s];
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"OK"];
-                [alert setMessageText:@"В загружаемом файле недопустимый символ !"];
-                [alert setInformativeText:@"Выберите файл с нужной структурой ДНК"];
+                [alert setMessageText:message];
+                [alert setInformativeText:@"Select the file with the correct structure of DNA"];
                 [alert setAlertStyle:NSWarningAlertStyle];
                 [alert runModal];
             }
@@ -257,13 +264,11 @@ static void *RMDocumentKVOContext;
 }
 
 -(id)init {
-    NSLog(@"init");
     self = [super init];
     if (self) {
-        [self addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
-        [self addObserver:self forKeyPath:@"dnaLength" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
-        [self addObserver:self forKeyPath:@"mutationRate" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
+        population = [[NSMutableArray alloc] init];
         undoManager = [[NSUndoManager alloc] init];
+        evolution = NO;
         
         [self willChangeValueForKey:@"populationSize"];
         populationSize = DEFAULTPOPULATIONSIZE;
@@ -283,88 +288,68 @@ static void *RMDocumentKVOContext;
         
         goalDNA = [[Cell alloc] init ];
         [goalDNA fillDNALenght:dnaLength];
-        [goalDNATextField setStringValue:[goalDNA stringDNA]];
         
-        population = [[NSMutableArray alloc] init];
-        startEvolution = NO;
-    }
-    return self;
-}
-
-
--(void)encodeWithCoder:(NSCoder *)aCoder {
-    NSLog(@"encodeWithCoder");
-   [aCoder encodeInteger:populationSize forKey:@"populationSize"];
-   [aCoder encodeInteger:dnaLength forKey:@"dnaLength"];
-   [aCoder encodeInteger:mutationRate forKey:@"mutationRate"];
-}
-
--(id)initWithCoder:(NSCoder *)aDecoder {
-    NSLog(@"initWithCoder");
-    self = [super init];
-    if (self) {
+        // заполняем новыми популяциями
+        for (int i=0; i<populationSize; i++) {
+            Cell* myCell = [[Cell alloc] init];
+            [myCell fillDNALenght:dnaLength];
+            [population addObject:myCell];
+         }
         [self addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
         [self addObserver:self forKeyPath:@"dnaLength" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
         [self addObserver:self forKeyPath:@"mutationRate" options:NSKeyValueObservingOptionOld context:&RMDocumentKVOContext];
-        undoManager = [[NSUndoManager alloc] init];
-
-        [self willChangeValueForKey:@"populationSize"];
-        populationSize = [aDecoder decodeIntegerForKey:@"populationSize"];
-        [self didChangeValueForKey:@"populationSize"];
-        
-        [self willChangeValueForKey:@"dnaLength"];
-        dnaLength = [aDecoder decodeIntegerForKey:@"dnaLength"];
-        [self didChangeValueForKey:@"dnaLength"];
-
-        [self willChangeValueForKey:@"mutationRate"];
-        mutationRate = [aDecoder decodeIntegerForKey:@"mutationRate"];
-        [self didChangeValueForKey:@"mutationRate"];
-        
-        goalDNA = [[Cell alloc] init ];
-        [goalDNA fillDNALenght:dnaLength];
-        [goalDNATextField setStringValue:[goalDNA stringDNA]];
-        
-        population = [[NSMutableArray alloc] init];
-        startEvolution = NO;
     }
     return self;
 }
- 
 
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    NSLog(@"dataOfType");
-    [[populationSizeTextField window] endEditingFor:nil];
-    [[populationSizeSlider window] endEditingFor:nil];
-    [[dnaLengthTextField window] endEditingFor:nil];
-    [[dnaLengthSlider window] endEditingFor:nil];
-    [[mutationRateTextField window] endEditingFor:nil];
-    [[mutationRateSlider window] endEditingFor:nil];
-    return [NSKeyedArchiver archivedDataWithRootObject:population];
-}
-
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    NSLog(@"readFromData");
-    NSMutableArray *newArray = nil;
-    @try {
-        newArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    }
-    @catch (NSException *e) {
-        if (outError) {
-            NSDictionary *d = [NSDictionary dictionaryWithObject:@"The file is valid" forKey:NSLocalizedFailureReasonErrorKey];
-            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:d];
-            return NO;
-        }
-    }
-    population = newArray;
-    return YES;
-}
-
-+ (BOOL)autosavesInPlace
-{
-    return YES;
-}
-
-
-
+- (IBAction)savePopulation:(id)sender {
+    NSSavePanel *savingDialog = [NSSavePanel savePanel];
     
+    [savingDialog setAllowedFileTypes:[NSArray arrayWithObject:@"dna"]];
+    if ([savingDialog runModal] == NSOKButton) {
+        NSMutableData *data = [NSMutableData data];
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        [archiver encodeObject:population forKey:@"populationKey"];
+        [archiver encodeObject:goalDNA forKey:@"goalDNAKey"];
+        [archiver encodeInteger:populationSize forKey:@"populationSizeKey"];
+        [archiver encodeInteger:dnaLength forKey:@"dnaLengthKey"];
+        [archiver encodeInteger:mutationRate forKey:@"mutationRateKey"];
+        [archiver finishEncoding];
+        [data writeToURL:[savingDialog URL] atomically:YES];
+    }
+}
+
+- (IBAction)loadPopulation:(id)sender {
+    NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"dna", @"DNA", nil];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setCanChooseDirectories:NO];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setAllowedFileTypes:fileTypes];
+    if ([openPanel runModal] == NSOKButton) {
+        NSURL *archiveURL = [[openPanel URLs] objectAtIndex:0];
+        NSData *data = [NSData dataWithContentsOfURL:archiveURL];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        
+        population = [unarchiver decodeObjectForKey:@"populationKey"];
+        
+        goalDNA = [unarchiver decodeObjectForKey:@"goalDNAKey"];
+        [goalDNATextField setStringValue:[goalDNA stringDNA]];
+            
+        [self willChangeValueForKey:@"populationSize"];
+        populationSize = [unarchiver decodeIntegerForKey:@"populationSizeKey"];
+        [self didChangeValueForKey:@"populationSize"];
+            
+        [self willChangeValueForKey:@"dnaLength"];
+        dnaLength = [unarchiver decodeIntegerForKey:@"dnaLengthKey"];
+        [self didChangeValueForKey:@"dnaLength"];
+            
+        [self willChangeValueForKey:@"mutationRate"];
+        mutationRate = [unarchiver decodeIntegerForKey:@"mutationRateKey"];
+        [self didChangeValueForKey:@"mutationRate"];
+            
+        [unarchiver finishDecoding];
+    }
+}
+
 @end

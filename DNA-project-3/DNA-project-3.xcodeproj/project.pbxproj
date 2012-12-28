@@ -31,6 +31,9 @@
 		A52619DD1685A568001951F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A52619E01685A568001951F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A52619E71685B78C001951F2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		A576F4F9168DB5CD00B21327 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A576F4FA168DB5CD00B21327 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A576F4FB168DB5CD00B21327 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ru; path = ru.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A5F06F49168729BD005B9EA4 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +90,8 @@
 			children = (
 				A52619DC1685A568001951F2 /* AppDelegate.h */,
 				A52619DD1685A568001951F2 /* AppDelegate.m */,
-				A5F06F49168729BD005B9EA4 /* Cell.m */,
 				A52619E71685B78C001951F2 /* Cell.h */,
+				A5F06F49168729BD005B9EA4 /* Cell.m */,
 				A52619DF1685A568001951F2 /* MainMenu.xib */,
 				A52619D11685A568001951F2 /* Supporting Files */,
 			);
@@ -141,6 +144,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = A52619BB1685A568001951F2;
 			productRefGroup = A52619C71685A568001951F2 /* Products */;
@@ -183,6 +187,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A52619D41685A568001951F2 /* en */,
+				A576F4FA168DB5CD00B21327 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A52619DA1685A568001951F2 /* en */,
+				A576F4FB168DB5CD00B21327 /* ru */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -199,6 +205,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A52619E01685A568001951F2 /* en */,
+				A576F4F9168DB5CD00B21327 /* ru */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

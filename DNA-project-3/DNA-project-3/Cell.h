@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+//static NSArray* arrayATGCQ;
 
-@interface Cell : NSObject {
+@interface Cell : NSObject <NSCoding> {
     NSArray* arrayATGC;
-    NSInteger dnaLenght;
-  //  NSInteger hammingDistance;
+    NSInteger dnaLenght; 
 }
 
 @property (nonatomic, retain) NSMutableArray* DNA;
 @property (nonatomic) NSInteger hammingDistance;
 
 -(void)fillDNALenght:(NSInteger) d;
--(BOOL)fillDNAString:(NSString*) s;
--(int)calculateHammingDistance:(Cell*) c;
+-(NSString*)fillDNAString:(NSString*) s;
+-(void)calculateHammingDistance:(Cell*) c;
 -(void)mutate:(NSInteger) percent;
 -(NSString*)stringDNA;
 -(NSMutableArray*)crossing:(Cell*) c;

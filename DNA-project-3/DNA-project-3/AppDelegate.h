@@ -15,18 +15,17 @@
 #define DEFAULTMUTATIONRATE 1;
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSCoding> {
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
     NSInteger populationSize;
     NSInteger dnaLength;
     NSInteger mutationRate;
-    Cell* goalDNA;  
-    NSMutableArray* population;
-    BOOL startEvolution;
-    int generation;
     NSInteger bestHammingDistance;
+    NSMutableArray* population;
     NSUndoManager* undoManager;
+    BOOL evolution;
+    int generation;
+    Cell* goalDNA;
 }
-//@property (nonatomic,retain) NSUndoManager *undoManager;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *goalDNATextField;
@@ -46,12 +45,14 @@
 - (IBAction)startEvolution:(id)sender;
 - (IBAction)pauseEvolution:(id)sender;
 - (IBAction)loadGoalDNA:(id)sender;
+- (IBAction)savePopulation:(id)sender;
+- (IBAction)loadPopulation:(id)sender;
+
 
 @property (weak) IBOutlet NSTextField *bestMatchTextField;
 @property (weak) IBOutlet NSTextField *generationTextField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 
 -(void)setVisible:(BOOL) v;
-
 
 @end

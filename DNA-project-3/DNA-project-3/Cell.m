@@ -7,11 +7,29 @@
 //
 
 #import "Cell.h"
+//#define kSizeLarge @["A", "T", "G", "C"]
 
 @implementation Cell
 
 @synthesize hammingDistance;
 @synthesize DNA = _DNA;
+
+/*
+static NSArray* arrayATGCQ = nil;
+static dispatch_once_t onceToken;
+
+
+
+dispatch_once(&onceToken, ^{
+    arrayATGCQ = @[kSizeLarge];
+});
+
+dispatch_once ()
+
+dispatch_once(&onceToken, ^{
+    arrayATGCQ = [NSArray initWithObjects:@"A", @"T", @"G", @"C",nil];
+});
+*/
 
 -(id) init {
     self = [super init];
@@ -27,21 +45,18 @@
     NSInteger i;
     if (d > dnaLenght) {
         for (i=dnaLenght; i<d; i++)
-            [_DNA addObject:[arrayATGC objectAtIndex: arc4random() % 4]];
+            [_DNA addObject:[arrayATGC objectAtIndex: arc4random() % ([arrayATGC count])]]; // добавляем нужное количество
     }
     else if (d < dnaLenght) {
-        for (i=dnaLenght-1; i>=d; i--) {
-            [_DNA removeObjectAtIndex:i];
-        }
+        for (i=dnaLenght-1; i>=d; i--)
+            [_DNA removeObjectAtIndex:i]; // удаляем лишние элементы
     }
     dnaLenght = d;
-    if ([_DNA count] != dnaLenght) {
+    if ([_DNA count] != dnaLenght) // дополнительная проверка
         NSLog(@"длина ДНК различна %lu <> %lu",[_DNA count], dnaLenght );
-        
-    }
 }
 
--(BOOL)fillDNAString:(NSString*) s {
+-(NSString*)fillDNAString:(NSString*) s {
     NSInteger n = [s length];
     // перебираем переданную строку и ищем запрещенные символы
     for (NSInteger i=0; i<n; i++) {
@@ -49,7 +64,7 @@
        NSString* charString = [NSString stringWithCharacters:&charAtIndex length:1];
         if (![arrayATGC containsObject:charString]) {
            NSLog(@"запрещенный символ %@",charString);
-           return NO;
+           return charString;
        }
     }
     // строка нормальная заполняем DNA
@@ -60,39 +75,32 @@
         NSString* charString = [NSString stringWithCharacters:&charAtIndex length:1];
         [_DNA addObject:charString];
     }
-   return YES;
+   return @"";
 }
 
--(int) calculateHammingDistance:(Cell*) c {
-    int counthammingDistance = 0;
-    for ( int i=0; i<dnaLenght; i++) {
-        if ([[_DNA objectAtIndex:i] isEqualToString: [c.DNA objectAtIndex: i]]) {
-           counthammingDistance ++;
-        }
-    }
-    hammingDistance = counthammingDistance;
-    return counthammingDistance;
+-(void) calculateHammingDistance:(Cell*) c {
+    hammingDistance = 0;
+    for (int i=0; i<dnaLenght; i++)
+        if ([[_DNA objectAtIndex:i] isEqualToString: [c.DNA objectAtIndex: i]])
+           hammingDistance ++;    
 }
 
--(void)mutate:(NSInteger) percent {
-    NSMutableArray* mutateCell = [[NSMutableArray alloc] init];
-    NSNumber* num = [NSNumber alloc];
-    int x = percent*dnaLenght/100;
-    int num_int, num_int2;
-    for (int i=1; i<=x; i++) {
-        num_int = arc4random() % dnaLenght;
-        while ([mutateCell containsObject:[num initWithInt:num_int]]==YES) {
-            //           NSLog(@"уже менялась ячейка %i",num_int);
-            num_int = arc4random() % dnaLenght;
-        }
-        [mutateCell addObject:[num initWithInt:num_int]];
-        //       NSLog(@"меняем %i раз, ячейку %i",i,num_int);
-        num_int2 = arc4random() % 4;
-        while ([[self.DNA objectAtIndex:num_int] isEqualToString:[arrayATGC objectAtIndex:num_int2]] == YES)  {
-            //       NSLog(@"совпало в ячейке %i",num_int2);
-            num_int2 = arc4random() % 4;
-        }
-        [self.DNA replaceObjectAtIndex:num_int withObject:[arrayATGC objectAtIndex:num_int2]];
+-(void)mutate:(NSInteger)percent {
+    NSUInteger markersForMutation = percent*dnaLenght/100;
+    //Создадим массив индексов, чтобы не повторяться
+    NSMutableArray *indexes = [[NSMutableArray alloc] initWithCapacity:dnaLenght]; // Массив для индексов
+    //заполним массив индексов
+    for (int i=0; i<dnaLenght; i++)
+        [indexes addObject:[NSNumber numberWithInt:i]];
+    
+    for (int i=0; i<markersForMutation; i++) {
+        NSUInteger randomKey = arc4random() % indexes.count;
+        NSUInteger indexToModify = [[indexes objectAtIndex:randomKey] integerValue]; // запоминаем индекс
+        NSString* DNAmodify = [_DNA objectAtIndex:indexToModify]; // что хотим поменять
+        NSUInteger numOffset = arc4random() % ([arrayATGC count]-1) + 1; //получаем случайное число 1,2,3
+        NSUInteger indexNew = ([arrayATGC indexOfObject:DNAmodify] + numOffset) & 3; // получаем индекс на который меняем
+        [_DNA replaceObjectAtIndex:indexToModify withObject:[arrayATGC objectAtIndex:indexNew]]; // заменяем объекты
+        [indexes removeObjectAtIndex:randomKey];//удаляем уже использованный индекс.
     }
 }
 
@@ -107,7 +115,8 @@
     NSMutableArray* NewDNA = [[NSMutableArray alloc] init];
     //Скомбинировать их содержание чтобы получить новую ДНК. Комбинирование одним из следующих способов (случайный выбор)
     int num_variant = arc4random() % 3;
-    if (num_variant == 1) {
+//    NSLog(@"Вариант %d",num_variant);
+    if (num_variant == 0) {
          //50% первого ДНК + 50% второго ДНК
         int halfdnaLenght = dnaLenght/2; //50%
         for(int i=0; i<dnaLenght; i++) {
@@ -117,8 +126,8 @@
                 [NewDNA addObject:[c.DNA objectAtIndex:i]];
         }
      }
-     else if (num_variant == 2) {
-         //1% первого ДНК + 1 второго ДНК + 1 первого ДНК + ... и т.д.
+     else if (num_variant == 1) {
+         //1 элемент первого ДНК + 1 элемент второго ДНК + 1 элемент первого ДНК + ... и т.д.
          for(int i=0; i<dnaLenght; i++) {
              if ((i%2) == 0)
                  [NewDNA addObject:[_DNA objectAtIndex:i]];
@@ -139,5 +148,20 @@
     return  NewDNA;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_DNA forKey:@"DNAKey"]; 
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        _DNA = [aDecoder decodeObjectForKey:@"DNAKey"];
+        dnaLenght = [_DNA count];
+        hammingDistance = 0;
+        arrayATGC = [[NSArray alloc] initWithObjects:@"A", @"T", @"G", @"C",nil];
+    }
+    return self;
+}
 
 @end
