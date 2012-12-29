@@ -1,8 +1,8 @@
 //
 //  main.m
-//  105
+//  iDNA
 //
-//  Created by Stas on 12/15/12.
+//  Created by Stas on 12/26/12.
 //  Copyright (c) 2012 Stas. All rights reserved.
 //
 

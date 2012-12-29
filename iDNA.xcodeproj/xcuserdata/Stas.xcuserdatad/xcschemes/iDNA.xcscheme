@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79F057D6167BDB5600D8C306"
-               BuildableName = "105.app"
-               BlueprintName = "105"
-               ReferencedContainer = "container:105.xcodeproj">
+               BlueprintIdentifier = "79E3C47F168B99300066EF61"
+               BuildableName = "iDNA.app"
+               BlueprintName = "iDNA"
+               ReferencedContainer = "container:iDNA.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "79F057F7167BDB5700D8C306"
-               BuildableName = "105Tests.octest"
-               BlueprintName = "105Tests"
-               ReferencedContainer = "container:105.xcodeproj">
+               BlueprintIdentifier = "79E3C4A3168B99300066EF61"
+               BuildableName = "iDNATests.octest"
+               BlueprintName = "iDNATests"
+               ReferencedContainer = "container:iDNA.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79F057D6167BDB5600D8C306"
-            BuildableName = "105.app"
-            BlueprintName = "105"
-            ReferencedContainer = "container:105.xcodeproj">
+            BlueprintIdentifier = "79E3C47F168B99300066EF61"
+            BuildableName = "iDNA.app"
+            BlueprintName = "iDNA"
+            ReferencedContainer = "container:iDNA.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -61,10 +61,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79F057D6167BDB5600D8C306"
-            BuildableName = "105.app"
-            BlueprintName = "105"
-            ReferencedContainer = "container:105.xcodeproj">
+            BlueprintIdentifier = "79E3C47F168B99300066EF61"
+            BuildableName = "iDNA.app"
+            BlueprintName = "iDNA"
+            ReferencedContainer = "container:iDNA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -79,10 +79,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "79F057D6167BDB5600D8C306"
-            BuildableName = "105.app"
-            BlueprintName = "105"
-            ReferencedContainer = "container:105.xcodeproj">
+            BlueprintIdentifier = "79E3C47F168B99300066EF61"
+            BuildableName = "iDNA.app"
+            BlueprintName = "iDNA"
+            ReferencedContainer = "container:iDNA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

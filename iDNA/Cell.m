@@ -1,8 +1,8 @@
 //
 //  Cell.m
-//  105
+//  iDNA
 //
-//  Created by Stas on 12/15/12.
+//  Created by Stas on 12/27/12.
 //  Copyright (c) 2012 Stas. All rights reserved.
 //
 
@@ -36,7 +36,7 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
 
 
 // метод сравнения двух массивов, результатом которого является кол-во неодинаковых элементов с одинаковыми индексами hammingDistance
-- (int) hammingDistance: (const Cell*) cell {  
+- (int) hammingDistance: (const Cell*) cell {
     int k = 0;                          // вводим и устанавливаем в ноль переменную, отвечающую за кол-во неодинаковых пар
     int count = dnaLength;              // вводим переменную-счетчик count, инициализировав ее размером массива
     while (count--)                     // цикл перебора всех эл-тов массива
@@ -55,27 +55,24 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
 
 
 // процесс скрещивания ////////////////////////////////////////////////////////////
-- (Cell*) sex: (Cell*) cell {
-    Cell *child;
-    child = [[Cell alloc] init];
+- (void) papsexwith: (Cell*)pap momsex: (Cell*)mom {
+    
     int rand = arc4random() % 3;    // три варианта скрещивания (rand = 0, rand = 1, rand = 2)
     int count;
-    
+
     if (rand == 0) {                // первый вариант
         int middle = dnaLength / 2;
         for (count = 0; count < dnaLength; count++)
             middle <= count ?
-                [child->dna replaceObjectAtIndex:count withObject:[cell->dna objectAtIndex:count]]:
-                [child->dna replaceObjectAtIndex:count withObject:[self->dna objectAtIndex:count]];
-        return child;
+            [self->dna replaceObjectAtIndex:count withObject:[mom->dna objectAtIndex:count]]:
+            [self->dna replaceObjectAtIndex:count withObject:[pap->dna objectAtIndex:count]];
     }
-
+    
     else if (rand == 1) {           // второй вариант
         for (count = 0; count < dnaLength; count++)
             count % 2 ?
-                [child->dna replaceObjectAtIndex:count withObject:[cell->dna objectAtIndex:count]]:
-                [child->dna replaceObjectAtIndex:count withObject:[self->dna objectAtIndex:count]];
-        return child;
+            [self->dna replaceObjectAtIndex:count withObject:[mom->dna objectAtIndex:count]]:
+            [self->dna replaceObjectAtIndex:count withObject:[pap->dna objectAtIndex:count]];
     }
     
     else {                          // третий вариант
@@ -83,29 +80,28 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
         int finish = (int)dnaLength * 0.8;
         for (count = 0; count < dnaLength; count++)
             count >= start && count < finish ?
-                [child->dna replaceObjectAtIndex:count withObject:[cell->dna objectAtIndex:count]]:
-                [child->dna replaceObjectAtIndex:count withObject:[self->dna objectAtIndex:count]];
-        return child;
+            [self->dna replaceObjectAtIndex:count withObject:[mom->dna objectAtIndex:count]]:
+            [self->dna replaceObjectAtIndex:count withObject:[pap->dna objectAtIndex:count]];
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////
 
 
 // мутация ///////////////////////////////////////////////////////////////////////////
-- (void) mutate: (int) percent {
+- (void) mutate: (NSInteger) percent {
     if (percent == 0)                                // если процент мутации равен нулю,
         return;                                      // то ничего не делаем
     if (dnaLength != 100)                            // если размер массива не равен 100,
         percent = percent * dnaLength / 100;         // пересчитываем процент
-
+    
     // создание массива из элементов BOOL, где столько значений YES, сколько процентов нужно изменить.
-    BOOL mas [dnaLength];                            
-    int count = dnaLength;
-    while (count--)                                  
-        mas [count] = count < percent? YES : NO;
-
+    BOOL mas [dnaLength];
+    int count = dnaLength;                          // присваиваем переменной count значения количества эл-тов массива
+    while (count--)                                 // цикл перебора всех эл-тов массива
+        mas [count] = count < percent? YES : NO;    
+    
     // перемешиваем массив логических эл-тов BOOL /////////////////////////////////////
-    count = dnaLength;                               // возвращаем переменной count значения количества эл-тов массива
+    count = dnaLength;                               // присваиваем переменной count значения количества эл-тов массива
     int tempIndex;                                   // вводим переменную-буфер для запоминания индекса изменяемого эл-та
     BOOL tempValue;                                  // вводим переменную-буфер для запоминания значения изменяемого эл-та
     while (count--) {                                // цикл перебора всех эл-тов массива
@@ -114,13 +110,13 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
         mas [tempIndex] = mas [count];               // меняем местами 1
         mas [count] = tempValue;                     // меняем местами 2
     }
-
+    
     // процесс мутации ////////////////////////////////////////////////////////////////
     count = dnaLength;                               // переменной count значения количества эл-тов массива
     while (count--)                                  // цикл перебора всех эл-тов массива
         if (mas[count])                              // изменяем только те эл-ты, для которых в mas [count] == YES
             [dna replaceObjectAtIndex:count withObject:newElement([dna objectAtIndex:count])]; // заменяем элемент
-        
+    
 }
 //////////////////////////////////////////////////////////////////////////////////////
 
