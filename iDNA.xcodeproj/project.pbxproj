@@ -18,6 +18,8 @@
 		6373D51F1689E47C00EE7CDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D4FC1689E47B00EE7CDA /* Cocoa.framework */; };
 		6373D5271689E47C00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5251689E47C00EE7CDA /* InfoPlist.strings */; };
 		6373D52A1689E47C00EE7CDA /* iDNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5291689E47C00EE7CDA /* iDNATests.m */; };
+		6373D5351689EC2F00EE7CDA /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5341689EC2F00EE7CDA /* Cell.m */; };
+		6373D5381689EC4A00EE7CDA /* Cell+Mutate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,21 +38,25 @@
 		6373D4FF1689E47B00EE7CDA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6373D5001689E47B00EE7CDA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6373D5011689E47B00EE7CDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6373D5041689E47B00EE7CDA /* iDNA-Info.plist */ = {isa = PBXFileReference; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
+		6373D5041689E47B00EE7CDA /* iDNA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
 		6373D5061689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373D5081689E47B00EE7CDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6373D50A1689E47B00EE7CDA /* iDNA-Prefix.pch */ = {isa = PBXFileReference; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
+		6373D50A1689E47B00EE7CDA /* iDNA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
 		6373D50C1689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		6373D50E1689E47B00EE7CDA /* Document.h */ = {isa = PBXFileReference; path = Document.h; sourceTree = "<group>"; };
+		6373D50E1689E47B00EE7CDA /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		6373D50F1689E47B00EE7CDA /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		6373D5121689E47B00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		6373D5151689E47C00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6373D51C1689E47C00EE7CDA /* iDNATests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iDNATests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373D51D1689E47C00EE7CDA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		6373D5241689E47C00EE7CDA /* iDNATests-Info.plist */ = {isa = PBXFileReference; path = "iDNATests-Info.plist"; sourceTree = "<group>"; };
+		6373D5241689E47C00EE7CDA /* iDNATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNATests-Info.plist"; sourceTree = "<group>"; };
 		6373D5261689E47C00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6373D5281689E47C00EE7CDA /* iDNATests.h */ = {isa = PBXFileReference; path = iDNATests.h; sourceTree = "<group>"; };
+		6373D5281689E47C00EE7CDA /* iDNATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iDNATests.h; sourceTree = "<group>"; };
 		6373D5291689E47C00EE7CDA /* iDNATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDNATests.m; sourceTree = "<group>"; };
+		6373D5331689EC0600EE7CDA /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cell.h; path = ../../DNA/DNA/Cell.h; sourceTree = "<group>"; };
+		6373D5341689EC2F00EE7CDA /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cell.m; path = ../../DNA/DNA/Cell.m; sourceTree = "<group>"; };
+		6373D5361689EC4200EE7CDA /* Cell+Mutate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Cell+Mutate.h"; path = "../../DNA/DNA/Cell+Mutate.h"; sourceTree = "<group>"; };
+		6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Cell+Mutate.m"; path = "../../DNA/DNA/Cell+Mutate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,10 @@
 			children = (
 				6373D50E1689E47B00EE7CDA /* Document.h */,
 				6373D50F1689E47B00EE7CDA /* Document.m */,
+				6373D5331689EC0600EE7CDA /* Cell.h */,
+				6373D5341689EC2F00EE7CDA /* Cell.m */,
+				6373D5361689EC4200EE7CDA /* Cell+Mutate.h */,
+				6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */,
 				6373D5111689E47B00EE7CDA /* Document.xib */,
 				6373D5141689E47C00EE7CDA /* MainMenu.xib */,
 				6373D5031689E47B00EE7CDA /* Supporting Files */,
@@ -266,6 +276,8 @@
 			files = (
 				6373D5091689E47B00EE7CDA /* main.m in Sources */,
 				6373D5101689E47B00EE7CDA /* Document.m in Sources */,
+				6373D5351689EC2F00EE7CDA /* Cell.m in Sources */,
+				6373D5381689EC4A00EE7CDA /* Cell+Mutate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,9 +391,11 @@
 		6373D52E1689E47C00EE7CDA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
 				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -390,9 +404,11 @@
 		6373D52F1689E47C00EE7CDA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
 				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -445,6 +461,7 @@
 				6373D52F1689E47C00EE7CDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6373D5301689E47C00EE7CDA /* Build configuration list for PBXNativeTarget "iDNATests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +470,7 @@
 				6373D5321689E47C00EE7CDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
