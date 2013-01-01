@@ -8,11 +8,8 @@
 
 #import "Document.h"
 #import "Cell.h"
+#import "Cell+OtherMutations.h"
 #import "ResultController.h"
-
-#define SET_AND_PRINT_DNA   [Cell setDnaLength:(int)controlDnaLength];      \
-                            goalDna = [[Cell alloc]init];                   \
-                            [tfMonitor setStringValue:[goalDna print]];
 
 #define PRINT_DNAS          for (int count = 0; count < controlPopSize; count++)                    \
                             NSLog(@"DNA: %@, HD = %i", [[population objectAtIndex:count] print],    \
@@ -21,22 +18,18 @@
 
 @implementation Document
 
-Cell *goalDna;
+Cell *goalDna;                  // внешняя, чтобы все методы могли с ней работать.
 int countOfGeneration = 1;      // делаем эту переменную внешней, чтобы к ней можно было дотянуться из окна NSPanel
+ResultController *resultWindow;
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        // Add your subclass-specific initialization here.
-        //pauseFlag = NO;
-        //[self setValue:[NSNumber numberWithLong:1000] forKey:@"controlPopSize"];    // задаем
-        //[self setValue:[NSNumber numberWithLong:20]   forKey:@"controlDnaLength"];  // начальное положение
-        //[self setValue:[NSNumber numberWithLong:10]   forKey:@"controlMutRate"];    // ползунков
-        controlPopSize = 1000;
-        controlDnaLength = 20;
-        controlMutRate = 10;
-        [self addObserver:self forKeyPath:@"controlPopSize"   options:NSKeyValueObservingOptionOld context:@"PopSizeChanged"];    // наблюдатели
+    if (self = [super init]) {
+        // Add your subclass-specific initialization here. 
+        controlPopSize   = 1000;        // задаем
+        controlDnaLength = 20;          // начальное положение
+        controlMutRate   = 10;          // ползунков
+        [self addObserver:self forKeyPath:@"controlPopSize"   options:NSKeyValueObservingOptionOld context:@"PopSizeChanged"];    // наблюдаем
         [self addObserver:self forKeyPath:@"controlDnaLength" options:NSKeyValueObservingOptionOld context:@"DnaLengthChanged"];  // за
         [self addObserver:self forKeyPath:@"controlMutRate"   options:NSKeyValueObservingOptionOld context:@"MutRateChanged"];    // ключами
     }
@@ -57,16 +50,15 @@ int countOfGeneration = 1;      // делаем эту переменную вн
     id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
     NSUndoManager * undo = [self undoManager];
 
-    if (context == @"PopSizeChanged") 
+    if (context == @"PopSizeChanged" || context == @"MutRateChanged")
         [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
     
     if (context == @"DnaLengthChanged") {
-    [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
-    SET_AND_PRINT_DNA
-    }
-
-    if (context == @"MutRateChanged")
         [[undo prepareWithInvocationTarget:self] changeKeyPath:keyPath ofObject:object toValue:oldValue];
+        [Cell setDnaLength:(int)controlDnaLength];
+        [goalDna addRemoveElements:(int)controlDnaLength];
+        [tfMonitor setStringValue:[goalDna print]];
+    }
 }
 
 - (NSString *)windowNibName
@@ -76,16 +68,16 @@ int countOfGeneration = 1;      // делаем эту переменную вн
     return @"Document";
 }
 
-- (void)windowControllerDidLoadNib:(NSWindowController *)aController
-{
-    [super windowControllerDidLoadNib:aController];
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    SET_AND_PRINT_DNA
+    [super windowControllerDidLoadNib:aController];
     [pauseDisplay setEnabled:NO];
+    [Cell setDnaLength:(int)controlDnaLength];
+    goalDna = [[Cell alloc]init];
+    [tfMonitor setStringValue:[goalDna print]];
 }
 
-+ (BOOL)autosavesInPlace
-{
++ (BOOL)autosavesInPlace {
     return NO;
 }
 
@@ -107,16 +99,6 @@ int countOfGeneration = 1;      // делаем эту переменную вн
     @throw exception;
     return YES;
 }
-
-- (IBAction)sliDnaLength:(id)sender {
-    SET_AND_PRINT_DNA
-}
-
-- (IBAction)tfDnaLength:(id)sender {
-    SET_AND_PRINT_DNA
-}
-
-ResultController *resultWindow;
 
 - (IBAction)startEvolution:(id)sender {
     [self performSelectorInBackground:@selector(beginEvolution) withObject:nil];
@@ -146,7 +128,7 @@ ResultController *resultWindow;
     
     // процесс заполнения популяции особями
     for (int popCount = 0; popCount < controlPopSize; popCount++)
-    [population addObject:[[Cell alloc] init]];
+        [population addObject:[[Cell alloc] init]];
 
     /*
     SLog(@"Generation 0:");
@@ -174,11 +156,11 @@ ResultController *resultWindow;
         
             // проверка: создана ли особь, совпадающая с Goal DNA
             if (![goalDna hammingDistance:[population objectAtIndex:0]]) {      // проверяем по hammingDistance
-                resultWindow = [[ResultController alloc] init];
-                [resultWindow showWindow:self];
-                [piBestMatchHdGen setDoubleValue:100];
-                [piBestMatchHdPop setDoubleValue:100];
-                break;                                          // ... если создана, то выходим
+                resultWindow = [[ResultController alloc] init];                 // ... если создана, то инициализируем и...
+                [resultWindow showWindow:self];                                 // ... вызывем окно результата
+                [piBestMatchHdGen setDoubleValue:100];                          // ... если создана, то ползунок должен показывать 100%
+                [piBestMatchHdPop setDoubleValue:100];                          // ... если создана, то ползунок должен показывать 100%
+                break;                                                          // ... если создана, то выходим
             }
     
             // процесс скрещивания
@@ -197,7 +179,7 @@ ResultController *resultWindow;
     
             // процесс мутации
             for (int count = 0; count < controlPopSize; count++)                            // процесс мутации беспощаден. он касается ВСЕХ!
-                [[population objectAtIndex:count] mutate:controlMutRate];                   // собственно мутация
+                [[population objectAtIndex:count] mutate:(int)controlMutRate];              // собственно мутация
     
             // процесс подсчета bestMatchHd
             for (int count = 1; count < controlPopSize; count++)
@@ -228,4 +210,30 @@ ResultController *resultWindow;
     
     countOfGeneration = 1;
 }
+
+-(IBAction)saveGoalDna:(id)sender {
+    // сохранение целевой ДНК в текстовый файл
+    NSSavePanel *dnaSavePanel = [NSSavePanel savePanel];
+    NSInteger res = [dnaSavePanel runModal];
+    if (res == NSOKButton) {
+        NSURL *url = [dnaSavePanel URL];
+        NSString *s = [self->tfMonitor stringValue];
+        [s writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+}
+
+-(IBAction)loadGoalDna:(id)sender {
+    // загрузка целевой ДНК из текстового файла
+    //NSLog(@"goalDNA = %@", [goalDna print]);
+    NSOpenPanel *dnaOpenPanel = [NSOpenPanel openPanel];
+    NSInteger res = [dnaOpenPanel runModal];
+    if (res == NSOKButton) {
+        NSURL *url = [dnaOpenPanel URL];
+        NSString *s = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        [goalDna cellFromString:s];
+        [tfMonitor setStringValue:[goalDna print]];
+        //NSLog(@"goalDNA = %@", [goalDna print]);
+    }
+}
+
 @end

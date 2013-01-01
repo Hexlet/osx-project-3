@@ -12,23 +12,23 @@
     NSInteger controlPopSize;
     NSInteger controlDnaLength;
     NSInteger controlMutRate;
+    BOOL pauseFlag;
     IBOutlet NSTextField *tfMonitor;
     IBOutlet NSTextField *lbgeneration;
     IBOutlet NSProgressIndicator *piBestMatchHdPop;
     IBOutlet NSProgressIndicator *piBestMatchHdGen;
-    BOOL pauseFlag;
-    IBOutlet NSButton *startEvolutionDisplay;
     IBOutlet NSTextField *tfPopSizeDisplay;
     IBOutlet NSTextField *tfDnaLengthDisplay;
     IBOutlet NSSlider *sliPopSizeDisplay;
     IBOutlet NSSlider *sliDnaLengthDisplay;
     IBOutlet NSButton *pauseDisplay;
-    
+    IBOutlet NSButton *startEvolutionDisplay;
 }
 
-- (IBAction)sliDnaLength:(id)sender;
-- (IBAction)tfDnaLength:(id)sender;
+
 - (IBAction)startEvolution:(id)sender;
 - (IBAction)pause:(id)sender;
+- (IBAction)saveGoalDna:(id)sender;
+- (IBAction)loadGoalDna:(id)sender;
 
 @end
