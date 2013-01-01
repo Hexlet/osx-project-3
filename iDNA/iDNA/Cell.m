@@ -9,8 +9,25 @@
 #import "Cell.h"
 
 const NSUInteger DefaultLength = 100;
+NSString * const AllowedChars[] = { @"A", @"T", @"G", @"C" };
+
+NSString *const DNAExceptionName = @"DNAException";
+
+@interface Cell ()
+
++ (BOOL)isAllowedChar:(unichar)c;
+
+@end
 
 @implementation Cell
+
++ (id)DNAWithContentOfURL:(NSURL *)url
+{
+    Cell *cell = [[[self class] alloc] init];
+    [cell loadFromURL:url];
+    
+    return cell;
+}
 
 - (id)init
 {
@@ -60,10 +77,9 @@ const NSUInteger DefaultLength = 100;
 
 + (NSString *)randomChar
 {
-    NSString * const allowedChars[] = { @"A", @"T", @"G", @"C" };
-    const NSUInteger allowedCharsCount = sizeof(allowedChars) / sizeof(allowedChars[0]);
+    const NSUInteger allowedCharsCount = sizeof(AllowedChars) / sizeof(AllowedChars[0]);
     
-    return allowedChars[rand() % allowedCharsCount];
+    return AllowedChars[rand() % allowedCharsCount];
 }
 
 - (int)hammingDistance:(Cell *)anotherCell
@@ -113,6 +129,44 @@ const NSUInteger DefaultLength = 100;
     Cell *newDna = [[Cell alloc] initWithDNA:genes];
 
     return newDna;
+}
+
++ (BOOL)isAllowedChar:(unichar)c
+{
+    const NSUInteger allowedCharsCount = sizeof(AllowedChars) / sizeof(AllowedChars[0]);
+    for (NSUInteger i = 0; i < allowedCharsCount; i++) {
+        if (c == [AllowedChars[i] characterAtIndex:0])
+            return YES;
+    }
+    
+    return NO;
+}
+
+- (void)loadFromURL:(NSURL *)url
+{
+    NSError *error;
+    NSString *content = [NSString stringWithContentsOfURL:url
+                                                 encoding:NSASCIIStringEncoding
+                                                    error:&error];
+    if (error){
+        @throw [NSException exceptionWithName:DNAExceptionName
+                                       reason:error.localizedDescription
+                                     userInfo:nil];
+    }
+    
+    for (NSUInteger i = 0; i < [content length]; i++) {
+        unichar c = [content characterAtIndex:i];
+        if (![[self class] isAllowedChar:c]) {
+            @throw [NSException exceptionWithName:DNAExceptionName
+                                           reason:[NSString stringWithFormat:@"'%c' is not allowed symbol for DNA.", c]
+                                         userInfo:nil];
+        }
+    }
+    
+    DNA = [[NSMutableArray alloc] initWithCapacity:[content length]];
+    for (NSUInteger i = 0; i < [content length]; i++)
+        [DNA addObject:[NSString stringWithFormat:@"%c", [content characterAtIndex:i]]];
+    self.length = [DNA count];
 }
 
 - (NSString *)description

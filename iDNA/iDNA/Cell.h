@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const DNAExceptionName;
+
 @interface Cell : NSObject<NSCopying> {
     NSMutableArray *DNA;
 }
 
 @property NSUInteger length;
+
++ (id)DNAWithContentOfURL:(NSURL *)url;
 
 - (id)initWithLength:(NSUInteger)length;
 - (id)initWithDNA:(NSMutableArray *)dna;
@@ -22,6 +26,7 @@
 + (NSString *)randomChar;
 
 - (void)createDNA;
+- (void)loadFromURL:(NSURL *)url;
 - (int)hammingDistance:(Cell *)anotherCell;
 - (Cell *)makeCrossingWithDNA:(Cell *)dna usingCrossKind:(int)crossKind;
 

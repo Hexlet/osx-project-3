@@ -71,7 +71,22 @@
 
 - (IBAction)loadGoalDNA:(id)sender
 {
-    [self generateDNA];
+    NSOpenPanel *openPanel = [[NSOpenPanel alloc] init];
+    [openPanel setPrompt:@"Load goal DNA"];
+    if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
+        @try {
+            [self willChangeValueForKey:@"goalDNA"];
+            [self.goalDNA loadFromURL:[openPanel URL]];
+            [self didChangeValueForKey:@"goalDNA"];
+            
+            [self removeObserver:self forKeyPath:@"dnaLength"];
+            self.dnaLength = (int)self.goalDNA.length;
+            [self addObserver:self forKeyPath:@"dnaLength" options:NSKeyValueObservingOptionNew context:NULL];
+        } @catch (NSException *exception) {
+            NSString *title = @"Load goal DNA failed";
+            NSRunAlertPanel(title, [exception reason], @"OK", nil, nil);
+        }
+    }
 }
 
 - (IBAction)startEvolution:(id)sender
