@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		79C03536168E1B400088C967 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C03535168E1B400088C967 /* ResultController.m */; };
 		79C0353E168E21B60088C967 /* Result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C0353D168E21B60088C967 /* Result.xib */; };
-		79DA919C16905F4D002E287C /* Cell+OtherMutations.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DA919B16905F4D002E287C /* Cell+OtherMutations.m */; };
 		79E3C485168B99300066EF61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79E3C484168B99300066EF61 /* Cocoa.framework */; };
 		79E3C48F168B99300066EF61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79E3C48D168B99300066EF61 /* InfoPlist.strings */; };
 		79E3C491168B99300066EF61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E3C490168B99300066EF61 /* main.m */; };
@@ -39,8 +38,6 @@
 		79C03534168E1B400088C967 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		79C03535168E1B400088C967 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		79C0353D168E21B60088C967 /* Result.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Result.xib; path = ../Result.xib; sourceTree = "<group>"; };
-		79DA919A16905F4D002E287C /* Cell+OtherMutations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cell+OtherMutations.h"; sourceTree = "<group>"; };
-		79DA919B16905F4D002E287C /* Cell+OtherMutations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cell+OtherMutations.m"; sourceTree = "<group>"; };
 		79E3C480168B99300066EF61 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E3C484168B99300066EF61 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		79E3C487168B99300066EF61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -139,8 +136,6 @@
 				79E3C49C168B99300066EF61 /* MainMenu.xib */,
 				79E3C4BF168BB2DE0066EF61 /* Cell.h */,
 				79E3C4C0168BB2DE0066EF61 /* Cell.m */,
-				79DA919A16905F4D002E287C /* Cell+OtherMutations.h */,
-				79DA919B16905F4D002E287C /* Cell+OtherMutations.m */,
 				79E3C48B168B99300066EF61 /* Supporting Files */,
 			);
 			path = iDNA;
@@ -292,7 +287,6 @@
 				79E3C498168B99300066EF61 /* Document.m in Sources */,
 				79E3C4C1168BB2DE0066EF61 /* Cell.m in Sources */,
 				79C03536168E1B400088C967 /* ResultController.m in Sources */,
-				79DA919C16905F4D002E287C /* Cell+OtherMutations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

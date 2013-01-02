@@ -8,7 +8,6 @@
 
 #import "Document.h"
 #import "Cell.h"
-#import "Cell+OtherMutations.h"
 #import "ResultController.h"
 
 #define PRINT_DNAS          for (int count = 0; count < controlPopSize; count++)                    \
@@ -21,6 +20,7 @@
 Cell *goalDna;                  // внешняя, чтобы все методы могли с ней работать.
 int countOfGeneration = 1;      // делаем эту переменную внешней, чтобы к ней можно было дотянуться из окна NSPanel
 ResultController *resultWindow;
+//NSInteger NSRunAlertPanel (NSString *title, NSString *msg, NSString *defaultButton, NSString *alternateButton);
 
 - (id)init
 {
@@ -122,6 +122,8 @@ ResultController *resultWindow;
     [sliPopSizeDisplay setEnabled:NO];
     [sliDnaLengthDisplay setEnabled:NO];
     [pauseDisplay setEnabled:YES];
+    [loadDisplay setEnabled:NO];
+    [saveDisplay setEnabled:NO];
     NSMutableArray *population = [[NSMutableArray alloc] initWithCapacity:controlPopSize];
     NSMutableArray *sortPopulation = [[NSMutableArray alloc] initWithCapacity:controlPopSize];
     int bestMatchHdGen, bestMatchHdPop = 0;
@@ -207,12 +209,13 @@ ResultController *resultWindow;
     [sliPopSizeDisplay setEnabled:YES];
     [sliDnaLengthDisplay setEnabled:YES];
     [pauseDisplay setEnabled:NO];
+    [loadDisplay setEnabled:YES];
+    [saveDisplay setEnabled:YES];
     
     countOfGeneration = 1;
 }
 
--(IBAction)saveGoalDna:(id)sender {
-    // сохранение целевой ДНК в текстовый файл
+-(IBAction)saveGoalDna:(id)sender { // сохранение целевой ДНК в текстовый файл
     NSSavePanel *dnaSavePanel = [NSSavePanel savePanel];
     NSInteger res = [dnaSavePanel runModal];
     if (res == NSOKButton) {
@@ -222,18 +225,21 @@ ResultController *resultWindow;
     }
 }
 
--(IBAction)loadGoalDna:(id)sender {
-    // загрузка целевой ДНК из текстового файла
-    //NSLog(@"goalDNA = %@", [goalDna print]);
+-(IBAction)loadGoalDna:(id)sender { // загрузка целевой ДНК из текстового файла
     NSOpenPanel *dnaOpenPanel = [NSOpenPanel openPanel];
     NSInteger res = [dnaOpenPanel runModal];
     if (res == NSOKButton) {
         NSURL *url = [dnaOpenPanel URL];
         NSString *s = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-        [goalDna cellFromString:s];
-        [tfMonitor setStringValue:[goalDna print]];
-        //NSLog(@"goalDNA = %@", [goalDna print]);
-    }
+        if (controlDnaLength == [s length]) {           // если длины загружаемой и целевой GoalDNA совпадают, то...
+            [goalDna cellFromString:s];                 // изменяем GoalDNA загружаемой...
+            [tfMonitor setStringValue:[goalDna print]]; // ...и показываем
+        }
+        else {                                          // если нет, то вызываем окно с ошибкой
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Length of loaded GoalDNA must be %ld elements", controlDnaLength];
+            [alert beginSheetModalForWindow:[tfMonitor window] modalDelegate:self didEndSelector:nil contextInfo:NULL];
+        }
+     }
 }
 
 @end

@@ -23,6 +23,8 @@
     IBOutlet NSSlider *sliDnaLengthDisplay;
     IBOutlet NSButton *pauseDisplay;
     IBOutlet NSButton *startEvolutionDisplay;
+    IBOutlet NSButton *loadDisplay;
+    IBOutlet NSButton *saveDisplay;
 }
 
 

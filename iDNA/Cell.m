@@ -162,14 +162,15 @@ const NSString* newElement(const NSString* element) {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-- (void) cellFromString: (NSString*)s {
+// замена элементов объекта Cell элементами из стоки /////////////////////////////////
+- (void) cellFromString: (NSString*)string {
     [self->dna removeAllObjects];
-    NSString *q;
+    NSString *element;
     for (int i = 0; i < dnaLength; i++) {
-        q = [[NSString alloc] initWithFormat:@"%c", [s characterAtIndex:i]];
-        [self->dna addObject:q];
+        element = [[NSString alloc] initWithFormat:@"%c", [string characterAtIndex:i]];
+        [self->dna addObject:element];
     }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////
 
 @end
