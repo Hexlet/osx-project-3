@@ -153,7 +153,7 @@ ResultController *resultWindow;
              NSLog(@"After sorting:");
              PRINT_DNAS
              */
-
+            
             [lbgeneration setIntegerValue:countOfGeneration];
         
             // проверка: создана ли особь, совпадающая с Goal DNA
