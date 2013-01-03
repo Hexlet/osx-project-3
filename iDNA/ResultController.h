@@ -10,6 +10,8 @@
 
 @interface ResultController : NSWindowController {
     IBOutlet NSTextField *tfResultLabel;
+    IBOutlet NSTextField *tfResultLabelTime;
+    
 }
 
 extern int countOfGeneration;       // дотягиваемся к этой переменной из "Document.m"

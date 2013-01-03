@@ -35,20 +35,6 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
 //////////////////////////////////////////////////////////////////////////////////
 
 
-// метод инициализации ////////////////////////////////////////////////////////////
-- (id) initWithA {
-    self = [super init];
-    if (self) {
-        dna = [[NSMutableArray alloc] init];
-        int count = dnaLength;
-        while (count--)
-            [dna addObject:@"A"];
-    }
-    return self;
-} 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 // вычисление hammingDistance ////////////////////////////////////////////////////
 - (int) hammingDistance: (const Cell*) cell {
     int hamdist = 0;                            // вводим и устанавливаем в ноль переменную, отвечающую за кол-во неодинаковых пар
@@ -154,15 +140,15 @@ const NSString* newElement(const NSString* element) {
         return;
     if (x > 0)
         for (int i = 0; i < x; i++)                         //
-            [dna addObject:elements[arc4random() % ELS]];   //
+            [dna addObject:elements[arc4random() % ELS]];   // добавляем случайный элемент в конец цепочки
     else
         for (int i = 0; i > x; i--)                         //
-            [dna removeLastObject];                         //
+            [dna removeLastObject];                         // удаляем элемент с конца цепочки
 }
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-// замена элементов объекта Cell элементами из стоки /////////////////////////////////
+// замена элементов объекта Cell элементами из строки /////////////////////////////////
 - (void) cellFromString: (NSString*)string {
     [self->dna removeAllObjects];
     NSString *element;
@@ -172,5 +158,4 @@ const NSString* newElement(const NSString* element) {
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////
-
 @end
