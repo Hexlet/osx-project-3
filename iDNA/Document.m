@@ -133,7 +133,7 @@ ResultController *resultWindow;
         [population addObject:[[Cell alloc] init]];
 
     /*
-    SLog(@"Generation 0:");
+    NSLog(@"Generation 0:");
      PRINT_DNAS
     */
     
@@ -153,7 +153,7 @@ ResultController *resultWindow;
              NSLog(@"After sorting:");
              PRINT_DNAS
              */
-    
+
             [lbgeneration setIntegerValue:countOfGeneration];
         
             // проверка: создана ли особь, совпадающая с Goal DNA

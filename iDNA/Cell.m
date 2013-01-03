@@ -54,7 +54,7 @@ const NSString * elements[ELS] = {@"A", @"T", @"G", @"C"};
     int hamdist = 0;                            // вводим и устанавливаем в ноль переменную, отвечающую за кол-во неодинаковых пар
     int count = dnaLength;                      // вводим переменную-счетчик count, инициализировав ее размером массива
     while (count--)                             // цикл перебора всех эл-тов массива
-        if ([dna objectAtIndex:count] != [cell->dna objectAtIndex:count])   // сравнение
+        if ([[dna objectAtIndex:count] isNotEqualTo:[cell->dna objectAtIndex:count]])   // сравнение
             hamdist++;                          // инкрементация кол-ва
     return hamdist;                             // возврат в вызываемую функцию кол-ва неодинаковых пар
 }
