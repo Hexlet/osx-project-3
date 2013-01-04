@@ -28,8 +28,10 @@
 }
 
 -(void)dealloc {
-    //Убираем свойство lengthDNA из наблюдения.
+    //Убираем свойства из наблюдения.
     [myPopulation removeObserver:self forKeyPath:@"populationLengthDna"];
+    [myPopulation removeObserver:self forKeyPath:@"populationSize"];
+    [myPopulation removeObserver:self forKeyPath:@"populationRate"];
 }
 //Доп метод
 -(void) changeKeyPath:(NSString *) keyPath
@@ -48,7 +50,7 @@
         if (oldValue == [NSNull null]) {
             oldValue = nil;
         }
-        [[myManager prepareWithInvocationTarget:self] changeKeyPath:@"populationLengthDNA" ofObject:myPopulation toValue:oldValue];
+        [[myManager prepareWithInvocationTarget:self] changeKeyPath:@"populationLengthDna" ofObject:myPopulation toValue:oldValue];
         [myManager setActionName:@"Change Length DNA"];
         
         //Получаем текущие значение переменной
@@ -180,19 +182,36 @@
             NSString * fileContents = [NSString stringWithContentsOfFile:fileName encoding:NSUTF8StringEncoding error:nil];
             // Записываем его есои он устраивает нашим параметрам
             if ([fileContents length]==[myPopulation populationLengthDna] && [fileContents length]<=100) {
-                //Устанавливаем текстовое поле
-                [_popTextGoalDna setStringValue:fileContents];
+                //Проверка символов в файле
+                for (int t=0; t<=[fileContents length]-1; t++) {
+                    switch ([fileContents characterAtIndex:t]) {
+                        case (unichar)'A':
+                            break;
+                        case (unichar)'T':
+                            break;
+                        case (unichar)'G':
+                            break;
+                        case (unichar)'C':
+                            break;
+                        default:
+                            symbol=YES;
+                            break;
+                    }
+                }
+                
                 if (symbol==NO) {
+                    //Устанавливаем текстовое поле
+                    [_popTextGoalDna setStringValue:fileContents];
                     //создаем нового альфа самца размерностью файла
                     [[myPopulation goalDNA] setDNA:[[NSMutableArray alloc]initWithContentsOfFile:fileContents]];
                 } else {
-                    NSAlert *myAlert = [NSAlert alertWithMessageText:@"Похоже файл содержит символ не относящийся к ДНК!!!" defaultButton:@"Okey" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
+                    NSAlert *myAlert = [NSAlert alertWithMessageText:@"Похоже файл содержит символ не относящийся к ДНК или в нем есть управляющие символы (Пр. перевод каретки)" defaultButton:@"Okey" alternateButton:nil otherButton:nil informativeTextWithFormat:@" "];
                      [myAlert runModal];
                 }
                 
             } else {
                 NSString *str=[[NSMutableString alloc]initWithFormat:@"Данный файл имеет длину %ld",[fileContents length]];
-                NSAlert *myAlert = [NSAlert alertWithMessageText:@"Файл содердит ДНК другой размерностью или его размер больше 100 единиц!!! " defaultButton:@"Okey" alternateButton:nil otherButton:nil informativeTextWithFormat:str];
+                NSAlert *myAlert = [NSAlert alertWithMessageText:@"Файл содержит ДНК другой размерностью или его размер больше 100 единиц!!! " defaultButton:@"Okey" alternateButton:nil otherButton:nil informativeTextWithFormat:str];
                 [myAlert runModal];
             }
         
