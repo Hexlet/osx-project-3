@@ -1405,7 +1405,7 @@
 											<string key="NSFrameSize">{551, 313}</string>
 											<reference key="NSSuperview" ref="981596597"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="365991634"/>
+											<reference key="NSNextKeyView" ref="974244668"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -1568,7 +1568,7 @@
 							<string key="NSFrame">{{20, 47}, {553, 331}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="974244668"/>
+							<reference key="NSNextKeyView" ref="981596597"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="365991634"/>
@@ -1595,7 +1595,7 @@
 											<string key="NSFrameSize">{155, 313}</string>
 											<reference key="NSSuperview" ref="255644018"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="371604459"/>
+											<reference key="NSNextKeyView" ref="246885361"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -1722,7 +1722,7 @@
 							<string key="NSFrame">{{580, 47}, {157, 331}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="246885361"/>
+							<reference key="NSNextKeyView" ref="255644018"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="371604459"/>
@@ -1772,9 +1772,10 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="244679516">
 								<int key="NSCellFlags">-1804599231</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags2">4195328</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="856487433"/>
+								<string key="NSPlaceholderString">IMG_</string>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="153095209"/>
 								<bool key="NSDrawsBackground">YES</bool>
@@ -1828,6 +1829,7 @@
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="856487433"/>
+								<string key="NSPlaceholderString">%04d</string>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="519855918"/>
 								<bool key="NSDrawsBackground">YES</bool>
@@ -1871,6 +1873,7 @@
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="856487433"/>
+								<string key="NSPlaceholderString">1</string>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="184874807"/>
 								<bool key="NSDrawsBackground">YES</bool>
@@ -1909,7 +1912,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="113521289"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1280, 1002}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -4818,6 +4821,11 @@
 				<boolean value="NO" key="621.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="621.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="622.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableAttributedString" key="622.notes">
+					<object class="NSMutableString" key="NSString">
+						<characters key="NS.bytes"/>
+					</object>
+				</object>
 				<string key="623.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="624.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="627.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
