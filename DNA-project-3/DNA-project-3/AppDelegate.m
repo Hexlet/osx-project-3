@@ -55,12 +55,10 @@ static void *RMDocumentKVOContext;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    //NSLog(@"applicationDidFinishLaunching");
     [goalDNATextField setStringValue:[goalDNA stringDNA]];
 }
 
 -(void)setPopulationSize:(NSInteger) x {
-//    NSLog(@"setPopulationSize");
         /*1. создать случайную популяцию ДНК. Размер популяции = значение первого text field'а.
      Размер каждого ДНК = значение второго text field'а.*/
     NSInteger i;
@@ -207,11 +205,11 @@ static void *RMDocumentKVOContext;
 - (IBAction)startEvolution:(id)sender {
     if ([[goalDNA DNA] count] != dnaLength) {
         NSMutableString *message = [NSMutableString string];
-        [message appendFormat:@"The length of the goal DNA %lu and the population DNA %lu are not equal !",[[goalDNA DNA] count], dnaLength];
+        [message appendFormat:NSLocalizedString(@"MESSAGE1",@""),[[goalDNA DNA] count], dnaLength];
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:message];
-        [alert setInformativeText:@"Change the size of the DNA population or download another target DNA"];
+        [alert setInformativeText:NSLocalizedString(@"MESSAGE2",@"")];
         [alert setAlertStyle:NSWarningAlertStyle];
         [alert runModal];
         return;
@@ -237,11 +235,11 @@ static void *RMDocumentKVOContext;
             NSString *fileContents = [NSString stringWithContentsOfURL:filePath encoding:NSUTF8StringEncoding error:nil];
             NSInteger maxDNAlenght = MAXDNALENGTH;
             if ([fileContents length]>maxDNAlenght) {
-                [message appendFormat:@"The downloadable file exceeds maximum length of DNA = %lu !", maxDNAlenght];
+                [message appendFormat:NSLocalizedString(@"MESSAGE3",@""), maxDNAlenght];
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"OK"];
                 [alert setMessageText:message];
-                [alert setInformativeText:@"Select the file with the correct structure of DNA"];
+                [alert setInformativeText:NSLocalizedString(@"MESSAGE4",@"")];
                 [alert setAlertStyle:NSWarningAlertStyle];
                 [alert runModal];
                 return;
@@ -251,11 +249,11 @@ static void *RMDocumentKVOContext;
                 [goalDNATextField setStringValue:fileContents];
             }
             else {
-                [message appendFormat:@"The downloadable file is invalid character = %@ !", s];
+                [message appendFormat:NSLocalizedString(@"MESSAGE5",@""), s];
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"OK"];
                 [alert setMessageText:message];
-                [alert setInformativeText:@"Select the file with the correct structure of DNA"];
+                [alert setInformativeText:NSLocalizedString(@"MESSAGE6",@"")];
                 [alert setAlertStyle:NSWarningAlertStyle];
                 [alert runModal];
             }

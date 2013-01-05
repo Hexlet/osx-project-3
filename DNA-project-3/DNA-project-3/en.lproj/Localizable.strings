@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  DNA-project-3
+
+  Created by Sergey on 05.01.13.
+
+*/
+
+"MESSAGE1" = "The length of the goal DNA %lu and the population DNA %lu are not equal !";
+"MESSAGE2" = "Change the size of the DNA population or download another goal DNA";
+"MESSAGE3" = "The downloadable file exceeds maximum length of DNA = %lu !";
+"MESSAGE4" = "Select the file with the correct structure of DNA";
+"MESSAGE5" = "The downloadable file is invalid character = %@ !";
+"MESSAGE6" = "Select the file with the correct structure of DNA";

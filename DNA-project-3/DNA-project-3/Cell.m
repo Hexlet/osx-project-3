@@ -63,7 +63,6 @@ dispatch_once(&onceToken, ^{
        unichar charAtIndex = [s characterAtIndex:i];
        NSString* charString = [NSString stringWithCharacters:&charAtIndex length:1];
         if (![arrayATGC containsObject:charString]) {
-           NSLog(@"запрещенный символ %@",charString);
            return charString;
        }
     }
@@ -115,7 +114,6 @@ dispatch_once(&onceToken, ^{
     NSMutableArray* NewDNA = [[NSMutableArray alloc] init];
     //Скомбинировать их содержание чтобы получить новую ДНК. Комбинирование одним из следующих способов (случайный выбор)
     int num_variant = arc4random() % 3;
-//    NSLog(@"Вариант %d",num_variant);
     if (num_variant == 0) {
          //50% первого ДНК + 50% второго ДНК
         int halfdnaLenght = dnaLenght/2; //50%
