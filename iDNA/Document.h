@@ -17,7 +17,7 @@
 
     NSInteger           dnaLength;
     NSInteger           populationSize;
-    NSInteger           mutationRate;
+    NSUInteger          mutationRate;
 }
 
 @property NSString*             goalDnaString;

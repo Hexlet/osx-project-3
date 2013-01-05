@@ -12,12 +12,12 @@
 @implementation Cell (mutator)
 
 
-- (void) mutate:(NSInteger)percent
+- (void) mutate:(NSUInteger)percent
 {
-    const NSInteger maxPercent = 100;
+    const NSUInteger maxPercent = 100;
     
     // проверка на правильность аргумента
-    if (percent < 0  ||  percent > maxPercent)
+    if (percent > maxPercent)
         @throw [NSException exceptionWithName:NSRangeException reason:@"argument is out of [0..100] range" userInfo:nil];
     
     // если задано изменение 0%, то ничего делать не надо, сразу выход
@@ -26,22 +26,20 @@
     
     const NSUInteger dnaLength = [dna length];
     
-    // создать массив индексов и зарезервировать в нем место
+    // создать массив флагов и зарезервировать в нем место
     NSMutableArray *mutationFlags = [NSMutableArray arrayWithCapacity:dnaLength];
 
     // количество символов к мутации
     const NSUInteger mutationIndexCount = dnaLength*percent/maxPercent;
 
-    // заполнить индексы
-    for (NSUInteger i = 0; i != dnaLength; ++i)
-    {
-        if (i < mutationIndexCount)
-            [mutationFlags addObject:[NSNumber numberWithBool:YES]];
-        else
-            [mutationFlags addObject:[NSNumber numberWithBool:NO]];
-    }
+    // заполнить флаги
+    for (NSUInteger i = 0; i != mutationIndexCount; ++i)
+        [mutationFlags addObject:[NSNumber numberWithBool:YES]];
 
-    // если мутация затрагивает менее 100% символов, перемешать индексы для случайности изменений
+    for (NSUInteger i = mutationIndexCount; i != dnaLength; ++i)
+        [mutationFlags addObject:[NSNumber numberWithBool:NO]];
+
+    // если мутация затрагивает менее 100% символов, перемешать флаги для случайности изменений
     if (mutationIndexCount < dnaLength)
     {
         // перемешивание
@@ -63,7 +61,10 @@
         if ([[mutationFlags objectAtIndex:i] boolValue])
         {
             const NSUInteger curNucleotideIndex = [nucleotides rangeOfString:c].location;
+            NSAssert(NSNotFound != curNucleotideIndex, @"curNucleotideIndex = %lu", curNucleotideIndex);
             const NSUInteger newNucleotideIndex = (curNucleotideIndex + 1 + arc4random_uniform((u_int32_t)(nucleotideCount - 1))) % nucleotideCount;
+            NSAssert(newNucleotideIndex < nucleotideCount, @"newNucleotideIndex = %lu", newNucleotideIndex);
+            NSAssert(newNucleotideIndex != curNucleotideIndex, @"newNucleotideIndex = %lu", newNucleotideIndex);
             c = [nucleotides substringWithRange:NSMakeRange(newNucleotideIndex, 1)];
         }
         [newDna appendString:c];

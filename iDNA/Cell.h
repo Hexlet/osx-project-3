@@ -19,6 +19,6 @@
 - (id)          init __attribute__((unavailable("init not available")));
 - (id)          initWithSize:(NSUInteger)size;
 - (id)          initWithDnaString:(NSString*)dnaStr;
-- (NSInteger)   hammingDistance:(Cell*)otherCell;
+- (NSUInteger)  hammingDistance:(Cell*)otherCell;
 
 @end

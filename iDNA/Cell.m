@@ -29,8 +29,7 @@
 
 - (id) initWithSize:(NSUInteger)size
 {
-    self = [super init];
-    if (self)
+    if (self = [super init])
     {
         // создать массив ДНК и зарезервировать в нем место
         NSMutableString *newDna = [NSMutableString stringWithCapacity:size];
@@ -44,8 +43,8 @@
         for (NSUInteger i = 0; i != size; ++i)
         {
             const NSUInteger randCharIdx = arc4random_uniform((u_int32_t)nucleotideCount);
-            NSString *c = [nucleotides substringWithRange:NSMakeRange(randCharIdx, 1)];
-            [newDna appendString:c];
+            const unichar c = [nucleotides characterAtIndex:randCharIdx];
+            [newDna appendString:[NSString stringWithCharacters:&c length:1]];
         }
 
         dna = newDna;
@@ -59,20 +58,20 @@
     if (!dnaStr)
         return nil;
 
-    if (!(self = [super init]))
-        return nil;
+    if (self = [super init])
+    {
+        NSString *nucleotides = [Cell getNucleotides];
+        NSCharacterSet *invalidChars = [[NSCharacterSet characterSetWithCharactersInString:nucleotides] invertedSet];
+        if (!invalidChars)
+            return nil;
 
-    NSString *nucleotides = [Cell getNucleotides];
-    NSCharacterSet *invalidChars = [[NSCharacterSet characterSetWithCharactersInString:nucleotides] invertedSet];
-    if (!invalidChars)
-        return nil;
+        dnaStr = [dnaStr uppercaseString];
 
-    dnaStr = [dnaStr uppercaseString];
+        if (NSNotFound != [dnaStr rangeOfCharacterFromSet:invalidChars].location)
+            return nil;
 
-    if (NSNotFound != [dnaStr rangeOfCharacterFromSet:invalidChars].location)
-        return nil;
-
-    dna = dnaStr;
+        dna = dnaStr;
+    }
 
     return self;
 }
@@ -92,7 +91,7 @@
 }
 
 
-- (NSInteger) hammingDistance:(Cell*)otherCell
+- (NSUInteger) hammingDistance:(Cell*)otherCell
 {
     // проверка на правильность аргумента
     if (!otherCell)
@@ -104,7 +103,7 @@
     const NSUInteger minLength = MIN(dnaLength, otherDnaLength);
     const NSUInteger maxLength = MAX(dnaLength, otherDnaLength);
 
-    NSInteger distance = 0;
+    NSUInteger distance = 0;
 
     for (NSUInteger i = 0; i != minLength; ++i)
     {

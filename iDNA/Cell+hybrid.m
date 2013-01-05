@@ -88,7 +88,7 @@
     if ([a->dna length] != [b->dna length])
         return nil;
 
-    const NSUInteger method = arc4random_uniform(3);
+    const NSUInteger method = arc4random_uniform(4);
     switch (method)
     {
         case 0:

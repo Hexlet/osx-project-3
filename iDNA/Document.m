@@ -173,13 +173,13 @@
 }
 
 
-- (void) setMutationRate:(NSInteger)mr
+- (void) setMutationRate:(NSUInteger)mr
 {
     mutationRate = mr;
 }
 
 
-- (NSInteger) mutattionRate
+- (NSUInteger) mutattionRate
 {
     return mutationRate;
 }
@@ -267,21 +267,26 @@
                                         }
         ];
 
-        const NSInteger bestMatch = [[population objectAtIndex:0] hammingDistance:self->goalDna];
-        self.bestDnaMatch = 1.0 - (double)bestMatch/dnaLength;
-        if (0 == bestMatch)
+        const NSUInteger minDistance = [[population objectAtIndex:0] hammingDistance:self->goalDna];
+        const NSUInteger maxDistance = [[population objectAtIndex:([population count] - 1)] hammingDistance:self->goalDna];
+        self.bestDnaMatch = 1.0 - (double)minDistance/dnaLength;
+        if (0 == minDistance)
             break;
 
         const NSUInteger hybridizationStartIndex = populationSize/2;
         for (NSUInteger i = hybridizationStartIndex; i != populationSize; ++i)
         {
             const NSUInteger i1 = hybridizationStartIndex > 0 ? arc4random_uniform((u_int32_t)hybridizationStartIndex) : 0;
-            const NSUInteger i2 = hybridizationStartIndex > 1 ? arc4random_uniform((u_int32_t)hybridizationStartIndex) : 0;
-            [population replaceObjectAtIndex:i withObject:[Cell makeHybridWith:[population objectAtIndex:i1] andWith:[population objectAtIndex:i2]]];
+            const NSUInteger i2 = hybridizationStartIndex > 0 ? arc4random_uniform((u_int32_t)hybridizationStartIndex) : 0;
+            Cell *a = [population objectAtIndex:i1];
+            Cell *b = [population objectAtIndex:i2];
+            Cell *hybrid = [Cell makeHybridWith:a andWith:b];
+            [population replaceObjectAtIndex:i withObject:hybrid];
         }
 
+        const NSUInteger mRate = mutationRate;
         for (Cell *c in population)
-            [c mutate:mutationRate];
+            [c mutate:mRate];
 
         ++self.generationRound;
     }
