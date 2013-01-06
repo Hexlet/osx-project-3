@@ -19,6 +19,9 @@
 -(NSString*) getDNAString;
 -(int) hammingDistance:(Cell*) c;
 -(Cell*) crossbreedWith:(Cell*) partner;
--(NSString*) getNucleotide;
+-(void) mutate:(int) percent;
+-(const NSString*) getNucleotide;
+-(const NSString*) getNewNucleotide:(NSString*) oldNuc;
+-(void) DNAFromString:(NSString*)source withMaxLen:(int) maxLen;
 
 @end
