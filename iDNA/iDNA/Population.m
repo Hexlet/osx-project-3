@@ -22,6 +22,10 @@
     return self;
 }
 
+-  (void) removeAllPopulation {
+	[_population removeAllObjects];
+}
+
 - (void) sortToGoalDNA {
 	//NSLog(@"Population before sorting: %@", [self description]);
 	[_population sortUsingComparator:^(Cell *a, Cell *b) {

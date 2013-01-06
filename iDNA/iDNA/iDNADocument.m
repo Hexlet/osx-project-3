@@ -135,7 +135,7 @@
 	[rc showWindow: self];
 }
 
-- (IBAction)startEvolutionClicked:(NSButton *)sender {
+- (IBAction)startEvolutionClicked:(NSButton *)sender {	
 	p = [[Population alloc] initWithSize:populationSize andDNALength:DNALength andGoalDNA:goalDNA];
 	
 	[_populationSizeText setEnabled:NO];
