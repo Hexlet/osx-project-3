@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CBC9984416870718006DE7AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC9984316870718006DE7AC /* Cocoa.framework */; };
+		CBC9984E16870718006DE7AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC9984C16870718006DE7AC /* InfoPlist.strings */; };
+		CBC9985016870718006DE7AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9984F16870718006DE7AC /* main.m */; };
+		CBC9985416870718006DE7AC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CBC9985216870718006DE7AC /* Credits.rtf */; };
+		CBC9985716870718006DE7AC /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9985616870718006DE7AC /* Document.m */; };
+		CBC9985A16870718006DE7AC /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC9985816870718006DE7AC /* Document.xib */; };
+		CBC9985D16870719006DE7AC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC9985B16870719006DE7AC /* MainMenu.xib */; };
+		CBC9986816870777006DE7AC /* Cell+mutator.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9986516870777006DE7AC /* Cell+mutator.m */; };
+		CBC9986916870777006DE7AC /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC9986716870777006DE7AC /* Cell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CBC9983F16870718006DE7AC /* DNASecond.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DNASecond.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC9984316870718006DE7AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CBC9984616870718006DE7AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CBC9984716870718006DE7AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CBC9984816870718006DE7AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CBC9984B16870718006DE7AC /* DNASecond-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DNASecond-Info.plist"; sourceTree = "<group>"; };
+		CBC9984D16870718006DE7AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CBC9984F16870718006DE7AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CBC9985116870718006DE7AC /* DNASecond-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNASecond-Prefix.pch"; sourceTree = "<group>"; };
+		CBC9985316870718006DE7AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CBC9985516870718006DE7AC /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
+		CBC9985616870718006DE7AC /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		CBC9985916870718006DE7AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		CBC9985C16870719006DE7AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CBC9986416870777006DE7AC /* Cell+mutator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cell+mutator.h"; sourceTree = "<group>"; };
+		CBC9986516870777006DE7AC /* Cell+mutator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cell+mutator.m"; sourceTree = "<group>"; };
+		CBC9986616870777006DE7AC /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		CBC9986716870777006DE7AC /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CBC9983C16870718006DE7AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBC9984416870718006DE7AC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CBC9983416870718006DE7AC = {
+			isa = PBXGroup;
+			children = (
+				CBC9984916870718006DE7AC /* DNASecond */,
+				CBC9984216870718006DE7AC /* Frameworks */,
+				CBC9984016870718006DE7AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CBC9984016870718006DE7AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9983F16870718006DE7AC /* DNASecond.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBC9984216870718006DE7AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9984316870718006DE7AC /* Cocoa.framework */,
+				CBC9984516870718006DE7AC /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBC9984516870718006DE7AC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9984616870718006DE7AC /* AppKit.framework */,
+				CBC9984716870718006DE7AC /* CoreData.framework */,
+				CBC9984816870718006DE7AC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CBC9984916870718006DE7AC /* DNASecond */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9986316870777006DE7AC /* Cell */,
+				CBC9985516870718006DE7AC /* Document.h */,
+				CBC9985616870718006DE7AC /* Document.m */,
+				CBC9985816870718006DE7AC /* Document.xib */,
+				CBC9985B16870719006DE7AC /* MainMenu.xib */,
+				CBC9984A16870718006DE7AC /* Supporting Files */,
+			);
+			path = DNASecond;
+			sourceTree = "<group>";
+		};
+		CBC9984A16870718006DE7AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9984B16870718006DE7AC /* DNASecond-Info.plist */,
+				CBC9984C16870718006DE7AC /* InfoPlist.strings */,
+				CBC9984F16870718006DE7AC /* main.m */,
+				CBC9985116870718006DE7AC /* DNASecond-Prefix.pch */,
+				CBC9985216870718006DE7AC /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBC9986316870777006DE7AC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CBC9986416870777006DE7AC /* Cell+mutator.h */,
+				CBC9986516870777006DE7AC /* Cell+mutator.m */,
+				CBC9986616870777006DE7AC /* Cell.h */,
+				CBC9986716870777006DE7AC /* Cell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CBC9983E16870718006DE7AC /* DNASecond */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBC9986016870719006DE7AC /* Build configuration list for PBXNativeTarget "DNASecond" */;
+			buildPhases = (
+				CBC9983B16870718006DE7AC /* Sources */,
+				CBC9983C16870718006DE7AC /* Frameworks */,
+				CBC9983D16870718006DE7AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DNASecond;
+			productName = DNASecond;
+			productReference = CBC9983F16870718006DE7AC /* DNASecond.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CBC9983616870718006DE7AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tsyganov Stanislav";
+			};
+			buildConfigurationList = CBC9983916870718006DE7AC /* Build configuration list for PBXProject "DNASecond" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CBC9983416870718006DE7AC;
+			productRefGroup = CBC9984016870718006DE7AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CBC9983E16870718006DE7AC /* DNASecond */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CBC9983D16870718006DE7AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBC9984E16870718006DE7AC /* InfoPlist.strings in Resources */,
+				CBC9985416870718006DE7AC /* Credits.rtf in Resources */,
+				CBC9985A16870718006DE7AC /* Document.xib in Resources */,
+				CBC9985D16870719006DE7AC /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CBC9983B16870718006DE7AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBC9985016870718006DE7AC /* main.m in Sources */,
+				CBC9985716870718006DE7AC /* Document.m in Sources */,
+				CBC9986816870777006DE7AC /* Cell+mutator.m in Sources */,
+				CBC9986916870777006DE7AC /* Cell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CBC9984C16870718006DE7AC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBC9984D16870718006DE7AC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CBC9985216870718006DE7AC /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBC9985316870718006DE7AC /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CBC9985816870718006DE7AC /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBC9985916870718006DE7AC /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		CBC9985B16870719006DE7AC /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CBC9985C16870719006DE7AC /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CBC9985E16870719006DE7AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CBC9985F16870719006DE7AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CBC9986116870719006DE7AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DNASecond/DNASecond-Prefix.pch";
+				INFOPLIST_FILE = "DNASecond/DNASecond-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CBC9986216870719006DE7AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DNASecond/DNASecond-Prefix.pch";
+				INFOPLIST_FILE = "DNASecond/DNASecond-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CBC9983916870718006DE7AC /* Build configuration list for PBXProject "DNASecond" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBC9985E16870719006DE7AC /* Debug */,
+				CBC9985F16870719006DE7AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBC9986016870719006DE7AC /* Build configuration list for PBXNativeTarget "DNASecond" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBC9986116870719006DE7AC /* Debug */,
+				CBC9986216870719006DE7AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CBC9983616870718006DE7AC /* Project object */;
+}
