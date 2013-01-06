@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00AB6AC616996A6200B01285 /* HybridizeStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AB6AC516996A6200B01285 /* HybridizeStrategy.m */; };
 		00AF4DAF168743A400A45A83 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AF4DAE168743A400A45A83 /* Cocoa.framework */; };
 		00AF4DB9168743A400A45A83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00AF4DB7168743A400A45A83 /* InfoPlist.strings */; };
 		00AF4DBB168743A400A45A83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00AF4DBA168743A400A45A83 /* main.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00AB6AC416996A6200B01285 /* HybridizeStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridizeStrategy.h; sourceTree = "<group>"; };
+		00AB6AC516996A6200B01285 /* HybridizeStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HybridizeStrategy.m; sourceTree = "<group>"; };
 		00AF4DAA168743A400A45A83 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AF4DAE168743A400A45A83 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		00AF4DB1168743A400A45A83 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -38,6 +41,7 @@
 		00C691F91688DC820077E1D8 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		00C691FA1688DC820077E1D8 /* NucleobaseType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NucleobaseType.h; sourceTree = "<group>"; };
 		00C691FB1688DC820077E1D8 /* NucleobaseType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NucleobaseType.m; sourceTree = "<group>"; };
+		00DBEF4D168A2C0100C5436D /* EvolutionProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvolutionProgressDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 		00AF4DB4168743A400A45A83 /* iDNA */ = {
 			isa = PBXGroup;
 			children = (
+				00AB6AC416996A6200B01285 /* HybridizeStrategy.h */,
+				00AB6AC516996A6200B01285 /* HybridizeStrategy.m */,
 				00C691F81688DC820077E1D8 /* Cell.h */,
 				00C691F91688DC820077E1D8 /* Cell.m */,
 				00C691FA1688DC820077E1D8 /* NucleobaseType.h */,
@@ -101,6 +107,7 @@
 				00AF4DB5168743A400A45A83 /* Supporting Files */,
 				00AF4DCF16875F4A00A45A83 /* Evolution.h */,
 				00AF4DD016875F4A00A45A83 /* Evolution.m */,
+				00DBEF4D168A2C0100C5436D /* EvolutionProgressDelegate.h */,
 			);
 			path = iDNA;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 				00AF4DD116875F4A00A45A83 /* Evolution.m in Sources */,
 				00C691FC1688DC820077E1D8 /* Cell.m in Sources */,
 				00C691FD1688DC820077E1D8 /* NucleobaseType.m in Sources */,
+				00AB6AC616996A6200B01285 /* HybridizeStrategy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

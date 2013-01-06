@@ -1,5 +1,6 @@
 #import "Evolution.h"
 #import "Cell.h"
+#import "HybridizeStrategy.h"
 
 NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, void *context) {
     Cell *goalCell = (__bridge Cell *)(context);
@@ -16,10 +17,11 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
 
 @implementation Evolution
 
-@synthesize populationSize, dnaLength, mutationRate, inProgress, paused, generation;
+@synthesize populationSize, mutationRate, inProgress, paused, generation, delegate;
 
 -(id)init {
     if (self = [super init]) {
+        srandom((unsigned)time(NULL));
         inProgress = NO;
         paused = NO;
         generation = 0;
@@ -31,22 +33,26 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
     inProgress = YES;
     paused = NO;
     generation = 0;
-    [self generateGoalCell];
     [self generatePopulation];
     [self performSelectorInBackground:@selector(nextGeneration) withObject:nil];
 }
 
 -(void)nextGeneration {
     [self sortPopulation];
-    NSInteger closestDistance = [[population objectAtIndex:0] hammingDistance:goalCell];
-    NSLog(@"step: %li, closest: %li", generation, closestDistance);
+    closestDistance = [[population objectAtIndex:0] hammingDistance:goalCell];
+    // NSLog(@"step: %li, closest: %li, %@", generation, closestDistance, [population objectAtIndex:0]);
     if (closestDistance == 0) {
+        [self postProgressNotification];
         [self stop];
+        if (self.delegate) {
+            [delegate evolutionGoalIsReached];
+        }
         return;
     }
     generation++;
     [self hybridizePopulation];
     [self mutatePopulation];
+    [self postProgressNotification];
     if (paused == NO && inProgress == YES) {
         [self nextGeneration];
     }
@@ -70,16 +76,17 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
 
 -(Cell *)hybridizeCell:(Cell *)cell1 withCell:(Cell *)cell2 {
     NSMutableArray *dna = [NSMutableArray arrayWithCapacity:dnaLength];
-    int threshold = (int)(dnaLength * 0.5);
+    HybridizeStrategy *hybridizeStrategy = [HybridizeStrategy randomStrategy];
     for (int i = 0; i < dnaLength; i++) {
-        Cell *cell = i < threshold ? cell1 : cell2;
-        [dna addObject:[cell nucleobaseAtIndex:i]];
+        [dna addObject:[hybridizeStrategy nucleobaseAtIndex:i firstParent:cell1 secondParent:cell2]];
     }
     return [[Cell alloc] initWithDNA:dna];
 }
 
 -(void) generateGoalCell {
+    [self willChangeValueForKey:@"goalDNA"];
     goalCell = [[Cell alloc] initWithRandomDNAOfLength:dnaLength];
+    [self didChangeValueForKey:@"goalDNA"];
 }
 
 -(void) generatePopulation {
@@ -105,6 +112,46 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
 -(void)resume {
     paused = NO;
     [self performSelectorInBackground:@selector(nextGeneration) withObject:nil];
+}
+
+-(void)postProgressNotification {
+    if (!self.delegate) {
+        return;
+    }
+    NSInteger bestMatchPercent = (NSInteger)(100 * (dnaLength - closestDistance) / dnaLength);
+    NSDictionary *userInfo = @{ @"generation": [NSNumber numberWithInteger:generation],
+                                 @"bestMatch": [NSNumber numberWithInteger:bestMatchPercent] };
+    NSNotification *notification = [NSNotification notificationWithName:@"evolutionProgressChange" object:nil userInfo:userInfo];
+    [delegate evolutionStateHasChanged:notification];
+}
+
+-(NSString *)goalDNA {
+    return [goalCell description];
+}
+
+-(void)setDnaLength:(NSInteger)l {
+    dnaLength = l;
+    [self generateGoalCell];
+}
+
+-(NSInteger)dnaLength {
+    return dnaLength;
+}
+
+-(void)loadGoalDNA:(NSString *)dnaString {
+    NSMutableArray *goalDNA = [NSMutableArray arrayWithCapacity:dnaString.length];
+    NSRange range;
+    range.length = 1;
+    for (int i = 0; i < dnaString.length; i++) {
+        range.location = i;
+        [goalDNA addObject:[dnaString substringWithRange:range]];
+    }
+    [self willChangeValueForKey:@"goalDNA"];
+    [self willChangeValueForKey:@"dnaLength"];
+    dnaLength = dnaString.length;
+    goalCell = [[Cell alloc] initWithDNA:goalDNA];
+    [self didChangeValueForKey:@"goalDNA"];
+    [self didChangeValueForKey:@"dnaLength"];
 }
 
 @end

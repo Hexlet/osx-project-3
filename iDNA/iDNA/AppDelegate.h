@@ -1,9 +1,12 @@
 #import <Cocoa/Cocoa.h>
-
+#import "EvolutionProgressDelegate.h"
 @class Evolution;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate : NSObject <NSApplicationDelegate, EvolutionProgressDelegate> {
     Evolution *evolution;
+    IBOutlet NSTextField *generationLabel;
+    IBOutlet NSTextField *bestMatchLabel;
+    IBOutlet NSLevelIndicator *progressIndicator;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -16,5 +19,6 @@
 -(IBAction)startStopEvolution:(id)sender;
 -(IBAction)pauseResumeEvolution:(id)sender;
 
+-(IBAction)loadGoalDNAFromFile:(id)sender;
 
 @end
