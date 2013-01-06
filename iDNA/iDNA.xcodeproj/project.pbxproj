@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C3758CB71699CA4900BC8D86 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3758CB51699CA4900BC8D86 /* ResultController.m */; };
+		C3758CB81699CA4900BC8D86 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3758CB61699CA4900BC8D86 /* ResultController.xib */; };
+		C379CE341698F0D500BA2D06 /* Population.m in Sources */ = {isa = PBXBuildFile; fileRef = C379CE331698F0D500BA2D06 /* Population.m */; };
+		C3CD5E3C16977291000FE158 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD5E3B16977291000FE158 /* Cocoa.framework */; };
+		C3CD5E4616977291000FE158 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3CD5E4416977291000FE158 /* InfoPlist.strings */; };
+		C3CD5E4816977291000FE158 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CD5E4716977291000FE158 /* main.m */; };
+		C3CD5E4C16977291000FE158 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C3CD5E4A16977291000FE158 /* Credits.rtf */; };
+		C3CD5E4F16977291000FE158 /* iDNADocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CD5E4E16977291000FE158 /* iDNADocument.m */; };
+		C3CD5E5216977291000FE158 /* iDNADocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3CD5E5016977291000FE158 /* iDNADocument.xib */; };
+		C3CD5E5516977291000FE158 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3CD5E5316977291000FE158 /* MainMenu.xib */; };
+		C3CD5E6416977719000FE158 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CD5E6216977719000FE158 /* Cell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C3758CB41699CA4800BC8D86 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultController.h; path = iDNA/ResultController.h; sourceTree = "<group>"; };
+		C3758CB51699CA4900BC8D86 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultController.m; path = iDNA/ResultController.m; sourceTree = "<group>"; };
+		C3758CB61699CA4900BC8D86 /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResultController.xib; path = iDNA/ResultController.xib; sourceTree = "<group>"; };
+		C379CE321698F0D500BA2D06 /* Population.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Population.h; sourceTree = "<group>"; };
+		C379CE331698F0D500BA2D06 /* Population.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Population.m; sourceTree = "<group>"; };
+		C3CD5E3716977291000FE158 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3CD5E3B16977291000FE158 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C3CD5E3E16977291000FE158 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C3CD5E3F16977291000FE158 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C3CD5E4016977291000FE158 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C3CD5E4316977291000FE158 /* iDNA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iDNA-Info.plist"; sourceTree = "<group>"; };
+		C3CD5E4516977291000FE158 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C3CD5E4716977291000FE158 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C3CD5E4916977291000FE158 /* iDNA-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iDNA-Prefix.pch"; sourceTree = "<group>"; };
+		C3CD5E4B16977291000FE158 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		C3CD5E4D16977291000FE158 /* iDNADocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iDNADocument.h; sourceTree = "<group>"; };
+		C3CD5E4E16977291000FE158 /* iDNADocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDNADocument.m; sourceTree = "<group>"; };
+		C3CD5E5116977291000FE158 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/iDNADocument.xib; sourceTree = "<group>"; };
+		C3CD5E5416977291000FE158 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C3CD5E6116977719000FE158 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		C3CD5E6216977719000FE158 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C3CD5E3416977291000FE158 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3CD5E3C16977291000FE158 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C3758CAE1699BCD600BC8D86 /* ResultController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ResultController;
+			sourceTree = "<group>";
+		};
+		C3CD5E2C16977291000FE158 = {
+			isa = PBXGroup;
+			children = (
+				C3758CB41699CA4800BC8D86 /* ResultController.h */,
+				C3758CB51699CA4900BC8D86 /* ResultController.m */,
+				C3758CB61699CA4900BC8D86 /* ResultController.xib */,
+				C3CD5E4116977291000FE158 /* iDNA */,
+				C3CD5E3A16977291000FE158 /* Frameworks */,
+				C3CD5E3816977291000FE158 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C3CD5E3816977291000FE158 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3CD5E3716977291000FE158 /* iDNA.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3CD5E3A16977291000FE158 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3CD5E3B16977291000FE158 /* Cocoa.framework */,
+				C3CD5E3D16977291000FE158 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3CD5E3D16977291000FE158 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3CD5E3E16977291000FE158 /* AppKit.framework */,
+				C3CD5E3F16977291000FE158 /* CoreData.framework */,
+				C3CD5E4016977291000FE158 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C3CD5E4116977291000FE158 /* iDNA */ = {
+			isa = PBXGroup;
+			children = (
+				C3CD5E651697772A000FE158 /* Evolution */,
+				C3CD5E4D16977291000FE158 /* iDNADocument.h */,
+				C3CD5E4E16977291000FE158 /* iDNADocument.m */,
+				C3758CAE1699BCD600BC8D86 /* ResultController */,
+				C3CD5E5016977291000FE158 /* iDNADocument.xib */,
+				C3CD5E5316977291000FE158 /* MainMenu.xib */,
+				C3CD5E4216977291000FE158 /* Supporting Files */,
+			);
+			path = iDNA;
+			sourceTree = "<group>";
+		};
+		C3CD5E4216977291000FE158 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3CD5E4316977291000FE158 /* iDNA-Info.plist */,
+				C3CD5E4416977291000FE158 /* InfoPlist.strings */,
+				C3CD5E4716977291000FE158 /* main.m */,
+				C3CD5E4916977291000FE158 /* iDNA-Prefix.pch */,
+				C3CD5E4A16977291000FE158 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3CD5E651697772A000FE158 /* Evolution */ = {
+			isa = PBXGroup;
+			children = (
+				C379CE321698F0D500BA2D06 /* Population.h */,
+				C379CE331698F0D500BA2D06 /* Population.m */,
+				C3CD5E6116977719000FE158 /* Cell.h */,
+				C3CD5E6216977719000FE158 /* Cell.m */,
+			);
+			name = Evolution;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C3CD5E3616977291000FE158 /* iDNA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3CD5E5816977291000FE158 /* Build configuration list for PBXNativeTarget "iDNA" */;
+			buildPhases = (
+				C3CD5E3316977291000FE158 /* Sources */,
+				C3CD5E3416977291000FE158 /* Frameworks */,
+				C3CD5E3516977291000FE158 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iDNA;
+			productName = iDNA;
+			productReference = C3CD5E3716977291000FE158 /* iDNA.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C3CD5E2E16977291000FE158 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = iDNA;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Администратор";
+			};
+			buildConfigurationList = C3CD5E3116977291000FE158 /* Build configuration list for PBXProject "iDNA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C3CD5E2C16977291000FE158;
+			productRefGroup = C3CD5E3816977291000FE158 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C3CD5E3616977291000FE158 /* iDNA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3CD5E3516977291000FE158 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3CD5E4616977291000FE158 /* InfoPlist.strings in Resources */,
+				C3CD5E4C16977291000FE158 /* Credits.rtf in Resources */,
+				C3CD5E5216977291000FE158 /* iDNADocument.xib in Resources */,
+				C3CD5E5516977291000FE158 /* MainMenu.xib in Resources */,
+				C3758CB81699CA4900BC8D86 /* ResultController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C3CD5E3316977291000FE158 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3CD5E4816977291000FE158 /* main.m in Sources */,
+				C3CD5E4F16977291000FE158 /* iDNADocument.m in Sources */,
+				C3CD5E6416977719000FE158 /* Cell.m in Sources */,
+				C379CE341698F0D500BA2D06 /* Population.m in Sources */,
+				C3758CB71699CA4900BC8D86 /* ResultController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C3CD5E4416977291000FE158 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3CD5E4516977291000FE158 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C3CD5E4A16977291000FE158 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3CD5E4B16977291000FE158 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		C3CD5E5016977291000FE158 /* iDNADocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3CD5E5116977291000FE158 /* en */,
+			);
+			name = iDNADocument.xib;
+			sourceTree = "<group>";
+		};
+		C3CD5E5316977291000FE158 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3CD5E5416977291000FE158 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C3CD5E5616977291000FE158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C3CD5E5716977291000FE158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C3CD5E5916977291000FE158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C3CD5E5A16977291000FE158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iDNA/iDNA-Prefix.pch";
+				INFOPLIST_FILE = "iDNA/iDNA-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C3CD5E3116977291000FE158 /* Build configuration list for PBXProject "iDNA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3CD5E5616977291000FE158 /* Debug */,
+				C3CD5E5716977291000FE158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3CD5E5816977291000FE158 /* Build configuration list for PBXNativeTarget "iDNA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3CD5E5916977291000FE158 /* Debug */,
+				C3CD5E5A16977291000FE158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C3CD5E2E16977291000FE158 /* Project object */;
+}
