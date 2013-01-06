@@ -11,10 +11,9 @@
 
 @implementation Cell
 
-- (id)initWithLength:(int) dnaLength {
-    self = [super init];
-    
-    if(self){
+- (id)initWithLength:(int) dnaLength
+{
+    if(self = [super init]){
         _dna = [NSMutableArray arrayWithCapacity:dnaLength];
         _hammingDistance = dnaLength;
         nucleotides = [[Nucleotides sharedInstance] getNucleotides];
@@ -32,9 +31,7 @@
 
 - (id)initWithDNA:(NSArray*)dnaArr
 {
-    self = [super init];
-    
-    if(self){
+    if(self = [super init]){
         _dna = [NSMutableArray arrayWithArray:dnaArr];
         _hammingDistance = (int)[dnaArr count];
         nucleotides = [[Nucleotides sharedInstance] getNucleotides];
@@ -45,10 +42,12 @@
 
 - (id)initWithString:(NSString*)dnaString
 {
-    self = [super init];
-    
-    if(self){
-        _dna = [NSMutableArray arrayWithArray:[dnaString componentsSeparatedByString:@""]];
+    if(self = [super init]){
+        _dna = [NSMutableArray arrayWithCapacity:[dnaString length]];
+        for (int i=0; i < [dnaString length]; i++) {
+            [_dna addObject:[NSString stringWithFormat:@"%c", [dnaString characterAtIndex:i]]];
+        }
+        
         _hammingDistance = (int)[dnaString length];
         nucleotides = [[Nucleotides sharedInstance] getNucleotides];
     }
@@ -66,27 +65,31 @@
     
     uint indexToReplace, nucleotideIndex, indexValue;
     uint nucleotidesToReplace = (uint)(percent * 0.01 * [self.dna count]);
-    if(nucleotidesToReplace < 1) return;
+    
+    if(nucleotidesToReplace < 1){
+        // необходимо изменить минимум 1 нуклеотид
+        nucleotidesToReplace = 1;
+    }
     
     NSMutableArray *replacedIndexes = [NSMutableArray arrayWithCapacity:nucleotidesToReplace];
     
-    //заполняем массив доступными индексами
+    // заполняем массив доступными индексами
     for (int i = 0; i < [self.dna count]; i++){
         [replacedIndexes addObject:[NSNumber numberWithUnsignedInt:i]];
     }
     
     while (nucleotidesToReplace) {
-        indexToReplace = arc4random() % [replacedIndexes count]; //индекс для замены
+        indexToReplace = arc4random() % [replacedIndexes count]; // индекс для замены
         indexValue = [[replacedIndexes objectAtIndex:indexToReplace] unsignedIntValue];
         
-        do { //исключаем замену шила на мыло)
+        do { // исключаем замену на аналогичный нуклеотид
             nucleotideIndex = arc4random() % 4;
         } while ([[self.dna objectAtIndex:indexValue] isEqual:[nucleotides objectAtIndex:nucleotideIndex]]);
         
-        //заменяем нуклеотид по индексу indexToReplace
+        // заменяем нуклеотид по индексу indexToReplace
         [self.dna replaceObjectAtIndex:indexValue withObject:[nucleotides objectAtIndex:nucleotideIndex]];
         
-        [replacedIndexes removeObjectAtIndex:indexToReplace]; //изымаем этот индекс из списка доступных
+        [replacedIndexes removeObjectAtIndex:indexToReplace]; // изымаем этот индекс из списка доступных
         
         nucleotidesToReplace--;
     }
@@ -95,9 +98,8 @@
 
 - (int)hammingDistance: (Cell*)goalDNA {
     int distance = 0;
-    
     for(int i = 0; i < [goalDNA.dna count]; i++){
-        if(![[goalDNA.dna objectAtIndex:i] isEqual:[self.dna objectAtIndex:i]]) distance++;
+        if(![[goalDNA.dna objectAtIndex:i] isEqualToString:[self.dna objectAtIndex:i]]) distance++;
     }
     
     self.hammingDistance = distance;

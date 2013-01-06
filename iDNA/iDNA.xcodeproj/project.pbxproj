@@ -20,6 +20,7 @@
 		272A0BF11688A4A200F6EFE7 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 272A0BEE1688A4A200F6EFE7 /* Cell.m */; };
 		272A0BF91688D1D900F6EFE7 /* Population.m in Sources */ = {isa = PBXBuildFile; fileRef = 272A0BF81688D1D900F6EFE7 /* Population.m */; };
 		27EEE6341699BF7300A67547 /* idna.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 27EEE6331699BF7300A67547 /* idna.iconset */; };
+		27EEE644169A003300A67547 /* IntegerValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EEE643169A003300A67547 /* IntegerValueFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		272A0BF71688D1D900F6EFE7 /* Population.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Population.h; sourceTree = "<group>"; };
 		272A0BF81688D1D900F6EFE7 /* Population.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Population.m; sourceTree = "<group>"; };
 		27EEE6331699BF7300A67547 /* idna.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = idna.iconset; sourceTree = "<group>"; };
+		27EEE642169A003300A67547 /* IntegerValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntegerValueFormatter.h; sourceTree = "<group>"; };
+		27EEE643169A003300A67547 /* IntegerValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntegerValueFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 			children = (
 				272A0BC71688485E00F6EFE7 /* AppDelegate.h */,
 				272A0BC81688485E00F6EFE7 /* AppDelegate.m */,
+				27EEE642169A003300A67547 /* IntegerValueFormatter.h */,
+				27EEE643169A003300A67547 /* IntegerValueFormatter.m */,
 				272A0BCA1688485E00F6EFE7 /* MainMenu.xib */,
 				270ED7B4169443E8007CD20B /* Nucleotides.h */,
 				270ED7B5169443E8007CD20B /* Nucleotides.m */,
@@ -208,6 +213,7 @@
 				272A0BF11688A4A200F6EFE7 /* Cell.m in Sources */,
 				272A0BF91688D1D900F6EFE7 /* Population.m in Sources */,
 				270ED7B6169443E8007CD20B /* Nucleotides.m in Sources */,
+				27EEE644169A003300A67547 /* IntegerValueFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

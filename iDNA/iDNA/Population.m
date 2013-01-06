@@ -14,28 +14,27 @@
 - (id)initWithPopulationSize:(int)size andDNALength:(int)dnaLength
 {
     if(self = [super init]){
-    
         _cells = [NSMutableArray arrayWithCapacity:size];
         
         for(int i = 0; i < size; i++){
             [_cells addObject:[[Cell alloc] initWithLength:dnaLength]];
         }
-        
     }
-    
-    //NSLog(@"Population: %@", _cells);
     
     return self;
 }
 
+
+// обновляем расстояние Хэмминга для популяции
 - (void)hammingDistanceWith:(Cell*)goalDNA
 {
-    //calc hamm distance
     for(Cell* cell in self.cells){
         [cell hammingDistance:goalDNA];
     }
 }
 
+
+// сортировка поплуляции на основе расстояния Хэмминга
 - (void)sort
 {
     
@@ -47,6 +46,8 @@
     //NSLog(@"sorted: %@", sortedArray);
 }
 
+
+// проверка нет ли полного совпадения с целевой ДНК 
 - (BOOL)evolutionSuccess
 {
     BOOL result = NO;
@@ -61,6 +62,8 @@
     return result;
 }
 
+
+// скрестить кандидатов из топ 50% и заменить результатом оставшиеся 50%
 - (void) hybridize
 {
     int populationSize = (int)[self.cells count];
@@ -71,13 +74,14 @@
     
     for(int i = 0; i < halfPopulation; i++){
         
+        // случайно выбираем две клетки для скрещивания
         NSArray* firstDNA = [[topCells objectAtIndex:(arc4random() % [topCells count])] dna];
         NSArray* secondDNA = [[topCells objectAtIndex:(arc4random() % [topCells count])] dna];
-        int DNALength = (int)[firstDNA count];
         
+        int DNALength = (int)[firstDNA count];
         NSMutableArray* newDNA = [NSMutableArray arrayWithCapacity:DNALength];
         
-        //random hybridize
+        // выбор случайного алгоритма скрещивания
         switch(arc4random() % 3){
             case 0: // 50% первого ДНК + 50% второго ДНК
             {
@@ -89,7 +93,6 @@
                 [newDNA addObjectsFromArray:subDNA1];
                 [newDNA addObjectsFromArray:subDNA2];
                 
-                //NSLog(@"case 0: %@", [newDNA componentsJoinedByString:@""]);
                 break;
             }
                 
@@ -100,7 +103,6 @@
                     if(f+1 < DNALength) [newDNA addObject:[secondDNA objectAtIndex:f+1]];
                 }
                 
-                //NSLog(@"case 1: %@", [newDNA componentsJoinedByString:@""]);
                 break;
             }
                 
@@ -118,7 +120,6 @@
                 [newDNA addObjectsFromArray:subDNA2];
                 [newDNA addObjectsFromArray:subDNA3];
                 
-                //NSLog(@"case 2: %@", [newDNA componentsJoinedByString:@""]);
                 break;
             }
         }
@@ -127,16 +128,17 @@
         [newCells addObject:newCell];
     }
     
-    //
+    // замена результатом скрещивания оставшиеся 50%
     NSMutableArray *newGeneration = [NSMutableArray arrayWithArray:topCells];
     [newGeneration addObjectsFromArray:newCells];
     self.cells = newGeneration;
 }
 
+
+// матация популяции
 - (void)mutate:(int)percent
 {
     for(Cell* cell in self.cells){
-        //NSLog(@"Cell: %@", cell);
         [cell mutate:percent];
     }
 }

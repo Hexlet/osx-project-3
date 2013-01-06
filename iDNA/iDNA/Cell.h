@@ -17,13 +17,10 @@
 @property int hammingDistance;
 
 - (id)initWithLength:(int)dnaLength;
-
 - (id)initWithDNA:(NSArray*)dnaArr;
-
 - (id)initWithString:(NSString*)dnaString;
 
 - (void)mutate:(int)count;
-
 - (int)hammingDistance:(id)cell;
 
 - (NSString*)stringValue;

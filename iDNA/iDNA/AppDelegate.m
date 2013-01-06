@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Nucleotides.h"
+#import "IntegerValueFormatter.h"
 
 #define MAX_POPULATION_SIZE 5000
 #define DEFAULT_POPULATION_SIZE 1000
@@ -23,7 +24,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    appState = APP_STATE_IDLE;
+    
+    [self appReset];
+    
+    IntegerValueFormatter* formatter = [[IntegerValueFormatter alloc] init];
+    [_fieldPopulationSize setFormatter:formatter];
+    [_fieldDNALength setFormatter:formatter];
+    [_fieldMutationRate setFormatter:formatter];
     
     [_sliderPopulationSize setMaxValue:MAX_POPULATION_SIZE];
     [_sliderDNALength setMaxValue:MAX_DNA_LENGTH];
@@ -53,11 +60,23 @@
     [self removeObserver:self forKeyPath:@"mutationRate"];
 }
 
+- (void)appReset
+{
+    appState = APP_STATE_IDLE;
+    generation = 1;
+    bestMatch = 0;
+    
+    [self enableControls];
+}
+
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == @"populationSize") {
         
         if(populationSize > MAX_POPULATION_SIZE){
             populationSize = MAX_POPULATION_SIZE;
+            [_fieldPopulationSize setIntegerValue:populationSize];
+        } else if(populationSize < 2){
+            populationSize = 2;
             [_fieldPopulationSize setIntegerValue:populationSize];
         }
         
@@ -74,7 +93,7 @@
         }
         
         [self buildGoalDNAWithLength: DNALength];
-        NSLog(@"DNALength %i", DNALength);
+        //NSLog(@"DNALength %i", DNALength);
 
     } else if (context == @"mutationRate") {
         
@@ -89,7 +108,6 @@
         //NSLog(@"mutationRate $i", mutationRate);
     }    
 }
-
 
 - (void)setPopulationSize:(int)size
 {
@@ -115,16 +133,17 @@
 
 - (IBAction)startEvolution:(id)sender {
     [self disableControls];
-    appState = APP_STATE_RUNNING;
     
     if(appState != APP_STATE_PAUSED){
         population = [[Population alloc] initWithPopulationSize:populationSize andDNALength:DNALength];
-        NSLog(@"Simulation started. New population created.");
+        NSLog(@"New population created. Simulation started.");
     } else {
         NSLog(@"Simulation continue");
     }
     
     //NSLog(@"goal: %@, %i", [goalDNA stringValue], DNALength);
+    
+    appState = APP_STATE_RUNNING;
     
     //start background evolution
     NSThread* bgEvolutionThread = [[NSThread alloc] initWithTarget:self selector:@selector(evolution) object:nil];
@@ -135,38 +154,46 @@
 {
     
     do {
-        @autoreleasepool { //prevent memory leak
+        @autoreleasepool { //устраняем утечку памяти в цикле
             
+            // пересчитать расстояние Хэминга для каждой клетки в популяции
             [population hammingDistanceWith:goalDNA];
+            
+            // отсортировать популяцию по расстоянию Хэминга
             [population sort];
             
+            // процент сходства лучшей клетки с целевой ДНК
             float bestPopulationDistance = DNALength - [[population.cells objectAtIndex:0] hammingDistance];
             float matchPercent = (bestPopulationDistance / DNALength) * 100;
             
+            // обновление статистики (если необходимо)
             if((int)matchPercent > bestMatch){
                 bestMatch = (int)matchPercent;
-                
-                NSLog(@"\nNew best match: %i\nDNA: %@", bestMatch, [[population.cells objectAtIndex:0] stringValue]);
-                
                 [_progressMatch setIntValue:bestMatch];
                 [_labelBestMatch setStringValue:[NSString stringWithFormat:@"Best individual match: %i%%", bestMatch]];
+                
+                NSLog(@"\nNew best match: %i%% \nBest DNA: %@", bestMatch, [[population.cells objectAtIndex:0] stringValue]);
             }
-            
+             
+            // проверка на успешное завершение эволюции
             if(![population evolutionSuccess]){
                 
-                [population hybridize];
+                // скрестить кандидатов из топ 50% и заменить результатом оставшиеся 50%
+                if(DNALength >= 2) [population hybridize];
+                
+                // мутировать получившуюся популяцию
                 [population mutate:mutationRate];
                 
                 generation++;
                 [_labelGeneration setStringValue:[NSString stringWithFormat:@"Generation: %i", generation]];
                 
-            } else {
-            
-                appState = APP_STATE_IDLE;
+            } else { // эволюция завершена
                 
                 [_labelBestMatch setStringValue:@"Simulation successfully complete."];
                 NSLog(@"JOB DONE!!!!");
+                NSBeep();
                 
+                appState = APP_STATE_IDLE;
                 [self appReset];
             }
             
@@ -186,15 +213,6 @@
         [self startEvolution:nil];
         [sender setTitle:@"Pause"];
     }
-}
-
-- (void)appReset
-{
-    appState = APP_STATE_IDLE;
-    generation = 1;
-    bestMatch = 0;
-    
-    [self enableControls];
 }
 
 - (void)disableControls
@@ -229,22 +247,19 @@
     if([openDlg runModal] == NSOKButton){
         NSArray* files = [openDlg URLs];
         NSString* filePath = [[files objectAtIndex:0] path];
-        NSString* dnaString = @"";
         
         if(filePath){
-            //NSLog(@"File path: %@", [[files objectAtIndex:0] path]);
-        
             NSString* fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-            dnaString = [self validateDNAString:fileContents];
+            NSString* dnaString = [self validateDNAString:fileContents];
             NSLog(@"File DNA: %@", dnaString);
             
             if([dnaString length]){
                 [self setDNALength:(int)[dnaString length]];
                 [_fieldGoalDNA setStringValue:dnaString];
                 
-                goalDNA = nil;
+                //goalDNA = nil;
                 goalDNA = [[Cell alloc ] initWithString:dnaString];
-                NSLog(@"Goal DNA: %@", [goalDNA stringValue]);
+                NSLog(@"Loaded goal DNA: %@", [goalDNA stringValue]);
                 
             } else {
                 NSAlert *alert = [[NSAlert alloc] init];
@@ -257,6 +272,9 @@
     
 }
 
+// проверка загруженой из файла ДНК.
+// удаление неправильных символов (не C,G,T,A). это позволяет скормить приложению любой текстовый файл.
+// обрезать ДНК до максимально возможной длины
 - (NSString*)validateDNAString:(NSString*)DNAString
 {
 
@@ -276,11 +294,10 @@
     return dnaString;
 }
 
-
+// закрываем приложение при закрытии окна
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return YES;
 }
-
 
 @end

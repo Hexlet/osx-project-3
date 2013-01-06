@@ -49,6 +49,7 @@
 - (NSString*)validateDNAString:(NSString*)DNAString;
 
 - (void)buildGoalDNAWithLength:(int)length;
+
 - (void)disableControls;
 - (void)enableControls;
 - (void)appReset;
