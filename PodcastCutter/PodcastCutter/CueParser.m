@@ -7,21 +7,39 @@
 //
 
 #import "CueParser.h"
+#import "Mp3Arrays.h"
+
 
 @implementation CueParser
 
 -(void) ParseCueFile:(NSString*)fileLocationPath
 {
-    trackArray = [NSMutableArray arrayWithCapacity:40] ;
-    performerArray  = [NSMutableArray arrayWithCapacity:40] ;
-    titleArray  = [NSMutableArray arrayWithCapacity:40] ;
-    indexArray  = [NSMutableArray arrayWithCapacity:40] ;
-    
+    Mp3Arrays * ma = [[Mp3Arrays alloc] init]; 
     NSError *error = nil;
     NSString * cueFile  = [NSString stringWithContentsOfFile:fileLocationPath encoding:NSUTF8StringEncoding error:&error];
     NSArray* arrayOfLines = [cueFile componentsSeparatedByString:@"\n"];
-    long countOfLines = arrayOfLines.count;
-    NSLog(@"Lines in file are: %ld", countOfLines);
+    for (int s = 0; s < 4; s ++)
+    {
+        NSString * WordsInLine = [arrayOfLines objectAtIndex: s];
+        
+        char c = '"';
+        NSString *separator = [NSString stringWithFormat:@"%c", c];
+        NSArray * WordsInLineNntoArray = [WordsInLine componentsSeparatedByString:separator];
+        for (int v = 0; v< WordsInLineNntoArray.count; v++)
+        {
+            NSString *w = [WordsInLineNntoArray objectAtIndex:v];
+            NSString *withoutSpase = [w stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            if ([withoutSpase hasPrefix:@"PERFORMER"])
+            {
+                NSString * tempPerformer = [WordsInLineNntoArray objectAtIndex:v+1];
+                [ma setAlbumPerformer:tempPerformer]; 
+            }
+            if ([withoutSpase hasPrefix:@"TITLE"])
+            {
+                NSString *tempTitle = [WordsInLineNntoArray objectAtIndex:v+1];
+                [ma setAlbumTitle:tempTitle];
+            }
+        }
     for (int i = 3; i < arrayOfLines.count; i ++)
     {
         NSString * WordsInLine = [arrayOfLines objectAtIndex: i];
@@ -33,63 +51,30 @@
         {
             NSString *w = [WordsInLineNntoArray objectAtIndex:x];
             NSString *withoutSpase = [w stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-           // NSLog(@"->: %@", withoutSpase);
             if ([withoutSpase hasPrefix:@"PERFORMER"])
             {
                 
-                NSString * twmp = [WordsInLineNntoArray objectAtIndex:x+1];
-                [performerArray addObject:twmp];
-                NSLog(@"%@", twmp);
+                NSString * trackPerformer = [WordsInLineNntoArray objectAtIndex:x+1];
+                [ma insertIntoPerformerArray:trackPerformer];
             }
             if ([withoutSpase hasPrefix:@"TITLE"])
             {
-                NSString * twmp = [WordsInLineNntoArray objectAtIndex:x+1];
-                [titleArray addObject:twmp];
-                NSLog(@"%@", twmp);
+                NSString * trackTitle = [WordsInLineNntoArray objectAtIndex:x+1];
+                [ma insertIntoTitelArray:trackTitle];
             }
             if ([withoutSpase hasPrefix:@"TRACK"])
             {
                 NSString *trackArrayItem = [withoutSpase substringWithRange:NSMakeRange(6, 2)];
-                NSLog(@"%@", trackArrayItem);
-                [trackArray addObject:trackArrayItem];
+                [ma insertIntoTrackArray:trackArrayItem];
             }
             if ([withoutSpase hasPrefix:@"INDEX"])
             {
                 NSString *indexArrayItem = [withoutSpase substringFromIndex:10];
-                NSLog(@"%@", indexArrayItem);
-                [indexArray addObject:indexArrayItem];
+                [ma insertIntoIndexArray:indexArrayItem]; 
             }
         }
-     
     }
-    
-    for (int zzz=0; zzz<indexArray.count; zzz++)
-    {
-        
-        NSString *a = [indexArray objectAtIndex:zzz];
-          NSLog(@"Index ---- %@", a);
-    }
-    for (int zz=0; zz<trackArray.count; zz++)
-    {
-        NSString *b = [trackArray objectAtIndex:zz];
-        NSLog(@"Track ---- %@", b);
-    }
-    for (int z=0; z<titleArray.count; z++)
-    {
-        NSString *c = [titleArray objectAtIndex:z];
-        NSLog(@"Title ---- %@", c);
-    }
-    for (int z1=0; z1<performerArray.count; z1++)
-    {
-        NSString *v = [performerArray objectAtIndex:z1];
-        NSLog(@"Performer ---- %@", v);
-    }
-    
 }
-
--( NSMutableArray *) ReturnIndexArray
-{
-    return  indexArray; 
 }
-
+    
 @end

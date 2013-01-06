@@ -19,6 +19,8 @@
 		7D0973EC166E739700512545 /* PodcastCutterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0973EB166E739700512545 /* PodcastCutterTests.m */; };
 		7D0973F6166E808E00512545 /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 7D0973F5166E808E00512545 /* Readme */; };
 		7D5334001672952500590405 /* CueParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5333FF1672952500590405 /* CueParser.m */; };
+		7DD2941B169870C900FDFCB3 /* TableViewContraller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD2941A169870C900FDFCB3 /* TableViewContraller.m */; };
+		7DD2941F1698815B00FDFCB3 /* Mp3Arrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD2941E1698815B00FDFCB3 /* Mp3Arrays.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		7D0973F5166E808E00512545 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Readme; path = PodcastCutterTests/Readme; sourceTree = SOURCE_ROOT; };
 		7D5333FE1672952500590405 /* CueParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CueParser.h; sourceTree = "<group>"; };
 		7D5333FF1672952500590405 /* CueParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CueParser.m; sourceTree = "<group>"; };
+		7DD29419169870C900FDFCB3 /* TableViewContraller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewContraller.h; sourceTree = "<group>"; };
+		7DD2941A169870C900FDFCB3 /* TableViewContraller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewContraller.m; sourceTree = "<group>"; };
+		7DD2941D1698815B00FDFCB3 /* Mp3Arrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mp3Arrays.h; sourceTree = "<group>"; };
+		7DD2941E1698815B00FDFCB3 /* Mp3Arrays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mp3Arrays.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,10 @@
 				7D0973F5166E808E00512545 /* Readme */,
 				7D0973D3166E739700512545 /* AppDelegate.h */,
 				7D0973D4166E739700512545 /* AppDelegate.m */,
+				7DD29419169870C900FDFCB3 /* TableViewContraller.h */,
+				7DD2941D1698815B00FDFCB3 /* Mp3Arrays.h */,
+				7DD2941E1698815B00FDFCB3 /* Mp3Arrays.m */,
+				7DD2941A169870C900FDFCB3 /* TableViewContraller.m */,
 				7D5333FE1672952500590405 /* CueParser.h */,
 				7D5333FF1672952500590405 /* CueParser.m */,
 				7D0973D6166E739700512545 /* MainMenu.xib */,
@@ -273,6 +283,8 @@
 				7D0973CE166E739700512545 /* main.m in Sources */,
 				7D0973D5166E739700512545 /* AppDelegate.m in Sources */,
 				7D5334001672952500590405 /* CueParser.m in Sources */,
+				7DD2941B169870C900FDFCB3 /* TableViewContraller.m in Sources */,
+				7DD2941F1698815B00FDFCB3 /* Mp3Arrays.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

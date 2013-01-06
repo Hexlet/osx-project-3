@@ -10,24 +10,19 @@
 #import "CueParser.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-
+{
+NSMutableArray *arrayOfMp3Index;
+NSMutableArray *arrayOfMp3Title;
+NSMutableArray *arrayOfMp3Performer;
+    NSMutableArray *arrayOfMp3Track;}
 @property (assign) IBOutlet NSWindow *window;
 
-NSString *OpenFile();
-- (IBAction)CutFile:(id)sender;
-- (IBAction)SaveAs:(id)sender;
-- (IBAction)ChangeYear:(id)sender;
-- (IBAction)ChangeAtwork:(id)sender;
-- (IBAction)ChangeAlbumArtist:(id)sender;
-- (IBAction)ChangeAlbum:(id)sender;
-- (IBAction)ChangeGenre:(id)sender;
-@property (weak) IBOutlet NSScrollView *Table;
+-(NSString*) OpenFile;
 
-@property (weak) IBOutlet NSTextField *AlbumArtist;
-@property (weak) IBOutlet NSTextField *Album;
-@property (weak) IBOutlet NSComboBox *Genre;
-@property (weak) IBOutlet NSTextField *Comments;
-@property (weak) IBOutlet NSComboBox *Year;
-@property (weak) IBOutlet NSScrollView *ListOfSongs;
+
+@property (weak) IBOutlet NSTextField *albumArtist;
+@property (weak) IBOutlet NSTextField *albumTitle;
+@property (weak) IBOutlet NSComboBox *genreTypeList;
+
 
 @end
