@@ -36,6 +36,12 @@
 	[self createGoalDNA];
 }
 
+- (IBAction)startEvolution:(id)sender
+{
+	
+}
+
+// Create new goal DNA and sets value to corresponding text field.
 - (void) createGoalDNA
 {
 	goalDNA = [[Cell alloc] initWithDNAlength:dnaLength];
@@ -63,5 +69,4 @@
 {
 	populationSize = MIN(x, maxPopulationSize);
 }
-
 @end

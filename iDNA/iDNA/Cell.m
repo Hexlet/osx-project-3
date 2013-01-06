@@ -114,47 +114,56 @@
         return @"";
 }
 
--(void) mutate: (int) percentToReplace
+-(Cell *) crossWithCell: (Cell *) otherCell
 {
-    // Explicit number of element to replace.
-    NSInteger replace = percentToReplace * [self DNAsize] / 100;
-    
-    // Some preparation in case of data out of range.
-    if (replace < 0)
-        replace = 0;
-    if (replace > [self DNAsize])
-        replace = [self DNAsize];
-    
-    // Nothing to do here.
-    if (replace == 0)
-        return;
-    
-    NSInteger i = 0;
-    
-    // Array that stores indices to replace.
-    NSMutableArray *indicesToReplace = [[NSMutableArray alloc] initWithCapacity:[self DNAsize]];
-    for (i = 0; i < [self DNAsize]; i++)
-        [indicesToReplace setObject:[NSNumber numberWithInteger:i] atIndexedSubscript:i];
-    // Shuffle it!
-    [indicesToReplace shuffle];
-    
-    // To store generated nucleotide.
-    NSString *tempNucleotide = [[NSString alloc] init];
-    NSInteger DNAindex = 0;
-    
-    for (i = 0; i < replace; i++)
-    {
-        // Index of DNA array.
-        DNAindex = [[indicesToReplace objectAtIndex:i] integerValue];
-        // Generate string different from that in DNA array.
-        do
-        {
-            tempNucleotide = [self randomNucleotide];
-        }
-        while ([[self getDNAatIndex:DNAindex] isEqualToString:tempNucleotide]);
-        
-        [self setDNA:tempNucleotide atIndex:DNAindex];
-    }
+	switch (arc4random_uniform(3))
+	{
+		case 0:
+			return [self crossByHalfWithCell:otherCell];
+		case 1:
+			return [self crossByOnePercentWithCell:otherCell];
+		case 2:
+			return [self crossByPartsWithCell:otherCell];
+		default: return self;
+	}
+}
+
+-(Cell *) crossByHalfWithCell: (Cell *) otherCell
+{
+	if ([self DNAsize] != [otherCell DNAsize])
+		return self;
+	Cell *newCell = [self copy];
+	
+	for (NSInteger i = [self DNAsize] / 2; i<[self DNAsize]; i++)
+		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	
+	return newCell;
+}
+
+-(Cell *) crossByOnePercentWithCell: (Cell *) otherCell
+{
+	if ([self DNAsize] != [otherCell DNAsize])
+		return self;
+	Cell *newCell = [self copy];
+	
+	// Simpler method described in module video.
+	for (NSInteger i = 0; i < [self DNAsize]; i++)
+	{
+		if (i % 2 == 1)
+			[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	}
+	return newCell;
+}
+
+-(Cell *) crossByPartsWithCell: (Cell *) otherCell
+{
+	if ([self DNAsize] != [otherCell DNAsize])
+		return self;
+	Cell *newCell = [self copy];
+	
+	for (NSInteger i = [self DNAsize]/5; i < 4*[self DNAsize]/5; i++)
+		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	return newCell;
 }
 
 -(NSString *) DNAtoString

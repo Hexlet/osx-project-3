@@ -22,5 +22,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *tfGoalDNA;
+- (IBAction)startEvolution:(id)sender;
 
 @end

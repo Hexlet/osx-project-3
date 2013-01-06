@@ -15,9 +15,9 @@
 -(NSString *) getDNAatIndex: (NSInteger)index;
 -(void) setDNA: (NSString *) nucluotide atIndex: (NSInteger)index;
 -(NSString *) randomNucleotide;
--(void) mutate: (int) percentToReplace;
 -(void) initNucleotides;
 -(id) initWithDNAlength: (NSInteger) length;
 -(NSString *) DNAtoString;
+-(Cell *) crossWithCell: (Cell *) otherCell;
 
 @end
