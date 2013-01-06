@@ -9,12 +9,21 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+{
+	NSInteger maxPopulationSize;
+	NSInteger maxDnaLength;
+	NSInteger maxMutationRate;
+}
 
 - (id) init
 {
 	if (self = [super init])
 	{
-		DNAlength = 50;
+		maxDnaLength = 100;
+		maxMutationRate = 100;
+		maxPopulationSize = 10000;
+		
+		dnaLength = 50;
 		mutationRate = 50;
 		populationSize = 5000;
 	}
@@ -22,26 +31,37 @@
 	return self;
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	[self createGoalDNA];
 }
 
-- (void) setPopulationSize: (NSInteger) x
+- (void) createGoalDNA
 {
-	[_tfPopulationSize setStringValue:[NSString stringWithFormat:@"%ld", x]];
-	populationSize = x;
+	goalDNA = [[Cell alloc] initWithDNAlength:dnaLength];
+	[_tfGoalDNA setStringValue:[goalDNA DNAtoString]];
 }
 
-- (void) setDNAlength: (NSInteger) x
+// Getters.
+- (NSInteger) dnaLength			{ return dnaLength; }
+- (NSInteger) mutationRate		{ return mutationRate; }
+- (NSInteger) populationSize	{ return populationSize; }
+
+// Setters.
+- (void) setDnaLength: (NSInteger) x
 {
-	[_tfDNAlength setStringValue:[NSString stringWithFormat:@"%ld", x]];
-	DNAlength = x;
+	dnaLength = MIN(x, maxDnaLength);
+	[self createGoalDNA];
 }
 
 - (void) setMutationRate: (NSInteger) x
 {
-	[_tfMutationRate setStringValue:[NSString stringWithFormat:@"%ld", x]];
-	mutationRate = x;
+	mutationRate = MIN(x, maxMutationRate);
+}
+
+- (void) setPopulationSize: (NSInteger) x
+{
+	populationSize = MIN(x, maxPopulationSize);
 }
 
 @end

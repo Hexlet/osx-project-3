@@ -21,23 +21,41 @@
     
     if (self)
     {
-        // Size of DNA array.
-        int DNAsize = 100;
-        
-        // Possible elements.
-        nucleotide = [[NSArray alloc] initWithObjects:@"A", @"C", @"G", @"T", nil];
-        
-        // First init of DNA array.
-        DNA = [[NSMutableArray alloc] initWithCapacity:DNAsize];
-        
-        // Fill with random nucleotides from corresponding array.
-        for (NSInteger i=0; i < DNAsize; i++)
-        {
-            [DNA setObject:[self randomNucleotide] atIndexedSubscript:i];
-        }
+        [self initNucleotides];
+        [self initDNAWithlength:100];   
     }
     
     return self;
+}
+
+-(id) initWithDNAlength: (NSInteger) length
+{
+	if (self = [super init])
+	{
+		[self initNucleotides];
+		[self initDNAWithlength:length];
+	}
+	return self;
+}
+
+-(void) initDNAWithlength: (NSInteger) length
+{
+	int DNAsize = (int) length;
+	
+	// First init of DNA array.
+	DNA = [[NSMutableArray alloc] initWithCapacity:DNAsize];
+	
+	// Fill with random nucleotides from corresponding array.
+	for (NSInteger i=0; i < DNAsize; i++)
+	{
+		[DNA setObject:[self randomNucleotide] atIndexedSubscript:i];
+	}
+}
+
+-(void) initNucleotides
+{
+	// Possible elements.
+	nucleotide = [[NSArray alloc] initWithObjects:@"A", @"C", @"G", @"T", nil];
 }
 
 -(int) hammingDistance: (Cell *) cell
@@ -62,6 +80,7 @@
     
     return dist;
 }
+
 
 // Returns the size of DNA array.
 -(NSInteger) DNAsize
@@ -136,6 +155,16 @@
         
         [self setDNA:tempNucleotide atIndex:DNAindex];
     }
+}
+
+-(NSString *) DNAtoString
+{
+	NSMutableString *output = [[NSMutableString alloc] init];
+    for (NSInteger i = 0; i < [self DNAsize]; i++)
+    {
+        [output appendString: [self getDNAatIndex:i]];
+    }
+	return output;
 }
 
 @end

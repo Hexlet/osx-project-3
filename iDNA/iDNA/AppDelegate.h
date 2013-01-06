@@ -7,17 +7,20 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Cell.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
 	NSInteger populationSize;
-	NSInteger DNAlength;
+	NSInteger dnaLength;
 	NSInteger mutationRate;
+	
+	Cell *goalDNA;
 }
 
+- (void) createGoalDNA;
+
 @property (assign) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSTextField *tfPopulationSize;
-@property (weak) IBOutlet NSTextField *tfDNAlength;
-@property (weak) IBOutlet NSTextField *tfMutationRate;
+@property (weak) IBOutlet NSTextField *tfGoalDNA;
 
 @end
