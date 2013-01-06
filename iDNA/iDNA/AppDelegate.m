@@ -33,19 +33,39 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	[self createGoalDNA];
+	evolution = [[Evolution alloc] init];
+	[self setGoalDNA];
 }
 
 - (IBAction)startEvolution:(id)sender
 {
+	[self setInputsEnabled:NO];
+}
+
+- (IBAction)pause:(id)sender
+{
+	[self setInputsEnabled:YES];
+}
+
+- (void) setInputsEnabled: (Boolean) status
+{
+	[_btLoadGoalDNA setEnabled:status];
+	[_btStartEvolution setEnabled:status];
+	[_btPause setEnabled:!status];
 	
+	[_tfDnaLength setEnabled:status];
+	[_tfMutationRate setEnabled:status];
+	[_tfPopulationSize setEnabled:status];
+	
+	[_slDnaLength setEnabled:status];
+	[_slMutationRate setEnabled:status];
+	[_slPopulationSize setEnabled:status];
 }
 
 // Create new goal DNA and sets value to corresponding text field.
-- (void) createGoalDNA
+- (void) setGoalDNA
 {
-	goalDNA = [[Cell alloc] initWithDNAlength:dnaLength];
-	[_tfGoalDNA setStringValue:[goalDNA DNAtoString]];
+	[_tfGoalDNA setStringValue:[[evolution createGoalDNAWithLength:dnaLength] DNAtoString]];
 }
 
 // Getters.
@@ -57,16 +77,19 @@
 - (void) setDnaLength: (NSInteger) x
 {
 	dnaLength = MIN(x, maxDnaLength);
-	[self createGoalDNA];
+	[_tfDnaLength setStringValue:[NSString stringWithFormat:@"%ld", dnaLength]];
+	[self setGoalDNA];
 }
 
 - (void) setMutationRate: (NSInteger) x
 {
 	mutationRate = MIN(x, maxMutationRate);
+	[_tfMutationRate setStringValue:[NSString stringWithFormat:@"%ld", mutationRate]];
 }
 
 - (void) setPopulationSize: (NSInteger) x
 {
 	populationSize = MIN(x, maxPopulationSize);
+	[_tfPopulationSize setStringValue:[NSString stringWithFormat:@"%ld", populationSize]];
 }
 @end

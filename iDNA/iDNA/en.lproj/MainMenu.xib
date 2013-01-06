@@ -2437,6 +2437,86 @@
 					<int key="connectionID">1457</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tfPopulationSize</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1057976495"/>
+					</object>
+					<int key="connectionID">1458</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tfDnaLength</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="998676975"/>
+					</object>
+					<int key="connectionID">1459</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tfMutationRate</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="622682001"/>
+					</object>
+					<int key="connectionID">1460</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">slPopulationSize</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="170401784"/>
+					</object>
+					<int key="connectionID">1461</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">slDnaLength</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="595729845"/>
+					</object>
+					<int key="connectionID">1462</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">slMutationRate</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="100403295"/>
+					</object>
+					<int key="connectionID">1463</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">btStartEvolution</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="377320191"/>
+					</object>
+					<int key="connectionID">1464</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">btPause</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="315268870"/>
+					</object>
+					<int key="connectionID">1465</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">btLoadGoalDNA</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="481675673"/>
+					</object>
+					<int key="connectionID">1466</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">pause:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="315268870"/>
+					</object>
+					<int key="connectionID">1467</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: self.populationSize</string>
 						<reference key="source" ref="1057976495"/>
@@ -5252,7 +5332,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1457</int>
+			<int key="maxID">1467</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

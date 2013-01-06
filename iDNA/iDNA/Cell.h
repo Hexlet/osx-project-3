@@ -19,5 +19,6 @@
 -(id) initWithDNAlength: (NSInteger) length;
 -(NSString *) DNAtoString;
 -(Cell *) crossWithCell: (Cell *) otherCell;
+-(void) mutate: (NSInteger) percentToReplace;
 
 @end

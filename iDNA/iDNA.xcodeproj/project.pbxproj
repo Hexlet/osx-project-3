@@ -15,6 +15,7 @@
 		0D6AEA331689DF2600034395 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AEA311689DF2600034395 /* MainMenu.xib */; };
 		0D6AEA431689FE7400034395 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AEA421689FE7300034395 /* Cell.m */; };
 		0D6AEA4A1689FF5500034395 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AEA491689FF5500034395 /* NSMutableArray+Shuffle.m */; };
+		0D7E761E169A0BBA0089D9C8 /* Evolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7E761D169A0BBA0089D9C8 /* Evolution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		0D6AEA421689FE7300034395 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		0D6AEA481689FF5500034395 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
 		0D6AEA491689FF5500034395 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
+		0D7E761C169A0BBA0089D9C8 /* Evolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evolution.h; sourceTree = "<group>"; };
+		0D7E761D169A0BBA0089D9C8 /* Evolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evolution.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 		0D6AEA221689DF2600034395 /* iDNA */ = {
 			isa = PBXGroup;
 			children = (
+				0D7E761C169A0BBA0089D9C8 /* Evolution.h */,
+				0D7E761D169A0BBA0089D9C8 /* Evolution.m */,
 				0D6AEA411689FE7300034395 /* Cell.h */,
 				0D6AEA421689FE7300034395 /* Cell.m */,
 				0D6AEA481689FF5500034395 /* NSMutableArray+Shuffle.h */,
@@ -180,6 +185,7 @@
 				0D6AEA301689DF2600034395 /* AppDelegate.m in Sources */,
 				0D6AEA431689FE7400034395 /* Cell.m in Sources */,
 				0D6AEA4A1689FF5500034395 /* NSMutableArray+Shuffle.m in Sources */,
+				0D7E761E169A0BBA0089D9C8 /* Evolution.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +315,7 @@
 				0D6AEA381689DF2600034395 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
