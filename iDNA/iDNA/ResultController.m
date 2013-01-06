@@ -16,7 +16,7 @@
 @implementation ResultController
 
 - (id) initWithGeneration:(int) g {
-	self = [super initWithWindowNibName:@"Result"];
+	self = [super initWithWindowNibName:@"ResultController"];
 	generationAmount = g;
 	return self;
 }

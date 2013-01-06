@@ -11,6 +11,8 @@
 
 @implementation iDNADocument {
 	BOOL paused;
+	ResultController *rc;
+	NSThread *evolutionThread;
 }
 
 @synthesize goalDNAText = _goalDNAText;
@@ -129,7 +131,7 @@
 	[_pause setEnabled:NO];
 	
 	// показываем панель с ркзультатом
-	ResultController *rc = [[ResultController alloc] initWithGeneration:generation];
+	rc = [[ResultController alloc] initWithGeneration:generation];
 	[rc showWindow: self];
 }
 
@@ -148,13 +150,10 @@
 	[_pause setEnabled:YES];
 	
 	paused = NO;
-
-	//ResultController *rc = [[ResultController alloc] initWithGeneration:0];
-	//[rc showWindow: self];
-	
-	//NSThread *evolutionThread = [[NSThread alloc] initWithTarget:self selector:@selector(evolution) object:nil];
-	//[evolutionThread start];
-	[self performSelectorInBackground:@selector(evolution) withObject:nil];
+		
+	evolutionThread = [[NSThread alloc] initWithTarget:self selector:@selector(evolution) object:nil];
+	[evolutionThread start];
+	//[self performSelectorInBackground:@selector(evolution) withObject:nil];
 }
 
 - (IBAction)pauseClicked:(NSButton *)sender {
