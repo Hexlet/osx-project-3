@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491D6B861699E87B009AF1BD /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 491D6B851699E87B009AF1BD /* Cell.m */; };
+		491D6B8A169A015A009AF1BD /* Population.m in Sources */ = {isa = PBXBuildFile; fileRef = 491D6B89169A015A009AF1BD /* Population.m */; };
 		49923F78168A3B7F00B01226 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49923F77168A3B7F00B01226 /* Cocoa.framework */; };
 		49923F82168A3B7F00B01226 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49923F80168A3B7F00B01226 /* InfoPlist.strings */; };
 		49923F84168A3B7F00B01226 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49923F83168A3B7F00B01226 /* main.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491D6B841699E87B009AF1BD /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		491D6B851699E87B009AF1BD /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		491D6B88169A015A009AF1BD /* Population.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Population.h; sourceTree = "<group>"; };
+		491D6B89169A015A009AF1BD /* Population.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Population.m; sourceTree = "<group>"; };
 		49923F73168A3B7F00B01226 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49923F77168A3B7F00B01226 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		49923F7A168A3B7F00B01226 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -84,6 +90,10 @@
 			children = (
 				49923F89168A3B7F00B01226 /* AppDelegate.h */,
 				49923F8A168A3B7F00B01226 /* AppDelegate.m */,
+				491D6B841699E87B009AF1BD /* Cell.h */,
+				491D6B851699E87B009AF1BD /* Cell.m */,
+				491D6B88169A015A009AF1BD /* Population.h */,
+				491D6B89169A015A009AF1BD /* Population.m */,
 				49923F8C168A3B7F00B01226 /* MainMenu.xib */,
 				49923F7E168A3B7F00B01226 /* Supporting Files */,
 			);
@@ -168,6 +178,8 @@
 			files = (
 				49923F84168A3B7F00B01226 /* main.m in Sources */,
 				49923F8B168A3B7F00B01226 /* AppDelegate.m in Sources */,
+				491D6B861699E87B009AF1BD /* Cell.m in Sources */,
+				491D6B8A169A015A009AF1BD /* Population.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +309,7 @@
 				49923F93168A3B7F00B01226 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
