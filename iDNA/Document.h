@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Cell.h"
-#import "Cell+Mutate.h"
+
 @interface Document : NSDocument {
     NSMutableArray *population;
     Cell *goalDNA;
@@ -36,6 +36,7 @@
     IBOutlet NSProgressIndicator *bestMatchProg;
     
     IBOutlet NSTextField *goalDNAField;
+    IBOutlet NSTextField *bestDNAField;
     
     IBOutlet NSButton *startBut;
     IBOutlet NSButton *loadBut;
@@ -48,6 +49,7 @@
 - (IBAction)DNALengthChange:(id)sender;
 - (IBAction)mutationRateChange:(id)sender;
 - (IBAction)stopEvol:(id)sender;
+- (IBAction)loadGoal:(id)sender;
 
 
 - (void) evolution;

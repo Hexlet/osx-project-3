@@ -19,7 +19,6 @@
 		6373D5271689E47C00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5251689E47C00EE7CDA /* InfoPlist.strings */; };
 		6373D52A1689E47C00EE7CDA /* iDNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5291689E47C00EE7CDA /* iDNATests.m */; };
 		6373D5351689EC2F00EE7CDA /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5341689EC2F00EE7CDA /* Cell.m */; };
-		6373D5381689EC4A00EE7CDA /* Cell+Mutate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +54,6 @@
 		6373D5291689E47C00EE7CDA /* iDNATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDNATests.m; sourceTree = "<group>"; };
 		6373D5331689EC0600EE7CDA /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cell.h; path = ../../DNA/DNA/Cell.h; sourceTree = "<group>"; };
 		6373D5341689EC2F00EE7CDA /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cell.m; path = ../../DNA/DNA/Cell.m; sourceTree = "<group>"; };
-		6373D5361689EC4200EE7CDA /* Cell+Mutate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Cell+Mutate.h"; path = "../../DNA/DNA/Cell+Mutate.h"; sourceTree = "<group>"; };
-		6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Cell+Mutate.m"; path = "../../DNA/DNA/Cell+Mutate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +123,6 @@
 				6373D50F1689E47B00EE7CDA /* Document.m */,
 				6373D5331689EC0600EE7CDA /* Cell.h */,
 				6373D5341689EC2F00EE7CDA /* Cell.m */,
-				6373D5361689EC4200EE7CDA /* Cell+Mutate.h */,
-				6373D5371689EC4A00EE7CDA /* Cell+Mutate.m */,
 				6373D5111689E47B00EE7CDA /* Document.xib */,
 				6373D5141689E47C00EE7CDA /* MainMenu.xib */,
 				6373D5031689E47B00EE7CDA /* Supporting Files */,
@@ -277,7 +272,6 @@
 				6373D5091689E47B00EE7CDA /* main.m in Sources */,
 				6373D5101689E47B00EE7CDA /* Document.m in Sources */,
 				6373D5351689EC2F00EE7CDA /* Cell.m in Sources */,
-				6373D5381689EC4A00EE7CDA /* Cell+Mutate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -373,7 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;

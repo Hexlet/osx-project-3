@@ -46,9 +46,6 @@
     
     stopped=NO;
     [stopBut setEnabled:NO];
-    
-    //load not implemented yet
-    [loadBut setEnabled:NO];
 
 }
 
@@ -77,13 +74,12 @@
 
 
 - (IBAction)startEvolution:(id)sender {
-    //set default generation and best match
+    //set default generation, best match and best DNA
     generation=0;
-    [genLabel setStringValue:[NSString stringWithFormat:@"Generation: %i",generation]]; 
-    
+    [self setGen]; 
     bestMatch=0;
-    [bestMatchLabel setStringValue:[NSString stringWithFormat:@"Best individual match - %i%%",bestMatch]];
-    [bestMatchProg setDoubleValue:bestMatch];
+    [self setBestMatch];
+    [bestDNAField setStringValue:@""];
     
     //disable/enable textfield, sliders and buttons
     [popSizeField setEnabled:NO];
@@ -92,6 +88,7 @@
     [DNALenSlider setEnabled:NO];
     [startBut setEnabled:NO];
     [stopBut setEnabled:YES];
+    [loadBut setEnabled:NO];
     
     //create population
     population = [[NSMutableArray alloc] init];
@@ -106,10 +103,6 @@
 -(void) evolution {    
     while(true) {
         if(stopped) break;
-                
-        //increment generation number
-        generation++;
-        [self setGen];
         
         //sort by hamming distance to goal DNA
         [population sortUsingComparator:^(Cell *obj1, Cell *obj2) {
@@ -119,11 +112,17 @@
                 return (NSComparisonResult)NSOrderedAscending;
             return NSOrderedSame;
         }];
-        //find best match %, stop evolution if 100%
+        
+        //find best match %, show best DNA, stop evolution if 100%
         bestMatch=100-([[population objectAtIndex:0] hammingDistance:goalDNA]*100/DNALength);
         [self setBestMatch];
+        [bestDNAField setStringValue:[[population objectAtIndex:0] getDNAString]];
         if(bestMatch==100) break;
-                
+        
+        //increment generation number
+        generation++;
+        [self setGen];
+     
         //crossbreed
         int parent1, parent2;
         for(int i=(populationSize/2); i<populationSize; i++) {
@@ -148,6 +147,7 @@
     [DNALenSlider setEnabled:YES];
     [startBut setEnabled:YES];
     [stopBut setEnabled:NO];
+    [loadBut setEnabled:YES];
     
     paused=NO;
     stopped=NO;
@@ -164,12 +164,14 @@
     
     [self createGoal];
     
-    //set default generation and best match
+    //set default generation, best match and best DNA
     generation=0;
     [self setGen]; 
     
     bestMatch=0;
     [self setBestMatch];
+    
+    [bestDNAField setStringValue:@""];
 }
 
 - (IBAction)mutationRateChange:(id)sender {
@@ -180,6 +182,36 @@
 - (IBAction)stopEvol:(id)sender {
     stopped=YES;
     [stopBut setEnabled:NO];
+}
+
+- (IBAction)loadGoal:(id)sender {
+    NSOpenPanel *goalLoadPanel = [NSOpenPanel openPanel];
+    if([goalLoadPanel runModal] == NSOKButton) {
+        NSString *file = [goalLoadPanel filename];
+        NSString *string = [NSString stringWithContentsOfFile:file
+                                                     encoding:NSUTF8StringEncoding
+                                                        error:nil];
+        [goalDNA DNAFromString:string withMaxLen:[DNALenSlider maxValue]];
+        [goalDNAField setStringValue:[goalDNA getDNAString]];
+                
+        //if string is longer than max, alert about string cutting
+        if([string length]>[DNALenSlider maxValue]) { 
+            NSAlert *sizeAlert = [NSAlert alertWithMessageText:@"Warning!" 
+                                          defaultButton:@"OK"
+                                          alternateButton:nil
+                                          otherButton:nil
+                                          informativeTextWithFormat:@"Loaded goal DNA is longer than maximum length of %.0f characters. Loaded goal DNA was cut to %.0f characters.",[DNALenSlider maxValue],[DNALenSlider maxValue]]; 
+            [sizeAlert beginSheetModalForWindow:[self windowForSheet]
+                       modalDelegate:self
+                       didEndSelector:nil
+                       contextInfo:nil];
+            DNALength = [DNALenSlider maxValue];    //set DNA max length
+        }
+        else {
+            DNALength = [string length];            //else if string length is OK, set DNA length as string length
+        }
+        [self setDNALen];                           //set textfield and slider values
+    }
 }
 
 -(void) setPopSize {
