@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<books>
+<book>
+<idb>32</idb>
+<name>Acul si barosul</name>
+<category>Povestiri</category>
+<length_minutes>5:03</length_minutes>
+<year_of_publishing>1874</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>21</idb>
+<name>Amintiri din Copilarie</name>
+<category>Proza</category>
+<length_minutes>166.30</length_minutes>
+<year_of_publishing>1879</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>4</number_of_files>
+</book>
+
+<book>
+<idb>22</idb>
+<name>Capra cu trei iezi</name>
+<category>Poveste</category>
+<length_minutes>18:44</length_minutes>
+<year_of_publishing>1875</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>33</idb>
+<name>Cinci paini</name>
+<category>Povestiri</category>
+<length_minutes>8:44</length_minutes>
+<year_of_publishing>1883</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>31</idb>
+<name>Danila Prepeleac</name>
+<category>Poveste</category>
+<length_minutes>30:24</length_minutes>
+<year_of_publishing>1876</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>24</idb>
+<name>Harap Alb</name>
+<category>Poveste</category>
+<length_minutes>111:30</length_minutes>
+<year_of_publishing>1877</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>34</idb>
+<name>Inul si camesa</name>
+<category>Povestiri</category>
+<length_minutes>4:52</length_minutes>
+<year_of_publishing>1874</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>35</idb>
+<name>Ion Roata si Voda Cuza</name>
+<category>Povestiri</category>
+<length_minutes>12:38</length_minutes>
+<year_of_publishing>1883</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>25</idb>
+<name>Ivan Turbinca</name>
+<category>Poveste</category>
+<length_minutes>33:42</length_minutes>
+<year_of_publishing>1878</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>36</idb>
+<name>Mos Ion Roata</name>
+<category>Povestiri</category>
+<length_minutes>8:10</length_minutes>
+<year_of_publishing>1880</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>37</idb>
+<name>Mos Nichifor Cotcariul</name>
+<category>Povestiri</category>
+<length_minutes>37:58</length_minutes>
+<year_of_publishing>1877</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>38</idb>
+<name>Popa Duhu</name>
+<category>Povestiri</category>
+<length_minutes>11:42</length_minutes>
+<year_of_publishing>1879</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>39</idb>
+<name>Poveste - prostia omeneasca</name>
+<category>Poveste</category>
+<length_minutes>7:33</length_minutes>
+<year_of_publishing>1874</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>26</idb>
+<name>Povestea lui Stan Patitul</name>
+<category>Poveste</category>
+<length_minutes>48:30</length_minutes>
+<year_of_publishing>1877</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>27</idb>
+<name>Povestea Porcului</name>
+<category>Poveste</category>
+<length_minutes>39:30</length_minutes>
+<year_of_publishing>1876</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>40</idb>
+<name>Povestea unui om lenes</name>
+<category>Poveste</category>
+<length_minutes>4:23</length_minutes>
+<year_of_publishing>1878</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>28</idb>
+<name>Punguta cu doi bani</name>
+<category>Poveste</category>
+<length_minutes>10:26</length_minutes>
+<year_of_publishing>1875</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>29</idb>
+<name>Soacra cu trei nurori</name>
+<category>Poveste</category>
+<length_minutes>17:20</length_minutes>
+<year_of_publishing>1875</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+<book>
+<idb>30</idb>
+<name>Ursul pacalit de vulpe</name>
+<category>Poveste</category>
+<length_minutes>5:02</length_minutes>
+<year_of_publishing>1880</year_of_publishing>
+<year_of_recording>2007</year_of_recording>
+<number_of_files>1</number_of_files>
+</book>
+
+</books>
+   
+
