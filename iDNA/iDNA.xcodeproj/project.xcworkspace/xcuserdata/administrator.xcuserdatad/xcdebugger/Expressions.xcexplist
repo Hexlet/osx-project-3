@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[iDNADocument startEvolutionClicked:]:iDNADocument.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[Cell Cell1:crossWithCell2:]:Cell.m">
+      </ContextState>
+      <ContextState
+         contextName = "__24-[Population sortToDNA:]_block_invoke_0:Population.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_population">
+            </PersistentString>
+            <PersistentString
+               value = "self.population">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[Cell hammingDistance:]:Cell.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[Cell changeLength:]:Cell.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_DNA.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
