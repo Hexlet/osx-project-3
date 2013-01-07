@@ -13,6 +13,7 @@
     NSInteger controlDnaLength;
     NSInteger controlMutRate;
     BOOL pauseFlag;
+    BOOL goalDnaMutable;
     IBOutlet NSTextField *tfMonitor;
     IBOutlet NSTextField *lbgeneration;
     IBOutlet NSProgressIndicator *piBestMatchHdPop;
@@ -32,5 +33,6 @@
 - (IBAction)pause:(id)sender;
 - (IBAction)saveGoalDna:(id)sender;
 - (IBAction)loadGoalDna:(id)sender;
+- (IBAction)gdnamcb:(id)sender;
 
 @end

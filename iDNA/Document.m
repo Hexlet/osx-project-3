@@ -182,6 +182,10 @@ ResultController *resultWindow;
             // процесс мутации
             for (int count = 0; count < controlPopSize; count++)                            // процесс мутации беспощаден. он касается ВСЕХ!
                 [[population objectAtIndex:count] mutate:(int)controlMutRate];              // собственно мутация
+            if (goalDnaMutable) {
+                [goalDna mutate:(int)controlMutRate];
+                [tfMonitor setStringValue:[goalDna print]];
+            }
     
             // процесс подсчета bestMatchHd
             for (int count = 1; count < controlPopSize; count++)
@@ -240,6 +244,10 @@ ResultController *resultWindow;
             [alert beginSheetModalForWindow:[tfMonitor window] modalDelegate:self didEndSelector:nil contextInfo:NULL];
         }
      }
+}
+
+- (IBAction)gdnamcb:(id)sender {
+    goalDnaMutable = goalDnaMutable ? NO : YES;
 }
 
 @end
