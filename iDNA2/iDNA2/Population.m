@@ -7,6 +7,7 @@
 //
 
 #import "Population.h"
+#import "ui.h"
 
 @implementation Population
 
@@ -103,14 +104,9 @@
     for (NSUInteger i = 0; i < half; i++) {
         [crossingCells addObject:[NSNumber numberWithInt:i]];
     }
-    @try {
-        // убираем ненужные клетки
-        NSRange range = NSMakeRange(half, self.populationSize - half);
-        [_populationCells removeObjectsInRange:range];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"can't remove half cells from population");
-    }
+    // убираем ненужные клетки
+    NSRange range = NSMakeRange(half, [_populationCells count] - half);
+    [_populationCells removeObjectsInRange:range];
     
     // дополняем массив self.populationCells новыми клетками
     // полученными путем скрещивания
@@ -155,13 +151,18 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:self.populationSize forKey:@"populationSize"];
-    [aCoder encodeInteger:self.dnaLength forKey:@"dnaLength"];
-    [aCoder encodeInteger:self.mutationRate forKey:@"mutationRate"];
-    [aCoder encodeInteger:self.generation forKey:@"generation"];
-    [aCoder encodeObject:self.goalDNA forKey:@"goalDNA"];
-    [aCoder encodeObject:self.populationCells forKey:@"populationCells"];
-    [aCoder encodeBool:self.evolutionPaused forKey:@"evolutionPaused"];
+    @try {
+        [aCoder encodeInteger:self.populationSize forKey:@"populationSize"];
+        [aCoder encodeInteger:self.dnaLength forKey:@"dnaLength"];
+        [aCoder encodeInteger:self.mutationRate forKey:@"mutationRate"];
+        [aCoder encodeInteger:self.generation forKey:@"generation"];
+        [aCoder encodeObject:self.goalDNA forKey:@"goalDNA"];
+        [aCoder encodeObject:self.populationCells forKey:@"populationCells"];
+        [aCoder encodeBool:self.evolutionPaused forKey:@"evolutionPaused"];
+    }
+    @catch (NSException *exception) {
+        [ui alertDialogWithTitle:@"File save error" andText:@"There is a problem with file saving. It may happen because the evolution is in progress. Try to pause evoultion and save file again."];
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {

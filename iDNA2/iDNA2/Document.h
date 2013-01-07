@@ -19,6 +19,12 @@ static void *RMDocumentKVOContext;
 @property Cell * goalDna;
 @property NSString * evolutionStatus;
 @property NSThread * evolutionThread;
+
+@property NSUInteger bestCells, generation;
+@property float bestMatch;
+
+@property BOOL isReadFromFile;
+
 @property (weak) IBOutlet NSTextField *populationSizeTxtFld;
 @property (weak) IBOutlet NSSlider *populationSizeHSldr;
 @property (weak) IBOutlet NSTextField *dnaLengthTxtFld;
@@ -44,6 +50,7 @@ static void *RMDocumentKVOContext;
 
 - (void)generateGoalDna;
 - (void)displayGoalDna:(NSString *)dna;
+- (void)displayEvolutionState;
 - (void)generatePopulation;
 - (void)resetAppControlsAccordingEvolutionStatus;
 - (void)runEvolution;

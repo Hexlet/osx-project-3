@@ -22,6 +22,12 @@
 @synthesize evolutionStatus = _evolutionStatus;
 @synthesize evolutionThread = _evolutionThread;
 
+@synthesize bestCells = _bestCells;
+@synthesize bestMatch = _bestMatch;
+@synthesize generation = _generation;
+
+@synthesize isReadFromFile = _isReadFromFile;
+
 @synthesize populationSizeTxtFld = _populationSizeTxtFld;
 @synthesize populationSizeHSldr = _populationSizeHSldr;
 @synthesize dnaLengthTxtFld = _dnaLengthTxtFld;
@@ -46,6 +52,10 @@
         self.evolutionThread = nil;
         self.goalDna = nil;
         self.myPopulation = nil;
+        self.generation = 0;
+        self.bestCells = 0;
+        self.bestMatch = 0;
+        self.isReadFromFile = NO;
     }
     return self;
 }
@@ -94,6 +104,8 @@
     }
     // в зависимости от текущего статуса меняем блокировку кнопок
     [self resetAppControlsAccordingEvolutionStatus];
+    // показываем текущее состояние эволюции
+    [self displayEvolutionState];
 }
 
 + (BOOL)autosavesInPlace
@@ -118,6 +130,9 @@
         self.myPopulation = doc.myPopulation;
         self.evolutionStatus = doc.evolutionStatus;
         self.evolutionThread = nil;
+        self.generation = doc.generation;
+        self.bestCells = doc.bestCells;
+        self.bestMatch = doc.bestMatch;
     }
     @catch (NSException *exception) {
         if (outError) {
@@ -223,18 +238,19 @@
 }
 
 - (void)dealloc {
-    if (self.evolutionThread != nil) {
-        [_evolutionThread cancel];
-    }
-    @try {
+    if (self.isReadFromFile) {
+        // случай когда документ был прочитан из файла и удален за ненадобностью
+    } else {
+        // удаляем наблюдателей
         [self removeObserver:self forKeyPath:@"populationSize"];
         [self removeObserver:self forKeyPath:@"dnaLength"];
         [self removeObserver:self forKeyPath:@"mutationRate"];
         [self removeObserver:self forKeyPath:@"goalDna"];
         [self removeObserver:self forKeyPath:@"evolutionStatus"];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"cannot remove observers in dealloc");
+        // если имелся отдельный процесс с эволюцией, то завершаем его
+        if (self.evolutionThread != nil) {
+            [_evolutionThread cancel];
+        }
     }
 }
 
@@ -245,6 +261,12 @@
              
 - (void)displayGoalDna:(NSString *)dna {
     [_goalDnaTxtVw setString:dna];
+}
+
+- (void)displayEvolutionState {
+    [_bestMatchTxtLbl setStringValue:[NSString stringWithFormat:@"%.1f %%", self.bestMatch]];
+    [_bestCellsTxtLbl setIntValue:self.bestCells];
+    [_generationTxtLbl setIntValue:self.generation];
 }
 
 - (void)generatePopulation {
@@ -299,29 +321,11 @@
     NSUInteger steps = 0;
     do {
         NSDictionary * data = [_myPopulation oneStepEvolution];
-        float bestMatch = [[data objectForKey:@"bestMatch"] floatValue];
-        NSString * bestMatchStr = [NSString stringWithFormat:@"%.1f %%", bestMatch];
-        @try {
-            [_bestMatchTxtLbl setStringValue:bestMatchStr];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"can't display best match value: %@", bestMatchStr);
-        }
-        NSUInteger bestCells = [[data objectForKey:@"bestCells"] intValue];
-        @try {
-            [_bestCellsTxtLbl setIntValue:bestCells];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"can't display best cells value: %lu", bestCells);
-        }
-        NSUInteger generation = [[data objectForKey:@"generation"] intValue];
-        @try {
-            [_generationTxtLbl setIntValue:generation];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"can't display generation value: %lu", generation);
-        }
-        if (bestMatch == 100.0) {
+        self.bestMatch = [[data objectForKey:@"bestMatch"] floatValue];
+        self.bestCells = [[data objectForKey:@"bestCells"] intValue];
+        self.generation = [[data objectForKey:@"generation"] intValue];
+        [self displayEvolutionState];
+        if (self.bestMatch == 100.0) {
             self.evolutionStatus = @"finished";
             break;
         }
@@ -347,6 +351,10 @@
     [aCoder encodeObject:self.myPopulation forKey:@"myPopulation"];
     [aCoder encodeObject:self.goalDna forKey:@"goalDna"];
     [aCoder encodeObject:self.evolutionStatus forKey:@"evolutionStatus"];
+    [aCoder encodeFloat:self.bestMatch forKey:@"bestMatch"];
+    [aCoder encodeInteger:self.bestCells forKey:@"bestCells"];
+    [aCoder encodeInteger:self.generation forKey:@"generation"];
+    [aCoder encodeBool:YES forKey:@"isReadFromFile"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -357,6 +365,10 @@
         self.myPopulation = [aDecoder decodeObjectForKey:@"myPopulation"];
         self.goalDna = [aDecoder decodeObjectForKey:@"goalDna"];
         self.evolutionStatus = [aDecoder decodeObjectForKey:@"evolutionStatus"];
+        self.bestMatch = [aDecoder decodeFloatForKey:@"bestMatch"];
+        self.bestCells = [aDecoder decodeIntegerForKey:@"bestCells"];
+        self.generation = [aDecoder decodeIntegerForKey:@"generation"];
+        self.isReadFromFile = [aDecoder decodeBoolForKey:@"isReadFromFile"];
     }
     return self;
 }
