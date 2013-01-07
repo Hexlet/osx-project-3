@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'pTunes' target in the 'pTunes' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
