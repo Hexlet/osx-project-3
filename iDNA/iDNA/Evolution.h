@@ -9,18 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "Cell.h"
 
+#define INIT		0
+#define STARTED		1
+#define FINISHED	2
+#define PAUSED		3
+
 @interface Evolution : NSObject
 {
 	NSInteger step;
-	Boolean finished;
-	Boolean started;
+	NSInteger state;
 	
 	NSInteger mutationRate;
+	NSInteger populationSize;
+	NSInteger dnaLength;
 	NSMutableArray *population;
 	Cell *goalDNA;
 }
 
 -(Cell *) createGoalDNAWithLength:(NSInteger) length;
--(void) creatPopulationWithSize:(NSInteger) populationSize andDNALength:(NSInteger) dnaLength;
+-(void) setMutationRate: (NSInteger) rate;
+-(void) setPopulationSize: (NSInteger) size;
+-(void) setDnaLength: (NSInteger) length;
+-(void) go;
 
 @end

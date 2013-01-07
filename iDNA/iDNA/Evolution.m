@@ -15,8 +15,7 @@
 	if (self = [super init])
 	{
 		step = 0;
-		finished = NO;
-		started = NO;
+		state = INIT;
 	}
 	return self;
 }
@@ -29,7 +28,7 @@
 }
 
 // Init population with given parameters.
--(void) creatPopulationWithSize:(NSInteger) populationSize andDNALength:(NSInteger) dnaLength
+-(void) creatPopulation
 {
 	population = [[NSMutableArray alloc] initWithCapacity:populationSize];
 	for (NSInteger i = 0; i < populationSize; i++)
@@ -38,10 +37,20 @@
 	}
 }
 
-// Sets mutation rate.
--(void) setMutationRate: (NSInteger) rate
+// Setters.
+-(void) setMutationRate: (NSInteger) rate { mutationRate = rate; }
+-(void) setPopulationSize: (NSInteger) size { populationSize = size; }
+-(void) setDnaLength: (NSInteger) length { dnaLength = length; }
+
+-(void) go
 {
-	mutationRate = rate;
+	if (state == INIT)
+	{
+		[self creatPopulation];
+		state = STARTED;
+	}
+	while (state == STARTED)
+		[self perfomStep];
 }
 
 // Performs one step of evolution.
@@ -50,7 +59,7 @@
 	[self sortPopulation];
 	if ([self isZeroHammingDistance])
 	{
-		finished = YES;
+		state = FINISHED;
 		return;
 	}
 	

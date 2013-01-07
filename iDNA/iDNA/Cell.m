@@ -38,6 +38,20 @@
 	return self;
 }
 
+-(id) initWithCell: (Cell *) cell
+{
+	if (self = [super init])
+	{
+		[self initNucleotides];
+		
+		NSInteger DNAsize = [cell DNAsize];
+		DNA = [[NSMutableArray alloc] initWithCapacity:DNAsize];
+		for (NSInteger i = 0; i < DNAsize; i++)
+			[DNA setObject:[cell getDNAatIndex:i] atIndexedSubscript:i];
+	}
+	return self;
+}
+
 -(void) initDNAWithlength: (NSInteger) length
 {
 	int DNAsize = (int) length;
@@ -133,7 +147,7 @@
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [self copy];
+	Cell *newCell = [[Cell alloc] initWithCell:self];
 	
 	for (NSInteger i = [self DNAsize] / 2; i<[self DNAsize]; i++)
 		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
@@ -145,7 +159,7 @@
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [self copy];
+	Cell *newCell = [[Cell alloc] initWithCell:self];
 	
 	// Simpler method described in module video.
 	for (NSInteger i = 0; i < [self DNAsize]; i++)
@@ -160,7 +174,7 @@
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [self copy];
+	Cell *newCell = [[Cell alloc] initWithCell:self];
 	
 	for (NSInteger i = [self DNAsize]/5; i < 4*[self DNAsize]/5; i++)
 		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];

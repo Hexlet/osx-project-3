@@ -40,6 +40,10 @@
 - (IBAction)startEvolution:(id)sender
 {
 	[self setInputsEnabled:NO];
+	[evolution setMutationRate:mutationRate];
+	[evolution setPopulationSize:populationSize];
+	[evolution setDnaLength:dnaLength];
+	[evolution go];
 }
 
 - (IBAction)pause:(id)sender
