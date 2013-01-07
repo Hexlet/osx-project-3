@@ -9,8 +9,6 @@
 #import "Document.h"
 #import "Volume.h"
 
-#include <sys/stat.h>
-
 @implementation Document
 
 - (id)init
@@ -44,11 +42,11 @@
             if (volumeDisk) {
                 // Get disk description
                 NSDictionary *description = (__bridge_transfer NSDictionary *)DADiskCopyDescription(volumeDisk);
-            
+                // Add label
                 [v setLabel:label];
                 // Add mount point
                 [v setMountPoint:[url path]];
-                // Add BSD disk identifier in format discXsX
+                // Add BSD disk identifier in format disc#s#
                 [v setBsdId:[description objectForKey: (__bridge id)kDADiskDescriptionMediaBSDNameKey]];
                 [result addObject:v];
                 CFRelease(volumeDisk);
@@ -73,7 +71,7 @@
     int bcIndex = -1;
     int i = 0;
     for (Volume *v in volumes) {
-        if ([v.label isEqualToString:@"BOOTCAMP"]) {
+        if ([[v.label uppercaseString] isEqualToString:@"BOOTCAMP"]) {
             bcIndex = i;
         }
         i++;
@@ -83,8 +81,7 @@
         [_volumesTableView selectRowIndexes:indexSet byExtendingSelection:NO];
     }
     if (volumes != nil) {
-        [self appendTextToDetails:@"Getting volumes information... Done."];
-        [self appendTextToDetails:@""];
+        [self appendTextToDetails:@"Getting volumes information... Done.\n"];
     }
 }
 
@@ -144,17 +141,52 @@
 //                                               forKey:NSFilePosixPermissions];
 //    [fm setAttributes:newattribs ofItemAtPath:hd error:&error];
     
-    NSString *chmod_dev = [NSString stringWithFormat:@"sudo chmod a+rw /dev/%@ ...", v.bsdId];
-    NSMutableString *source = [[NSMutableString alloc] init];
-    [source appendString:@"do shell script \""];
-    [source appendString:chmod_dev];
-    [source appendString:@"\" with administrator privileges"];
-    [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@", chmod_dev]];
-//    [self appendTextToDetails:chmod_dev];
-    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
-    NSDictionary *errorDict;
-    [script executeAndReturnError:&errorDict];
-    [self appendTextToDetails:@"Done."];
+    //Show system dialog to choose VM files location
+    NSOpenPanel *openDlg = [NSOpenPanel openPanel];
+    [openDlg setCanChooseFiles:NO];
+    [openDlg setCanChooseDirectories:YES];
+    [openDlg setAllowsMultipleSelection:NO];
+    [openDlg setTitle:@"Select path to keep BOOTCAMP virtual machine files"];
+    [openDlg setPrompt:@"Select"];
+    if ([openDlg runModal] == NSOKButton) {
+        NSString *bootcamp_vm_dir = [[openDlg URL] path];
+        NSString *chmod_dev = [NSString stringWithFormat:@"sudo chmod a+rw /dev/%@;", v.bsdId];
+        NSString *cd_vm_dir = [NSString stringWithFormat:@"cd %@;", bootcamp_vm_dir];
+        NSRange range = [v.bsdId rangeOfString:@"disk"];
+        NSArray *disk_s = [[v.bsdId substringFromIndex:NSMaxRange(range)] componentsSeparatedByString:@"s"];
+        NSString *vbmanage_create = [NSString stringWithFormat:@"sudo VBoxManage internalcommands createrawvmdk -rawdisk /dev/disk%@ -filename bootcamp.vmdk -partitions %@;", disk_s[0], disk_s[1]];
+        NSString *chmod_chown_vmdk = [NSString stringWithFormat:@"sudo chmod a+rw %@/*.vmdk; sudo chown %@ %@/*.vmdk", bootcamp_vm_dir, NSUserName(), bootcamp_vm_dir];
+        
+        //Assemble AppleScript
+        NSMutableString *source = [[NSMutableString alloc] init];
+        [source appendString:@"do shell script \""];
+        [source appendString:chmod_dev];
+        [source appendString:cd_vm_dir];
+        [source appendString:vbmanage_create];
+        [source appendString:chmod_chown_vmdk];
+        [source appendString:@"\" with administrator privileges"];
+        
+        //Print details to console
+        [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@ ...", chmod_dev]];
+        [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@ ...", cd_vm_dir]];
+        [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@ ...", vbmanage_create]];
+        [self appendTextToDetails:[NSString stringWithFormat:@"Running script: %@ ...", chmod_chown_vmdk]];
+        
+        //Execute AppleScript
+        NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
+        NSDictionary *errorDict;
+//        [script executeAndReturnError:&errorDict];
+        
+        //Fix sticky bits
+        NSString *path = [NSString stringWithFormat:@"%@/bootcamp-pt.vmdk", bootcamp_vm_dir];
+        NSLog(@"Path: %@", path);
+        NSData *bootcamp_pt_data = [NSData dataWithContentsOfFile:path];
+//        NSString *str = [[NSString alloc] initWithBytes:[bootcamp_pt_data bytes] length:[bootcamp_pt_data length] encoding:NSUTF8StringEncoding];
+//        NSString *s = [NSString stringWithContentsOfURL:[NSURL URLWithString:path] encoding:NSASCIIStringEncoding error:nil];
+//        NSLog(@"File: %@", s);
+        NSLog(@"Data: %@", bootcamp_pt_data);
+        [self appendTextToDetails:@"Done."];
+    }
 }
 
 
