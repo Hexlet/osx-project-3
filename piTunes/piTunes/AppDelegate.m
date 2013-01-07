@@ -79,19 +79,16 @@
     //[_menuItemSeparator0 setHidden:YES]];
     switch ([[iTunes currentPlaylist] songRepeat]) {
         case iTunesERptAll:
-            NSLog(@"1");
             //[_menuItemRepeat setTitle:@"Repeat: On"];
             [_menuItemRepeatOn setState:NSOnState];
             [_menuItemRepeatOff setState:NSOffState];
             break;
         case iTunesERptOff:
-            NSLog(@"2");
             //[_menuItemRepeat setTitle:@"Repeat: Off"];
             [_menuItemRepeatOn setState:NSOffState];
             [_menuItemRepeatOff setState:NSOnState];
             break;
         case iTunesERptOne:
-            NSLog(@"3");
             //[_menuItemRepeat setTitle:@"Repeat: One"];
             [_menuItemRepeatOn setState:NSOffState];
             [_menuItemRepeatOff setState:NSOffState];
@@ -112,6 +109,7 @@
     else{
         //iTUNES doesn't support shuffle(11)
         //[_menuItemShuffle setTitle:@"Shuffle: N/A"];
+        NSLog(@"shuff = NULL");
     }
 }
 
