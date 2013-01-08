@@ -13,28 +13,28 @@
 - (id)init {
     self= [super init];
     if (self) {
-        _rangeOfDNACellValues = @"ATGC";
-        _unitDistanceToTargetDNA = 0;
-        _arrayCapacity=0;
-        _DNA = [[NSMutableArray alloc]init];
+        self.rangeOfDNACellValues = @"ATGC";
+        self.unitDistanceToTargetDNA = 0;
+        self.arrayCapacity=0;
+        self.DNA = [[NSMutableArray alloc]init];
     }
     return self;
 }
 
 - (void) fillDNAArrayWithCapacity: (NSInteger)fCapacity {
-  _arrayCapacity = fCapacity;
-    NSMutableArray* setDNA = [NSMutableArray arrayWithCapacity:_arrayCapacity];
+  self.arrayCapacity = fCapacity;
+    NSMutableArray* setDNA = [NSMutableArray arrayWithCapacity:self.arrayCapacity];
     
-    for (NSInteger i = 0 ; i < _arrayCapacity; i++) {
-        [setDNA addObject:[NSString stringWithFormat:@"%C", [_rangeOfDNACellValues characterAtIndex: arc4random() % [_rangeOfDNACellValues length]]]];
+    for (NSInteger i = 0 ; i < self.arrayCapacity; i++) {
+        [setDNA addObject:[NSString stringWithFormat:@"%C", [self.rangeOfDNACellValues characterAtIndex: arc4random() % [self.rangeOfDNACellValues length]]]];
     }
-    _DNA = setDNA;
+    self.DNA = setDNA;
 }
 
 - (NSInteger) hammingDistance: (IDNCell*) anotherDNA {
     NSInteger count = 0;
-    for (NSInteger i = 0 ; i < _arrayCapacity; i++) { 
-        if ([[_DNA objectAtIndex:i] isNotEqualTo:[anotherDNA.DNA objectAtIndex: i]]) {
+    for (NSInteger i = 0 ; i < self.arrayCapacity; i++) { 
+        if ([[self.DNA objectAtIndex:i] isNotEqualTo:[anotherDNA.DNA objectAtIndex: i]]) {
             count++;
         }
     }
@@ -43,20 +43,21 @@
 
 - (void)mutate: (NSInteger) procentageOfMutations {
     
-    NSInteger numberOfcells = (_arrayCapacity*procentageOfMutations)/100;
+    float a = (self.arrayCapacity*procentageOfMutations)/100.0;
+    NSInteger numberOfcells = ceil(a);
     NSMutableIndexSet *indexSetDNA = [[NSMutableIndexSet alloc] init];    
     
     for (NSInteger i = 0; i < numberOfcells; i++) {
-        NSInteger indexGen = arc4random ()%_arrayCapacity;
+        NSInteger indexGen = arc4random ()%self.arrayCapacity;
         
         if (![indexSetDNA containsIndex:indexGen]) {
             [indexSetDNA addIndex:indexGen];             
            
             for(;;) {
-                NSString *changes =[NSString stringWithFormat:@"%C", [_rangeOfDNACellValues characterAtIndex: arc4random() % [_rangeOfDNACellValues length]]];
+                NSString *changes =[NSString stringWithFormat:@"%C", [self.rangeOfDNACellValues characterAtIndex: arc4random() % [self.rangeOfDNACellValues length]]];
                 
-                if (![[_DNA objectAtIndex: indexGen] isEqualToString:changes]) {
-                    [_DNA replaceObjectAtIndex:indexGen withObject:changes];
+                if (![[self.DNA objectAtIndex: indexGen] isEqualToString:changes]) {
+                    [self.DNA replaceObjectAtIndex:indexGen withObject:changes];
                     break; 
                 }
             }

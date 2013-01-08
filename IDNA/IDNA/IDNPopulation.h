@@ -12,7 +12,16 @@
 @interface IDNPopulation : NSObject
 
 @property NSMutableArray* population;
-@property NSInteger bestDistanseToTarget;
-@property BOOL idealDNAstatus;
+@property NSInteger generationNumber;
+@property NSInteger bestDNADistanseInPopulation;
+@property NSInteger progressToTarget;
+
+- (void)createPopulationWithCount:(NSInteger)aPopulation andDNALength:(NSInteger)aDNALenght;
+- (void)sortPopulationByHummingDistanceTo:(IDNCell*)aGoalDNA;
+- (void)populationMutate: (NSInteger)percentage;
+- (void) crossingBestDNA;
+- (IDNCell*)halfByHalfCrossing:(IDNCell*)firstCell with:(IDNCell*)secondCell;
+- (IDNCell*)oneByOneCrossing:(IDNCell*)firstCell with:(IDNCell*)secondCell;
+- (IDNCell*)partsCrossing:(IDNCell*)firstCell with:(IDNCell*)secondCell;
 
 @end

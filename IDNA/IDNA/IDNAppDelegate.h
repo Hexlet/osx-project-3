@@ -27,7 +27,16 @@
 @property IDNPopulation* workingPopulation;
 
 @property BOOL interfaceStatement;
+@property BOOL startStatement;
 @property BOOL pauseStatement;
+@property BOOL pauseEvolutionFlag;
+@property BOOL stopEvolutionFlag;
 
+
+- (IBAction)loadDNAfromFile:(id)sender;
+- (IBAction)saveData:(id)sender;
+- (IBAction)startEvolution:(id)sender;
+- (IBAction)pauseEvolution:(id)sender;
+- (IBAction)stopEvolution:(id)sender;
 
 @end
