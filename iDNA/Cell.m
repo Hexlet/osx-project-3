@@ -25,9 +25,9 @@ const NSString * nucleotides[4] = {@"A", @"T", @"G", @"C"}; //array of nucleotid
 -(id) initWithLength:(int)DNALength {
     self = [super init];
     if (self) {
-    DNA = [[NSMutableArray alloc] initWithCapacity:DNALength];
-    for(int i=0; i<DNALength; i++)
-        [DNA insertObject:[self getNucleotide] atIndex:i]; //fill DNA array with nucleotides
+        DNA = [[NSMutableArray alloc] initWithCapacity:DNALength];
+        for(int i=0; i<DNALength; i++)
+            [DNA insertObject:[self getNucleotide] atIndex:i]; //fill DNA array with nucleotides
     }
     return self;
 }
@@ -51,7 +51,7 @@ const NSString * nucleotides[4] = {@"A", @"T", @"G", @"C"}; //array of nucleotid
     int dist=0;
     for (NSUInteger i=0; i<[self->DNA count]; i++)
         if([[self->DNA objectAtIndex:i] isNotEqualTo: [c->DNA objectAtIndex:i]])
-           dist++;                                     //++ hamming distance if nucleotides are not equal
+            dist++;                                     //++ hamming distance if nucleotides are not equal
     return dist;
 }
 
@@ -97,7 +97,7 @@ const NSString * nucleotides[4] = {@"A", @"T", @"G", @"C"}; //array of nucleotid
             }
             break;
         }
-
+            
     }
     
     return child;                                   

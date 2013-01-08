@@ -193,6 +193,12 @@
                                                         error:nil];
         [goalDNA DNAFromString:string withMaxLen:[DNALenSlider maxValue]];
         [goalDNAField setStringValue:[goalDNA getDNAString]];
+        generation=0;
+        [self setGen]; 
+        bestMatch=0;
+        [self setBestMatch];
+        [bestDNAField setStringValue:@""];
+
                 
         //if string is longer than max, alert about string cutting
         if([string length]>[DNALenSlider maxValue]) { 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6371230C169C67AC008678A2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6371230B169C67AC008678A2 /* Cell.m */; };
 		6373D4FD1689E47B00EE7CDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D4FC1689E47B00EE7CDA /* Cocoa.framework */; };
 		6373D5071689E47B00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5051689E47B00EE7CDA /* InfoPlist.strings */; };
 		6373D5091689E47B00EE7CDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5081689E47B00EE7CDA /* main.m */; };
@@ -18,7 +19,6 @@
 		6373D51F1689E47C00EE7CDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373D4FC1689E47B00EE7CDA /* Cocoa.framework */; };
 		6373D5271689E47C00EE7CDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373D5251689E47C00EE7CDA /* InfoPlist.strings */; };
 		6373D52A1689E47C00EE7CDA /* iDNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5291689E47C00EE7CDA /* iDNATests.m */; };
-		6373D5351689EC2F00EE7CDA /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373D5341689EC2F00EE7CDA /* Cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6371230A169C67AC008678A2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		6371230B169C67AC008678A2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		6373D4F81689E47B00EE7CDA /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373D4FC1689E47B00EE7CDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373D4FF1689E47B00EE7CDA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -52,8 +54,6 @@
 		6373D5261689E47C00EE7CDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373D5281689E47C00EE7CDA /* iDNATests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iDNATests.h; sourceTree = "<group>"; };
 		6373D5291689E47C00EE7CDA /* iDNATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iDNATests.m; sourceTree = "<group>"; };
-		6373D5331689EC0600EE7CDA /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cell.h; path = ../../DNA/DNA/Cell.h; sourceTree = "<group>"; };
-		6373D5341689EC2F00EE7CDA /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cell.m; path = ../../DNA/DNA/Cell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				6373D50E1689E47B00EE7CDA /* Document.h */,
+				6371230A169C67AC008678A2 /* Cell.h */,
+				6371230B169C67AC008678A2 /* Cell.m */,
 				6373D50F1689E47B00EE7CDA /* Document.m */,
-				6373D5331689EC0600EE7CDA /* Cell.h */,
-				6373D5341689EC2F00EE7CDA /* Cell.m */,
 				6373D5111689E47B00EE7CDA /* Document.xib */,
 				6373D5141689E47C00EE7CDA /* MainMenu.xib */,
 				6373D5031689E47B00EE7CDA /* Supporting Files */,
@@ -271,7 +271,7 @@
 			files = (
 				6373D5091689E47B00EE7CDA /* main.m in Sources */,
 				6373D5101689E47B00EE7CDA /* Document.m in Sources */,
-				6373D5351689EC2F00EE7CDA /* Cell.m in Sources */,
+				6371230C169C67AC008678A2 /* Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
