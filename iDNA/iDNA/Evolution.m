@@ -20,6 +20,9 @@
 	return self;
 }
 
+-(NSInteger) state	{ return state; }
+-(NSInteger) step	{ return step; }
+
 // Create goal DNA with given length.
 -(Cell *) createGoalDNAWithLength:(NSInteger) length
 {
@@ -41,21 +44,26 @@
 -(void) setMutationRate: (NSInteger) rate { mutationRate = rate; }
 -(void) setPopulationSize: (NSInteger) size { populationSize = size; }
 -(void) setDnaLength: (NSInteger) length { dnaLength = length; }
+-(void) setState: (NSInteger) st { state = st; }
 
--(void) go
+// Initialization with parameters.
+-(void) initWithMutationRate:(NSInteger)rate PopulationSize: (NSInteger) size DnaLength: (NSInteger) length
 {
+	[self setMutationRate:rate];
+	[self setPopulationSize:size];
+	[self setDnaLength:length];
+	
 	if (state == INIT)
 	{
 		[self creatPopulation];
 		state = STARTED;
 	}
-	while (state == STARTED)
-		[self perfomStep];
 }
 
 // Performs one step of evolution.
 -(void) perfomStep
 {
+	step++;
 	[self sortPopulation];
 	if ([self isZeroHammingDistance])
 	{
@@ -73,9 +81,9 @@
 	NSArray *sorted = [population sortedArrayUsingComparator:^NSComparisonResult (id a, id b){
 		NSNumber *first = [NSNumber numberWithInt:[(Cell *)a hammingDistance:goalDNA]];
 		NSNumber *second = [NSNumber numberWithInt:[(Cell *)b hammingDistance:goalDNA]];
-		return [first compare:second];
+		return first > second;
 	}];
-	population = [sorted mutableCopy];
+	population = [NSMutableArray arrayWithArray:sorted];
 }
 
 // Cross first half of population and replace the second.
@@ -113,6 +121,20 @@
 	if ([goalDNA hammingDistance:[population objectAtIndex:0]] == 0)
 		return YES;
 	return NO;
+}
+
+-(NSInteger) bestHammingDistance
+{
+	if ([population count] < 1)
+		return 0;
+	else
+		return [goalDNA hammingDistance:[population objectAtIndex:0]];
+}
+
+-(void) reset
+{
+	state = INIT;
+	step = 0;
 }
 
 @end

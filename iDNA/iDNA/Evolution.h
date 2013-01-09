@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Cell.h"
 
+// States of evolution process.
 #define INIT		0
 #define STARTED		1
 #define FINISHED	2
@@ -22,14 +23,18 @@
 	NSInteger mutationRate;
 	NSInteger populationSize;
 	NSInteger dnaLength;
+
 	NSMutableArray *population;
 	Cell *goalDNA;
 }
 
 -(Cell *) createGoalDNAWithLength:(NSInteger) length;
--(void) setMutationRate: (NSInteger) rate;
--(void) setPopulationSize: (NSInteger) size;
--(void) setDnaLength: (NSInteger) length;
--(void) go;
+-(void) initWithMutationRate:(NSInteger)rate PopulationSize: (NSInteger) size DnaLength: (NSInteger) length;
+-(void) perfomStep;
+-(NSInteger) state;
+-(NSInteger) step;
+-(NSInteger) bestHammingDistance;
+-(void) reset;
+-(void) setState: (NSInteger) st;
 
 @end

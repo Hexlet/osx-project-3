@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379211338.488247"
+         timestampString = "379437940.278291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
          landmarkName = "-setDnaLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379195559.015468"
+         timestampString = "379437630.550915"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "-startEvolution:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/Evolution.m"
-         timestampString = "379211338.488247"
+         timestampString = "379263174.792226"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "-createGoalDNAWithLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -53,6 +53,45 @@
          startingLineNumber = "41"
          endingLineNumber = "41"
          landmarkName = "-initWithCell:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDNA/Evolution.m"
+         timestampString = "379437630.550915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
+         landmarkName = "-perfomStep"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDNA/Evolution.m"
+         timestampString = "379437630.550915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "65"
+         endingLineNumber = "65"
+         landmarkName = "-perfomStep"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDNA/Evolution.m"
+         timestampString = "379437630.550915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "81"
+         endingLineNumber = "81"
+         landmarkName = "-sortPopulation"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

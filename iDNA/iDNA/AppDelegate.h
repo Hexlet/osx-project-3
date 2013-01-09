@@ -34,6 +34,9 @@
 @property (weak) IBOutlet NSButton *btStartEvolution;
 @property (weak) IBOutlet NSButton *btPause;
 @property (weak) IBOutlet NSButton *btLoadGoalDNA;
+// Labels.
+@property (weak) IBOutlet NSTextField *lbGeneration;
+@property (weak) IBOutlet NSTextField *lbBestMatch;
 
 - (IBAction)startEvolution:(id)sender;
 - (IBAction)pause:(id)sender;
