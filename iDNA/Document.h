@@ -35,4 +35,6 @@
 - (IBAction)loadGoalDna:(id)sender;
 - (IBAction)gdnamcb:(id)sender;
 
+- (void) showResultWindow;
+
 @end

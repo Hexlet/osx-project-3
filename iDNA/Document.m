@@ -174,8 +174,8 @@ ResultController *resultWindow;
         
             // проверка: создана ли особь, совпадающая с Goal DNA
             if (![goalDna hammingDistance:[population objectAtIndex:0]]) {      // проверяем по hammingDistance
-                resultWindow = [[ResultController alloc] init];                 // ... если создана, то инициализируем и...
-                [resultWindow showWindow:self];                                 // ... вызывем окно результата
+                resultWindow = [[ResultController alloc] init];
+                [self performSelectorOnMainThread:@selector(showResultWindow) withObject:nil waitUntilDone:NO]; // вызываем метод вызова результата
                 [piBestMatchHdGen setDoubleValue:100];                          // ... если создана, то ползунок должен показывать 100%
                 [piBestMatchHdPop setDoubleValue:100];                          // ... если создана, то ползунок должен показывать 100%
                 break;                                                          // ... если создана, то выходим
@@ -264,6 +264,10 @@ ResultController *resultWindow;
 
 - (IBAction)gdnamcb:(id)sender {
     goalDnaMutable = goalDnaMutable ? NO : YES;
+}
+
+- (void) showResultWindow {             // метод вызова окна результата
+    [resultWindow showWindow:self]; 
 }
 
 @end
