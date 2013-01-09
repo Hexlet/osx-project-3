@@ -92,6 +92,7 @@
 				79E3C4AA168B99300066EF61 /* iDNATests */,
 				79E3C483168B99300066EF61 /* Frameworks */,
 				79E3C481168B99300066EF61 /* Products */,
+				79E3C48B168B99300066EF61 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,7 +137,6 @@
 				79E3C49C168B99300066EF61 /* MainMenu.xib */,
 				79E3C4BF168BB2DE0066EF61 /* Cell.h */,
 				79E3C4C0168BB2DE0066EF61 /* Cell.m */,
-				79E3C48B168B99300066EF61 /* Supporting Files */,
 			);
 			path = iDNA;
 			sourceTree = "<group>";
@@ -151,6 +151,7 @@
 				79E3C493168B99300066EF61 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			path = iDNA;
 			sourceTree = "<group>";
 		};
 		79E3C4AA168B99300066EF61 /* iDNATests */ = {

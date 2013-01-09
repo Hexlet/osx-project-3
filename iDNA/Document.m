@@ -125,7 +125,7 @@ ResultController *resultWindow;
     [loadDisplay setEnabled:NO];
     [saveDisplay setEnabled:NO];
     NSMutableArray *population = [[NSMutableArray alloc] initWithCapacity:controlPopSize];
-    NSMutableArray *sortPopulation = [[NSMutableArray alloc] initWithCapacity:controlPopSize];
+    //NSMutableArray *sortPopulation = [[NSMutableArray alloc] initWithCapacity:controlPopSize];
     int bestMatchHdGen, bestMatchHdPop = 0;
     
     // процесс заполнения популяции особями
@@ -140,6 +140,7 @@ ResultController *resultWindow;
     while (YES) {                           // зацикливаем цикл. условие выхода (проверка совпадения с Goal DNA) реализуем в теле
         if (!pauseFlag) {                   // выполняем цикл, пока не нажата кнопка Pause
             // процесс сортировки
+            /*
             for (int dnaCount = 0; dnaCount <= controlDnaLength; dnaCount++)
                 for (int count = 0; count < controlPopSize; count++)
                     if ([goalDna hammingDistance:[population objectAtIndex:count]] == dnaCount)
@@ -148,11 +149,26 @@ ResultController *resultWindow;
             [population removeAllObjects];
             [population addObjectsFromArray:sortPopulation];
             [sortPopulation removeAllObjects];
-    
+            */
+            
+            // сортируем популяцию по hammingDistance до целевой ДНК
+            [population sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                Cell *dna1 = (Cell*)obj1;
+                Cell *dna2 = (Cell*)obj2;
+                NSInteger hammingDistance1 = [dna1 hammingDistance:goalDna];
+                NSInteger hammingDistance2 = [dna2 hammingDistance:goalDna];
+                if (hammingDistance1 < hammingDistance2)
+                    return NSOrderedAscending;
+                else if (hammingDistance1 > hammingDistance2)
+                    return NSOrderedDescending;
+                else
+                    return NSOrderedSame;
+            }];
+            
             /*
              NSLog(@"After sorting:");
              PRINT_DNAS
-             */
+            */
             
             [lbgeneration setIntegerValue:countOfGeneration];
         
