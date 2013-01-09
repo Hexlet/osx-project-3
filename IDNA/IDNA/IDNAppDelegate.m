@@ -199,7 +199,7 @@
     if (result == NSOKButton)
     {
         NSString *selectedFile = [[newSavePanel URL] path];
-        NSString *arrayComplete = [self.goalDNA.DNA componentsJoinedByString:@","];
+        NSString *arrayComplete = [self.goalDNA.DNA componentsJoinedByString:@""];
         
         NSError* error =nil;
         
