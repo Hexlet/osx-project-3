@@ -64,6 +64,7 @@
 	if (pointCount > 0)
 	{
 		NSBezierPath *path = [NSBezierPath bezierPath];
+		NSUInteger pointCount = [pointData length] / sizeof(NSPoint);
 		if (pointCount > width)
 		{
 			//originX--;
