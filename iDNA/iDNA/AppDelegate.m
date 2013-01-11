@@ -50,6 +50,9 @@
 	[evolution reset];
 	[self setLabelForGeneration:0];
 	[self setLabelForBestMatch:dnaLength];
+	
+	[_vwGraph reset];
+	[_vwGraph setNeedsDisplay:YES];
 }
 
 -(void) dealloc
@@ -79,6 +82,8 @@
 		[evolution perfomStep];
 		[self setLabelForGeneration:[evolution step]];
 		[self setLabelForBestMatch:[evolution bestHammingDistance]];
+		[_vwGraph addPointWithY:[evolution bestHammingDistance]];
+		[_vwGraph setNeedsDisplay:YES];
 	}
 	[self setInputsEnabled:YES];
 }

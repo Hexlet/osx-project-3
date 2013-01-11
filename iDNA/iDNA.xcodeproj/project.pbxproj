@@ -16,19 +16,8 @@
 		0D6AEA431689FE7400034395 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AEA421689FE7300034395 /* Cell.m */; };
 		0D6AEA4A1689FF5500034395 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AEA491689FF5500034395 /* NSMutableArray+Shuffle.m */; };
 		0D7E761E169A0BBA0089D9C8 /* Evolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7E761D169A0BBA0089D9C8 /* Evolution.m */; };
-		0D7E762F169B11AC0089D9C8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7E762E169B11AC0089D9C8 /* SenTestingKit.framework */; };
-		0D7E7630169B11AC0089D9C8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6AEA1C1689DF2600034395 /* Cocoa.framework */; };
+		0DD00A8116A05DAA00B661B2 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD00A8016A05DAA00B661B2 /* Graph.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0D7E763E169B123B0089D9C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D6AEA0F1689DF2600034395 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0D6AEA171689DF2600034395;
-			remoteInfo = iDNA;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D6AEA181689DF2600034395 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +39,9 @@
 		0D6AEA491689FF5500034395 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
 		0D7E761C169A0BBA0089D9C8 /* Evolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evolution.h; sourceTree = "<group>"; };
 		0D7E761D169A0BBA0089D9C8 /* Evolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evolution.m; sourceTree = "<group>"; };
-		0D7E762D169B11AC0089D9C8 /* iDNAtests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iDNAtests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D7E762E169B11AC0089D9C8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		0DD00A7F16A05DAA00B661B2 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
+		0DD00A8016A05DAA00B661B2 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +50,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6AEA1D1689DF2600034395 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0D7E7629169B11AC0089D9C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0D7E762F169B11AC0089D9C8 /* SenTestingKit.framework in Frameworks */,
-				0D7E7630169B11AC0089D9C8 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				0D6AEA181689DF2600034395 /* iDNA.app */,
-				0D7E762D169B11AC0089D9C8 /* iDNAtests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +106,8 @@
 				0D6AEA2F1689DF2600034395 /* AppDelegate.m */,
 				0D6AEA311689DF2600034395 /* MainMenu.xib */,
 				0D6AEA231689DF2600034395 /* Supporting Files */,
+				0DD00A7F16A05DAA00B661B2 /* Graph.h */,
+				0DD00A8016A05DAA00B661B2 /* Graph.m */,
 			);
 			path = iDNA;
 			sourceTree = "<group>";
@@ -162,25 +144,6 @@
 			productReference = 0D6AEA181689DF2600034395 /* iDNA.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0D7E762C169B11AC0089D9C8 /* iDNAtests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0D7E763B169B11AC0089D9C8 /* Build configuration list for PBXNativeTarget "iDNAtests" */;
-			buildPhases = (
-				0D7E7628169B11AC0089D9C8 /* Sources */,
-				0D7E7629169B11AC0089D9C8 /* Frameworks */,
-				0D7E762A169B11AC0089D9C8 /* Resources */,
-				0D7E762B169B11AC0089D9C8 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0D7E763F169B123B0089D9C8 /* PBXTargetDependency */,
-			);
-			name = iDNAtests;
-			productName = iDNAtests;
-			productReference = 0D7E762D169B11AC0089D9C8 /* iDNAtests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,7 +166,6 @@
 			projectRoot = "";
 			targets = (
 				0D6AEA171689DF2600034395 /* iDNA */,
-				0D7E762C169B11AC0089D9C8 /* iDNAtests */,
 			);
 		};
 /* End PBXProject section */
@@ -219,30 +181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D7E762A169B11AC0089D9C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0D7E762B169B11AC0089D9C8 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0D6AEA141689DF2600034395 /* Sources */ = {
@@ -254,25 +193,11 @@
 				0D6AEA431689FE7400034395 /* Cell.m in Sources */,
 				0D6AEA4A1689FF5500034395 /* NSMutableArray+Shuffle.m in Sources */,
 				0D7E761E169A0BBA0089D9C8 /* Evolution.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0D7E7628169B11AC0089D9C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				0DD00A8116A05DAA00B661B2 /* Graph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0D7E763F169B123B0089D9C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0D6AEA171689DF2600034395 /* iDNA */;
-			targetProxy = 0D7E763E169B123B0089D9C8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0D6AEA251689DF2600034395 /* InfoPlist.strings */ = {
@@ -326,7 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -350,7 +275,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -380,36 +305,6 @@
 			};
 			name = Release;
 		};
-		0D7E763C169B11AC0089D9C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iDNA.app/iDNA";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iDNAtests/iDNAtests-Prefix.pch";
-				INFOPLIST_FILE = "iDNAtests/iDNAtests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		0D7E763D169B11AC0089D9C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iDNA.app/iDNA";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iDNAtests/iDNAtests-Prefix.pch";
-				INFOPLIST_FILE = "iDNAtests/iDNAtests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -430,14 +325,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		0D7E763B169B11AC0089D9C8 /* Build configuration list for PBXNativeTarget "iDNAtests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0D7E763C169B11AC0089D9C8 /* Debug */,
-				0D7E763D169B11AC0089D9C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

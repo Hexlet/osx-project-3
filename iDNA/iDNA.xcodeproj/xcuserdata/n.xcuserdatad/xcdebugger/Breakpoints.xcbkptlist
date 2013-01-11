@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379437940.278291"
+         timestampString = "379630599.519024"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-setDnaLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379437630.550915"
+         timestampString = "379630599.519024"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "63"
-         endingLineNumber = "63"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
          landmarkName = "-startEvolution:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -93,6 +93,19 @@
          endingLineNumber = "81"
          landmarkName = "-sortPopulation"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iDNA/AppDelegate.h"
+         timestampString = "379609438.012066"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
+         landmarkName = "vwGraph"
+         landmarkType = "19">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
