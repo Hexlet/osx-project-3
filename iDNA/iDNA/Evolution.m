@@ -33,14 +33,18 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
     inProgress = YES;
     paused = NO;
     generation = 0;
+    closestDistanceDuringEvolution = dnaLength;
     [self generatePopulation];
     [self performSelectorInBackground:@selector(nextGeneration) withObject:nil];
 }
 
 -(void)nextGeneration {
     [self sortPopulation];
-    closestDistance = [[population objectAtIndex:0] hammingDistance:goalCell];
+    NSInteger closestDistance = [[population objectAtIndex:0] hammingDistance:goalCell];
     // NSLog(@"step: %li, closest: %li, %@", generation, closestDistance, [population objectAtIndex:0]);
+    if (closestDistanceDuringEvolution > closestDistance) {
+        closestDistanceDuringEvolution = closestDistance;
+    }
     if (closestDistance == 0) {
         [self postProgressNotification];
         [self stop];
@@ -118,7 +122,7 @@ NSInteger compareCellsByHammingDistanceToTargetCell(Cell *cell1, Cell *cell2, vo
     if (!self.delegate) {
         return;
     }
-    NSInteger bestMatchPercent = (NSInteger)(100 * (dnaLength - closestDistance) / dnaLength);
+    NSInteger bestMatchPercent = (NSInteger)(100 * (dnaLength - closestDistanceDuringEvolution) / dnaLength);
     NSDictionary *userInfo = @{ @"generation": [NSNumber numberWithInteger:generation],
                                  @"bestMatch": [NSNumber numberWithInteger:bestMatchPercent] };
     NSNotification *notification = [NSNotification notificationWithName:@"evolutionProgressChange" object:nil userInfo:userInfo];

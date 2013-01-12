@@ -11,7 +11,7 @@
     NSInteger generation;
     NSInteger mutationRate;
     NSInteger dnaLength;
-    NSInteger closestDistance;
+    NSInteger closestDistanceDuringEvolution;
     Cell *goalCell;
     id<EvolutionProgressDelegate> delegate;
 }
