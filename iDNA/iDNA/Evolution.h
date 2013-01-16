@@ -38,5 +38,6 @@
 -(NSInteger) bestMatch;
 -(void) reset;
 -(void) setState: (NSInteger) st;
+-(void) setGoalDNAwithString: (NSString *) dna;
 
 @end

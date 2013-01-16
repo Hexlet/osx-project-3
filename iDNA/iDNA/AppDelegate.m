@@ -57,6 +57,7 @@
 	[_vwGraph setNeedsDisplay:YES];
 }	
 
+// Only for remove observers.
 -(void) dealloc
 {
 	[self removeObserver:self forKeyPath:@"dnaLength"];
@@ -99,7 +100,9 @@
 {
 	[self setDnaLength:[_tfDnaLength integerValue]];
 	[self setMutationRate:[_tfMutationRate integerValue]];
-	[self setPopulationSize:[_tfPopulationSize integerValue]];
+	// It can be over 1000 which implies a space after thousands.
+	//[self setPopulationSize:[[[_tfPopulationSize stringValue] stringByReplacingOccurrencesOfString:@"\t" withString:@""] integerValue]];
+	[self setPopulationSize:[[[[_tfPopulationSize stringValue] componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""] integerValue]];
 }
 
 // Pause button pressed.
@@ -108,6 +111,44 @@
 	[evolution setState:PAUSED];
 }
 
+- (IBAction)loadGoalDNA:(id)sender
+{
+	[self openDNADialog];
+}
+
+-(void) openDNADialog
+{
+	NSOpenPanel *open = [NSOpenPanel openPanel];
+	[open setCanChooseFiles:YES];
+	[open setAllowsMultipleSelection:NO];
+	[open setAllowedFileTypes:[NSArray arrayWithObjects:@"txt", nil]];
+	
+	if ([open runModal] == NSOKButton)
+	{
+		@try
+		{
+			NSString *path = [[[open URLs] objectAtIndex:0] path];
+			if (path)
+			{
+				NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+				// Validate string. Force reading only necessary symbols.
+				content = [[content componentsSeparatedByCharactersInSet: [[NSCharacterSet characterSetWithCharactersInString:NUCLEOTIDES] invertedSet]] componentsJoinedByString:@""];
+				content = [content substringToIndex:MIN([content length], maxDnaLength)];
+				dnaLength = [content length];
+				[_tfDnaLength setStringValue:[NSString stringWithFormat:@"%ld", dnaLength]];
+				[_tfGoalDNA setStringValue:content];
+				[evolution setGoalDNAwithString:@"content"];
+			}
+		}
+		@catch(NSException *exception)
+		{
+			NSAlert *alert = [NSAlert alertWithMessageText:@"Неправильный файл." defaultButton:@"Просто закройся" alternateButton:@"Я понял" otherButton:@"Другая кнопка" informativeTextWithFormat:@"Что-то пошло не так."];
+			[alert runModal];
+		}
+	}
+}
+
+// Set information for labels 'current generation' and 'best match'.
 -(void) updateLabels
 {
 	[self setLabelForGeneration:[evolution step]];
@@ -124,6 +165,7 @@
 	[_lbBestMatch setStringValue:[NSString stringWithFormat:@"%ld", bestMatch]];
 }
 
+// Enabling or disabling inputs.
 - (void) setInputsEnabled: (Boolean) status
 {
 	[_btLoadGoalDNA setEnabled:status];
@@ -155,7 +197,8 @@
 {
 	dnaLength = MIN(x, maxDnaLength);
 	[_tfDnaLength setStringValue:[NSString stringWithFormat:@"%ld", dnaLength]];
-	[self setGoalDNA];
+	if ([evolution state] == INIT || [evolution state] == FINISHED)
+		[self setGoalDNA];
 }
 
 - (void) setMutationRate: (NSInteger) x
@@ -170,6 +213,7 @@
 	[_tfPopulationSize setStringValue:[NSString stringWithFormat:@"%ld", populationSize]];
 }
 
+// Close app if window is closed.
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
     return YES;

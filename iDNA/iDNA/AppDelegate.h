@@ -44,5 +44,6 @@
 
 - (IBAction)startEvolution:(id)sender;
 - (IBAction)pause:(id)sender;
+- (IBAction)loadGoalDNA:(id)sender;
 
 @end

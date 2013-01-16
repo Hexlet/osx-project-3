@@ -30,7 +30,7 @@
 
 -(void) initNucleotides
 {
-	nucleotide = @"ATCG";
+	nucleotide = NUCLEOTIDES;
 }
 
 -(id) initWithDNAlength: (NSInteger) length
@@ -69,6 +69,18 @@
 	{
 		[DNA setObject:[self randomNucleotide] atIndexedSubscript:i];
 	}
+}
+
+-(id) initWithString: (NSString *) dna
+{
+	if (self = [super init])
+	{
+		[self initNucleotides];
+		DNA = [[NSMutableArray alloc] initWithCapacity:[dna length]];
+		for (NSInteger i = 0; i < [dna length]; i++)
+			[DNA setObject:[NSString stringWithFormat:@"%c", [dna characterAtIndex:i]] atIndexedSubscript:i];
+	}
+	return self;
 }
 
 -(int) hammingDistance: (Cell *) cell

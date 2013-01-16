@@ -46,6 +46,12 @@
 -(void) setPopulationSize: (NSInteger) size { populationSize = size; }
 -(void) setDnaLength: (NSInteger) length { dnaLength = length; }
 -(void) setState: (NSInteger) st { state = st; }
+-(void) setGoalDNAwithString: (NSString *) dna
+{
+	[self reset];
+	goalDNA = [[Cell alloc] initWithString:dna];
+	dnaLength = [goalDNA DNAsize];
+}
 
 // Initialization with parameters.
 -(void) initWithMutationRate:(NSInteger)rate PopulationSize: (NSInteger) size DnaLength: (NSInteger) length

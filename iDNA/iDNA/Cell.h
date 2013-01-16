@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define NUCLEOTIDES @"ATGC"
 
 @interface Cell : NSObject
 
@@ -16,6 +17,7 @@
 -(void) setDNA: (NSString *) nucluotide atIndex: (NSInteger)index;
 -(id) initWithCell: (Cell *) cell;
 -(id) initWithDNAlength: (NSInteger) length;
+-(id) initWithString: (NSString *) dna;
 -(NSString *) DNAtoString;
 -(Cell *) crossWithCell: (Cell *) otherCell;
 -(void) mutate: (NSInteger) percentToReplace;
