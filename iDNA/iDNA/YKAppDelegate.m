@@ -32,11 +32,6 @@
         [self addObserver:self forKeyPath:@"dnaLength" options:0 context:nil];
         [self addObserver:self forKeyPath:@"minimumHammingDistance" options:0 context:nil];
 
-        // Значения по умолчанию. Хранение в пользовательских настройках условиями задания не требуется.
-        self.populationSize = 20;
-        self.dnaLength = 30;
-        self.mutationRate = 13;
-
         // Инициализация прочих свойств
         self.population = [NSMutableArray array];
         self.generation = 0;
@@ -66,6 +61,50 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evolutionIterationDidFinish:) name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
 }
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
+}
+
+#pragma mark -
+#pragma mark Preferences Getters and Setters
+
+- (NSUInteger)populationSize
+{
+    return [YKDNAPreferences sharedPreferences].populationSize;
+}
+
+- (void)setPopulationSize:(NSUInteger)populationSize
+{
+    [YKDNAPreferences sharedPreferences].populationSize = populationSize;
+//    [self.window setDocumentEdited:YES];
+}
+
+- (NSUInteger)dnaLength
+{
+    return [YKDNAPreferences sharedPreferences].dnaLength;
+}
+
+- (void)setDnaLength:(NSUInteger)dnaLength
+{
+    [YKDNAPreferences sharedPreferences].dnaLength = dnaLength;
+//    [self.window setDocumentEdited:YES];
+}
+
+- (NSUInteger)mutationRate
+{
+    return [YKDNAPreferences sharedPreferences].mutationRate;
+}
+
+- (void)setMutationRate:(NSUInteger)mutationRate
+{
+    [YKDNAPreferences sharedPreferences].mutationRate = mutationRate;
+//    [self.window setDocumentEdited:YES];
+}
+
+#pragma mark -
+#pragma mark Controller Methods
 
 - (void)goalIsReached
 {
@@ -142,15 +181,16 @@
 - (void)runEvolution
 {
     if (!self.isGoalReached && self.isBusy) {
-        self.isBusy = YES;
+//        self.isBusy = YES;
 
         // Выполняем performEvolutionIteration в фоновом потоке, чтобы не блокировать элементы пользовательского интерфейса в основном потоке
         [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
+//        [self performEvolutionIteration];
     }
 }
 
 #pragma mark -
-#pragma mark Listening Methods
+#pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -217,6 +257,7 @@
     self.window.title = @"iDNA in progress…";
     self.isBusy = YES;
     [self runEvolution];
+//    [self performSelectorInBackground:@selector(runEvolution) withObject:nil];
 }
 
 - (IBAction)pauseButtonPressed:(id)sender

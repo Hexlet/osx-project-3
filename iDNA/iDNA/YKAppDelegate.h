@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "YKDNA.h"
+#import "YKDNAPreferences.h"
 
 @interface YKAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSTextField *populationSizeTextField;
