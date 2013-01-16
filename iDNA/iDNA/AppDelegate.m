@@ -66,44 +66,40 @@
 
 - (IBAction)startEvolution:(id)sender
 {
-	dispatch_queue_t back = dispatch_queue_create("back", NULL);
-	dispatch_async(back, ^{
-		[self setInputsEnabled:NO];
-		
-		if ([evolution state] == INIT)
-			[evolution initWithMutationRate:mutationRate PopulationSize:populationSize DnaLength:dnaLength];
-		else if ([evolution state] == PAUSED)
-			[evolution setState:STARTED];
-		
-		while ([evolution state] == STARTED)
-		{
-			[evolution perfomStep];
-			dispatch_sync(dispatch_get_main_queue(), ^{
-				[self updateLabels];
-			});
-		}
-		[self setInputsEnabled:YES];
-	});
+	[self checkInputValues];
+	if (dnaLength > 0 && populationSize > 0)
+	{
+		dispatch_queue_t back = dispatch_queue_create("back", NULL);
+		dispatch_async(back, ^{
+			[self setInputsEnabled:NO];
+			
+			if ([evolution state] == INIT)
+				[evolution initWithMutationRate:mutationRate PopulationSize:populationSize DnaLength:dnaLength];
+			else if ([evolution state] == PAUSED)
+				[evolution setState:STARTED];
+			
+			while ([evolution state] == STARTED)
+			{
+				[evolution perfomStep];
+				dispatch_sync(dispatch_get_main_queue(), ^{
+					[self updateLabels];
+				});
+			}
+			[self setInputsEnabled:YES];
+		});
+	}
+	else
+	{
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Какой-то из параметров равен 0." defaultButton:@"Просто закройся" alternateButton:@"Я понял" otherButton:@"Другая кнопка" informativeTextWithFormat:@"Скорее всего это размер ДНК или популяции."];
+		[alert runModal];
+	}
 }
 
-// Evolve in background.
--(void) evolve
+-(void) checkInputValues
 {
-	[self setInputsEnabled:NO];
-
-	if ([evolution state] == INIT)
-		[evolution initWithMutationRate:mutationRate PopulationSize:populationSize DnaLength:dnaLength];
-	else if ([evolution state] == PAUSED)
-		[evolution setState:STARTED];
-	
-	while ([evolution state] == STARTED)
-	{
-		[evolution perfomStep];
-		[self performSelectorOnMainThread:@selector(updateLabels) withObject:nil waitUntilDone:YES];
-		//[_vwGraph addPointWithY:[evolution bestHammingDistance]];
-		//[_vwGraph setNeedsDisplay:YES];
-	}
-	[self setInputsEnabled:YES];
+	[self setDnaLength:[_tfDnaLength integerValue]];
+	[self setMutationRate:[_tfMutationRate integerValue]];
+	[self setPopulationSize:[_tfPopulationSize integerValue]];
 }
 
 // Pause button pressed.
