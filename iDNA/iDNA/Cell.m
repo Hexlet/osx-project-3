@@ -12,7 +12,7 @@
 @implementation Cell
 {
     NSMutableArray *DNA;
-    NSArray *nucleotide;
+    NSString *nucleotide;
 }
 
 -(id) init
@@ -21,11 +21,16 @@
     
     if (self)
     {
-        [self initNucleotides];
-        [self initDNAWithlength:100];   
+		[self initNucleotides];
+        [self initDNAWithlength:100];
     }
     
     return self;
+}
+
+-(void) initNucleotides
+{
+	nucleotide = @"ATCG";
 }
 
 -(id) initWithDNAlength: (NSInteger) length
@@ -64,12 +69,6 @@
 	{
 		[DNA setObject:[self randomNucleotide] atIndexedSubscript:i];
 	}
-}
-
--(void) initNucleotides
-{
-	// Possible elements.
-	nucleotide = [[NSArray alloc] initWithObjects:@"A", @"C", @"G", @"T", nil];
 }
 
 -(int) hammingDistance: (Cell *) cell
@@ -122,10 +121,21 @@
 // Return random nucleotide from corresponding array.
 -(NSString *) randomNucleotide
 {
-    if ([nucleotide count] > 0)
-        return [nucleotide objectAtIndex:arc4random_uniform((int)[nucleotide count])];
-    else
-        return @"";
+	return [NSString stringWithFormat:@"%c", [nucleotide characterAtIndex:arc4random_uniform((int)[nucleotide length])]];
+}
+
+-(NSString *) randomNucleotideExceptGiven: (NSString *) except
+{
+	@autoreleasepool
+	{
+		NSString *ncl = [nucleotide stringByReplacingOccurrencesOfString:except withString:@""];
+		return [NSString stringWithFormat:@"%c", [ncl characterAtIndex:arc4random_uniform((int)[ncl length])]];
+	}
+}
+
+-(void) setRandomDNAatIndex:(NSInteger) index
+{
+	[self setDNA:[self randomNucleotideExceptGiven:[self getDNAatIndex:index]] atIndex:index];
 }
 
 -(Cell *) crossWithCell: (Cell *) otherCell
@@ -147,38 +157,28 @@
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [[Cell alloc] initWithCell:self];
-	
 	for (NSInteger i = [self DNAsize] / 2; i<[self DNAsize]; i++)
-		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
-	
-	return newCell;
+		[self setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	return self;
 }
 
 -(Cell *) crossByOnePercentWithCell: (Cell *) otherCell
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [[Cell alloc] initWithCell:self];
-	
-	// Simpler method described in module video.
 	for (NSInteger i = 0; i < [self DNAsize]; i++)
-	{
 		if (i % 2 == 1)
-			[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
-	}
-	return newCell;
+			[self setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	return self;
 }
 
 -(Cell *) crossByPartsWithCell: (Cell *) otherCell
 {
 	if ([self DNAsize] != [otherCell DNAsize])
 		return self;
-	Cell *newCell = [[Cell alloc] initWithCell:self];
-	
 	for (NSInteger i = [self DNAsize]/5; i < 4*[self DNAsize]/5; i++)
-		[newCell setDNA:[otherCell getDNAatIndex:i] atIndex:i];
-	return newCell;
+		[self setDNA:[otherCell getDNAatIndex:i] atIndex:i];
+	return self;
 }
 
 -(void) mutate: (NSInteger) percentToReplace
@@ -205,22 +205,9 @@
     // Shuffle it!
     [indicesToReplace shuffle];
     
-    // To store generated nucleotide.
-    NSString *tempNucleotide = [[NSString alloc] init];
-    NSInteger DNAindex = 0;
-    
     for (i = 0; i < replace; i++)
     {
-        // Index of DNA array.
-        DNAindex = [[indicesToReplace objectAtIndex:i] integerValue];
-        // Generate string different from that in DNA array.
-        do
-        {
-            tempNucleotide = [self randomNucleotide];
-        }
-        while ([[self getDNAatIndex:DNAindex] isEqualToString:tempNucleotide]);
-        
-        [self setDNA:tempNucleotide atIndex:DNAindex];
+        [self setRandomDNAatIndex:[[indicesToReplace objectAtIndex:i] integerValue]];
     }
 }
 

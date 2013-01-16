@@ -42,6 +42,8 @@
 	[self addObserver:self forKeyPath:@"dnaLength" options:NSKeyValueObservingOptionNew context:nil];
 	[self addObserver:self forKeyPath:@"mutationRate" options:NSKeyValueObservingOptionNew context:nil];
 	[self addObserver:self forKeyPath:@"populationSize" options:NSKeyValueObservingOptionNew context:nil];
+	
+	[_vwGraph setHidden:YES];
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -49,11 +51,11 @@
 	// If any of parameters was changed we should reset evolution.
 	[evolution reset];
 	[self setLabelForGeneration:0];
-	[self setLabelForBestMatch:dnaLength];
+	[self setLabelForBestMatch:0];
 	
 	[_vwGraph reset];
 	[_vwGraph setNeedsDisplay:YES];
-}
+}	
 
 -(void) dealloc
 {
@@ -64,7 +66,24 @@
 
 - (IBAction)startEvolution:(id)sender
 {
-	[self performSelectorInBackground:@selector(evolve) withObject:nil];
+	dispatch_queue_t back = dispatch_queue_create("back", NULL);
+	dispatch_async(back, ^{
+		[self setInputsEnabled:NO];
+		
+		if ([evolution state] == INIT)
+			[evolution initWithMutationRate:mutationRate PopulationSize:populationSize DnaLength:dnaLength];
+		else if ([evolution state] == PAUSED)
+			[evolution setState:STARTED];
+		
+		while ([evolution state] == STARTED)
+		{
+			[evolution perfomStep];
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				[self updateLabels];
+			});
+		}
+		[self setInputsEnabled:YES];
+	});
 }
 
 // Evolve in background.
@@ -80,10 +99,9 @@
 	while ([evolution state] == STARTED)
 	{
 		[evolution perfomStep];
-		[self setLabelForGeneration:[evolution step]];
-		[self setLabelForBestMatch:[evolution bestHammingDistance]];
-		[_vwGraph addPointWithY:[evolution bestHammingDistance]];
-		[_vwGraph setNeedsDisplay:YES];
+		[self performSelectorOnMainThread:@selector(updateLabels) withObject:nil waitUntilDone:YES];
+		//[_vwGraph addPointWithY:[evolution bestHammingDistance]];
+		//[_vwGraph setNeedsDisplay:YES];
 	}
 	[self setInputsEnabled:YES];
 }
@@ -92,7 +110,12 @@
 - (IBAction)pause:(id)sender
 {
 	[evolution setState:PAUSED];
-	[self setInputsEnabled:YES];
+}
+
+-(void) updateLabels
+{
+	[self setLabelForGeneration:[evolution step]];
+	[self setLabelForBestMatch:[evolution bestMatch]];
 }
 
 -(void) setLabelForGeneration: (NSInteger) step
@@ -100,9 +123,9 @@
 	[_lbGeneration setStringValue:[NSString stringWithFormat:@"%ld", step]];
 }
 
--(void) setLabelForBestMatch: (NSInteger) hammingDistance
+-(void) setLabelForBestMatch: (NSInteger) bestMatch
 {
-	[_lbBestMatch setStringValue:[NSString stringWithFormat:@"%ld", 100 - 100 * hammingDistance / dnaLength]];
+	[_lbBestMatch setStringValue:[NSString stringWithFormat:@"%ld", bestMatch]];
 }
 
 - (void) setInputsEnabled: (Boolean) status
@@ -150,4 +173,10 @@
 	populationSize = MIN(x, maxPopulationSize);
 	[_tfPopulationSize setStringValue:[NSString stringWithFormat:@"%ld", populationSize]];
 }
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+    return YES;
+}
+
 @end

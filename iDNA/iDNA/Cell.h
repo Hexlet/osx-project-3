@@ -14,12 +14,11 @@
 -(NSInteger) DNAsize;
 -(NSString *) getDNAatIndex: (NSInteger)index;
 -(void) setDNA: (NSString *) nucluotide atIndex: (NSInteger)index;
--(NSString *) randomNucleotide;
--(void) initNucleotides;
 -(id) initWithCell: (Cell *) cell;
 -(id) initWithDNAlength: (NSInteger) length;
 -(NSString *) DNAtoString;
 -(Cell *) crossWithCell: (Cell *) otherCell;
 -(void) mutate: (NSInteger) percentToReplace;
+-(NSString *) randomNucleotide;
 
 @end

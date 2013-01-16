@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379630599.519024"
+         timestampString = "380051327.180207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "-setDnaLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/AppDelegate.m"
-         timestampString = "379630599.519024"
+         timestampString = "380051327.180207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
          landmarkName = "-startEvolution:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/Evolution.m"
-         timestampString = "379263174.792226"
+         timestampString = "380044430.22897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "29"
-         endingLineNumber = "29"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
          landmarkName = "-createGoalDNAWithLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/Cell.m"
-         timestampString = "379211556.122138"
+         timestampString = "380048496.01082"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-initWithCell:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,20 +60,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/Evolution.m"
-         timestampString = "379437630.550915"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
-         landmarkName = "-perfomStep"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDNA/Evolution.m"
-         timestampString = "379437630.550915"
+         timestampString = "380044430.22897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "65"
@@ -86,12 +73,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA/Evolution.m"
-         timestampString = "379437630.550915"
+         timestampString = "380044430.22897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
-         landmarkName = "-sortPopulation"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "-perfomStep"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -104,8 +91,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "42"
          endingLineNumber = "42"
-         landmarkName = "vwGraph"
-         landmarkType = "19">
+         landmarkName = "@interface AppDelegate"
+         landmarkType = "2">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

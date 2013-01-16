@@ -23,6 +23,8 @@
 	NSInteger mutationRate;
 	NSInteger populationSize;
 	NSInteger dnaLength;
+	
+	NSInteger bestMatch;
 
 	NSMutableArray *population;
 	Cell *goalDNA;
@@ -33,7 +35,7 @@
 -(void) perfomStep;
 -(NSInteger) state;
 -(NSInteger) step;
--(NSInteger) bestHammingDistance;
+-(NSInteger) bestMatch;
 -(void) reset;
 -(void) setState: (NSInteger) st;
 

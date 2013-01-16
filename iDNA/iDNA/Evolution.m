@@ -16,6 +16,7 @@
 	{
 		step = 0;
 		state = INIT;
+		bestMatch = 0;
 	}
 	return self;
 }
@@ -123,18 +124,21 @@
 	return NO;
 }
 
--(NSInteger) bestHammingDistance
+-(NSInteger) bestMatch
 {
-	if ([population count] < 1)
-		return 0;
-	else
-		return [goalDNA hammingDistance:[population objectAtIndex:0]];
+	NSInteger bestHD = 0;
+	if ([population count] > 0)
+		bestHD = [goalDNA hammingDistance:[population objectAtIndex:0]];
+	bestMatch = MAX(bestMatch, 100 - 100 * bestHD / dnaLength);
+	
+	return bestMatch;
 }
 
 -(void) reset
 {
 	state = INIT;
 	step = 0;
+	bestMatch = 0;
 }
 
 @end
