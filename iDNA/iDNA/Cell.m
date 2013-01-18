@@ -21,10 +21,23 @@
     return self;
 }
 
+-(id) initWidthCapacity:(NSInteger)x {
+    if(self = [super init]) {
+        NSArray * n = [NSArray arrayWithObjects:@"A",@"T",@"G",@"C", nil];
+        DNA = [[NSMutableArray alloc] initWithCapacity:x];
+        for(int i = 0; i < x; i++) {
+            [DNA addObject:[n objectAtIndex:arc4random()%4]];
+        }
+    }
+    return self;
+}
+
+
 -(int) hammingDistance:(Cell *)obj {
     NSMutableArray * objDNA = [[obj returnDNA] mutableCopy];
+    NSUInteger count = [objDNA count];
     int distance = 0;
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < count; i++) {
         if([[DNA objectAtIndex:i] isNotEqualTo:[objDNA objectAtIndex:i]]) {
             distance++;
         }

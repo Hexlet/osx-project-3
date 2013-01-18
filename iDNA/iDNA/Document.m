@@ -15,8 +15,45 @@
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
+        [self setValue:[NSNumber numberWithInt:42] forKey:@"length"];
+        [self setValue:[NSNumber numberWithInt:3100] forKey:@"population_size"];
+        DNA = [[Cell alloc] initWidthCapacity:length];
+        [self addObserver:self forKeyPath:@"length" options:0 context:@"did"];
     }
     return self;
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    DNA = [[Cell alloc] initWidthCapacity:length];
+    [_goalDnaLabel setStringValue:[[DNA returnDNA] componentsJoinedByString:@""]];
+}
+
+-(void) createPopulation:(NSInteger)x {
+    Population = [[NSMutableArray alloc] initWithCapacity:x];
+    for(int i = 0; i <= x; i++) {
+        [Population addObject:[[Cell alloc] initWidthCapacity:length]];
+    }
+    //NSLog(@"%@",Population);
+    //NSLog(@"%@",DNA);
+}
+
+- (IBAction)startEvolution:(id)sender {
+    [self createPopulation:population_size];
+    int hd = 0;
+    int tmp_hd;
+    for (int i = 0; i <= population_size; i++) {
+        [_generation setStringValue:[NSString stringWithFormat:@"Generation: %i", i]];
+        if ((tmp_hd = [[Population objectAtIndex:i] hammingDistance:DNA]) <= hd) {
+            hd = tmp_hd;
+            [_hammingDistance setStringValue:[NSString stringWithFormat:@"Hamming distance: %i", hd]];
+        } else {
+            hd = tmp_hd;
+        }
+        if (hd == 0) {
+            [_generation setStringValue:[NSString stringWithFormat:@"Generation: %i Whola!", i]];
+            break;
+        }
+    }
 }
 
 - (NSString *)windowNibName
@@ -30,6 +67,8 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    [_goalDnaLabel setStringValue:[[DNA returnDNA] componentsJoinedByString:@""]];
+    [_populationSize setStringValue:[NSString stringWithFormat:@"%li",population_size]];
 }
 
 + (BOOL)autosavesInPlace
@@ -54,6 +93,10 @@
     NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
     @throw exception;
     return YES;
+}
+
+- (void) dealloc {
+    [self removeObserver:self forKeyPath:@"length"];
 }
 
 @end

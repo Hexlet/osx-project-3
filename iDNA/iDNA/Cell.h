@@ -12,6 +12,7 @@
     NSMutableArray * DNA;
 }
 
+- (id) initWidthCapacity:(NSInteger)x;
 - (int) hammingDistance:(Cell*) obj;
 - (NSMutableArray*) returnDNA;
 
