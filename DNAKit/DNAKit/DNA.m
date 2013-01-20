@@ -8,7 +8,8 @@
 
 #import "DNA.h"
 
-#import "DNAChain.h"
+#import "DNAChain+Mutable.h"
+#import "DNAOneMiddlePointChainCrossover.h"
 
 @implementation DNA
 {
@@ -23,14 +24,41 @@
     return self;
 }
 
+- (id)initWithChain:(DNAChain *)chain
+{
+    if (self = [super init]) {
+        self->chain = chain;
+    }
+    return self;
+}
+
 - (NSUInteger)length
 {
     return [chain length];
 }
 
+- (NSUInteger)distanceToDNA:(DNA *)dna
+{
+    return [chain hammingDitanceToDNAChain:dna->chain];
+}
+
+- (void)mutate:(NSUInteger)percent
+{
+    [chain mutate:percent];
+}
+
 - (NSString *)description
 {
     return [chain description];
+}
+
++ (DNA *)crossoverDNA:(DNA *)dnaA withDNA:(DNA *)dnaB
+{
+    static DNABaseChainCrossover *crossover;
+    if (!crossover) {
+        crossover = [[DNAOneMiddlePointChainCrossover alloc] init];
+    }
+    return [[DNA alloc] initWithChain:[crossover crossoverDNAChain:dnaA->chain withDNAChain:dnaB->chain]];
 }
 
 @end

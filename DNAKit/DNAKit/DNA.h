@@ -14,4 +14,10 @@
 
 - (id)initWithLength:(NSUInteger)length;
 
+- (NSUInteger)distanceToDNA:(DNA *)dna;
+
+- (void)mutate:(NSUInteger)percent;
+
++ (DNA *)crossoverDNA:(DNA *)dnaA withDNA:(DNA *)dnaB;
+
 @end

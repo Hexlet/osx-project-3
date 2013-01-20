@@ -14,7 +14,7 @@
 - (void)mutate:(NSUInteger)percent
 {
     if (percent > 100) {
-        @throw [NSException exceptionWithName:@"IllegalMutationPercentException" reason:@"Mutate percent greater than 100" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalMutationPercentException" reason:@"Mutate percent greater than 100!" userInfo:nil];
     }
     
     NSUInteger portion = round([self length] * percent / 100.0f);
@@ -32,11 +32,11 @@
     
     for (NSUInteger i = 0; i < portion; ++i){
         NSUInteger index = [[indexes objectAtIndex:i] integerValue];
-        [self elements][index] = [self getRandomElementExceptElement:[self elements][index]];
+        [self elements][index] = [DNAChain getRandomElementExceptElement:[self elements][index]];
     }
 }
 
-- (DNAElement)getRandomElementExceptElement:(DNAElement)element
++ (DNAElement)getRandomElementExceptElement:(DNAElement)element
 {
     NSUInteger index = DNA_CHAIN_ELEMENT_COUNT;
     for (NSUInteger i = 0; i < DNA_CHAIN_ELEMENT_COUNT; ++i) {

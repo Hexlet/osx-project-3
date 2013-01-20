@@ -20,7 +20,10 @@ static NSUInteger DNA_CHAIN_ELEMENT_COUNT = 4;
 @property (readonly) DNAElement *elements;
 @property (readonly) NSUInteger length;
 
+- (id)initWithLength:(NSUInteger)length;
 - (id)initWithElements:(DNAElement *)elements length:(NSUInteger)length;
 - (id)initWithRandomElementsLength:(NSUInteger)length;
+
+- (NSUInteger)hammingDitanceToDNAChain:(DNAChain *)chain;
 
 @end

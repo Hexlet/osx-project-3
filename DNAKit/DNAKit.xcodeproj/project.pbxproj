@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A388F24168765A4009FBCE9 /* DNASet.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A388F22168765A4009FBCE9 /* DNASet.h */; };
+		0A388F25168765A4009FBCE9 /* DNASet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A388F23168765A4009FBCE9 /* DNASet.m */; };
 		0AAA9A641686338F00C3566A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAA9A631686338F00C3566A /* Cocoa.framework */; };
 		0AAA9A6E1686338F00C3566A /* DNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA9A6D1686338F00C3566A /* DNA.m */; };
 		0AAA9A761686338F00C3566A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAA9A751686338F00C3566A /* SenTestingKit.framework */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A388F22168765A4009FBCE9 /* DNASet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNASet.h; sourceTree = "<group>"; };
+		0A388F23168765A4009FBCE9 /* DNASet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNASet.m; sourceTree = "<group>"; };
 		0AAA9A601686338F00C3566A /* DNAKit.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = DNAKit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAA9A631686338F00C3566A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0AAA9A661686338F00C3566A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -139,6 +143,8 @@
 				0AAA9A8C168646D600C3566A /* DNAChain.h */,
 				0AAA9A8D168646D600C3566A /* DNAChain.m */,
 				0AE5084A16870231004EF883 /* DNAMutable.h */,
+				0A388F22168765A4009FBCE9 /* DNASet.h */,
+				0A388F23168765A4009FBCE9 /* DNASet.m */,
 				0AAA9A6A1686338F00C3566A /* Supporting Files */,
 			);
 			path = DNAKit;
@@ -198,6 +204,7 @@
 				0AE508391686F124004EF883 /* DNAOneMiddlePointChainCrossover.h in Headers */,
 				0AE5084816870176004EF883 /* DNAChain+Mutable.h in Headers */,
 				0AE5084F16870306004EF883 /* DNABaseChainCrossover.h in Headers */,
+				0A388F24168765A4009FBCE9 /* DNASet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +311,7 @@
 				0AE5084916870176004EF883 /* DNAChain+Mutable.m in Sources */,
 				0AE5085016870306004EF883 /* DNABaseChainCrossover.m in Sources */,
 				0AE5085116870306004EF883 /* DNAOneMiddlePointChainCrossover.m in Sources */,
+				0A388F25168765A4009FBCE9 /* DNASet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

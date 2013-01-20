@@ -11,6 +11,14 @@
 
 @implementation DNAChain
 
+- (id)initWithLength:(NSUInteger)length {
+    if (self = [super init]) {
+        _elements = [DNAChain createInitialDNAChainElements:length];
+        _length = length;
+    }
+    return self;
+}
+
 - (id)initWithElements:(DNAElement *)elements length:(NSUInteger)length
 {
     if (self = [super init]) {
@@ -32,16 +40,35 @@
     free(_elements);
 }
 
+- (NSUInteger)hammingDitanceToDNAChain:(DNAChain *)chain
+{
+    if (_length != [chain length]) {
+        @throw [NSException exceptionWithName:@"NonEqualLengthException" reason:@"Chains have non equal lengths!" userInfo:nil];
+    }
+    NSUInteger distance = 0;
+    for (NSUInteger i = 0; i < _length; ++i) {
+        if (_elements[i] != [chain elements][i]) {
+            ++distance;
+        }
+    }
+    return distance;
+}
+
 - (NSString *)description
 {
     return [[NSString alloc] initWithUTF8String:_elements];
 }
 
-# pragma mark Random
++ (DNAElement *)createInitialDNAChainElements:(NSUInteger)length
+{
+    DNAElement *elements = calloc(length, sizeof(DNAElement));
+    memset(elements, DNA_CHAIN_ELEMENTS[0], length * sizeof(DNAElement));
+    return elements;
+}
 
 + (DNAElement *)getRandomDNAChainArrayWithLength:(NSUInteger)length
 {    
-    char *chainArray = calloc(length, sizeof(DNAElement));
+    DNAElement *chainArray = calloc(length, sizeof(DNAElement));
     for (NSUInteger i = 0; i < length; ++i)
         chainArray[i] = [self getRandomElement];
     return chainArray;

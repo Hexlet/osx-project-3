@@ -8,13 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../../DNAKit/DNAKit/DNA.h"
+#import "../../DNAKit/DNAKit/DNASet.h"
 
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        DNA *dna = [DNA dnaWithLength:15UL];
-        NSLog(@"%@", dna);
+        NSUInteger length = 200;
+        DNASet *dnas = [[DNASet alloc] initWithDNALength:length capacity:100];
+        dnas.goalDNA = [[DNA alloc] initWithLength:length];
+        dnas.mutatePercent = 5;
+        
+        for (NSUInteger i = 0; i < 1000; ++i) {
+            [dnas evolve];
+            NSLog(@"distance = %zul", [dnas minDistance]);
+        }
     }
     return 0;
 }

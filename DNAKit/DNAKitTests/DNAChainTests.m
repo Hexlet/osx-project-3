@@ -13,7 +13,15 @@
 
 @implementation DNAChainTests
 
-- (void)testSimpleChain
+- (void)testInitialChain
+{
+    DNAChain *chain = [[DNAChain alloc] initWithLength:10];
+    for (NSUInteger i = 0; i < [chain length]; ++i) {
+        STAssertEquals([chain elements][i], DNA_CHAIN_ELEMENTS[0], nil);
+    }
+}
+
+- (void)testRandomChain
 {
     DNAChain *chain = [[DNAChain alloc] initWithRandomElementsLength:10];
     STAssertEquals([[chain description] length], 10UL, nil);
@@ -65,6 +73,25 @@
     free(originElements);
     STAssertEquals(distinctElementsCount, 200UL, nil);
 }
+
+- (void)testHammingDistanceBetweenChainsWithNonEqualLengths
+{
+    DNAChain *chainA = [[DNAChain alloc] initWithRandomElementsLength:2];
+    DNAChain *chainB = [[DNAChain alloc] initWithRandomElementsLength:3];
+    STAssertThrowsSpecificNamed([chainA hammingDitanceToDNAChain:chainB], NSException, @"NonEqualLengthException", nil);
+}
+
+- (void)testHammingDistance
+{
+    DNAChain *chainA = [[DNAChain alloc] initWithRandomElementsLength:100];
+    DNAChain *chainB = [[DNAChain alloc] initWithElements:[self createElementsFromOriginElements:[chainA elements]]
+                                                   length:[chainA length]];
+    [chainB mutate:20];
+    STAssertEquals([chainA hammingDitanceToDNAChain:chainB], 20UL, nil);
+}
+
+#pragma mark -
+#pragma mark Other
 
 - (DNAElement *)createElementsFromOriginElements:(DNAElement *)originElements
 {
