@@ -14,7 +14,7 @@
 
 @property (readonly) NSUInteger minDistance;
 
-@property NSUInteger mutatePercent;
+@property float mutatePercent;
 @property DNA *goalDNA;
 
 - (id)initWithDNALength:(NSUInteger)length capacity:(NSUInteger)capacity;

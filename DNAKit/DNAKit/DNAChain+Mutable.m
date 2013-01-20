@@ -11,13 +11,13 @@
 
 @implementation DNAChain (Mutable)
 
-- (void)mutate:(NSUInteger)percent
+- (void)mutate:(float)percent
 {
-    if (percent > 100) {
+    if (percent > 1) {
         @throw [NSException exceptionWithName:@"IllegalMutationPercentException" reason:@"Mutate percent greater than 100!" userInfo:nil];
     }
     
-    NSUInteger portion = round([self length] * percent / 100.0f);
+    NSUInteger portion = round([self length] * percent);
     
     static NSMutableArray *indexes;
     if (indexes == nil || [indexes count] != [self length]) {

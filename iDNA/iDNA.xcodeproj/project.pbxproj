@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3DC71C16AC570400EC847D /* AppDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DC71B16AC570400EC847D /* AppDefaults.m */; };
 		0A615CBC1688CAEA006B0C94 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A615CBB1688CAEA006B0C94 /* Cocoa.framework */; };
 		0A615CC61688CAEA006B0C94 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A615CC41688CAEA006B0C94 /* InfoPlist.strings */; };
 		0A615CC81688CAEA006B0C94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A615CC71688CAEA006B0C94 /* main.m */; };
 		0A615CCC1688CAEA006B0C94 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0A615CCA1688CAEA006B0C94 /* Credits.rtf */; };
 		0A615CCF1688CAEA006B0C94 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A615CCE1688CAEA006B0C94 /* AppDelegate.m */; };
 		0A615CD21688CAEA006B0C94 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A615CD01688CAEA006B0C94 /* MainMenu.xib */; };
-		0A615CD51688CAEA006B0C94 /* iDNA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A615CD31688CAEA006B0C94 /* iDNA.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3DC71A16AC570400EC847D /* AppDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefaults.h; sourceTree = "<group>"; };
+		0A3DC71B16AC570400EC847D /* AppDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDefaults.m; sourceTree = "<group>"; };
 		0A615CB71688CAEA006B0C94 /* iDNA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDNA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A615CBB1688CAEA006B0C94 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0A615CBE1688CAEA006B0C94 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -30,7 +32,6 @@
 		0A615CCD1688CAEA006B0C94 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A615CCE1688CAEA006B0C94 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0A615CD11688CAEA006B0C94 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		0A615CD41688CAEA006B0C94 /* iDNA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iDNA.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +88,8 @@
 				0A615CCD1688CAEA006B0C94 /* AppDelegate.h */,
 				0A615CCE1688CAEA006B0C94 /* AppDelegate.m */,
 				0A615CD01688CAEA006B0C94 /* MainMenu.xib */,
-				0A615CD31688CAEA006B0C94 /* iDNA.xcdatamodeld */,
+				0A3DC71A16AC570400EC847D /* AppDefaults.h */,
+				0A3DC71B16AC570400EC847D /* AppDefaults.m */,
 				0A615CC21688CAEA006B0C94 /* Supporting Files */,
 			);
 			path = iDNA;
@@ -171,7 +173,7 @@
 			files = (
 				0A615CC81688CAEA006B0C94 /* main.m in Sources */,
 				0A615CCF1688CAEA006B0C94 /* AppDelegate.m in Sources */,
-				0A615CD51688CAEA006B0C94 /* iDNA.xcdatamodeld in Sources */,
+				0A3DC71C16AC570400EC847D /* AppDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,21 +303,9 @@
 				0A615CDA1688CAEA006B0C94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0A615CD31688CAEA006B0C94 /* iDNA.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0A615CD41688CAEA006B0C94 /* iDNA.xcdatamodel */,
-			);
-			currentVersion = 0A615CD41688CAEA006B0C94 /* iDNA.xcdatamodel */;
-			path = iDNA.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0A615CAE1688CAEA006B0C94 /* Project object */;
 }

@@ -42,7 +42,7 @@
     return [chain hammingDitanceToDNAChain:dna->chain];
 }
 
-- (void)mutate:(NSUInteger)percent
+- (void)mutate:(float)percent
 {
     [chain mutate:percent];
 }

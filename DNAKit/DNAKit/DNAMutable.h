@@ -11,6 +11,6 @@
 
 @protocol DNAMutable <NSObject>
 
-- (void)mutate:(NSUInteger)percent;
+- (void)mutate:(float)percent;
 
 @end

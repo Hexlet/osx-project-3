@@ -16,7 +16,7 @@
 
 - (NSUInteger)distanceToDNA:(DNA *)dna;
 
-- (void)mutate:(NSUInteger)percent;
+- (void)mutate:(float)percent;
 
 + (DNA *)crossoverDNA:(DNA *)dnaA withDNA:(DNA *)dnaB;
 
