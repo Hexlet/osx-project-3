@@ -18,7 +18,7 @@
     if ([chainA length] != [chainB length]) {
         @throw [NSException exceptionWithName:@"NonEqualLengthException" reason:@"Chains have non equal lengths!" userInfo:nil];
     }
-    return [[DNAChain alloc] initWithRandomElementsLength:[chainA length]];
+    return [[DNAChain alloc] initWithLength:[chainA length]];
 }
 
 @end
