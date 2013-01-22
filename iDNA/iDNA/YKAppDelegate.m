@@ -22,6 +22,7 @@
 @implementation YKAppDelegate
 
 #define EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME @"YKEvolutionIterationDidFinishNotification"
+#define UPDATE_VALUES_NOTIFICATION @"YKUpdateValuesNotification"
 
 - (YKAppDelegate *)init
 {
@@ -52,6 +53,7 @@
     [self removeObserver:self forKeyPath:@"minimumHammingDistance"];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UPDATE_VALUES_NOTIFICATION object:nil];
  }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -59,12 +61,34 @@
     self.isFirstRun = YES;
     self.isBusy = NO;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evolutionIterationDidFinish:) name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(evolutionIterationDidFinishNotification:) name:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateValuesNotification:) name:UPDATE_VALUES_NOTIFICATION object:nil];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return YES;
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    if (self.isBusy) {
+/*        NSAlert *alert = [[NSAlert alertWithMessageText:NSLocalizedString(@"Do you want to quit iDNA?", @"Quit app alert title format")
+                                          defaultButton:NSLocalizedString(@"Yes", @"Quit app alert OK button")
+                                        alternateButton:NSLocalizedString(@"No", @"Quit app alert Cancel button")
+                                            otherButton:nil
+                              informativeTextWithFormat:NSLocalizedString(@"Calculation is in progress. Do you want to close this window and quit iDNA?", @"Quit app alert description")]];
+*/
+        NSInteger alertResult = NSRunAlertPanel(NSLocalizedString(@"Do you want to quit iDNA?", @"Quit app alert title format"),
+                                                NSLocalizedString(@"Calculation is in progress. Do you want to close this window and quit iDNA?", @"Quit app alert description"),
+                                                NSLocalizedString(@"Yes", @"Quit app alert OK button"),
+                                                NSLocalizedString(@"No", @"Quit app alert Cancel button"),
+                                                nil);
+
+        return (alertResult == NSAlertDefaultReturn ? NSTerminateNow : NSTerminateCancel);
+    }
+
+    return NSTerminateNow;
 }
 
 #pragma mark -
@@ -121,6 +145,11 @@
 - (void)performEvolutionIteration
 {
     self.generation++;
+    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_VALUES_NOTIFICATION
+                                                        object:self
+                                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:self.generation], @"value",
+                                                                @"generation", @"key",
+                                                                nil]];
     
     // 1. Отсортировать популяцию по близости (hamming distance) к Goal DNA
 
@@ -142,7 +171,12 @@
 
     if (self.population.count > 0) {
         NSUInteger minHammingDistance = [[self.population objectAtIndex:0] hammingDistanceToDNA:self.goalDNA];
-        self.minimumHammingDistance = minHammingDistance;
+//        self.minimumHammingDistance = minHammingDistance;
+        [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_VALUES_NOTIFICATION
+                                                            object:self
+                                                          userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:minHammingDistance], @"value",
+                                                                    @"minimumHammingDistance", @"key",
+                                                                    nil]];
 
         if (minHammingDistance == 0) {
         // Как минимум первая ДНК (с минимальным hamming distance) совпала с Goal DNA. Ура, товарищи! Красиво съезжаем.
@@ -184,8 +218,8 @@
 //        self.isBusy = YES;
 
         // Выполняем performEvolutionIteration в фоновом потоке, чтобы не блокировать элементы пользовательского интерфейса в основном потоке
-        [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
-//        [self performEvolutionIteration];
+//        [self performSelectorInBackground:@selector(performEvolutionIteration) withObject:nil];
+        [self performEvolutionIteration];
     }
 }
 
@@ -224,7 +258,17 @@
     }
 }
 
-- (void)evolutionIterationDidFinish:(NSNotification *)aNotification
+- (void)updateValuesNotification:(NSNotification *)aNotification
+{
+    if (aNotification && [[aNotification name] isEqualToString:UPDATE_VALUES_NOTIFICATION]) {
+        NSNumber *value = [[aNotification userInfo] valueForKey:@"value"];
+        NSString *key = [[aNotification userInfo] valueForKey:@"key"];
+
+        [self setValue:value forKey:key];
+    }
+}
+
+- (void)evolutionIterationDidFinishNotification:(NSNotification *)aNotification
 {
     // Это уведомление отправляется по окончании каждого шага эволюции
     if (aNotification && [[aNotification name] isEqualToString:EVOLUTION_ITERATION_DID_FINISH_NOTIFICATION_NAME]) {
@@ -256,8 +300,8 @@
     // Запускаем эволюцию
     self.window.title = @"iDNA in progress…";
     self.isBusy = YES;
-    [self runEvolution];
-//    [self performSelectorInBackground:@selector(runEvolution) withObject:nil];
+//    [self runEvolution];
+    [self performSelectorInBackground:@selector(runEvolution) withObject:nil];
 }
 
 - (IBAction)pauseButtonPressed:(id)sender
