@@ -9,16 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import "Cell+mutator.h"
 
-@interface Document : NSDocument{
 
-}
+@interface Document : NSDocument<NSCoding>
 
 @property (nonatomic) NSInteger popSize;
 @property (nonatomic) NSInteger dnaLength;
 @property (nonatomic) NSInteger mutRateSize;
-
 @property (nonatomic) NSInteger generation;
-
 @property (nonatomic, retain) NSString* stringForPerfectCell;
 @property (nonatomic, retain) NSMutableArray* dnasArray;
 @property (nonatomic) BOOL evolutionStopped;

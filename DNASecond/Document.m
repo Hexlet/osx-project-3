@@ -49,6 +49,7 @@
 
 - (NSString *)windowNibName
 {
+    NSLog(@"windowNibName");
     // Override returning the nib file name of the document
     // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
     return @"Document";
@@ -63,29 +64,35 @@
 
 + (BOOL)autosavesInPlace
 {
-    return YES;
+    NSLog(@"autosavesInPlace");
+    return NO;
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
+    NSLog(@"dataOfType");
 //    [[table window] endEditingFor:nil];
     
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    NSArray* arcDict = @[@1, @2, @3];
-//    NSDictionary* arcDict = @{
-//        @"abc":@"abc"
+//    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
+//    @throw exception;
+//    NSArray* arcDict = @[@1, @2, @3];
+////    NSDictionary* arcDict = @{
+////        @"abc":@"abc"
+////    
+////    };
 //    
-//    };
-    
-    return [NSKeyedArchiver archivedDataWithRootObject:_dnasArray];
+//    return [NSKeyedArchiver archivedDataWithRootObject:_dnasArray];
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    return data;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
+    NSLog(@"readFromData");
     NSMutableArray *unArcDict = nil;
     @try {
         unArcDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSLog(@"unArcDict %@", unArcDict);
     }
     @catch (NSException *e) {
         if (outError) {
@@ -101,7 +108,7 @@
 - (IBAction)startEvolution:(id)sender {
     [_strtEvolutionBtn setEnabled:NO];
     [_pauseEvolutionBtn setEnabled:YES];
-    [_loadDNAButton setEnabled:NO];
+//    [_loadDNAButton setEnabled:NO];
     [_popSizeTextField setEnabled:NO];
     [_dnaLengthTextField setEnabled:NO];
     [_popSizeSlider setEnabled:NO];
@@ -118,7 +125,7 @@
 - (IBAction)stopEvolution:(id)sender {
     [_strtEvolutionBtn setEnabled:YES];
     [_pauseEvolutionBtn setEnabled:NO];
-    [_loadDNAButton setEnabled:YES];
+//    [_loadDNAButton setEnabled:YES];
     [_popSizeTextField setEnabled:YES];
     [_dnaLengthTextField setEnabled:YES];
     [_popSizeSlider setEnabled:YES];
@@ -298,6 +305,19 @@
         return YES;
     }
     return NO;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    NSLog(@"encodeWithCoder");
+    [aCoder encodeInteger:_popSize forKey:@"popSize"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    NSLog(@"initWithCOder");
+    if (self = [super init]) {
+        _popSize = [aDecoder decodeIntegerForKey:@"popSize"];
+    }
+    return self;
 }
 
 @end
