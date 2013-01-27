@@ -20,6 +20,9 @@ static const char nucleotides[] = "GATC";
 // в виде массива объектов NSString
 @property NSMutableArray * DNA;
 
+// расстояние Хэмминга с конечной клеткой
+@property NSUInteger hammingDistanceWithGoalDna;
+
 // статический метод для получения случайного нуклеотида
 + (NSString *)getRandomNucleotide;
 

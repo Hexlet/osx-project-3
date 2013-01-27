@@ -41,26 +41,19 @@
 - (NSDictionary *)oneStepEvolution {
     float bestMatch;
     NSUInteger bestCells;
+    // перед сортировкой считаем расстояние Хэмминга у клеток всей популяции
+    [self calculateHammingDistance];
+
     // сортируем популяцию по расстоянию Хэмминга
-    [_populationCells sortUsingComparator:^NSComparisonResult(Cell * cell1, Cell * cell2) {
-        NSUInteger hd1 = [cell1 hammingDistance:self.goalDNA];
-        NSUInteger hd2 = [cell2 hammingDistance:self.goalDNA];
-        if (hd1 > hd2) {
-            return NSOrderedDescending;
-        } else if (hd1 < hd2) {
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedSame;
-        }
-    }];
+    [self sortByHammingDistance];
+
     // после сортировки проверяем, совпадает ли первый элемент с конечной ДНК
     Cell * firstCell = [_populationCells objectAtIndex:0];
-    NSUInteger firstCellHd = [firstCell hammingDistance:_goalDNA];
-    if (firstCellHd == 0) {
+    if (firstCell.hammingDistanceWithGoalDna == 0) {
         // мы нашли конечную ДНК!
         bestMatch = 100.0;
     } else {
-        bestMatch = (self.dnaLength - firstCellHd) * 100.0 / self.dnaLength;
+        bestMatch = (self.dnaLength - firstCell.hammingDistanceWithGoalDna) * 100.0 / self.dnaLength;
         // скрещиваем первые 50% клеток
         [self halfCrossing];
         // мутируем всю популяцию
@@ -79,16 +72,34 @@
     return data;
 }
 
+- (void)calculateHammingDistance {
+    for (Cell *cell in self.populationCells) {
+        cell.hammingDistanceWithGoalDna = [cell hammingDistance:self.goalDNA];
+    }
+}
+
+- (void)sortByHammingDistance {
+    [_populationCells sortUsingComparator:^NSComparisonResult(Cell * cell1, Cell * cell2) {
+        NSUInteger hd1 = cell1.hammingDistanceWithGoalDna;
+        NSUInteger hd2 = cell2.hammingDistanceWithGoalDna;
+        if (hd1 > hd2) {
+            return NSOrderedDescending;
+        } else if (hd1 < hd2) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+}
+
 - (NSUInteger)bestCellsCount {
     // предполагаем, что массив отсортирован по расстоянию Хэмминга
     Cell * firstCell = [_populationCells objectAtIndex:0];
-    NSUInteger firstCellHd = [firstCell hammingDistance:_goalDNA];
     // ищем остальные
     NSUInteger bestCells = 1;
     for (NSUInteger i = 1; i < self.populationSize; i++) {
         Cell * cell = [_populationCells objectAtIndex:i];
-        NSUInteger hd = [cell hammingDistance:_goalDNA];
-        if (hd == firstCellHd) {
+        if (cell.hammingDistanceWithGoalDna == firstCell.hammingDistanceWithGoalDna) {
             bestCells++;
         } else {
             break;
@@ -140,7 +151,7 @@
 - (NSString *)description {
     NSMutableArray * cellsOutput = [NSMutableArray arrayWithCapacity:[_populationCells count]];
     for (Cell * curCell in _populationCells) {
-        NSUInteger hd = [curCell hammingDistance:_goalDNA];
+        NSUInteger hd = curCell.hammingDistanceWithGoalDna;
         [cellsOutput addObject:[NSString stringWithFormat:@"%lu%%\t %@", hd, [curCell description]]];
     }
     return [cellsOutput componentsJoinedByString:@"\n"];

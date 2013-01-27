@@ -12,6 +12,7 @@
 
 @synthesize dnaLength = _dnaLength;
 @synthesize DNA = _DNA;
+@synthesize hammingDistanceWithGoalDna = _hammingDistanceWithGoalDna;
 
 + (NSString *)getRandomNucleotide {
     // генерируем случайный индекс от 0 до 3
