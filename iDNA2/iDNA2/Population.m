@@ -99,18 +99,12 @@
 
 - (void)halfCrossing {
     NSUInteger half = round(self.populationSize / 2.0);
-    // создаем массив индексов клеток для скрещивания
-    NSMutableArray * crossingCells = [NSMutableArray arrayWithCapacity:half];
-    for (NSUInteger i = 0; i < half; i++) {
-        [crossingCells addObject:[NSNumber numberWithInt:i]];
-    }
     // убираем ненужные клетки
     NSRange range = NSMakeRange(half, [_populationCells count] - half);
     [_populationCells removeObjectsInRange:range];
     
     // дополняем массив self.populationCells новыми клетками
     // полученными путем скрещивания
-    NSUInteger cellIndex1, cellIndex2;
     do {
         if (self.evolutionPaused) {
             usleep(99999);
@@ -118,12 +112,14 @@
         }
         // получаем два случайных индекса из crossingCells
         // и вместе с ними две случайных клетки
-        cellIndex1 = arc4random() % half;
+        NSUInteger cellIndex1 = arc4random() % half;
+        NSUInteger cellIndex2;
+        do {
+            cellIndex2 = arc4random() % half;
+        } while (cellIndex2 == cellIndex1);
         Cell * cell1 = [_populationCells objectAtIndex:cellIndex1];
-        [_populationCells exchangeObjectAtIndex:cellIndex1 withObjectAtIndex:(half - 1)];
-        cellIndex2 = arc4random() % (half - 1);
         Cell * cell2 = [_populationCells objectAtIndex:cellIndex2];
-        
+
         // создаем новую клетку
         // и добавляем ее в self.populationCells
         Cell * newCell = [Cell randomlyCrossingMom:cell1 andDad:cell2];
