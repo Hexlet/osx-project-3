@@ -146,7 +146,7 @@
 		9178A06D169682750073DC81 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 9178A070169682750073DC81 /* Build configuration list for PBXProject "iDNA2" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -280,6 +280,7 @@
 		9178A098169682760073DC81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDNA2/iDNA2-Prefix.pch";
 				INFOPLIST_FILE = "iDNA2/iDNA2-Info.plist";
@@ -291,6 +292,7 @@
 		9178A099169682760073DC81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iDNA2/iDNA2-Prefix.pch";
 				INFOPLIST_FILE = "iDNA2/iDNA2-Info.plist";
@@ -318,6 +320,7 @@
 				9178A099169682760073DC81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

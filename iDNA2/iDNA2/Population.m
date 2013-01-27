@@ -57,8 +57,8 @@
     // формируем ответ
     NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:
                            [NSNumber numberWithFloat:bestMatch], @"bestMatch",
-                           [NSNumber numberWithInt:bestCells], @"bestCells",
-                           [NSNumber numberWithInt:self.generation], @"generation",
+                           [NSNumber numberWithLong:bestCells], @"bestCells",
+                           [NSNumber numberWithLong:self.generation], @"generation",
                            nil];
     self.generation += 1;
     return data;

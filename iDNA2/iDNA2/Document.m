@@ -123,10 +123,10 @@
                              andText:@"File provided doesn't contain a string which can be represented as cell DNA."];
         } else if ([newGoalDna length] < [self.dnaLengthHSldr minValue]) {
             [ui alertDialogWithTitle:@"Short DNA" 
-                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at least %lu nu", [self.dnaLengthHSldr minValue]]];
+                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at least %f nu", [self.dnaLengthHSldr minValue]]];
         } else if ([newGoalDna length] > [self.dnaLengthHSldr maxValue]) {
             [ui alertDialogWithTitle:@"Short DNA" 
-                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at most %lu nu", [self.dnaLengthHSldr maxValue]]];
+                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at most %f nu", [self.dnaLengthHSldr maxValue]]];
         } else {
             self.goalDna = [Cell getCellWithDna:newGoalDna];
             self.dnaLength = self.goalDna.dnaLength;
@@ -193,7 +193,7 @@
     } else if ([keyPath isEqualToString:@"goalDna"]) {
         if (oldValue != [NSNull null]) {
             [[um prepareWithInvocationTarget:self] setValue:oldValue forKey:@"goalDna"];
-            [[um prepareWithInvocationTarget:self] setValue:[NSNumber numberWithInt:[oldValue dnaLength]]
+            [[um prepareWithInvocationTarget:self] setValue:[NSNumber numberWithLong:[oldValue dnaLength]]
                                                      forKey:@"dnaLength"];
             [[um prepareWithInvocationTarget:self] displayGoalDna:[oldValue description]];
             if (![um isUndoing] && ![um isRedoing]) {
@@ -241,16 +241,16 @@
 
 - (void)displayEvolutionState {
     [self.bestMatchTxtLbl setStringValue:[NSString stringWithFormat:@"%.1f %%", self.bestMatch]];
-    [self.bestCellsTxtLbl setIntValue:self.bestCells];
-    [self.generationTxtLbl setIntValue:self.generation];
+    [self.bestCellsTxtLbl setIntValue:(int)self.bestCells];
+    [self.generationTxtLbl setIntValue:(int)self.generation];
 }
 
 - (void)generatePopulation {
     NSDictionary * data;
     data = [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:self.populationSize], @"populationSize",
-            [NSNumber numberWithInt:self.dnaLength], @"dnaLength",
-            [NSNumber numberWithInt:self.mutationRate], @"mutationRate",
+            [NSNumber numberWithLong:self.populationSize], @"populationSize",
+            [NSNumber numberWithLong:self.dnaLength], @"dnaLength",
+            [NSNumber numberWithLong:self.mutationRate], @"mutationRate",
             self.goalDna, @"goalDna",
             nil];
     self.myPopulation = [Population createPopulationWithData:data];

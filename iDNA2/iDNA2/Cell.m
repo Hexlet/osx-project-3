@@ -117,10 +117,10 @@
     for (NSUInteger i = 0; i < self.dnaLength; i++) {
         if (![[self.DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
             [NSException raise:@"object has wrong type" 
-                        format:@"object in self.DNA at position %d has wrong type", i];
+                        format:@"object in self.DNA at position %ld has wrong type", i];
         } else if (![[cellToCompare.DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
             [NSException raise:@"object has wrong type" 
-                        format:@"object in cellToCompare.DNA at position %d has wrong type", i];
+                        format:@"object in cellToCompare.DNA at position %ld has wrong type", i];
         } else if ([self.DNA objectAtIndex:i] != [cellToCompare.DNA objectAtIndex:i]) {
             mismatches++;
         }
@@ -146,7 +146,7 @@
         // и заполняем его натуральными числами
         NSMutableArray * allPositions = [NSMutableArray arrayWithCapacity:self.dnaLength];
         for (NSUInteger i = 0; i < self.dnaLength; i++) {
-            [allPositions addObject:[NSNumber numberWithInt:i]];
+            [allPositions addObject:[NSNumber numberWithLong:i]];
         }
         
         // случайным образом вытаскиваем из массива allPositions нужное количество позиций

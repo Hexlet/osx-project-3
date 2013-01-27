@@ -8,19 +8,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "381001573.548281"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "312"
-         endingLineNumber = "312"
-         landmarkName = "-enableAppControls:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iDNA2/Document.m"
          timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"

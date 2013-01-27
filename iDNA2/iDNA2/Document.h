@@ -56,6 +56,6 @@ static void *RMDocumentKVOContext;
 
 // метод проверяет, допустимо ли значение процента мутации
 // для текущей длины ДНК
-- (BOOL)mutateRateIsCorrect;
+- (BOOL)mutationRateIsCorrect;
 
 @end
