@@ -10,10 +10,6 @@
 
 @implementation Cell
 
-@synthesize dnaLength = _dnaLength;
-@synthesize DNA = _DNA;
-@synthesize hammingDistanceWithGoalDna = _hammingDistanceWithGoalDna;
-
 + (NSString *)getRandomNucleotide {
     // генерируем случайный индекс от 0 до 3
     NSUInteger randomIndex = arc4random() % 4;
@@ -35,7 +31,7 @@
         newCell.DNA = [NSMutableArray arrayWithCapacity:newCell.dnaLength];
         for (NSUInteger i = 0; i < [dna length]; i++) {
             NSString * nucleotide = [NSString stringWithFormat:@"%c", [dna characterAtIndex:i]];
-            [newCell->_DNA addObject:nucleotide];
+            [newCell.DNA addObject:nucleotide];
         }
     }
     return newCell;
@@ -59,10 +55,10 @@
     if (mom.dnaLength != dad.dnaLength) {
         [NSException raise:@"incorrect cells passed" 
                     format:@"Cells have differen dna length: %lu & %lu", mom.dnaLength, dad.dnaLength];
-    } else if ([mom->_DNA count] != mom.dnaLength) {
+    } else if ([mom.DNA count] != mom.dnaLength) {
         [NSException raise:@"Mom's cell not completed" 
                     format:@"Mom's cell not completed"];
-    } else if ([dad->_DNA count] != dad.dnaLength) {
+    } else if ([dad.DNA count] != dad.dnaLength) {
         [NSException raise:@"Dad's cell not completed" 
                     format:@"Dad's cell not completed"];
     } else {
@@ -97,21 +93,21 @@
 
 - (void)fillDnaOnce {
     // убеждаемся, что поле DNA не было заполнено
-    if ([_DNA count] > 0) {
+    if ([self.DNA count] > 0) {
         [NSException raise:@"DNA is not empty" 
                     format:@"field DNA is not empty, it contains \
-         %lu elements", [_DNA count]];
+         %lu elements", [self.DNA count]];
     } else {
         // заполняем цепь ДНК случайными нуклеотидами
         self.DNA = [NSMutableArray arrayWithCapacity:self.dnaLength];
         do {
-            [_DNA addObject:[Cell getRandomNucleotide]];
-        } while ([_DNA count] < self.dnaLength);
+            [self.DNA addObject:[Cell getRandomNucleotide]];
+        } while ([self.DNA count] < self.dnaLength);
     }
 }
 
 - (NSString *)description {
-    return [_DNA componentsJoinedByString:@""];
+    return [self.DNA componentsJoinedByString:@""];
 }
 
 - (NSUInteger)hammingDistance:(Cell *)cellToCompare {
@@ -119,13 +115,13 @@
     // и подсчитываем количество несовпадений
     NSUInteger mismatches = 0;
     for (NSUInteger i = 0; i < self.dnaLength; i++) {
-        if (![[_DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
+        if (![[self.DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
             [NSException raise:@"object has wrong type" 
-                        format:@"object in _DNA at position %d has wrong type", i];
-        } else if (![[cellToCompare->_DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
+                        format:@"object in self.DNA at position %d has wrong type", i];
+        } else if (![[cellToCompare.DNA objectAtIndex:i] isKindOfClass:[NSString class]]) {
             [NSException raise:@"object has wrong type" 
-                        format:@"object in cellToCompare->_DNA at position %d has wrong type", i];
-        } else if ([_DNA objectAtIndex:i] != [cellToCompare->_DNA objectAtIndex:i]) {
+                        format:@"object in cellToCompare.DNA at position %d has wrong type", i];
+        } else if ([self.DNA objectAtIndex:i] != [cellToCompare.DNA objectAtIndex:i]) {
             mismatches++;
         }
     }
@@ -172,7 +168,7 @@
 
 - (void)changeNucleotideAtPosition:(NSUInteger)index {
     // вытаскиваем текущий нуклеотид в позиции index
-    NSString * currentNucleotide = [_DNA objectAtIndex:index];
+    NSString * currentNucleotide = [self.DNA objectAtIndex:index];
     
     // создаем массив альтернативных нуклеотидов из трех элементов
     // (исключаем текущий нуклеотид из стандартного набора)
@@ -188,7 +184,7 @@
     // из полученного массива вытаскиваем случайным образом
     // альтернативный нуклеотид и заменяем им текущий в нужной позиции
     NSUInteger randomIndex = arc4random() % 3;
-    [_DNA replaceObjectAtIndex:index 
+    [self.DNA replaceObjectAtIndex:index
                     withObject:[alternativeNucleotides objectAtIndex:randomIndex]];
 }
 
@@ -200,11 +196,11 @@
     NSString * nucleotide;
     for (NSUInteger i = 0; i < self.dnaLength; i++) {
         if (i < half) {
-            nucleotide = [NSString stringWithFormat:@"%@", [_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [self.DNA objectAtIndex:i]];
         } else {
-            nucleotide = [NSString stringWithFormat:@"%@", [cell->_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [cell.DNA objectAtIndex:i]];
         }
-        [newCell->_DNA addObject:nucleotide];
+        [newCell.DNA addObject:nucleotide];
     }
     return newCell;
 }
@@ -216,11 +212,11 @@
     NSString * nucleotide;
     for (NSUInteger i = 0; i < self.dnaLength; i++) {
         if (i % 2) {
-            nucleotide = [NSString stringWithFormat:@"%@", [_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [self.DNA objectAtIndex:i]];
         } else {
-            nucleotide = [NSString stringWithFormat:@"%@", [cell->_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [cell.DNA objectAtIndex:i]];
         }
-        [newCell->_DNA addObject:nucleotide];
+        [newCell.DNA addObject:nucleotide];
     }
     return newCell;
 }
@@ -234,11 +230,11 @@
     for (NSUInteger i = 0; i < self.dnaLength; i++) {
         percent = round((i + 1) * 100.0 / self.dnaLength);
         if (percent <= 20 || 80 < percent) {
-            nucleotide = [NSString stringWithFormat:@"%@", [_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [self.DNA objectAtIndex:i]];
         } else {
-            nucleotide = [NSString stringWithFormat:@"%@", [cell->_DNA objectAtIndex:i]];
+            nucleotide = [NSString stringWithFormat:@"%@", [cell.DNA objectAtIndex:i]];
         }
-        [newCell->_DNA addObject:nucleotide];
+        [newCell.DNA addObject:nucleotide];
     }
     return newCell;
 }

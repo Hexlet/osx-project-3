@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "336"
-         endingLineNumber = "336"
+         startingLineNumber = "306"
+         endingLineNumber = "306"
          landmarkName = "-enableAppControls:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221182.443765"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
          landmarkName = "-windowControllerDidLoadNib:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221182.443765"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "106"
-         endingLineNumber = "106"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
          landmarkName = "-windowControllerDidLoadNib:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221182.443765"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
          landmarkName = "-windowControllerDidLoadNib:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221182.443765"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
          landmarkName = "-windowControllerDidLoadNib:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "292"
-         endingLineNumber = "292"
+         startingLineNumber = "262"
+         endingLineNumber = "262"
          landmarkName = "-resetAppControlsAccordingEvolutionStatus"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "295"
-         endingLineNumber = "295"
+         startingLineNumber = "265"
+         endingLineNumber = "265"
          landmarkName = "-resetAppControlsAccordingEvolutionStatus"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
+         startingLineNumber = "268"
+         endingLineNumber = "268"
          landmarkName = "-resetAppControlsAccordingEvolutionStatus"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "304"
-         endingLineNumber = "304"
+         startingLineNumber = "274"
+         endingLineNumber = "274"
          landmarkName = "-resetAppControlsAccordingEvolutionStatus"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221182.443765"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "229"
-         endingLineNumber = "229"
+         startingLineNumber = "199"
+         endingLineNumber = "199"
          landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
+         startingLineNumber = "258"
+         endingLineNumber = "258"
          landmarkName = "-resetAppControlsAccordingEvolutionStatus"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iDNA2/Document.m"
-         timestampString = "379221623.922299"
+         timestampString = "380998594.195114"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "360"
-         endingLineNumber = "360"
+         startingLineNumber = "330"
+         endingLineNumber = "330"
          landmarkName = "-initWithCoder:"
          landmarkType = "5">
       </FileBreakpoint>

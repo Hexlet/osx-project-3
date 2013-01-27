@@ -11,14 +11,6 @@
 
 @implementation Population
 
-@synthesize populationSize = _populationSize;
-@synthesize dnaLength = _dnaLength;
-@synthesize mutationRate = _mutationRate;
-@synthesize generation = _generation;
-@synthesize goalDNA = _goalDNA;
-@synthesize populationCells = _populationCells;
-@synthesize evolutionPaused = _evolutionPaused;
-
 + (Population *)createPopulationWithData:(NSDictionary *)data {
     Population * newPopulation = [[super alloc] init];
     if (newPopulation) {
@@ -32,8 +24,8 @@
         Cell * newCell;
         do {
             newCell = [Cell getCellWithDnaLength:newPopulation.dnaLength];
-            [newPopulation->_populationCells addObject:newCell];
-        } while ([newPopulation->_populationCells count] < newPopulation.populationSize);
+            [newPopulation.populationCells addObject:newCell];
+        } while ([newPopulation.populationCells count] < newPopulation.populationSize);
     }
     return newPopulation;
 }
@@ -48,7 +40,7 @@
     [self sortByHammingDistance];
 
     // после сортировки проверяем, совпадает ли первый элемент с конечной ДНК
-    Cell * firstCell = [_populationCells objectAtIndex:0];
+    Cell * firstCell = [self.populationCells objectAtIndex:0];
     if (firstCell.hammingDistanceWithGoalDna == 0) {
         // мы нашли конечную ДНК!
         bestMatch = 100.0;
@@ -79,7 +71,7 @@
 }
 
 - (void)sortByHammingDistance {
-    [_populationCells sortUsingComparator:^NSComparisonResult(Cell * cell1, Cell * cell2) {
+    [self.populationCells sortUsingComparator:^NSComparisonResult(Cell * cell1, Cell * cell2) {
         NSUInteger hd1 = cell1.hammingDistanceWithGoalDna;
         NSUInteger hd2 = cell2.hammingDistanceWithGoalDna;
         if (hd1 > hd2) {
@@ -94,11 +86,11 @@
 
 - (NSUInteger)bestCellsCount {
     // предполагаем, что массив отсортирован по расстоянию Хэмминга
-    Cell * firstCell = [_populationCells objectAtIndex:0];
+    Cell * firstCell = [self.populationCells objectAtIndex:0];
     // ищем остальные
     NSUInteger bestCells = 1;
     for (NSUInteger i = 1; i < self.populationSize; i++) {
-        Cell * cell = [_populationCells objectAtIndex:i];
+        Cell * cell = [self.populationCells objectAtIndex:i];
         if (cell.hammingDistanceWithGoalDna == firstCell.hammingDistanceWithGoalDna) {
             bestCells++;
         } else {
@@ -111,8 +103,8 @@
 - (void)halfCrossing {
     NSUInteger half = round(self.populationSize / 2.0);
     // убираем ненужные клетки
-    NSRange range = NSMakeRange(half, [_populationCells count] - half);
-    [_populationCells removeObjectsInRange:range];
+    NSRange range = NSMakeRange(half, [self.populationCells count] - half);
+    [self.populationCells removeObjectsInRange:range];
     
     // дополняем массив self.populationCells новыми клетками
     // полученными путем скрещивания
@@ -128,18 +120,18 @@
         do {
             cellIndex2 = arc4random() % half;
         } while (cellIndex2 == cellIndex1);
-        Cell * cell1 = [_populationCells objectAtIndex:cellIndex1];
-        Cell * cell2 = [_populationCells objectAtIndex:cellIndex2];
+        Cell * cell1 = [self.populationCells objectAtIndex:cellIndex1];
+        Cell * cell2 = [self.populationCells objectAtIndex:cellIndex2];
 
         // создаем новую клетку
         // и добавляем ее в self.populationCells
         Cell * newCell = [Cell randomlyCrossingMom:cell1 andDad:cell2];
-        [_populationCells addObject:newCell];
-    } while ([_populationCells count] < self.populationSize);
+        [self.populationCells addObject:newCell];
+    } while ([self.populationCells count] < self.populationSize);
 }
 
 - (void)mutate {
-    for (Cell * cell in _populationCells) {
+    for (Cell * cell in self.populationCells) {
         if (self.evolutionPaused) {
             usleep(99999);
             continue;
@@ -149,8 +141,8 @@
 }
 
 - (NSString *)description {
-    NSMutableArray * cellsOutput = [NSMutableArray arrayWithCapacity:[_populationCells count]];
-    for (Cell * curCell in _populationCells) {
+    NSMutableArray * cellsOutput = [NSMutableArray arrayWithCapacity:[self.populationCells count]];
+    for (Cell * curCell in self.populationCells) {
         NSUInteger hd = curCell.hammingDistanceWithGoalDna;
         [cellsOutput addObject:[NSString stringWithFormat:@"%lu%%\t %@", hd, [curCell description]]];
     }

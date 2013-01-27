@@ -10,36 +10,6 @@
 #import "ui.h"
 
 @implementation Document
-@synthesize generationTxtLbl = _generationTxtLbl;
-@synthesize bestMatchTxtLbl = _bestMatchTxtLbl;
-@synthesize bestCellsTxtLbl = _bestCellsTxtLbl;
-
-@synthesize populationSize = _populationSize;
-@synthesize dnaLength = _dnaLength;
-@synthesize mutationRate = _mutationRate;
-@synthesize myPopulation = _myPopulation;
-@synthesize goalDna = _goalDna;
-@synthesize evolutionStatus = _evolutionStatus;
-@synthesize evolutionThread = _evolutionThread;
-
-@synthesize bestCells = _bestCells;
-@synthesize bestMatch = _bestMatch;
-@synthesize generation = _generation;
-
-@synthesize isReadFromFile = _isReadFromFile;
-
-@synthesize populationSizeTxtFld = _populationSizeTxtFld;
-@synthesize populationSizeHSldr = _populationSizeHSldr;
-@synthesize dnaLengthTxtFld = _dnaLengthTxtFld;
-@synthesize dnaLengthHSldr = _dnaLengthHSldr;
-@synthesize mutationRateTxtFld = _mutationRateTxtFld;
-@synthesize mutationRateHSldr = _mutationRateHSldr;
-@synthesize goalDnaTxtVw = _goalDnaTxtVw;
-
-@synthesize loadGoalDnaBtn = _loadGoalDnaBtn;
-@synthesize startEvolutionBtn = _startEvolutionBtn;
-@synthesize pauseBtn = _pauseBtn;
-
 
 - (id)init
 {
@@ -100,7 +70,7 @@
         [self generateGoalDna];
     } else {
         // иначе отображаем ее
-        [self displayGoalDna:[_goalDna description]];
+        [self displayGoalDna:[self.goalDna description]];
     }
     // в зависимости от текущего статуса меняем блокировку кнопок
     [self resetAppControlsAccordingEvolutionStatus];
@@ -151,31 +121,31 @@
         if (![Cell dnaIsCorrect:newGoalDna]) {
             [ui alertDialogWithTitle:@"Incorrect DNA" 
                              andText:@"File provided doesn't contain a string which can be represented as cell DNA."];
-        } else if ([newGoalDna length] < [_dnaLengthHSldr minValue]) {
+        } else if ([newGoalDna length] < [self.dnaLengthHSldr minValue]) {
             [ui alertDialogWithTitle:@"Short DNA" 
-                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at least %lu nu", [_dnaLengthHSldr minValue]]];
-        } else if ([newGoalDna length] > [_dnaLengthHSldr maxValue]) {
+                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at least %lu nu", [self.dnaLengthHSldr minValue]]];
+        } else if ([newGoalDna length] > [self.dnaLengthHSldr maxValue]) {
             [ui alertDialogWithTitle:@"Short DNA" 
-                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at most %lu nu", [_dnaLengthHSldr maxValue]]];
+                             andText:[NSString stringWithFormat:@"DNA in the file is too short, it should be at most %lu nu", [self.dnaLengthHSldr maxValue]]];
         } else {
             self.goalDna = [Cell getCellWithDna:newGoalDna];
-            self.dnaLength = _goalDna.dnaLength;
-            [self displayGoalDna:[_goalDna description]];
+            self.dnaLength = self.goalDna.dnaLength;
+            [self displayGoalDna:[self.goalDna description]];
         }
     }
 }
 
 - (IBAction)startEvolution:(id)sender {
-    if (![_evolutionStatus isEqualToString:@""] && ![_evolutionStatus isEqualToString:@"finished"]) {
+    if (![self.evolutionStatus isEqualToString:@""] && ![self.evolutionStatus isEqualToString:@"finished"]) {
         [NSException raise:@"access to button must be denied" format:@"access to button \"start evolution\" must be denied, because evolutionStatus equal to \"%@\"", self.evolutionStatus];
     }
     self.evolutionStatus = @"started";
 }
 
 - (IBAction)pauseEvolution:(id)sender {
-    if ([_evolutionStatus isEqualToString:@"started"] || [_evolutionStatus isEqualToString:@"resumed"]) {
+    if ([self.evolutionStatus isEqualToString:@"started"] || [self.evolutionStatus isEqualToString:@"resumed"]) {
         self.evolutionStatus = @"paused";
-    } else if ([_evolutionStatus isEqualToString:@"paused"]) {
+    } else if ([self.evolutionStatus isEqualToString:@"paused"]) {
         self.evolutionStatus = @"resumed";
     } else {
         [NSException raise:@"access to button must be denied" format:@"access to button \"pause\" must be denied, because evolutionStatus equal to \"%@\"", self.evolutionStatus];
@@ -213,7 +183,7 @@
                 [um setActionName:action];
             }
         }
-        _myPopulation.mutationRate = self.mutationRate;
+        self.myPopulation.mutationRate = self.mutationRate;
     } else if ([keyPath isEqualToString:@"goalDna"]) {
         if (oldValue != [NSNull null]) {
             [[um prepareWithInvocationTarget:self] setValue:oldValue forKey:@"goalDna"];
@@ -226,12 +196,12 @@
             }
         }
     } else if ([keyPath isEqualToString:@"evolutionStatus"]) {
-        if ([_evolutionStatus isEqualToString:@"started"]) {
+        if ([self.evolutionStatus isEqualToString:@"started"]) {
             [um removeAllActions];
-        } else if ([_evolutionStatus isEqualToString:@"paused"]) {
-            _myPopulation.evolutionPaused = YES;
-        } else if ([_evolutionStatus isEqualToString:@"resumed"]) {
-            _myPopulation.evolutionPaused = NO;
+        } else if ([self.evolutionStatus isEqualToString:@"paused"]) {
+            self.myPopulation.evolutionPaused = YES;
+        } else if ([self.evolutionStatus isEqualToString:@"resumed"]) {
+            self.myPopulation.evolutionPaused = NO;
         }
         [self resetAppControlsAccordingEvolutionStatus];
     }
@@ -249,24 +219,24 @@
         [self removeObserver:self forKeyPath:@"evolutionStatus"];
         // если имелся отдельный процесс с эволюцией, то завершаем его
         if (self.evolutionThread != nil) {
-            [_evolutionThread cancel];
+            [self.evolutionThread cancel];
         }
     }
 }
 
 - (void)generateGoalDna {
     self.goalDna = [Cell getCellWithDnaLength:self.dnaLength];
-    [self displayGoalDna:[_goalDna description]];
+    [self displayGoalDna:[self.goalDna description]];
 }
              
 - (void)displayGoalDna:(NSString *)dna {
-    [_goalDnaTxtVw setString:dna];
+    [self.goalDnaTxtVw setString:dna];
 }
 
 - (void)displayEvolutionState {
-    [_bestMatchTxtLbl setStringValue:[NSString stringWithFormat:@"%.1f %%", self.bestMatch]];
-    [_bestCellsTxtLbl setIntValue:self.bestCells];
-    [_generationTxtLbl setIntValue:self.generation];
+    [self.bestMatchTxtLbl setStringValue:[NSString stringWithFormat:@"%.1f %%", self.bestMatch]];
+    [self.bestCellsTxtLbl setIntValue:self.bestCells];
+    [self.generationTxtLbl setIntValue:self.generation];
 }
 
 - (void)generatePopulation {
@@ -281,38 +251,38 @@
 }
 
 - (void)resetAppControlsAccordingEvolutionStatus {
-    if ([_evolutionStatus isEqualToString:@""]) {
-        [_pauseBtn setTitle:@"Pause"];
+    if ([self.evolutionStatus isEqualToString:@""]) {
+        [self.pauseBtn setTitle:@"Pause"];
         [self enableAppControls:YES];
-    } else if ([_evolutionStatus isEqualToString:@"started"]) {
+    } else if ([self.evolutionStatus isEqualToString:@"started"]) {
         if (self.myPopulation == nil) {
             [self generatePopulation];
         }
-        [_pauseBtn setTitle:@"Pause"];
+        [self.pauseBtn setTitle:@"Pause"];
         [self enableAppControls:NO];
-    } else if ([_evolutionStatus isEqualToString:@"paused"]) {
-        [_pauseBtn setTitle:@"Resume"];
+    } else if ([self.evolutionStatus isEqualToString:@"paused"]) {
+        [self.pauseBtn setTitle:@"Resume"];
         [self enableAppControls:NO];
-    } else if ([_evolutionStatus isEqualToString:@"resumed"]) {
-        [_pauseBtn setTitle:@"Pause"];
+    } else if ([self.evolutionStatus isEqualToString:@"resumed"]) {
+        [self.pauseBtn setTitle:@"Pause"];
         [self enableAppControls:NO];
-    } else if ([_evolutionStatus isEqualToString:@"finished"]) {
+    } else if ([self.evolutionStatus isEqualToString:@"finished"]) {
         self.myPopulation = nil;
-        [_evolutionThread cancel];
+        [self.evolutionThread cancel];
         self.evolutionThread = nil;
-        [_pauseBtn setTitle:@"Pause"];
+        [self.pauseBtn setTitle:@"Pause"];
         [self enableAppControls:YES];
     }
     // в случае запуска эволюции или снятия с паузы
     // проверяем self.evolutionThread:
     // если он не существует, то создаем и присваиваем ему 
     // отдельный процесс, в котором запускаем runEvolution
-    if ([_evolutionStatus isEqualToString:@"started"] || [_evolutionStatus isEqualToString:@"resumed"]) {
+    if ([self.evolutionStatus isEqualToString:@"started"] || [self.evolutionStatus isEqualToString:@"resumed"]) {
         if (self.evolutionThread == nil) {
             self.evolutionThread = [[NSThread alloc] initWithTarget:self 
                                                            selector:@selector(runEvolution) 
                                                              object:nil];
-            [_evolutionThread start];
+            [self.evolutionThread start];
         }
     }
 }
@@ -320,7 +290,7 @@
 - (void)runEvolution {
     NSUInteger steps = 0;
     do {
-        NSDictionary * data = [_myPopulation oneStepEvolution];
+        NSDictionary * data = [self.myPopulation oneStepEvolution];
         self.bestMatch = [[data objectForKey:@"bestMatch"] floatValue];
         self.bestCells = [[data objectForKey:@"bestCells"] intValue];
         self.generation = [[data objectForKey:@"generation"] intValue];
@@ -333,15 +303,15 @@
 }
 
 - (void)enableAppControls:(BOOL)status {
-    [_populationSizeTxtFld setEnabled:status];
-    [_populationSizeHSldr setEnabled:status];
-    [_dnaLengthTxtFld setEnabled:status];
-    [_dnaLengthHSldr setEnabled:status];
-//    [_mutationRateTxtFld setEnabled:status];
-//    [_mutationRateHSldr setEnabled:status];
-    [_startEvolutionBtn setEnabled:status];
-    [_pauseBtn setEnabled:!status];
-    [_loadGoalDnaBtn setEnabled:status];
+    [self.populationSizeTxtFld setEnabled:status];
+    [self.populationSizeHSldr setEnabled:status];
+    [self.dnaLengthTxtFld setEnabled:status];
+    [self.dnaLengthHSldr setEnabled:status];
+//    [self.mutationRateTxtFld setEnabled:status];
+//    [self.mutationRateHSldr setEnabled:status];
+    [self.startEvolutionBtn setEnabled:status];
+    [self.pauseBtn setEnabled:!status];
+    [self.loadGoalDnaBtn setEnabled:status];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
