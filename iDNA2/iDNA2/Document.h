@@ -46,8 +46,6 @@ static void *RMDocumentKVOContext;
 @property (weak) IBOutlet NSTextField *bestMatchTxtLbl;
 @property (weak) IBOutlet NSTextField *bestCellsTxtLbl;
 
-
-
 - (void)generateGoalDna;
 - (void)displayGoalDna:(NSString *)dna;
 - (void)displayEvolutionState;
@@ -55,5 +53,9 @@ static void *RMDocumentKVOContext;
 - (void)resetAppControlsAccordingEvolutionStatus;
 - (void)runEvolution;
 - (void)enableAppControls:(BOOL)status;
+
+// метод проверяет, допустимо ли значение процента мутации
+// для текущей длины ДНК
+- (BOOL)mutateRateIsCorrect;
 
 @end

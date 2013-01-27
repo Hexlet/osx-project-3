@@ -176,14 +176,20 @@
             [self generateGoalDna];
         }
     } else if ([keyPath isEqualToString:@"mutationRate"]) {
-        if (oldValue != [NSNull null]) {
-            [[um prepareWithInvocationTarget:self] setValue:oldValue forKey:@"mutationRate"];
-            if (![um isUndoing] && ![um isRedoing]) {
-                action = [NSString stringWithFormat:@"change mutation rate to %lu", self.mutationRate];
-                [um setActionName:action];
+        if ([self mutationRateIsCorrect]) {
+            if (oldValue != [NSNull null]) {
+                [[um prepareWithInvocationTarget:self] setValue:oldValue forKey:@"mutationRate"];
+                if (![um isUndoing] && ![um isRedoing]) {
+                    action = [NSString stringWithFormat:@"change mutation rate to %lu", self.mutationRate];
+                    [um setActionName:action];
+                }
             }
+            self.myPopulation.mutationRate = self.mutationRate;
+        } else if (oldValue != [NSNull null]) {
+            self.mutationRate = [oldValue integerValue];
+            [self.mutationRateHSldr setIntegerValue:self.mutationRate];
+            [self.mutationRateTxtFld setIntegerValue:self.mutationRate];
         }
-        self.myPopulation.mutationRate = self.mutationRate;
     } else if ([keyPath isEqualToString:@"goalDna"]) {
         if (oldValue != [NSNull null]) {
             [[um prepareWithInvocationTarget:self] setValue:oldValue forKey:@"goalDna"];
@@ -312,6 +318,16 @@
     [self.startEvolutionBtn setEnabled:status];
     [self.pauseBtn setEnabled:!status];
     [self.loadGoalDnaBtn setEnabled:status];
+}
+
+- (BOOL)mutationRateIsCorrect {
+    NSUInteger numberOfMutation = round(self.dnaLength / 100.0 * self.mutationRate);
+    if (numberOfMutation == 0) {
+        [ui alertDialogWithTitle:@"Incorrect mutation rate" andText:@"You should increase mutation rate, because it is too small according to DNA length."];
+        
+        return NO;
+    }
+    return YES;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
