@@ -51,4 +51,6 @@
 // метод для мутации популяции
 - (void)mutate;
 
+- (NSString *)description;
+
 @end

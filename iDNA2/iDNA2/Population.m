@@ -31,8 +31,6 @@
 }
 
 - (NSDictionary *)oneStepEvolution {
-    float bestMatch;
-    NSUInteger bestCells;
     // перед сортировкой считаем расстояние Хэмминга у клеток всей популяции
     [self calculateHammingDistance];
 
@@ -41,18 +39,18 @@
 
     // после сортировки проверяем, совпадает ли первый элемент с конечной ДНК
     Cell * firstCell = [self.populationCells objectAtIndex:0];
-    if (firstCell.hammingDistanceWithGoalDna == 0) {
-        // мы нашли конечную ДНК!
-        bestMatch = 100.0;
-    } else {
+    // сколько клеток с таким же расстоянием Хэмминга как у первой
+    NSUInteger bestCells = [self bestCellsCount];
+    // предполагаем, что мы получили клетку, совпадающую с целевой ДНК
+    float bestMatch = 100.0;
+    if (firstCell.hammingDistanceWithGoalDna > 0) {
+        // считаем процент приближения к целевой ДНК
         bestMatch = (self.dnaLength - firstCell.hammingDistanceWithGoalDna) * 100.0 / self.dnaLength;
         // скрещиваем первые 50% клеток
         [self halfCrossing];
         // мутируем всю популяцию
         [self mutate];
     }
-    // сколько клеток с таким же расстоянием Хэмминга
-    bestCells = [self bestCellsCount];
     
     // формируем ответ
     NSDictionary * data = [NSDictionary dictionaryWithObjectsAndKeys:
