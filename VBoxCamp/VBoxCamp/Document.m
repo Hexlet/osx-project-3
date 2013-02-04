@@ -33,13 +33,12 @@
         NSString *label = [url lastPathComponent];
         // Escape root mount point 
         if (![label isEqualToString:@"/"]) {
-            Volume *v = [[Volume alloc] init];
-        
             // Create DADisk for the volume
             DADiskRef volumeDisk = DADiskCreateFromVolumePath(kCFAllocatorDefault, session, (__bridge CFURLRef)url);
-        
+            
             // Filter out files/directories that aren't volumes
             if (volumeDisk) {
+                Volume *v = [[Volume alloc] init];
                 // Get disk description
                 NSDictionary *description = (__bridge_transfer NSDictionary *)DADiskCopyDescription(volumeDisk);
                 // Add label
@@ -67,9 +66,8 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    int bcIndex = -1;
-    int i = 0;
+    NSInteger bcIndex = -1;
+    NSUInteger i = 0;
     for (Volume *v in volumes) {
         if ([[v.label uppercaseString] isEqualToString:@"BOOTCAMP"]) {
             bcIndex = i;
@@ -112,35 +110,6 @@
 - (IBAction)createBootcampVM:(id)sender {
     Volume *v = [volumes objectAtIndex:[_volumesTableView selectedRow]];
     
-//    NSTask *task = [[NSTask alloc] init];
-//    [task setLaunchPath: @"chmod"];
-//    
-//    NSString *hd = [NSString stringWithFormat:@"/dev/%@", v.bsdId];
-//    NSArray *arguments = [NSArray arrayWithObjects: @"777", hd, nil];
-//    [task setArguments: arguments];
-//    
-//    NSPipe *pipe = [NSPipe pipe];
-//    [task setStandardOutput: pipe];
-//    
-//    NSFileHandle *file = [pipe fileHandleForReading];
-//    
-//    [task launch];
-//    
-//    NSData *data = [file readDataToEndOfFile];
-//    
-//    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-//    NSLog (@"chmod returned:\n%@", string);
-    
-    
-//    NSFileManager *fm = [NSFileManager defaultManager];
-//    NSError *error = nil;
-//    NSDictionary *attribs = [fm attributesOfItemAtPath:hd error:&error];
-//    int permissions = [[attribs objectForKey:@"NSFilePosixPermissions"] intValue];
-//    permissions |= (S_IRWXU | S_IRWXG | S_IRWXO);
-//    NSDictionary *newattribs = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:permissions]
-//                                               forKey:NSFilePosixPermissions];
-//    [fm setAttributes:newattribs ofItemAtPath:hd error:&error];
-    
     //Show system dialog to choose VM files location
     NSOpenPanel *openDlg = [NSOpenPanel openPanel];
     [openDlg setCanChooseFiles:NO];
@@ -175,17 +144,36 @@
         //Execute AppleScript
         NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
         NSDictionary *errorDict;
-//        [script executeAndReturnError:&errorDict];
+        [script executeAndReturnError:&errorDict];
+        [self appendTextToDetails:@"Done."];
         
         //Fix sticky bits
         NSString *path = [NSString stringWithFormat:@"%@/bootcamp-pt.vmdk", bootcamp_vm_dir];
         NSLog(@"Path: %@", path);
+        
         NSData *bootcamp_pt_data = [NSData dataWithContentsOfFile:path];
-//        NSString *str = [[NSString alloc] initWithBytes:[bootcamp_pt_data bytes] length:[bootcamp_pt_data length] encoding:NSUTF8StringEncoding];
-//        NSString *s = [NSString stringWithContentsOfURL:[NSURL URLWithString:path] encoding:NSASCIIStringEncoding error:nil];
-//        NSLog(@"File: %@", s);
-        NSLog(@"Data: %@", bootcamp_pt_data);
-        [self appendTextToDetails:@"Done."];
+        NSUInteger dataLength = [bootcamp_pt_data length];
+        NSMutableString *string = [NSMutableString stringWithCapacity:dataLength*2];
+        const unsigned char *dataBytes = [bootcamp_pt_data bytes];
+        for (NSUInteger idx = 0; idx < dataLength; ++idx) {
+            [string appendFormat:@"%02x", dataBytes[idx]];
+        }
+
+        NSUInteger offset = 446; // byte of partition records start in MBR
+        for (NSUInteger i = 0; i < [disk_s[1] intValue]-1; i++) {
+            [string replaceCharactersInRange:NSMakeRange((offset + 16*i + 4)*2, 2) withString:@"2d"]; // change the fifth byte of each 16-bytes partition record before BOOTCAMP's partition record
+        }
+        
+        NSMutableData *data = [NSMutableData data];
+        for (NSUInteger idx = 0; idx+2 <= string.length; idx+=2) {
+            NSRange range = NSMakeRange(idx, 2);
+            NSString *hexStr = [string substringWithRange:range];
+            NSScanner *scanner = [NSScanner scannerWithString:hexStr];
+            unsigned int intValue;
+            [scanner scanHexInt:&intValue];
+            [data appendBytes:&intValue length:1];
+        }
+        [data writeToFile:path atomically:YES]; //TODO handle status
     }
 }
 
