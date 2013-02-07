@@ -98,11 +98,17 @@
 
 -(void) checkInputValues
 {
-	[self setDnaLength:[_tfDnaLength integerValue]];
-	[self setMutationRate:[_tfMutationRate integerValue]];
-	// It can be over 1000 which implies a space after thousands.
-	//[self setPopulationSize:[[[_tfPopulationSize stringValue] stringByReplacingOccurrencesOfString:@"\t" withString:@""] integerValue]];
-	[self setPopulationSize:[[[[_tfPopulationSize stringValue] componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""] integerValue]];
+	NSInteger currentDnaLength = [_tfDnaLength integerValue];
+	NSInteger currentMutationRate = [_tfMutationRate integerValue];
+	NSInteger currentPopulationSize = [[[[_tfPopulationSize stringValue] componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""] integerValue];
+	
+	// Check if any value was changed.
+	if (currentDnaLength != [self dnaLength])
+		[self setDnaLength:currentDnaLength];
+	if (currentMutationRate != [self mutationRate])
+		[self setMutationRate:currentMutationRate];
+	if (currentPopulationSize != [self populationSize])
+		[self setPopulationSize:currentPopulationSize];
 }
 
 // Pause button pressed.
