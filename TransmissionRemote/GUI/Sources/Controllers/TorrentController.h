@@ -19,14 +19,16 @@
 -(id)initWithSevice:(CoreService *)service andTorrent:(Torrent *)torrent;
 
 @property (readonly) CoreService *coreService;
-@property (readonly) Torrent *torrent;
-@property (readonly) NSArray *filesTree;
+@property (readonly, weak) Torrent *torrent;
+@property NSArray *filesTree;
 @property (weak) IBOutlet NSOutlineView *filesOutlineView;
 @property (strong) IBOutlet NSTreeController *filesTreeController;
+@property (readonly) TorrentMoveController *torrentMoveController;
 
 - (IBAction)applyChanges:(id)sender;
 - (IBAction)enableFileAction:(id)sender;
 - (IBAction)disableFileAction:(id)sender;
 - (IBAction)changeLocation:(id)sender;
+- (void)closeTorrentWindow;
 
 @end

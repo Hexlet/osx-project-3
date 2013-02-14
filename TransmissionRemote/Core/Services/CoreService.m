@@ -23,6 +23,7 @@ const double ReconnectIntervalUnactive = 60.0;
         _optionsAssistant = [[OptionsServiceAssistant alloc] init];
         _refreshInterval = [NSNumber numberWithDouble:RefreshIntervalActive];
         _filesQueue = [NSMutableArray array];
+        _urlsQueue = [NSMutableArray array];
         _watingAddTorrents = [NSMutableSet set];
     }
     return self;
@@ -54,18 +55,20 @@ const double ReconnectIntervalUnactive = 60.0;
 -(void)disconnect {
     [NSObject cancelPreviousPerformRequestsWithTarget:_rpcAssistant];
     self.serverStatus.connected = NO;
-    self.serverStatus.version = @"Disconnected";
+    self.serverStatus.version = NSLocalizedString(@"Disconnected", "Disconnected");
     self.rateDownload = 0;
     self.rateUpload = 0;
     [_torrentsAssistant removeAllTorrents];
 }
 
 -(void)updateRecentlyChangedTorrents {
-    double delay = RefreshIntervalActive;
-    @synchronized(_refreshInterval) {
-        delay = [_refreshInterval doubleValue];
+    if (self.serverStatus.connected) {
+        double delay = RefreshIntervalActive;
+        @synchronized(_refreshInterval) {
+            delay = [_refreshInterval doubleValue];
+        }
+        [_rpcAssistant performSelector:@selector(updateRecentlyChangedTorrents) withObject:nil afterDelay:delay];
     }
-    [_rpcAssistant performSelector:@selector(updateRecentlyChangedTorrents) withObject:nil afterDelay:delay];
 }
 
 -(void)activityUp {
@@ -126,6 +129,26 @@ const double ReconnectIntervalUnactive = 60.0;
     }
 }
 
+-(void)addTorrentURL:(NSString *)url {
+    if (url) {
+        @synchronized(_urlsQueue) {
+            [_urlsQueue addObject:url];
+        }
+        [self proceedUrlsQueue];
+    }
+}
+
+-(void)proceedUrlsQueue {
+    if (_serverStatus && _serverStatus.connected) {
+        @synchronized(_urlsQueue) {
+            for(NSString *url in _urlsQueue) {
+                [_rpcAssistant addTorrentWithURL:url andStart:_optionsAssistant.appOptions.startTorrentAfterAdding];
+            }
+            [_urlsQueue removeAllObjects];
+        }
+    }
+}
+
 #pragma mark - <TorrentServiceAssistantDelegate>
 
 -(void)torrentServiceAssistantDidInitializeTorrentsArray {
@@ -181,6 +204,7 @@ const double ReconnectIntervalUnactive = 60.0;
         }
     }
     [self proceedFilesQueue];
+    [self proceedUrlsQueue];
 }
 
 -(void)torrentServiceAssistantDidCheckedTorrents:(NSArray *)torrentsArray {
@@ -214,6 +238,14 @@ const double ReconnectIntervalUnactive = 60.0;
 
 -(NSURL *)rpcServiceURL {
     return [_optionsAssistant.connectOptions rpcServerURL];
+}
+
+-(void)requestFailedWithAuthorizationError {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RequestFailedWithAuthorizationError" object:nil];
+}
+
+-(void)request:(RpcRequestHeader *)requestHeader failedWithError:(NSError *)error {
+    [self disconnect];
 }
 
 #pragma mark - Notifications

@@ -9,6 +9,23 @@
 #import "Torrent+Statusing.h"
 #import "NSByteSpeedFormatter.h"
 
+static const NSString* TorrentStatusNames[] = {
+    @"Unactive",
+    @"Downloading",
+    @"Seeding",
+    @"Verifing",
+    @"Stopped",
+    @"Error"
+};
+
+static const NSString* TorrentStatusImages[] = {
+    @"GrayDot",
+    @"BlueDot",
+    @"GreenDot",
+    @"YellowDot",
+    @"RedDot"
+};
+
 @implementation Torrent (Statusing)
 
 -(TorrentStatus)torrentStatus {
@@ -31,7 +48,7 @@
 }
 
 -(NSString *)statusName {
-    return [TorrentStatusNames[self.torrentStatus] copy];
+    return NSLocalizedString([TorrentStatusNames[self.torrentStatus] copy], "Status");;
 }
 
 -(NSImage *)statusImage {
@@ -48,8 +65,17 @@
     } else {
         NSByteSpeedFormatter *formatter = [[NSByteSpeedFormatter alloc] init];
         [formatter setAllowsNonnumericFormatting:NO];
+        [formatter setCountStyle:NSByteCountFormatterCountStyleBinary];
         
-        return [NSString stringWithFormat:@"%ld. %@: ↓ %@, ↑ %@, Peers %ld", self.queuePosition + 1, self.statusName, [formatter stringFromByteCount:self.rateDownload], [formatter stringFromByteCount:self.rateUpload], self.peersConnected];
+        return [NSString stringWithFormat:@"%ld. %@: ↓ %@, ↑ %@, %@ %ld", self.queuePosition + 1, self.statusName, [formatter stringFromByteCount:self.rateDownload], [formatter stringFromByteCount:self.rateUpload], NSLocalizedString(@"Peers", "Peers"), self.peersConnected];
+    }
+}
+
+-(NSColor *)uploadRatioColor {
+    if ([self uploadRatio] < 1.0) {
+        return [NSColor redColor];
+    } else {
+        return [NSColor grayColor];
     }
 }
 
@@ -69,6 +95,10 @@
 
 +(NSSet *)keyPathsForValuesAffectingStatusInformation {
     return [NSSet setWithObjects:@"torrentStatus", @"queuePosition", @"rateDownload", @"rateUpload", @"peersConnected", nil];
+}
+
++(NSSet *)keyPathsForValuesAffectingUploadRatioColor {
+    return [NSSet setWithObjects:@"uploadRatio", nil];
 }
 
 @end

@@ -20,11 +20,20 @@
     if (self) {
         _coreService = service;
         _torrent = torrent;
-        _files = [self filesArrayFromTorrent:torrent];
-        _filesTree = [self filesTreeFromFilesArray:_files];
         [_torrent addObserver:self forKeyPath:@"fileStats" options:0 context:nil];
+        [self prepeareTorrentFiles];
      }
     return self;
+}
+
+-(void)prepeareTorrentFiles {
+    if (![[_torrent files] count]) {
+        [[_coreService rpcAssistant] loadTorrentsDataForTorrentIdArray:@[_torrent]];
+        [self performSelector:@selector(prepeareTorrentFiles) withObject:nil afterDelay:5.0];
+    } else {
+        _files = [self filesArrayFromTorrent:_torrent];
+        self.filesTree = [self filesTreeFromFilesArray:_files];
+    }
 }
 
 - (id)initWithWindow:(NSWindow *)window
@@ -46,6 +55,13 @@
 
 -(void)awakeFromNib {
     [_filesOutlineView expandItem:nil expandChildren:YES];
+}
+
+-(TorrentMoveController *)torrentMoveController {
+    if (!_torrentMoveController) {
+        _torrentMoveController = [[TorrentMoveController alloc] initWithSevice:_coreService andTorrent:_torrent];
+    }
+    return _torrentMoveController;
 }
 
 #pragma mark - Files
@@ -149,6 +165,10 @@
     return [[self arrayFromTorrentFile:torrentFile] valueForKeyPath:@"index"];
 }
 
+-(void)dealloc {
+    [_torrent removeObserver:self forKeyPath:@"fileStats"];
+}
+
 #pragma mark - IB Actions
 
 -(NSArray *)selectedFiles {
@@ -161,7 +181,6 @@
 }
 
 -(void)closeTorrentWindow {
-    [_torrent removeObserver:self forKeyPath:@"fileStats"];
     [self.window orderOut:nil];
     [NSApp endSheet:self.window];
 }
@@ -191,17 +210,13 @@
 }
 
 - (IBAction)changeLocation:(id)sender {
-    if (!_torrentMoveController) {
-        _torrentMoveController = [[TorrentMoveController alloc] initWithSevice:_coreService andTorrent:_torrent];
-    }
-
-    [NSApp beginSheet:_torrentMoveController.window modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:nil];
+    [NSApp beginSheet:self.torrentMoveController.window modalForWindow:self.window modalDelegate:self didEndSelector:nil contextInfo:nil];
 }
 
 #pragma mark - Observing
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == _torrent && keyPath == @"fileStats") {
+    if (object == _torrent && [keyPath isEqualToString:@"fileStats"]) {
         [self updateFilesArrayWithStatisticsArray:_torrent.fileStats];
     }
 }

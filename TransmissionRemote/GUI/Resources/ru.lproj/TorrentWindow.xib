@@ -66,6 +66,7 @@
 							<string key="NSFrame">{{419, 14}, {75, 28}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="14691169">
@@ -128,7 +129,7 @@
 						<object class="NSTextField" id="549404392">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{330, 300}, {116, 14}}</string>
+							<string key="NSFrame">{{380, 300}, {66, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="392059934"/>
@@ -137,7 +138,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="381243105">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272761856</int>
-								<string key="NSContents">Download Complete:</string>
+								<string key="NSContents">Загружено:</string>
 								<reference key="NSSupport" ref="26"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="549404392"/>
@@ -149,7 +150,7 @@
 						<object class="NSTextField" id="621210052">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 300}, {41, 14}}</string>
+							<string key="NSFrame">{{17, 300}, {44, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="105816695"/>
@@ -158,7 +159,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="65343483">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272761856</int>
-								<string key="NSContents">Status:</string>
+								<string key="NSContents">Статус:</string>
 								<reference key="NSSupport" ref="26"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="621210052"/>
@@ -170,7 +171,7 @@
 						<object class="NSTextField" id="404087695">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 278}, {81, 14}}</string>
+							<string key="NSFrame">{{17, 278}, {33, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="881981255"/>
@@ -179,7 +180,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="238465502">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272761856</int>
-								<string key="NSContents">Download Dir:</string>
+								<string key="NSContents">Путь:</string>
 								<reference key="NSSupport" ref="26"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="404087695"/>
@@ -191,7 +192,7 @@
 						<object class="NSTextField" id="881981255">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{100, 278}, {53, 14}}</string>
+							<string key="NSFrame">{{52, 278}, {53, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1061316111"/>
@@ -212,7 +213,7 @@
 						<object class="NSTextField" id="105816695">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{60, 300}, {37, 14}}</string>
+							<string key="NSFrame">{{63, 300}, {37, 14}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="549404392"/>
@@ -310,7 +311,7 @@
 											<string key="NSFrameSize">{467, 205}</string>
 											<reference key="NSSuperview" ref="600388427"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="208446499"/>
+											<reference key="NSNextKeyView" ref="197338392"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -334,13 +335,13 @@
 											</object>
 											<array class="NSMutableArray" key="NSTableColumns">
 												<object class="NSTableColumn" id="1033270611">
-													<double key="NSWidth">308</double>
+													<double key="NSWidth">305</double>
 													<double key="NSMinWidth">16</double>
 													<double key="NSMaxWidth">1000</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75497536</int>
 														<int key="NSCellFlags2">2048</int>
-														<string key="NSContents">File Name</string>
+														<string key="NSContents">Имя файла</string>
 														<reference key="NSSupport" ref="26"/>
 														<object class="NSColor" key="NSBackgroundColor" id="742623341">
 															<int key="NSColorSpace">3</int>
@@ -378,7 +379,7 @@
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75497536</int>
 														<int key="NSCellFlags2">2048</int>
-														<string key="NSContents">Size</string>
+														<string key="NSContents">Размер</string>
 														<reference key="NSSupport" ref="26"/>
 														<reference key="NSBackgroundColor" ref="742623341"/>
 														<reference key="NSTextColor" ref="315824524"/>
@@ -399,13 +400,13 @@
 													<reference key="NSTableView" ref="865114832"/>
 												</object>
 												<object class="NSTableColumn" id="323925773">
-													<double key="NSWidth">64</double>
+													<double key="NSWidth">67</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75497536</int>
 														<int key="NSCellFlags2">2048</int>
-														<string key="NSContents">Complete</string>
+														<string key="NSContents">Загружено</string>
 														<reference key="NSSupport" ref="26"/>
 														<object class="NSColor" key="NSBackgroundColor">
 															<int key="NSColorSpace">6</int>
@@ -517,7 +518,7 @@
 								<object class="NSScroller" id="530402250">
 									<reference key="NSNextResponder" ref="785882732"/>
 									<int key="NSvFlags">-2147483392</int>
-									<string key="NSFrame">{{1, 207}, {467, 16}}</string>
+									<string key="NSFrame">{{1, 206}, {467, 16}}</string>
 									<reference key="NSSuperview" ref="785882732"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="932178807"/>
@@ -526,7 +527,7 @@
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="785882732"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.94918699186991873</double>
+									<double key="NSPercent">0.99786324786324787</double>
 								</object>
 								<object class="NSClipView" id="208446499">
 									<reference key="NSNextResponder" ref="785882732"/>
@@ -547,7 +548,7 @@
 							<string key="NSFrame">{{20, 46}, {469, 223}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="600388427"/>
+							<reference key="NSNextKeyView" ref="208446499"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="197338392"/>
@@ -562,7 +563,7 @@
 						<object class="NSButton" id="1061316111">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{433, 276}, {57, 16}}</string>
+							<string key="NSFrame">{{423, 276}, {67, 16}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="785882732"/>
@@ -571,7 +572,7 @@
 							<object class="NSButtonCell" key="NSCell" id="130260139">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">134479872</int>
-								<string key="NSContents">Change</string>
+								<string key="NSContents">Изменить</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">9</double>
@@ -612,7 +613,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="653048586">
 						<reference key="NSMenu" ref="832034498"/>
-						<string key="NSTitle">Enable</string>
+						<string key="NSTitle">Загружать</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="870995058">
@@ -626,7 +627,7 @@
 					</object>
 					<object class="NSMenuItem" id="802094281">
 						<reference key="NSMenu" ref="832034498"/>
-						<string key="NSTitle">Disable</string>
+						<string key="NSTitle">Не загружать</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="870995058"/>
@@ -1138,38 +1139,6 @@
 								<float key="scoringTypeFloat">24</float>
 								<int key="contentType">2</int>
 							</object>
-							<object class="IBNSLayoutConstraint" id="918013755">
-								<reference key="firstItem" ref="881981255"/>
-								<int key="firstAttribute">11</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="404087695"/>
-								<int key="secondAttribute">11</int>
-								<float key="multiplier">1</float>
-								<object class="IBLayoutConstant" key="constant">
-									<double key="value">0.0</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="1006"/>
-								<int key="scoringType">6</int>
-								<float key="scoringTypeFloat">24</float>
-								<int key="contentType">2</int>
-							</object>
-							<object class="IBNSLayoutConstraint" id="856060318">
-								<reference key="firstItem" ref="881981255"/>
-								<int key="firstAttribute">5</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="404087695"/>
-								<int key="secondAttribute">6</int>
-								<float key="multiplier">1</float>
-								<object class="IBNSLayoutSymbolicConstant" key="constant">
-									<double key="value">8</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="1006"/>
-								<int key="scoringType">6</int>
-								<float key="scoringTypeFloat">24</float>
-								<int key="contentType">3</int>
-							</object>
 							<object class="IBNSLayoutConstraint" id="98319453">
 								<reference key="firstItem" ref="785882732"/>
 								<int key="firstAttribute">3</int>
@@ -1216,6 +1185,38 @@
 								<reference key="containingView" ref="1006"/>
 								<int key="scoringType">8</int>
 								<float key="scoringTypeFloat">29</float>
+								<int key="contentType">3</int>
+							</object>
+							<object class="IBNSLayoutConstraint" id="918013755">
+								<reference key="firstItem" ref="881981255"/>
+								<int key="firstAttribute">11</int>
+								<int key="relation">0</int>
+								<reference key="secondItem" ref="404087695"/>
+								<int key="secondAttribute">11</int>
+								<float key="multiplier">1</float>
+								<object class="IBLayoutConstant" key="constant">
+									<double key="value">0.0</double>
+								</object>
+								<float key="priority">1000</float>
+								<reference key="containingView" ref="1006"/>
+								<int key="scoringType">6</int>
+								<float key="scoringTypeFloat">24</float>
+								<int key="contentType">2</int>
+							</object>
+							<object class="IBNSLayoutConstraint" id="856060318">
+								<reference key="firstItem" ref="881981255"/>
+								<int key="firstAttribute">5</int>
+								<int key="relation">0</int>
+								<reference key="secondItem" ref="404087695"/>
+								<int key="secondAttribute">6</int>
+								<float key="multiplier">1</float>
+								<object class="IBNSLayoutSymbolicConstant" key="constant">
+									<double key="value">8</double>
+								</object>
+								<float key="priority">1000</float>
+								<reference key="containingView" ref="1006"/>
+								<int key="scoringType">6</int>
+								<float key="scoringTypeFloat">24</float>
 								<int key="contentType">3</int>
 							</object>
 							<object class="IBNSLayoutConstraint" id="659200308">
@@ -1795,7 +1796,7 @@
 				<string key="179.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="180.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<array class="NSMutableArray" key="2.IBNSViewMetadataConstraints">
+				<array key="2.IBNSViewMetadataConstraints">
 					<reference ref="916777979"/>
 					<reference ref="338285891"/>
 					<reference ref="921283641"/>
@@ -1805,11 +1806,11 @@
 					<reference ref="152673288"/>
 					<reference ref="851223218"/>
 					<reference ref="659200308"/>
+					<reference ref="856060318"/>
+					<reference ref="918013755"/>
 					<reference ref="157528080"/>
 					<reference ref="70668574"/>
 					<reference ref="98319453"/>
-					<reference ref="856060318"/>
-					<reference ref="918013755"/>
 					<reference ref="355422052"/>
 					<reference ref="954766569"/>
 					<reference ref="465997989"/>

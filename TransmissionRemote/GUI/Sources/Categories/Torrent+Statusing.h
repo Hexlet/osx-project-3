@@ -16,28 +16,12 @@ typedef NS_ENUM(NSUInteger, TorrentStatus) {
     STATUS_ERROR    = 4
 };
 
-static const NSString* TorrentStatusNames[] = {
-    @"Unactive",
-    @"Downloading",
-    @"Seeding",
-    @"Verifing",
-    @"Stopped",
-    @"Error"
-};
-
-static const NSString* TorrentStatusImages[] = {
-    @"GrayDot",
-    @"BlueDot",
-    @"GreenDot",
-    @"YellowDot",
-    @"RedDot"
-};
-
 @interface Torrent (Statusing)
 
 @property (readonly) TorrentStatus torrentStatus;
 @property (readonly) NSString *statusName;
 @property (readonly) NSImage *statusImage;
 @property (readonly) NSString *statusInformation;
+@property (readonly) NSColor *uploadRatioColor;
 
 @end
